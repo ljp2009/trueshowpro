@@ -1,0 +1,41 @@
+<!--pages/index/reservation/staff/modules/statusZero/statusZero.wxml-->
+ <view class="padding bg-white">
+    <view class="flex">
+      <view class="flex-sub margin-xs">服务清单</view>
+      <view class="flex-twice margin-xs "></view>
+      <view class="flex-sub margin-xs"><text class="cuIcon-roundadd"></text></view>
+    </view>
+    <view class="flex">
+      <view class="flex-sub  margin-xs secimg">
+        <image src="https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg"/>
+      </view>
+      <view class="flex-twice  margin-xs serintro">
+      <text>中医推拿60分钟</text>
+      <text>10年经验</text>
+      <text>120元</text>
+      </view>
+      <view class="flex-sub  margin-xs"><text class="cuIcon-delete"></text></view>
+    </view>
+    <view class="flex">
+      <view class="flex-sub margin-xs secimg">
+        <image src="https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg"/>
+      </view>
+      <view class="flex-twice margin-xs serintro">
+      <text>中医推拿60分钟</text>
+      <text>10年经验</text>
+      <text>120元</text>
+      </view>
+      <view class="flex-sub   margin-xs"><text class="cuIcon-delete"></text></view>
+    </view>
+    <view class="flex">
+      <view class="flex-sub margin-xs">总计时长</view>
+      <view class="flex-twice  margin-xs "></view>
+      <view class="flex-sub   margin-xs ">120分钟</view>
+    </view>
+     <view class="flex">
+      <view class="flex-sub margin-xs">到店时间:</view>
+      <view class="flex-treble datelist" wx:for="{{dateArr}}" wx:key >
+       <view class="cu-avatar sm round" index="{{index}}">{{item}}</view>
+      </view>
+    </view>
+  </view>

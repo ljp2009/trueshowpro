@@ -1,0 +1,13 @@
+<template name="hSwiperItem">
+	<view class="itemSelf">
+    	{{item}}
+     
+    
+ 
+	</view>	
+  
+</template>
+
+<template name="templateb">
+	{{item}}踩踩踩
+</template>

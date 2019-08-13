@@ -1,0 +1,81 @@
+/* pages/index/poker/pokerDetail/pokerDetail.wxss */
+/* 轮播图片样式 */
+.tower-swiper .tower-item {
+		transform: scale(calc(0.5 + var(--index) / 10));
+		margin-left: calc(var(--left) * 100rpx - 150rpx);
+		z-index: var(--index);
+	}
+  .swiperContainer{
+    	height: 100%;
+      width: 100%;
+  }
+  /* //图片样式 */
+  .start_k{
+   display: flex;
+  align-items: center;
+  justify-content: left;
+}
+.img_big{
+  width: 128rpx;
+  height: 128rpx;
+ 
+  border-radius: 50%;
+}
+/* 服务项目 样式 */
+.project{
+  padding-left: 3%;
+  background-color: gray;
+}
+.item{
+ font-size: 40rpx;
+}
+.itemOne{
+  margin-top: -7%;
+}
+/* 技师和服务项目 */
+.staffImg{
+  width: 128rpx;
+  height: 128rpx;
+ 
+  border-radius: 50%;
+}
+/* 机构样式 */
+.firm{
+  height: 1%;
+  padding-left: 3%;
+  background-color: gray;
+}
+/* 弹幕样式 */
+/* 弹幕 */
+.button{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+.aon{
+position: absolute;
+white-space:nowrap;/* 防止向下换行*/
+animation-timing-function: linear;
+animation-fill-mode: none;
+}
+.doommview{
+  /* z-index: 3; */
+  height: 35%;
+  width: 100%;
+  position: absolute;
+  border: 1px solid rebeccapurple;
+}
+
+@keyframes first{
+  from{left: 100%; }
+  to{left: -100%;}
+}
+
+.danmuinput input{
+  display: inline-block;
+ 
+  border: 1rpx green solid
+}
+.textBottom{
+  
+}

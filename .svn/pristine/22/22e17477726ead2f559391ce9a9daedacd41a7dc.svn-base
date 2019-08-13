@@ -1,0 +1,97 @@
+<!--pages/index/poker/pokerDetail/pokerDetail.wxml-->
+<cu-custom bgColor="bg-gradual-pink" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">轮播图</view>
+</cu-custom> 
+<swiper class="screen-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" class="swiperContainer">
+  <swiper-item wx:for="{{swiperList}}" wx:key>
+  <!-- <view class="bg-img  padding-tb-xl bgImg" style="background-image: url({{item.url}}) ;background-size: cover;"> -->
+    <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
+  </swiper-item>
+</swiper>
+<view>
+<!--  服务项目名称-->  
+  <view class="project">服务项目名称</view>  
+  <view class="flex">
+    <view class="flex-sub  padding-sm margin-xs radius item">黑白豹纹美甲系列</view>
+  </view>
+  <view class="flex itemOne">
+    <view class="flex-sub  padding-sm margin-xs radius">
+      <view>10年经验,活筋活络</view>
+    </view>
+    <view class="flex-sub  padding-sm margin-xs radius">
+      <view>时常:约60分钟</view>
+    </view>
+  </view>
+<!-- 技师和服务机构 -->
+  <view class="project">技师和服务机构</view>  
+</view>
+<!-- 图片文字布局 -->
+<view class="start_k ">
+    <view >
+     <image class="img_big" src='../../../../assets/images/index/poker/1.jpg'></image>              </view>
+   <view class=" padding-lg margin-xs radius">
+      <view >胡敏   （图片是否认证）   （图片用户是否关注）   顾客评价: （图片是几星）</view>
+      <view>接单:435     赞：4.2k    爽约:4</view>
+      <view class=" ">     
+        擅长：美甲，彩妆
+      </view>
+    </view>
+</view>
+<!-- 机构 -->
+<view class="firm"></view>  
+<view class="start_k ">
+    <view >
+     <image class="img_big" src='../../../../assets/images/index/poker/firm.png'></image>              </view>
+   <view class=" padding-lg margin-xs radius">
+      <view >冠乃馨美容美体连锁机构</view>
+      <view>地址:xxxx223号</view>
+      <view class=" ">     
+       机构  （机构图片） <text class="cuIcon-locationfill"></text>4KM   <text class="cuIcon-emoji"></text>4
+      </view>
+    </view>
+</view>
+<!-- 顾客 -->
+<view class="project">顾客:</view>  
+<view class="start_k ">
+    <view >
+     <image class="img_big" src='../../../../assets/images/index/poker/1.jpg'></image>              </view>
+   <view class=" padding-lg margin-xs radius">
+      <view >CocoLe(匿名)</view>
+      <view>评:第一次尝试这种效果，非常满意第一次尝试这种效果，</view>
+      <view class=" ">     
+        弹幕：
+      </view>
+    </view>
+</view>
+<!-- 弹幕 -->
+<view class="doommview">
+    <block wx:for="{{doommData}}" wx:key="id">
+        <text wx:if="{{item.display}}" class="aon" style="animation: first {{item.time}}s linear forwards;top:{{item.top}}%;color:{{item.color}};">
+            <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>{{item.text}}  
+        </text>
+    </block>
+</view>
+
+ <!-- <view class="button">
+       <view class="flex ">
+      <view class="flex-sub  padding-sm margin-xs radius danmuinput">
+         <input bindblur="bind_shoot"  type="text" value="{{bind_value}}" class="bulletInput" />
+      </view>
+      <view catchtap="bindbt" class="hide{{showView?'show':''}} flex-sub  padding-sm margin-xs radius">
+       发送弹幕
+      </view>
+      </view>
+  </view> -->
+<view class="textBottom">
+  <view class="cu-bar input">
+    <view class="action">
+      <text class="cuIcon-roundaddfill text-grey"></text>
+    </view>
+    <input class="solid-bottom" maxlength="300" cursor-spacing="10" bindblur="bind_shoot"  type="text" value="{{bind_value}}"></input>
+    <view class="action">
+      <text class="cuIcon-emojifill text-grey"></text>
+    </view>
+    <button class="cu-btn bg-green shadow-blur" catchtap="bindbt">发送</button>
+  </view>
+</view>
