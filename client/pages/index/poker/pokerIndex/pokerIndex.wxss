@@ -1,75 +1,106 @@
-/* 滑块css */
-@import "../../../../component/hSwiper/hSwiper.wxss";
-
-
-/*滚动图*/
-#mainContainer{
-	height: 100%;
-	width: 100%;
-}
-
-.itemSelf{
-	/* height: 100%;
-	position: absolute;
-	box-sizing:border-box;
-	margin:10rpx;
-	overflow: hidden;
-	padding: 10rpx;
-	box-shadow: 0 0 1px 1px rgba(0,0,0,0.1);
-	height: 95%;
-	width: 96%; */
-	/* background-color: gray; */
-	/* color: blue; */
-}
-
+@import "../../../common/footer/footer.wxss";
 .cu-dialog{
-  border: 1rpx solid red;
+  /* border: 1rpx solid red; */
   height: 100% ; 
   width: 100%;
-  opacity: 0.3
-  
-}  
-/* 容器 */
-.contain{
-  border: 1rpx solid green;
- 
-}
+  opacity: 0.2
+    
+}    
 /* 弹出层 */
-
-.action1{
-   border: 1rpx solid blue;
-   height: 3000rpx ; 
+.guide{  
+  /* border: 1rpx solid red; */
+  width: 400rpx;
+  height: 800rpx;
+}
+.action1{  
+   /* border: 1rpx solid blue; */
+  background-color: black;
+  height: 3000rpx ; 
   width: 100%;
 }
 .modelcenter{
   margin-top: 40%;
   text-align: center;
 }
+page{
+  color: white
+}
 /* 背景 */
 .bgImg{
  width: 100%;
  height: 1500rpx
 }  
-/* 上面布局 */
+.contain{
+  /* border: 5rpx solid red; */
+
+
+}
+
+/* 最上面布局 */
 .topContainer{
   top: 0;
-  /* height: 30%; */
-  border: 1rpx solid red
+  /* border: 1rpx solid red */
 }
 /* 左上机构信息 */
 .left{
-  border: 1rpx solid blueviolet;
-  margin-top: 10%;
+  /* border: 1rpx solid blueviolet; */
+  /* margin-top: 10%; */
+}
+.staff{
+  top: 10rpx;
+  margin-left: 2%;
+  margin-right: 5%;
+  margin-top: -50rpx;
+  /* margin-top: 50rpx; */
+  width: 35rpx;
+  height: 35rpx;
+  display: inline-block;
+  /* border: 1rpx solid rebeccapurple  */
+}
+.sale{
+  display: inline-block;
+  width: 70rpx;
+  text-align: center;
+ 
+  background-color: rgb(255,102,0);
+  border-radius:30rpx;
+  font-size: 25rpx;
+}
+.firmList{
+  /* margin-top: 1%; */
+}
+.firmListOne{
+  /* margin-top: 2%; */
+}
+text{
+  margin-right: 5rpx;
+}
+.kmClass{
+  display: inline-block;
+  width: 35rpx;
+  height: 35rpx;
+  margin-right: 1%;
+  /* border: 1rpx solid black; */
+}
+.numClass{
+  margin-right: 1%
 }
 .shopname{
-  font-size: 48rpx;
+  font-size: 38rpx;
+  margin-bottom: 5rpx;
+  /* font-weight: bold; */
 }    
-.right{   
+.shopnameOne{
+  /* border: 1rpx solid red; */
+  margin-top: 5%;
+  font-size: 35rpx;
+  font-weight: bold;
+}
+.right{  
+  width: 250rpx; 
   text-align: center;
-  border: 1rpx solid green;
-  margin-left: 250rpx;
-  margin-top: 10%;
-  /* padding-left: 400rpx */
+
+  
 }
 /* 微信头像 */
 .userinfo-avatar {
@@ -78,21 +109,35 @@
   margin: 20rpx;
   border-radius: 50%;
 }
+.star{
+  height: 30rpx;
+  display: inline-block;
+   width: 130rpx;
+}
+.staffImg{
+   width: 70rpx;
+  height: 70rpx;
+  border-radius: 50%;
+}
+.name{
+  margin-right: 5%;
+}
 /* 弹幕部分样式 */
 /* 弹幕图片样式  收藏样式 */
 .bulletAndSave{
   width: 100%;
-  top: 65%;
+  top: 76%; 
+  margin-left: 2%;
   position: absolute;
-  border: 3rpx solid rebeccapurple
-}
-.rightbullet{
-  border: 2rpx solid red;
-  
+  /* position: absolute;
+  bottom:10%; */
+  /* border: 3rpx solid rebeccapurple */
 }
 
+
+
 .infoAndSave{
-  border: 1rpx solid green;
+  /* border: 1rpx solid green; */
   text-align: center;
   right: 0
 }
@@ -100,60 +145,87 @@
   font-size: 40rpx;
   
 } 
+.itemText{
+ /* border: 1rpx solid red; */
+ background-color: gray;
+ opacity: 0.5;
+ border-radius:30rpx ;
+ padding-left: 20rpx;
+  padding-right: 20rpx;
+}
+
+
 .info1{
   display: inline-block;
-  width: 40rpx;
-  height: 40rpx;
-  margin: 20rpx;
+  width: 50rpx;
+  height: 50rpx;
+  margin-left: 20rpx;
   border-radius: 50%;
 }
 .save{
   display: inline-block;
   width: 40rpx;
   height: 40rpx;
-  margin: 20rpx;
+  margin-left: 20rpx;
   border-radius: 50%;
 }
-/* 下部分布局 */
+/* 倒数第二部分 下部分布局 */
 .secondBottom{
-  top: 75%;
-  position: absolute;
-  border: 3rpx solid red
-}
-.btnContainer{
-  border: 1rpx solid green;
- 
-}
+  /* top: 80%;
+  position: absolute; */
+   position: absolute;
+   bottom:8%;
+  /* border: 3rpx solid red */
+} 
 .bttomImg{
   display: inline-block;
-  border: 1rpx solid red;
-  
+  /* border: 1rpx solid red;  */
 }
 .bttom{
  
-  border: 1rpx solid blue;
+  /* border: 1rpx solid blue; */
   display: inline-block;
  
   
 }
 /* 底部 导航条 */
-.bottomFinish{
+.bottomFinish{  
+  position: fixed;
+  bottom: 20rpx;
    height: 5%;
+   display: flex;
+   width: 100%;
+   justify-content : center;
   /* position: fixed; */
-  bottom: 0;
-  border: 3rxp solid red;
+  /* bottom: 0; */
+  border: 1rpx solid red;
+align-items : center; 
+}
+
+.km{
+
+ background-color: gray;
+ border-radius:30rpx ;
+ padding-left: 20rpx;
+  padding-right: 20rpx;
+  padding-top: 10rpx;
+  padding-bottom: 10rpx
+
+}
+.foot{
+border: 3rxp solid red;
 }
 /* 底部分类图片 */
 .classify{
-   width: 90rpx;
-  height: 90rpx;
-  margin: 20rpx;
+   width: 70rpx;
+  height: 70rpx;
+  margin: 10rpx;
   border-radius: 50%;
 }
 /* 距离 */
 .btnKm{
-  background-color: black;
-  color: red
+  background-color: rgb(185,188,191);
+  color: white
 }
 /* 弹幕 css */
 .button{
@@ -166,7 +238,7 @@
   width: 48%
 }
 .bulletBtn{
-  border: 1rpx solid red;
+  /* border: 1rpx solid red; */
   display: inline-block;
   width: 48%;
   float: right
@@ -179,12 +251,15 @@ animation-fill-mode: none;
 }
 /* 弹幕 */
 .doommview{
-  height: 35%;
+  height: 40%;
   /* border: 2rpx solid red; */
   width: 100%;
   position: absolute;
 }
-
+.test1{
+  height: 5rpx ;
+  width:5rpx ;
+}
 @keyframes first{
   from{left: 100%; }
   to{left: -100%;}
@@ -201,4 +276,86 @@ animation-fill-mode: none;
 .show{ 
  display: block;
 }
+/* 滑块样式 */
+swiper {
+    position: absolute;
+    height: 90%;
+    width: 100%;
+  }
+  .swiper-image {
+    height: 50%;
+    width: 100%;
+    opacity:0.9;
+  }  
+  .button-img{   
+      position: relative;
+      bottom: 120px;
+      height: 40px;
+      width: 120px;
+      opacity:0.6;
+  }
+.red{
+  margin-top: 30rpx;
+  color: blue;
+}
+/* 测试的 */
+.start_k{
+  margin-left: 2%;
+	display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.img_big{
+  width: 128rpx;
+  height: 128rpx;
+  border-radius: 50%;
+}
+/* 评语 样式 */
+.nameNo{
+  font-size: 32rpx;
+}
+.evaluate{
+  /* margin-top: 2%; */
+  font-size: 27rpx;
+}
+.bg-imgSmall{
+  margin-top: 2%;
+  /* border: 1rpx solid blue; */
+  width: 50%;
+  height: 50%;
+  border-radius: 10%;
+}
+.img{
+  width: 35rpx;
+  height: 35rpx;
+}
+
+/* *******************************星星 */
+.assess-star {
+  /* margin-top: 20rpx; */
+}
+
+.star-wrap {
+  /* width: 150rpx; */
+  /* margin-left: 25rpx; */
+  /* margin: 10rpx auto 10rpx auto; */
+}
+
+.star-item {
+  display: inline-block;
+  height: 30rpx;
+  width: 30rpx;
+  /* margin-right: 10rpx; */
+}
+
+.star-desc {
+  font-size: 30rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 400;
+  color: rgba(243, 162, 0, 1);
+  text-align: center;
+}
+
+
+
 

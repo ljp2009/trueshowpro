@@ -1,0 +1,14 @@
+<!--pages/index/reservation/customer/modules/statusFive/statusFive.wxml-->
+<!-- <text>pages/index/reservation/customer/modules/statusFive/statusFive.wxml</text> -->
+<view>
+  <view class="text-bold" style="margin-top:5%;margin-left:5%;">
+      你已成功支付:
+    </view>
+    <view style="text-align:center;" >
+      <text class=" text-red text-xxl solid-bottom text-bold">￥210.00</text>元
+    </view>
+    <!-- 刷新 -->
+    <view style="text-align:center;margin-top:5%;">
+    <button style="margin:0 3%;" class="cu-btn round bg-orange {{shadow?'':''}}">好的</button>
+    </view>
+</view>

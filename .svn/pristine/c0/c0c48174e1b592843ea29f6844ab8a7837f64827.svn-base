@@ -1,0 +1,186 @@
+/* pages/index/reservation/staff/reservationIndex/reservationIndex.wxss */
+/* pages/index/reservation/staff/reservationIndex/reservationIndex/reservationIndex.wxss */
+/* pages/index/reservation/customer/reservationIndex/reservationIndex.wxss */
+page{
+  padding-top: 450rpx;
+  background-color: #FFFFFF;
+  padding-bottom: 20rpx
+}
+.staffinfocontain{
+  /* border: 1rpx solid blue; */
+  margin-left: 4%
+}
+
+.leftStyle{
+  /* border: 1rpx solid red; */
+  margin-left: -6%;
+  margin-right: 10%;
+}
+.setps{
+  /* border: 1rpx solid blue; */
+ 
+}
+/* 顶部 */
+.topContain{
+  /* border: 1rpx solid red; */
+  margin-top: -62%;
+}
+/* 图片样式 */
+.staffinfo{
+  display: block;
+  text-align: left
+}
+.navitem{
+  font-size: 50rpx;
+  padding: 10rpx
+}
+.navlist{
+  /* position: fixed; */
+  bottom: -10rpx;
+  right: 0
+}
+    
+.secimg image{
+  width: 120rpx;
+  height: 120rpx
+}
+.serintro text{
+  display: block
+}
+.serintro{
+  border: 1rpx solid blue;
+  margin-right: 10%;
+}
+.servicelist{
+  border: 1rpx solid red;
+  padding-left: 10%;
+  width: 120rpx;
+}
+.addser{
+  padding-right: 0
+}
+.datelist view{
+  border: 1rpx solid red;
+  padding: 0;
+  margin: 0
+}
+.shoplist,.startTime{
+  /* border: 1rpx solid blue; */
+  margin-top: 2%;
+}
+.shoplist right{
+  margin-left: 30rpx;
+  /* border: 1rpx solid black; */
+}
+.roundOne{
+  border: 1rpx solid red;
+  border-radius: 50%;
+  width: 50rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  margin-right: -20rpx;
+  text-align: center;
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+  /* display: inline-block; */
+} 
+.arriveTime,.sale{
+  /* border: 1rpx solid black; */
+  margin-right: 7%;
+}
+.start_k{
+   display: flex;
+  align-items: center;
+  justify-content: left;
+}
+/* 时间滑块 */
+.timeBlock{
+  text-align: center;
+}
+/* 优惠 */
+.saleOff{
+  width: 70%;
+  border: 1rpx solid red;
+}
+.selectChange{
+  /* border: 1rpx solid red; */
+}
+.title{
+  margin-left: -5%;
+   /* border: 1rpx solid blue; */
+}
+.selectOne{
+   /* border: 1rpx solid blue; */
+}
+/* 优惠预告 */
+.saleOffOne{
+  width: 70%;
+  /* border: 1rpx solid red; */
+}
+.rightSale{
+  border: 1rpx solid red;
+   margin-right: 20%;
+   display: inline-block;
+}
+.saleOff{
+  text-align: center;
+  margin-bottom: 3%;
+ 
+  border: 1rpx solid rebeccapurple;
+}
+.saleX{
+  /* border: 1rpx solid red; */
+  display: inline-block;
+  width: 40rpx;
+  height: 40rpx;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  background-color: gray;
+}
+.saleEach{
+  display: inline-block;
+  /* border: 1rpx solid red; */
+  margin: 0 6%;
+  text-align: center;
+  width: 40%; 
+  color: white;
+  background-color: gray;
+  border-radius: 25rpx;
+}
+
+.moneyThree{
+  padding-left: 30%;
+  /* border: 1rpx solid blue; */
+}
+/* 底部 */
+.bottom {
+  margin-top: 3%;
+  border: 2rpx solid black;
+}
+.moneyStart{
+  /* border: 1rpx solid red; */
+  display: inline-block;
+  color: rgb(255,102,0);
+}
+
+.del{
+  color: rgb(255,102,0);
+  padding-top: 3%;
+  background-color: rgb(230,230,230);
+  /* border: 1rpx solid red; */
+  text-align: center;
+}
+.wantMoney{
+ padding-top: 3%;
+  /* border: 1rpx solid blue; */
+  text-align: center;
+}
+.order{
+  color: white;
+  border: 3rpx solid rebeccapurple;
+  text-align: center;
+  margin-left: 2%;
+  background-color: rgb(255,102,0)
+}
+

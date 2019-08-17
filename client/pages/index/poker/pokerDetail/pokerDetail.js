@@ -27,31 +27,70 @@ function getRandomColor() {
   }
   return '#' + rgb.join('')
 }
+const app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    userInfo: {},    
+    webRoot: app.globalData.webroot,
     //轮播图片的
-    swiperList: [{
-      id: 0,
-      type: 'image',
-      url: '../../../../assets/images/index/poker/1.jpg'
-    }, {
-      id: 1,
-      type: 'image',
-        url: '../../../../assets/images/index/poker/44.jpg',
-    }],
+    swiperList: [],
     // 弹幕变量
     doommData: [],
-    arr: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-  },
+    arr: [ "消息内容11","发送的内容挺好的"]
+  },   
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var swiperList = [{
+      id: 0,
+      type: 'image',
+      url: this.data.webRoot+ '/images/index/hand.png'
+    }, {
+        id: 1,
+        type: 'image',
+        url: this.data.webRoot + '/images/index/test1.jpg',
+      },
+      {
+        id: 1,
+        type: 'image',
+        url: this.data.webRoot + '/images/index/test2.jpg',
+      }];
+    this.data.swiperList = swiperList
+    // 加载微信头像信息
+    if (app.globalData.userInfo) {
+      this.setData({
+        userInfo: app.globalData.userInfo,
+        hasUserInfo: true
+      })
+    } else if (this.data.canIUse) {
+      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+      // 所以此处加入 callback 以防止这种情况
+      app.userInfoReadyCallback = res => {
+        this.setData({
+          userInfo: res.userInfo,
+          hasUserInfo: true
+        })
+      }
+    } else {
+      // 在没有 open-type=getUserInfo 版本的兼容处理
+      wx.getUserInfo({
+        success: res => {
+          app.globalData.userInfo = res.userInfo
+          this.setData({
+            userInfo: res.userInfo,
+            hasUserInfo: true
+          })
+        }
+      })
+    };  
+    console.log("目前的弹幕是");
+    console.log(this.data.arr);
     //轮播图片
     this.towerSwiper('swiperList');
     // 初始化towerSwiper 传已有的数组名即可
@@ -117,14 +156,6 @@ Page({
     });
     //arr
     this.data.arr.push(this.data.bind_value);
-    // this.setData({
-    //   bind_value: "",
-    //   showView: (!this.data.showView)     // 设置发送完弹幕隐藏按钮
-    // })
-    // 设置发送完弹幕隐藏按钮
-    // this.setData({
-    //   showView: (!this.data.showView)
-    // })
   },
   //绑定发射输入框，将值传递给data里的bind_shootValue，发射的时候调用
   bind_shoot: function (e) {
@@ -148,6 +179,8 @@ Page({
     // this.setData({
     //   bind_value: e.detail.value
     // })
+    console.log("发过后总的弹幕内容是---------");
+    console.log(this.data.doommData);
   },
   //轮播图片
   // 初始化towerSwiper
@@ -243,5 +276,10 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  backhome:function(){
+    wx.navigateBack({
+      delta: 1
+    })
   }
 })

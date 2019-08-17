@@ -1,0 +1,29 @@
+<!--pages/index/reservation/customer/modules/statusTwo/statusTwo.wxml-->
+<!-- <text>pages/index/reservation/customer/modules/statusTwo/statusTwo.wxml</text> -->
+<view>
+  <!-- 进度条 -->
+  <view class="padding setps allStemp">
+        <view class="cu-steps">
+          <view class="cu-item {{index>num?'':'text-blue'}}" wx:for="{{numList}}" wx:key>
+            <text class="num {{index==6?'':''}}" data-index="{{index + 1}}"></text> {{item.name}}
+          </view>
+        </view>
+  </view>
+  <!-- 进度条结束 -->
+  <view style="text-align:center;">
+    <view>您已到店接受服务</view>
+    <view style="margin-top:4%;">咯哈哈和酷酷酷您已到店接受服务</view>
+    <view>
+     <view style="height:100rpx;border:1rpx solid red;">
+     二维码图片
+      </view>   
+    </view>
+  </view>
+  <!--  刷新-->
+   <view style="text-align:center;margin-top:3%;">  
+      <button style="margin:0 3%;" class="cu-btn round bg-red {{shadow?'':''}}">刷新</button>      
+    </view>
+  <!-- 刷新结束 -->
+</view>
+
+

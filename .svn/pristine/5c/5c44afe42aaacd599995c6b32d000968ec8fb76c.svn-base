@@ -1,0 +1,60 @@
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}"><view slot="backText">返回</view><view slot="content">布局</view>
+</cu-custom>
+<!-- 最上部分布局 -->
+<scroll-view scroll-x class=" nav text-center topContain" style="top:{{CustomBar}}px">
+    <view class="cu-item" >美甲店</view>
+    <view class="cu-item" >机构<text class="cuIcon-check"></text></view>
+    <view class="cu-item" ><text class="cuIcon-locationfill"></text>4KM</view>
+    <view class="cu-item" ><text class="cuIcon-emoji"></text>4</view>
+    <view class="cu-item" >小岗路100号43</view>
+    <!-- 上第二部分布局 青花瓷美甲店部分 -->
+    <view class="padding">   
+      <view class="flex  p-xs mb-sm">
+        <view class="flex-sub padding-sm  radius">
+          <view class="cu-avatar xl round margin-left leftStyle" style="background-image:url('{{webRoot}}/images/index/test2.jpg');"></view>
+        </view> 
+         <view class="flex-twice   staffinfocontain">
+          <text class="staffinfo">青花瓷美甲店呃呃呃</text>
+          <text class="staffinfo">美甲店</text>
+          <text class="staffinfo">青花瓷美甲店帆帆帆帆</text>
+          <text class="staffinfo">青花瓷美甲店</text>
+        </view> 
+        <view class="flex-treble padding-sm  radius">
+          <view class="cu-avatar xl padding-sm round margin-left" style="background-image:url('{{webRoot}}/images/index/test1.jpg');"></view>
+        </view>
+      </view>
+<!--上第二部分布局 青花瓷美甲店部分 结束  -->
+      <view class="padding setps">
+        <view class="cu-steps">
+          <view class="cu-item {{index>num?'':'text-blue'}}" wx:for="{{numList}}" wx:key>
+            <text class="num {{index==2?'err':''}}" data-index="{{index + 1}}"></text> {{item.name}}
+          </view>
+        </view>
+      </view>
+  </view>
+</scroll-view>
+<!-- 上部分布局结束  -->
+<!-- 导入的 -->
+<!-- <import src="../modules/statusZero/statusZero.wxml" />
+<template is="header" ></template> -->
+
+<!-- 导入的结束 -->
+<block wx:if="{{TabCur==0}}">
+   <include src="../modules/statusZero/statusZero.wxml"/>
+</block>  
+<view class=" navlist" >
+  <view class="flex">
+    <view class="flex-sub padding-sm margin-xs radius"></view>
+    <view class="flex-sub padding-sm margin-xs radius">
+      <text class="navitem">秀</text>
+      <text class="navitem">|</text>
+      <text class="navitem">约</text>
+      <text class="navitem">|</text>
+      <text class="navitem">问</text>
+      <text class="navitem">|</text>
+      <text class="navitem">我</text>
+    </view>
+  </view>
+</view>
+ 
+

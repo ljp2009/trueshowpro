@@ -1,0 +1,43 @@
+<!--pages/index/reservation/customer/modules/statusFour/statusFour.wxml-->
+<!-- <text>pages/index/reservation/customer/modules/statusFour/statusFour.wxml</text> -->
+<view>
+  <view  class="text-lg">
+    <view class="text-bold" style="margin-left:5%;">
+      支付清单:
+    </view>
+    <view style="margin-left:5%;">
+      <view style="margin-right:5%;display:inline-block;width:20%;" >订单价格:</view>
+      <view  style="margin-right:7%;display:inline-block;">￥220.00元</view>
+      <view class="ifAttention" style="display:inline-block;">拒付</view> 
+    </view>
+    <view style="margin-left:5%;">
+      <view style="margin-right:5%;display:inline-block;" >协商补除:</view><view style="display:inline-block;">￥220.00元</view>
+    </view>
+    <!-- <view style="border:1rpx solid green;height:100%line-height:45;">
+      <view style="width:20%;text-align:center;text-justify:inter-ideograph;margin-right:5%;display:inline-block;border:1rpx solid red;" >备注:</view><view style="width:75%;display:inline-block;border:1rpx solid blue;">顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶顶元</view>
+    </view> -->
+   
+    <!-- 测试 -->
+    <view class="start_k " >
+      <view style="margin-left:5%;" >
+      备注：      
+      </view>
+      <view class="radius" style="margin-left:16%;">
+        <text>评:第一次尝顶顶顶顶顶顶顶顶顶反反复复烦烦烦烦烦烦烦烦烦帆帆帆帆</text>
+      </view>
+    </view>
+    <!-- 测试 -->
+    <view style="text-align:center;font-size:26rpx;margin-top:3%;border-top:1rpx solid black;padding-top:1%;">提示:请要求店铺提供纸质计费清单进行核对</view>
+    <view class="text-bold" style="margin-top:5%;margin-left:5%;">
+      实际支付:
+    </view>
+    <view style="text-align:center;" >
+      <text class=" text-red text-xxl solid-bottom text-bold">￥210.00</text>元
+    </view>
+    <!-- 刷新 -->
+    <view style="text-align:center;margin-top:5%;">
+    <button style="margin:0 3%;" class="cu-btn round bg-orange {{shadow?'':''}}">刷新</button>
+     <button style="margin:0 3%;" class="cu-btn round bg-green {{shadow?'':''}}">立即微信支付</button>
+    </view>
+  </view>
+</view>

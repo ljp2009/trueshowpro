@@ -1,4 +1,7 @@
 /* pages/index/poker/pokerDetail/pokerDetail.wxss */
+page{
+  background-color: white
+}
 /* 轮播图片样式 */
 .tower-swiper .tower-item {
 		transform: scale(calc(0.5 + var(--index) / 10));
@@ -9,12 +12,23 @@
     	height: 100%;
       width: 100%;
   }
+  .swiperContainer image{
+    width: 100%;
+    height: 100%
+  }
+  /* //图片样式 */
   /* //图片样式 */
   .start_k{
+    margin-left: 3%;
    display: flex;
-  align-items: center;
-  justify-content: left;
+   align-items: center;
+   justify-content: left;
+  
 }
+
+  .staffinfocontain text{
+    text-align: left
+  }
 .img_big{
   width: 128rpx;
   height: 128rpx;
@@ -23,16 +37,71 @@
 }
 /* 服务项目 样式 */
 .project{
+  height: 50rpx;
+  line-height: 50rpx;
+  /* border: 1rpx solid red; */
   padding-left: 3%;
-  background-color: gray;
+  background-color: rgb(222,216,216);
 }
 .item{
- font-size: 40rpx;
+ font-size: 38rpx;
 }
 .itemOne{
   margin-top: -7%;
 }
 /* 技师和服务项目 */
+.bg-imgSmall{
+  margin-left: 6%;
+  right: 0;
+  width: 70%;
+  border: 1rpx solid red;
+}
+
+.staffName{
+  font-size: 45rpx;
+  font-weight: bold;
+}
+.staff{ 
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: -50rpx;
+  /* margin-top: 50rpx; */
+  width: 35rpx;
+  height: 35rpx;
+  display: inline-block;
+  /* border: 1rpx solid rebeccapurple  */
+}
+/* 关注的样式 */
+.ifAttention{
+  color: white;
+  margin-top: 30rpx;
+  display: inline-block;
+  width: 120rpx;
+  text-align: center;
+  border: 1rpx solid red;
+  background-color: rgb(255,102,0);
+  border-radius:30rpx;
+}
+/* 未关注的样式 或者取消关注的样式 */
+.unAttention{
+   display: inline-block;
+  width: 120rpx;
+  text-align: center;
+  border: 1rpx solid red;
+  /* background-color: rgb(255,102,0); */
+  border-radius:30rpx;
+}
+.estimate{
+  margin-top: 2%;
+}
+.styleLittle{
+   margin-top: 2%;
+  /* border: 1rpx solid blue; */
+  margin-right: 13%
+}
+.goodAt{
+   margin-top: 2%;
+}
 .staffImg{
   width: 128rpx;
   height: 128rpx;
@@ -40,10 +109,41 @@
   border-radius: 50%;
 }
 /* 机构样式 */
-.firm{
+.rightStaff{
+  border: 1rpx solid red;
+}
+.staffOrder,.address,.firmOne,.words,.doom{
+  margin-top: 2%
+}
+.staffTwo{ 
+  margin-left: 5%;
+  margin-right: 5%;
+  top: 8rpx;
+  /* margin-top: 50rpx; */
+  width: 35rpx;
+  height: 35rpx;
+  display: inline-block;
+  /* border: 1rpx solid rebeccapurple  */
+}
+.kmIcom{
+  margin-right: 2%
+}
+.km{
+  margin-right: 5%
+}
+.saleLittle{
+ border: 1rpx solid red;
+ margin-top: 80rpx;
+ width: 150rpx;
+ text-align: center;
+ color: white;
+ background-color: rgb(255,102,0);
+ border-radius: 30rpx;
+}
+.firm{ 
   height: 1%;
   padding-left: 3%;
-  background-color: gray;
+  /* background-color: rgb(222,216,216); */
 }
 /* 弹幕样式 */
 /* 弹幕 */
@@ -51,6 +151,9 @@
   position: fixed;
   bottom: 0;
   width: 100%;
+}
+.doomAll{
+  text-align: center;
 }
 .aon{
 position: absolute;
@@ -63,19 +166,40 @@ animation-fill-mode: none;
   height: 35%;
   width: 100%;
   position: absolute;
-  border: 1px solid rebeccapurple;
+  /* border: 1px solid rebeccapurple; */
 }
 
-@keyframes first{
+/* @keyframes first{
   from{left: 100%; }
   to{left: -100%;}
-}
+} */
 
 .danmuinput input{
   display: inline-block;
  
   border: 1rpx green solid
 }
-.textBottom{
-  
+.solid-bottom{
+  display: inline-block;
+ 
+  border: 1rpx #ccc solid
 }
+
+
+.textBottom{
+  /* border: 1rpx solid red; */
+  height: 8%;
+  /* margin-top: 480rpx; */
+}
+/* 滑块的 */
+
+.itemText{
+ /* border: 1rpx solid red; */
+ background-color: gray;
+ opacity: 0.5;
+ border-radius:30rpx ;
+ padding-left: 20rpx;
+  padding-right: 20rpx;
+  color: white
+}
+

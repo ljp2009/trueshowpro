@@ -1,66 +1,190 @@
-// pages/index/poker/pokerFilter/pokerFilter.js
+const app = getApp();
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    gdata: app.globalData,
+    firstIndex: -1,
+    //准备数据
+    attrValueList: [
+      {
+        attrKey: "美发",
+        icon:"check_r.png",
+        attrValues: ["烫","染","造型"],
+        attrValueStatus: [true, true, false]
+      },
+      {
+        attrKey: "美容",
+        icon: "check_r.png",
+        attrValues: ["面部", "补水", "面膜"],
+        attrValueStatus: [true, true, false]
+      },
+      { 
+        attrKey: "大小",
+        icon: "check_n.png",
+        attrValues: ["小", "大"],
+        attrValueStatus: [false, false, false]
+      },
+      {
+        attrKey: "尺寸",
+        icon: "check_n.png",
+        attrValues: ["S", "M", "L"],
+        attrValueStatus: [false, false, false]
+      },
+      {
+        attrKey: "美甲",
+        attrValues: ["手指", "脚趾"],
+        icon: "check_r.png",
+        attrValueStatus: [true, true]
+      },
+      {
+        attrKey: "美甲",
+        attrValues: ["手指", "脚趾"],
+        icon: "check_r.png",
+        attrValueStatus: [true, true]
+      },
+      {
+        attrKey: "美甲",
+        attrValues: ["手指", "脚趾"],
+        icon: "check_r.png",
+        attrValueStatus: [true, true]
+      },
+      {
+        attrKey: "美甲",
+        attrValues: ["手指", "脚趾"],
+        icon: "check_r.png",
+        attrValueStatus: [true, true]
+      },
+      {
+        attrKey: "美甲",
+        attrValues: ["手指", "脚趾"],
+        icon: "check_r.png",
+        attrValueStatus: [true, true]
+      },
+      {
+        attrKey: "美甲",
+        attrValues: ["手指", "脚趾"],
+        icon: "check_r.png",
+        attrValueStatus: [true, true]
+      },
+      {
+        attrKey: "美甲2222",
+        attrValues: ["手指", "脚趾"],
+        icon: "check_r.png",
+        attrValueStatus: [true, true]
+      },
+      {
+        attrKey: "美甲1111",
+        attrValues: ["手指", "脚趾"],
+        icon: "check_r.png",
+        attrValueStatus: [true, true]
+      }
+    ]
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow: function () {
+    
+    //   this.setData({
+    //     attrValueList: this.data.attrValueList
+    //   });
+    // }
+  },
+ 
+ 
+  /* 选择属性值事件 */
+  selectAttrValue: function (e) {
+    
+    //点击其中一个子分类的点击事件 让其选中状态发生改变
+    console.log("***********" + e.currentTarget.dataset.index + e.currentTarget.dataset.index1)
+    var attrValueList=this.data.attrValueList;
+    attrValueList[e.currentTarget.dataset.index1]["attrValueStatus"][e.currentTarget.dataset.index] = !attrValueList[e.currentTarget.dataset.index1]["attrValueStatus"][e.currentTarget.dataset.index];
+
+
+    //把大分类的选中状态改为选中 只要有一个选中就大分类处于选中
+    if (attrValueList[e.currentTarget.dataset.index1]["attrValueStatus"][e.currentTarget.dataset.index] == true) {
+      attrValueList[e.currentTarget.dataset.index1]["icon"] = "check_r.png";
+
+
+      this.setData({
+        attrValueList: attrValueList
+      });
+
+      return;
+    }
+
+  //改变大分类的选中状态
+    var list=[]
+    for (var i = 0; i < attrValueList[e.currentTarget.dataset.index1]["attrValueStatus"].length; i++) {
+      if (attrValueList[e.currentTarget.dataset.index1]["attrValueStatus"][i]==false){
+        list.push(1)
+      }
+    }
+    
+    console.log(list)
+    console.log(attrValueList[e.currentTarget.dataset.index1]["attrValueStatus"].length)
+    //改变大分类的选中状态-取消选中
+    if (list.length == attrValueList[e.currentTarget.dataset.index1]["attrValueStatus"].length){
+      attrValueList[e.currentTarget.dataset.index1]["icon"] ="check_n.png"
+    }
+
+
+    this.setData({
+      attrValueList: attrValueList
+    });
 
   },
+  cateClick:function(e){
+    console.log(e.currentTarget.dataset.index)
+    var attrValueList = this.data.attrValueList;
+    if (attrValueList[e.currentTarget.dataset.index]["icon"] =="check_r.png"){
+      // 取消选择
+      attrValueList[e.currentTarget.dataset.index]["icon"] ="check_n.png"
+      //让所有的分类都取消选择
+      for (var i = 0; i < attrValueList[e.currentTarget.dataset.index]["attrValueStatus"].length;i++){
+        attrValueList[e.currentTarget.dataset.index]["attrValueStatus"][i]=false;
+      }
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
+    }else{
+      //选中
+      attrValueList[e.currentTarget.dataset.index]["icon"] = "check_r.png";
+
+      //让所有的分类都选中
+      for (var i = 0; i < attrValueList[e.currentTarget.dataset.index]["attrValueStatus"].length; i++) {
+        attrValueList[e.currentTarget.dataset.index]["attrValueStatus"][i] = true;
+      }
+    }
+
+    this.setData({
+      attrValueList: attrValueList
+    });
+
 
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+  
+  /* 点击确定 */
+  submit: function () {
+    var value = [];
+    for (var i = 0; i < this.data.attrValueList.length; i++) {
+      if (!this.data.attrValueList[i].selectedValue) {
+        break;
+      }
+      value.push(this.data.attrValueList[i].selectedValue);
+    }
+    if (i < this.data.attrValueList.length) {
+      wx.showToast({
+        title: '请完善属性',
+        icon: 'loading',
+        duration: 1000
+      })
+    } else {
+      wx.showToast({
+        title: '选择的属性：' + value.join('-'),
+        icon: 'sucess',
+        duration: 1000
+      })
+    }
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  jumpHome:function(){
+    console.log("8888")
+    wx.redirectTo({
+      url: '/pages/index/poker/pokerIndex/pokerIndex',
+    })
   }
 })

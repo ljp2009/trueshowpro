@@ -1,0 +1,164 @@
+<!--pages/index/reservation/customer/modules/statusZero/statusZero.wxml-->
+<!-- <text>pages/index/reservation/customer/modules/statusZero/statusZero.wxml</text> -->
+<!--pages/index/reservation/staff/modules/statusZero/statusZero.wxml-->
+<!-- <template name="header"> -->
+    <view class="padding bg-white">
+    <view class="flex">
+    
+      <view class="flex-sub margin-xs">服务清单</view>
+      <view class="flex-twice margin-xs "></view>
+      <view class="flex-sub margin-xs"><text class="cuIcon-roundadd servicelist"></text></view>
+    </view>  
+    <!-- 服务清单 -->
+     <view class="cu-list menu-avatar">
+       <view class="cu-item ">
+        <view class="flex-sub margin-xs secimg">
+          <image src="{{webRoot}}/images/index/test1.jpg"/>
+        </view>
+        <view class="content">
+          <view class="text-gray text-sm flex">
+            <text class="text-cut">中医美背推拿60分钟</text>
+          </view>
+          <view class="text-gray text-sm flex">
+            <text class="text-cut">10年经验，活筋活络</text>
+          </view>
+          <view class="text-gray text-sm flex">
+            <text class="text-cut">凯尔，你被自己的光芒变的盲目！</text>
+          </view>
+        </view>
+        <view class="action">
+          <view class="text-grey text-xs">22:20</view>
+          <view class="cu-tag round bg-red sm">5</view>
+        </view>
+      </view>
+     </view>
+    
+    <!--  -->
+    <view class="flex">  
+      <view class="flex-sub margin-xs secimg">
+        <image src="{{webRoot}}/images/index/test1.jpg"/>
+      </view>
+      <view class="flex-twice margin-xs serintro">
+      <text>中医推拿60分钟</text>
+      <text>10年经验</text>
+      <text>120元</text>
+      </view>
+      <view class="flex-sub   margin-xs servicelist"><text class="cuIcon-delete"></text></view>
+    </view>
+    <view class="flex">
+      <view class="flex-sub margin-xs secimg">
+        <image src="{{webRoot}}/images/index/test1.jpg"/>
+      </view>
+      <view class="flex-twice margin-xs serintro">
+      <text>中医推拿60分钟方顶顶顶顶</text>
+      <text>10年经验方</text>   
+      <text>120元</text>
+      </view>
+      <view class="flex-sub   margin-xs servicelist"><text class="cuIcon-delete"></text></view>
+    </view>
+    <!-- 时常 -->
+    <view class="flex">
+      <view class="flex-sub margin-xs">总计时长</view>
+      <view class="flex-twice  margin-xs "></view>
+      <view class="flex-sub   margin-xs ">
+        <view>120分钟</view> 
+      </view>
+    </view>
+    <!--时常  -->
+    <!-- 到店时间布局  -->
+     <view class="flex shoplist">
+      <view class="arriveTime">到店时间:</view>
+      <view class=" right" wx:for="{{dateArr}}" >
+        <view class="roundOne"  bindtap="chooseDate" data-index="{{index}}" data-item="{{item}}">
+        {{item}}
+        </view>
+      </view>
+    </view>
+  <!-- 到店时间结束 -->
+  <!-- 时间滑块 -->
+    <view class="timeBlock">
+       点击滑动选择滑块
+      <view>时间滑块</view>
+    </view>
+  <!-- 时间滑块结束 -->
+  <!-- 当日优惠 -->
+  <view class="flex shoplist">
+      <view class="sale">当日优惠:</view>
+      <view class=" saleOff" >
+        新张志庆，优惠酬宾，欢迎来小店体验
+      </view>
+  </view>
+  <view class="cu-form-group  selectChange">
+		<view class="title">优惠方式:</view>
+		<picker bindchange="PickerChange" value="{{index}}" range="{{picker}}" class="selectOne">
+			<view class="picker">
+				{{index?picker[index]:'请选择优惠'}}
+			</view>
+		</picker>
+	</view>
+  <!--当日优惠结束  -->
+  <!-- 优惠预告 -->
+  <view class="flex shoplistOne">
+      <view class="sale">优惠预告:</view>
+      <view class=" saleOffOne" >
+        新张志庆，优惠酬宾，欢迎来小店体验
+      </view>
+  </view>
+  <!-- 优惠预告结束 -->
+  <!-- 开始时间 -->
+  <view class="flex startTime">
+      <view class="sale">开始时间:</view>
+      <view class=" saleOffOne" >
+        2019-08-08   （三天后开始）
+      </view>
+  </view>
+   <view class="flex">
+      <view class="flex-sub margin-xs"></view>
+      <view class="flex-twice  margin-xs "><view class="saleX">X</view><view class="saleEach">单笔优惠</view><text>满200减20</text></view>
+  </view>
+   <view class="flex">
+      <view class="flex-sub margin-xs"></view>
+      <view class="flex-twice  margin-xs "><view class="saleX">X</view><view class="saleEach">熟客折扣</view><text>20%OFF</text></view>
+  </view>
+  <!-- 开始时间结束 -->
+  <!-- 金额 -->
+  <view class="flex moneyTwo">
+      <view class="flex-sub margin-xs">金额：</view>
+      <view class="flex-twice  margin-xs moneyThree">￥100.00-200.00元</view>
+  </view>
+  <!-- 第一个优惠方式 -->
+  <view class="flex">
+      <view class="flex-sub margin-xs">单笔满减：</view>
+      <view class="flex-twice  margin-xs "></view>
+      <view class="flex-sub   margin-xs ">
+        <view ><text style="color:rgb(255,102,0);">￥100</text>元</view> 
+  </view>
+  </view>
+  <!-- 如果几个优惠条件都有 都显示  这个是第二个优惠方式 -->
+   <view class="flex">
+      <view class="flex-sub margin-xs">熟客折扣：</view>
+      <view class="flex-twice  margin-xs "></view>
+      <view class="flex-sub   margin-xs ">
+        <view ><text style="color:rgb(255,102,0);">￥100.00</text>元</view> 
+    </view>
+  </view>
+  <!-- 金额结束 -->
+  <!-- 预约选项 -->
+  <view class="flex bottom">  
+      <view class="flex-sub  secimg del">
+        删除
+      </view>
+      <view class="flex-twice   wantMoney">
+      <view>意向价格：<text style="color:rgb(255,102,0);">￥100.00元</text>起</view>
+      </view>
+      <view class="order">
+        <view catchtap="makeOrder">预约</view>
+        <view>(到店支付)</view>
+      </view>
+    </view>
+    
+<!-- 11111111111111111 -->
+  <!-- 预约选项结束 -->
+  </view>
+<!-- </template> -->
+ 

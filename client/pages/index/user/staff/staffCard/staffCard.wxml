@@ -1,2 +1,549 @@
-<!--pages/index/user/staff/staffCard/staffCard.wxml-->
-<text>pages/index/user/staff/staffCard/staffCard.wxml</text>
+<!--pages/changeCar/detailsCar/index.wxml-->
+<button class='kefu' open-type="contact" bindcontact="handleContact"style="right:{{feed_style.x}};top:{{feed_style.y}};" catchtouchmove="touchMoveChange">
+  <image src='http://image.autohuajiao.com/huajiao_c/service.png'></image>
+</button>
+<view wx:if="{{pay_all}}" class='all_pay'>
+  <view class='details-all'>
+    <!-- 车辆图片展示部分 -->
+    <view class='details-photo'>
+      <view class="page-section page-section-spacing swiper">
+        <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+          <block wx:for="{{allpiclist}}" wx:key="{{index}}" wx:for-index="i">
+            <swiper-item wx:if="{{i < 5}}">
+              <image src='{{item}}' bindtap='topic' class="swiper-item"></image>
+            </swiper-item>
+          </block>
+        </swiper>
+      </view>
+    </view>
+    <!-- 文字说明板块 -->
+    <view class='details-text'>
+      <view class='wording-left'>
+        <!-- 头像部分 -->
+            <view class="start_k secondBottom ">
+                      <view >
+                      <image class="img_big " src='http://ljp.jujiaoweb.com/images/index/poker/1.jpg'></image>            
+                      </view>
+                    <view class="padding-small margin-xs radius">
+                        <view class="nameNo">胡敏</view>
+                        <view class=" evaluate">评:第一次尝试这种效，</view> 
+                        <view class="grid col-4 grid-square bg-imgSmall">
+                              
+                        </view>
+              
+                </view>
+            </view>
+
+      </view>
+
+      <view class='clear'></view>
+      
+      
+    </view>
+
+    <!-- 附近门店 -->
+    <view class='car-store' wx:if="{{car_store}}">
+      <view class='log-list'>
+        <view class="hot-content">
+          <text class="hot-title">附近门店</text>
+          <text class="all-dian" bindtap='all_dian'>全部门店 ></text>
+        </view>
+        <view class='clear'></view>
+      </view>
+      <block wx:for="{{fujin}}" wx:for-index="i" wx:key="{{index}}">
+        <view wx:if="{{i < 1}}">
+          <view wx:if="{{first_show}}">
+            <view class='store-view'>
+              <text class='store-address'>{{item.shopinfo.name}}\n</text>
+              <text class='store-address'>{{item.shopinfo.address}}</text>
+            </view>
+            <view class='map-icon' bindtap='intoMap' data-id='{{item.shopid}}' data-dianPice='{{item.price}}' data-latitude='{{item.shopinfo.latitude}}' data-longitude='{{item.shopinfo.longitude}}' data-name="{{item.shopinfo.name}}" data-address="{{item.shopinfo.address}}">
+              <image src="http://image.autohuajiao.com/huajiao_c/map.jpg"></image>
+            </view>
+            <view class='clear'></view>
+          </view>
+        </view>
+      </block>
+      <view wx:if="{{backDian}}">
+        <view class='store-view'>
+          <text class='store-address'>{{back_address[2].name}}\n</text>
+          <text class='store-address'>据您1.0公里,{{back_address[3].address}}</text>
+        </view>
+        <view class='map-icon' bindtap='intoMap1' data-id='{{shopid}}' data-latitude='{{back_address[0].latitude}}' data-longitude='{{back_address[1].longitude}}' data-name="{{back_address[2].name}}" data-address="{{back_address[3].address}}">
+          <image src="http://image.autohuajiao.com/huajiao_c/map.jpg"></image>
+        </view>
+        <view class='clear'></view>
+      </view>
+    </view>
+    <!-- 是不是扫一扫进的 -->
+    <view class='car-store' wx:if="{{issaoyisao}}">
+      <view class='log-list'>
+        <view class="hot-content">
+          <text class="hot-title">车辆所在门店</text>
+        </view>
+        <view class='clear'></view>
+      </view>
+      <view class='store-view'>
+        <text class='store-address'>{{indexname}}\n</text>
+        <text class='store-address'>据您1.0公里,{{indexaddress}}</text>
+      </view>
+      <view class='map-icon' bindtap='intoMap1' data-id='{{shopid}}' data-latitude='{{indexlatitude}}' data-longitude='{{indexlongitude}}' data-name="{{indexname}}" data-address="{{indexaddress}}">
+        <image src="http://image.autohuajiao.com/huajiao_c/map.jpg"></image>
+      </view>
+      <view class='clear'></view>
+    </view>
+    <!-- 付款方案 -->
+    <view class="pay-plan" wx:if="{{allbuy}}">
+      <view class='plan-click'>
+        <view class='title'>
+          <view class='width' wx:if="{{pay_plan}}">
+            <view class="plan {{selected==curindex?'zIndex':''}} {{daikuan?'':'marginAuto'}}" bindtap="selected">全款方案</view>
+          </view>
+          <view class='width' wx:if="{{daikuan}}">
+            <view class="plan {{selected1==curindex?'zIndex':''}}" bindtap="selected1">贷款方案</view>
+          </view>
+          <view class='width' wx:if="{{iszudai}}">
+            <view class="plan {{selected2==curindex?'zIndex':''}}" bindtap="selected2">以租代售</view>
+          </view>
+          <view class='clear'></view>
+        </view>
+      </view>
+      <view class="{{selectedbody?'show':'hidden'}}">
+        <view class='text-box'>
+          <text>门店车价:{{dianPrice/10000}}万\n</text>
+          <text>优惠力度:{{(carDetail.price*10000-dianPrice)/10000}}万</text>
+        </view>
+      </view>
+      <view class="{{selectedbody1?'show':'hidden'}}">
+        <view class='display' wx:if="{{fangan}}" data-schemeid='{{daikuanList[0].schemeid}}'>
+          <view class='display-one'>
+            <view class='tu'>
+              <image src="http://image.autohuajiao.com/huajiao_c/shoufu.png" class='shoufu'></image>
+            </view>
+            <view class="zi zi1">
+              <view class='black'>首付{{firstpaymentratio}}</view>
+              <view class='red'>{{carfirstpayment * 1000/10000000}}万</view>
+            </view>
+            <view class='clear'></view>
+          </view>
+          <view class="display-two">
+            <view class='tu'>
+              <image src="http://image.autohuajiao.com/huajiao_c/yuegong.png" class='yuegong'></image>
+            </view>
+            <view class="zi">
+              <view class='black black-left'>月供</view>
+              <view class='red'>{{carmonthpayment}}元</view>
+            </view>
+            <view class='clear'></view>
+          </view>
+          <view class='display-three'>
+            <view class='tu'>
+              <image src="http://image.autohuajiao.com/huajiao_c/qishu.png" class='qishu'></image>
+            </view>
+            <view class="zi">
+              <view class='black'>期数</view>
+              <view class='red'>{{months}}期</view>
+            </view>
+            <view class='clear'></view>
+          </view>
+          <view class='clear'></view>
+          <button class='more-plan' bindtap='more_plan' data-firstpayment='{{carfirstpayment  * 1000/10000000}}' data-monthpayment='{{carmonthpayment}}' data-months='{{months}}' wx:if="{{isallpay}}">更多方案</button>
+        </view>
+
+        <view class='display' wx:if="{{fanganxiugai}}" data-schemeid='{{schemeid}}'>
+          <view class='display-three'>
+            <view class='tu'>
+              <image src="http://image.autohuajiao.com/huajiao_c/shoufu.png" class='shoufu'></image>
+            </view>
+            <view class="zi">
+              <view class='black'>首付{{firstpaymentratio}}</view>
+              <view class='red'>{{carfirstpayment * 1000/10000000}}万</view>
+            </view>
+            <view class='clear'></view>
+          </view>
+
+          <view class="display-three">
+            <view class='tu1'>
+              <image src="http://image.autohuajiao.com/huajiao_c/yuegong.png" class='yuegong'></image>
+            </view>
+            <view class="zi1 zi2">
+              <view class='black'>月供</view>
+              <view class='red'>{{carmonthpayment}}元</view>
+            </view>
+            <view class='clear'></view>
+          </view>
+
+          <view class='display-three'>
+            <view class='tu'>
+              <image src="http://image.autohuajiao.com/huajiao_c/qishu.png" class='qishu'></image>
+            </view>
+            <view class="zi1 zi3">
+              <view class='black'>期数</view>
+              <view class='red'>{{months}}期</view>
+            </view>
+            <view class='clear'></view>
+          </view>
+          <view class='clear'></view>
+          <button class='more-plan' data-firstpayment='{{carfirstpayment * 1000/10000000}}' data-monthpayment='{{carmonthpayment}}' data-months='{{months}}' bindtap='more_plan' wx:if="{{isallpay}}">更多方案</button>
+        </view>
+      </view>
+
+      <!-- 以租代售 -->
+      <view class="{{selectedbody2?'show':'hidden'}}">
+        <view class='display' wx:if="{{zudai}}" data-schemeid='{{daikuanList[0].schemeid}}'>
+          <view class='display-one'>
+            <view class='tu'>
+              <image src="http://image.autohuajiao.com/huajiao_c/shoufu.png" class='shoufu'></image>
+            </view>
+            <view class="zi zi1">
+              <view class='black'>首付{{zufirstpaymentratio}}</view>
+              <view class='red'>{{zucarfirstpayment  * 1000/10000000}}万</view>
+            </view>
+            <view class='clear'></view>
+          </view>
+          <view class="display-two">
+            <view class='tu'>
+              <image src="http://image.autohuajiao.com/huajiao_c/yuegong.png" class='yuegong'></image>
+            </view>
+            <view class="zi">
+              <view class='black black-left'>月供</view>
+              <view class='red'>{{zucarmonthpayment}}元</view>
+            </view>
+            <view class='clear'></view>
+          </view>
+          <view class='display-three'>
+            <view class='tu'>
+              <image src="http://image.autohuajiao.com/huajiao_c/qishu.png" class='qishu'></image>
+            </view>
+            <view class="zi">
+              <view class='black'>期数</view>
+              <view class='red'>{{zumonths}}期</view>
+            </view>
+            <view class='clear'></view>
+          </view>
+          <view class='clear'></view>
+          <button class='more-plan' bindtap='zumore_plan' data-firstpayment='{{zucarfirstpayment  * 1000/10000000}}' data-monthpayment='{{zucarmonthpayment}}' data-months='{{zumonths}}' wx:if="{{zudaipay}}">更多方案</button>
+        </view>
+        <view class='display' wx:if="{{zudaigai}}" data-schemeid='{{schemeid}}'>
+          <view class='display-three'>
+            <view class='tu'>
+              <image src="http://image.autohuajiao.com/huajiao_c/shoufu.png" class='shoufu'></image>
+            </view>
+            <view class="zi">
+              <view class='black'>首付{{zufirstpaymentratio}}</view>
+              <view class='red'>{{zucarfirstpayment * 1000/10000000}}万</view>
+            </view>
+            <view class='clear'></view>
+          </view>
+
+          <view class="display-three">
+            <view class='tu1'>
+              <image src="http://image.autohuajiao.com/huajiao_c/yuegong.png" class='yuegong'></image>
+            </view>
+            <view class="zi1 zi2">
+              <view class='black'>月供</view>
+              <view class='red'>{{zucarmonthpayment}}元</view>
+            </view>
+            <view class='clear'></view>
+          </view>
+
+          <view class='display-three'>
+            <view class='tu'>
+              <image src="http://image.autohuajiao.com/huajiao_c/qishu.png" class='qishu'></image>
+            </view>
+            <view class="zi1 zi3">
+              <view class='black'>期数</view>
+              <view class='red'>{{zumonths}}期</view>
+            </view>
+            <view class='clear'></view>
+          </view>
+          <view class='clear'></view>
+          <button class='more-plan' data-firstpayment='{{zucarfirstpayment  * 1000/10000000}}' data-monthpayment='{{zucarmonthpayment}}' data-months='{{zumonths}}' bindtap='zumore_plan' wx:if="{{zudaipay}}">更多方案</button>
+        </view>
+      </view>
+    </view>
+    <view class='clear'></view>
+
+
+    <!-- 车辆配置 -->
+    <view class="car-config">
+      <view class='log-list'>
+        <view class="hot-content">
+          <text class="hot-title">车辆配置 </text>
+        </view>
+      </view>
+      <view class='config-all'>
+        <view class='config-left'>
+          <view>品牌</view>
+          <view>车系</view>
+          <view>车款类型</view>
+          <view class='clear'></view>
+        </view>
+        <view class='config-right'>
+          <view class="">{{carDetail.carbranddir.name}}</view>
+          <view class="">{{carDetail.carseriesdir.name}}</view>
+          <view class="">{{carDetail.name}}</view>
+        </view><view class='clear'></view>
+      </view>
+      <!-- <button class='more-config' bindtap='more_peizhi'>更多配置</button> -->
+      <!-- 车辆资讯 -->
+      <view class='log-list' wx:if="{{iszixun}}">
+        <view class="hot-content" style='margin-bottom:50rpx;'>
+          <view class="hot-title">车辆资讯</view>
+        </view>
+      </view>
+      <view class='bigbox'>
+        <block wx:for="{{zixun}}" wx:key="{{index}}">
+          <view class="zixun">
+            <view class='zixun-top'>
+              <view class='car-image'>
+                <image src='{{item.smallpic}}'></image>
+              </view>
+            </view>
+            <view class='zixun-bottom'>
+              <view class='text-box'>
+                {{item.content}}
+                <view class='moreButton' data-id='{{item.id}}' bindtap='zixunPage'>更多</view>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+      <!-- 购车流程 -->
+      <view wx:if="{{buyliucheng}}">
+        <view class='log-list'>
+          <view class="hot-content">
+            <text class="hot-title">购车流程</text>
+          </view>
+        </view>
+        <view class='liucheng'>
+          <view class='liucheng-middle'>
+            <view class='liucheng-left'>
+              <view class='wangshang'>
+                <image src='http://image.autohuajiao.com/huajiao_c/wangshang.png'></image>
+              </view>
+              <view class='line-a line-b'></view>
+              <view class='wangshang'>
+                <image src='http://image.autohuajiao.com/huajiao_c/yuyue.png'></image>
+              </view>
+              <view class='line-a line-c'></view>
+              <view class='wangshang'>
+                <image src='http://image.autohuajiao.com/huajiao_c/mendian.png'></image>
+              </view>
+              <view class='clear'></view>
+            </view>
+            <view class='liucheng-right'>
+              <view class='xuanche'>
+                <view class='wangshang-text'>网上选车</view>
+                <view class="wangshang-view xuanche-text">在花椒汽车平台选择您心仪的新车,并提交订单</view>
+              </view>
+              <view class='xuanche'>
+                <view class='wangshang-text'>预约门店</view>
+                <view class="wangshang-view yuyue-text">花椒汽车后台根据您的需求为您预约提车门店</view>
+              </view>
+              <view class='tiche'>
+                <view class='wangshang-text'>门店提车</view>
+                <view class="wangshang-view tiche-text">您到门店完成交车手续,提走您的爱车</view>
+              </view>
+            </view><view class='clear'></view>
+          </view>
+        </view>
+      </view>
+      <!-- 购车须知 -->
+      <view wx:if="{{buyliucheng}}">
+        <view class='log-list'>
+          <view class="hot-content">
+            <text class="hot-title">购车须知</text>
+          </view>
+        </view>
+        <view class="car-belong">
+          <view class='car-belong-title'>车源供应</view>
+          <view class="top">花椒汽车由各大汽车品牌供应商直接供应，车源品质有保障。</view>
+          <view class='car-belong-title'>所需资料</view>
+          <view class="top">您只需提供有效期内的身份证并完成线上贷款购车相关信用评估流程即可进行贷款购车。</view>
+          <view class='car-belong-title'>提车</view>
+          <view class="top">全款方案支付完成或贷款方案首付支付完成后，即可根据您的实际情况进行预约提车。</view>
+          <view class='car-belong-title'>还款</view>
+          <view class="top">贷款购车合同签署后，按照合同约定时间，通过您绑定的银行卡进行还款。</view>
+        </view>
+      </view>
+      <view class='clear'></view>
+    </view>
+    <view class='clear'></view>
+  </view>
+</view>
+<view class="btn-area">
+  <button class='buynow' open-type="getUserInfo" bindgetuserinfo='allpay'>{{likebuy}}</button>
+</view>
+<view class="more-plan1" wx:if="{{daikuan_change}}">
+  <!-- 贷款方案 -->
+  <!-- <view class='plan-all1'> -->
+  <view class='fangan' catchtouchmove="ture">
+    <view class='fangan-middle'>
+      <view class='fangan-view'>
+        <!-- 贷款方案1： -->
+        <block wx:for="{{daikuanList}}" wx:key="{{index}}">
+          <view class='white' bindtap='split_plan' data-firstpaymentratio='{{item.firstpaymentratio}}' data-firstpayment='{{item.firstpayment}}' data-monthpayment='{{item.monthpayment}}' data-id='{{index}}' data-months='{{item.months}}' data-schemeid='{{item.schemeid}}'
+            wx:for-index="index">
+            <label for='{{index}}'>
+              <view class='white-top'>
+                <view class='model-radio'>
+                  <view class="check {{checked==index?'block':''}}"></view>
+                  <image class="checkimg {{cousedis==index?'none':''}}" src='http://image.autohuajiao.com/huajiao_c/check.png'></image>
+                </view>
+                <text class='fangan-text'>贷款方案{{index+1}}：</text>
+              </view>
+              <view class='white-bottom'>
+                <view class='first'>
+                  <view class='first-top'>首付{{item.firstpaymentratio}}\n</view>
+                  <view class='first-bottom'>
+                    <text class="big">{{item.firstpayment * 1000/10000000}}</text>
+                    <text class="small">万</text>
+                  </view>
+                </view>
+                <view class='second'>
+                  <view class='second-top'>月供\n</view>
+                  <view class='first-bottom'>
+                    <text class="big">{{item.monthpayment}}</text>
+                    <text class="small">元</text>
+                  </view>
+                </view>
+                <view class='third'>
+                  <view class='third-top'>期数\n</view>
+                  <view class='first-bottom'>
+                    <text class="big">{{item.months}}</text>
+                    <text class="small">期</text>
+                  </view>
+                </view>
+              </view>
+            </label>
+          </view>
+        </block>
+        <!-- 还不够？点这里试试 -->
+        <view class='no-enough-text1'>
+          <!-- <text class='dianji1'>还不够？点这里试试\n</text> -->
+          <text class='yufu1'>信用评估需支付预定金。\n</text>
+          <text class='diff1'>信用不同的用户方案略有不同，根据个人信用不同，会有调整。</text>
+        </view><view class='clear'></view>
+      </view>
+    </view>
+    <view class='close-button' bindtap='closebutton'>
+      <image src='http://image.autohuajiao.com/huajiao_c/close.png' class='close-img'></image>
+    </view>
+  </view>
+</view>
+<!-- 以租代售弹框 -->
+<view class="more-plan1" wx:if="{{zudaikuan_change}}">
+  <!-- 贷款方案 -->
+  <!-- <view class='plan-all1'> -->
+  <view class='fangan' catchtouchmove="ture">
+    <view class='fangan-middle'>
+      <view class='fangan-view'>
+        <!-- 贷款方案1： -->
+        <block wx:for="{{zudailist}}" wx:key="{{index}}">
+          <view class='white' bindtap='zusplit_plan' data-firstpaymentratio='{{item.firstpaymentratio}}' data-firstpayment='{{item.firstpayment}}' data-monthpayment='{{item.monthpayment}}' data-id='{{index}}' data-months='{{item.months}}' data-schemeid='{{item.schemeid}}' wx:for-index="index">
+            <label for='{{index}}'>
+              <view class='white-top'>
+                <view class='model-radio'>
+                  <view class="check {{checked==index?'block':''}}"></view>
+                  <image class="checkimg {{cousedis==index?'none':''}}" src='http://image.autohuajiao.com/huajiao_c/check.png'></image>
+                </view>
+                <text class='fangan-text'>租赁方案{{index+1}}：</text>
+              </view>
+              <view class='white-bottom'>
+                <view class='first'>
+                  <view class='first-top'>首付{{item.firstpaymentratio}}\n</view>
+                  <view class='first-bottom'>
+                    <text class="big">{{item.firstpayment * 1000/10000000}}</text>
+                    <text class="small">万</text>
+                  </view>
+                </view>
+                <view class='second'>
+                  <view class='second-top'>月供\n</view>
+                  <view class='first-bottom'>
+                    <text class="big">{{item.monthpayment}}</text>
+                    <text class="small">元</text>
+                  </view>
+                </view>
+                <view class='third'>
+                  <view class='third-top'>期数\n</view>
+                  <view class='first-bottom'>
+                    <text class="big">{{item.months}}</text>
+                    <text class="small">期</text>
+                  </view>
+                </view>
+              </view>
+            </label>
+          </view>
+        </block>
+        <!-- 还不够？点这里试试 -->
+        <view class='no-enough-text1'>
+          <!-- <text class='dianji1'>还不够？点这里试试\n</text> -->
+          <text class='yufu1'>信用评估需支付预定金。\n</text>
+          <text class='diff1'>信用不同的用户方案略有不同，根据个人信用不同，会有调整。</text>
+        </view><view class='clear'></view>
+      </view>
+    </view>
+    <view class='close-button' bindtap='zuclosebutton'>
+      <image src='http://image.autohuajiao.com/huajiao_c/close.png' class='close-img'></image>
+    </view>
+  </view>
+</view>
+<view class='buycar' wx:if="{{buycar}}">
+  <view class='buycartitle'>
+    <image src='{{allpiclist[0]}}'></image>
+  </view>
+  <view class='buycarcenter'>
+    <view class='tuanline'>
+      <view class='carname'>{{carDetail.year}} {{carDetail.carbranddir.name}} {{carDetail.carseriesdir.name}} {{carDetail.name}}</view>
+      <view class='clear'></view>
+    </view>
+    <view class='tuanline'>
+      <view class='carname'>厂商指导价:</view>
+      <view class='carpriceright'><span>{{carDetail.price}}</span>万</view>
+      <view class='clear'></view>
+    </view>
+    <view class='tuanline'>
+      <view class='carname'>颜色:</view>
+      <view class='carpriceright'>{{colorname}}</view>
+      <view class='clear'></view>
+    </view>
+    <view class='tuanline'>
+      <view class='tuanleft'>姓名</view>
+      <view class='tuaninput' wx:if="{{yourname}}">
+        <input value="{{name}}" bindinput='name' placeholder='您的姓名'></input>
+      </view>
+      <view class='tuaninput' wx:if="{{isname}}">
+        {{havename}}
+      </view>
+      <view class='clear'></view>
+    </view>
+    <view class='tuanline'>
+      <view class='tuanleft'>手机</view>
+      <view class='tuaninput' wx:if="{{yourtel}}">
+        <view class='tuaninput'>
+          <input value="{{telphone}}" maxlength='11' bindinput='telphone' placeholder='您的手机号'></input>
+        </view>
+        <button open-type="getUserInfo" class='code' bindgetuserinfo='huoqu'>{{time}}</button>
+      </view>
+      <view class='tuaninput' wx:if="{{istel}}">
+        {{havetel}}
+      </view>
+      <view class='clear'></view>
+    </view>
+    <view class='tuanline' wx:if="{{iscode}}">
+      <view class='tuanleft'>验证码</view>
+      <view class='tuaninput'>
+        <input bindinput='setCode' value='{{mycode}}' placeholder='手机验证码'></input>
+      </view><view class='clear'></view>
+    </view>
+    <view class='suretuan' bindtap='tuandetail'>确认团车？点击查看团车详情</view>
+    <view class='escsure'>
+      <view class='btnesc' bindtap='buyesc'>取消</view>
+      <button class='btnsure' open-type="getUserInfo" bindgetuserinfo='buysure'>确认</button>
+      <view class='clear'></view>
+    </view>
+  </view>
+</view>
+<view class='fuceng' wx:if="{{fuceng}}"></view>
+

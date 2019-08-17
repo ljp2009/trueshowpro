@@ -1,0 +1,37 @@
+<!--pages/common/footer/footer.wxml-->
+<!-- <text>pages/common/footer/footer.wxml</text> -->
+<!-- 底部 -->
+              <view class=" navlist " >
+                <view class="flex text-xxl font-bold " >
+                  <!-- <view class="flex-sub padding-sm margin-xs radius" style=" border:  1rpx solid green;"></view> -->
+                  <view class="flex-sub padding-sm margin-xs radius navRight" >
+                    <text class="navitem">秀</text>
+                    <!-- <text class="navitem" style="border:1rpx solid blue;">|</text> -->
+                    <!-- <view class="btn">
+                        <text class="btn-yulan text-xxl">约</text>                
+                    </view>  -->
+                    <!-- 约 -->
+                    <view class="cu-bar tabbar " style="display:inline-block;">
+                     <view class="action">
+                      <view class="cuIcon-cu-image">
+                        <view style="margin-right:10%;height:150rpx;display:inline-block;" class="text-xxl font-bold">|</view>
+                        <view class="btn" >
+                        <text class="btn-yulan text-xxl">约</text>                
+                    </view>
+                    <view class="cu-tag badge">99+</view>
+                        </view>
+                        </view>
+                    </view>
+                     <!-- 约结束 -->
+                    <!-- <text class="navitem circl" style="border:1rpx solid red;">约</text> -->
+                    
+                    <text class="navitem"><text style="padding-right:5%;">|</text>问</text>
+                    <text class="navitem">|</text>
+                    <text class="navitem">我</text>
+                  </view>
+                </view>
+              </view>
+
+           
+                   
+              <!-- 底部结束 -->

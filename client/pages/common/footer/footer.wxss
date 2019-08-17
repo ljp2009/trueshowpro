@@ -1,0 +1,21 @@
+/* pages/common/footer/footer.wxss */
+.btn{
+  /* border: 1rpx solid blue; */
+  display: inline-block;
+  /* margin-left: 15rem; */
+  border-radius: 30rem;
+  height: 2rem;
+  width: 2rem;
+  background-color: gray;
+  text-align: center;
+  /* top: 50rpx; */
+}
+.btn-yulan{
+  /* border: 1rpx solid black; */
+  display: inline-block;
+  height: 2rem;
+  width:2rem;
+  padding-top: 0.35rem; 
+  color: white;
+  /* position: absolute; */
+}

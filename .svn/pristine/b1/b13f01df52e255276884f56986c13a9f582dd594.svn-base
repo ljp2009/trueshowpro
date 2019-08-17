@@ -1,0 +1,19 @@
+<!--pages/index/reservation/customer/modules/statusThree/statusThree.wxml-->
+<!-- <text>pages/index/reservation/customer/modules/statusThree/statusThree.wxml</text> -->
+<view>
+<!-- -进度条- -->
+  <view class="padding setps allStemp">
+          <view class="cu-steps">
+            <view class="cu-item {{index>num?'':'text-blue'}}" wx:for="{{numList}}" wx:key>
+              <text class="num {{index==6?'err':''}}" data-index="{{index + 1}}"></text> {{item.name}}
+            </view>
+          </view>
+  </view>  
+<!-- -进度条-结束 -->
+  <view style="text-align:center;margin-top:3%;">  
+      <view style="margin-top:2%;">你在规定的时间</view>   
+      <view style="margin-top:2%;color:orange;">2019-08-17  11：30-14：30</view>   
+      <view style="margin-top:2%;">内未到店，爽约记录一次</view>
+  </view>
+
+</view>

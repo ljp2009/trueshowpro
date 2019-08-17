@@ -1,0 +1,260 @@
+<?php
+namespace app\index\controller;
+use think\Cookie;
+use think\Db;
+use think\Request;
+//晒单类
+class Poker
+{
+    /**
+     *晒单读取
+     * 请求参数:km:公里数，读取距离用户在此范围内的机构的晒单默认5km;MySubCat:晒单子分类,格式“A1,A2,A3,B2,B4”。默认值空表示全部分类
+     *
+     */
+    public function getSeriesPoker()
+    {
+        //
+        $slat  =39.98246;//纬度
+        $slng =117.07822;//经度
+
+//        $sql = "SELECT *, ROUND(6378.138*2*ASIN(SQRT(POW(SIN(($slat*PI()/180-lat*PI()/180)/2),2)+COS($slat*PI()/180)*COS(lat*PI()/180)*POW(SIN(($slng*PI()/180-lng*PI()/180)/2),2)))) AS juli
+//        FROM test1 having juli<=5";
+        $sql = "SELECT *, ROUND(6378.138*2*ASIN(SQRT(POW(SIN(($slat*PI()/180-lat*PI()/180)/2),2)+COS($slat*PI()/180)*COS(lat*PI()/180)*POW(SIN(($slng*PI()/180-lng*PI()/180)/2),2)))) AS juli
+        FROM test1";
+        $shop_list = Db::query($sql);
+        print_r($shop_list);
+//        if(!empty($shop_list)){
+//            return json_encode(array('status'=>1,'msg'=>"获取成功！",'result'=>$shop_list));
+//        }
+//        return json_encode(array('status'=>0,'msg'=>"附近没有商家！",'result'=>null));
+
+    }
+
+
+
+    /**
+     *晒单浏览记录
+     * 请求参数PokerId 晒单id
+     * 晒单浏览人次计数
+     * 思路:判断当前传入的晒单id在Poker_access表中总共有多少条记录
+     * 返回参数 code为1是成功 msg为总计数  code为0是查询失败
+     * 请求地址：http://trueshow/index/poker/PokerRead
+     */
+    public function PokerRead()
+    {
+        $request=Request::instance();
+        $data=$request->param();
+        //validate验证
+        $validate = validate('Poker');
+        if(!$validate->scene("PokerRead")->check($data)){
+            // echo returnData("-1",$validate->getError());
+            echo returnData("-1",$validate->getError());
+            exit;
+        }
+        $PokerId=$data["PokerId"];//晒单id
+        //通过晒单id查询 Poker_access 表
+        $allcount=Db::table("Poker_access")->where("PokerId","=",$PokerId)->count();
+        if ($allcount>=0){
+            //查询成功
+            echo returnData(1,$allcount);
+            exit;
+        }else{
+            echo returnData(0,"查询数据库失败");
+            exit;
+        }
+
+    }
+
+    /**
+     *晒单收藏
+     * 请求参数:PokerId 晒单id  Act：收藏传1/取消收藏传0
+     * 思路：通过act参数来决定是添加数据还是删除数据 poker_favor 表
+     * 请求地址：http://trueshow/index/poker/PokerFavorite
+     */
+    public function PokerFavorite()
+    {
+        $request=Request::instance();
+        $data=$request->param();
+        //validate验证
+        $validate = validate('Poker');
+        if(!$validate->scene("PokerFavorite")->check($data)){
+            // echo returnData("-1",$validate->getError());
+            echo returnData("-1",$validate->getError());
+            exit;
+        }
+        $UserId=$data["UserId"];//用户id
+        $PokerId=$data["PokerId"];//晒单id
+        $Act=$data["Act"];//是否收藏 收藏为1/取消收藏为0
+        $time=date("Y-m-d H:i:s");
+        //收藏 取消 时间是不同的，所以不可以不删除直接用
+        $data=[
+            "PokerId"=>$PokerId,
+            "UserId"=>$UserId,
+        ];
+        if ($Act==1){
+            //添加数据 收藏
+            $data["accessTime"]=$time;
+            $res=Db::table('poker_favor')->insert($data);
+            if (!$res){
+                //收藏失败
+                echo returnData(0,"收藏失败");
+                exit;
+            }
+            echo returnData(1,"收藏成功");
+            exit;
+        }elseif($Act==0){
+            //如果有这条数据 删除 取消收藏
+            $res=Db::table('poker_favor')->where($data)->delete();
+            if (!$res){
+                //收藏失败
+                echo returnData(0,"取消收藏失败");
+                exit;
+            }
+            echo returnData(1,"取消收藏成功");
+            exit;
+        }
+
+
+    }
+
+
+    /**
+     *获取技师/顾客晒单
+     * 请求参数：StaffId/CustomerId  Min:请求的开始序号。默认1  Max:请求的结束序号。默认3
+     * 2表查询：Poker，Bullet
+     * 返回参数：PokerId StaffPic CustomerPic  Bullets:弹幕数（通过晒单PokerId 查Bullet弹幕表） Favor ServiceName  CreatTime
+     * eg:
+     */
+    public function getPokerByUser()
+    {
+        //前端传技师StaffId或者顾客CustomerId
+        $request=Request::instance();
+        $data=$request->param();
+        $Min=isset($data["Min"]) ? $data["Min"] : 0;//请求的开始序号  索引值
+        $Max=isset($data["Max"]) ? $data["Max"] : 2;//请求的结束序号
+        if (isset($data["StaffId"])){
+            $id=$data["StaffId"];
+            $key="StaffId";
+        }elseif (isset($data["CustomerId"])){
+            $id=$data["CustomerId"];
+            $key="CustomerId";
+        }
+        //通过参数获取晒单数据
+        //先只把晒单的弹幕晒单id获取到
+        $subsql = Db::table('bullet')->where(['Origin'=>0])->field('OriginId')->buildSql();
+        $res=Db::table('poker')
+            ->alias('p')
+            ->join([$subsql=> 'b'], "p.ID=b.OriginId","left")
+            ->field(["p.ID PokerId","p.StaffPic","p.CustomerPic","count(b.OriginId) Bullets","p.Favor","p.ServiceName","p.CreatTime"])
+            ->where(["P.".$key=>$id])
+            ->group("p.ID")
+            ->order(['p.CreatTime'=>'desc'])
+            ->limit($Min,$Max-$Min+1)
+            ->select();
+        $len=count($res);
+        for ($i=0;$i<$len;$i++){
+            $res[$i]["StaffPic"]=json_decode($res[$i]["StaffPic"],true);
+            $res[$i]["CustomerPic"]=json_decode($res[$i]["CustomerPic"],true);
+        }
+       // print_r($res);
+        if (!$res){
+            echo returnData(0,"出错了");
+            exit;
+        }
+        echo returnData(1,$res);
+        exit;
+
+    }
+
+
+    /**
+     *统计晒单数
+     * 指定用户的晒单总数
+     */
+    public function countPokerByUser()
+    {
+        //前端传技师StaffId或者顾客CustomerId
+        $request=Request::instance();
+        $data=$request->param();
+        //通过参数获取晒单数据
+        if (isset($data["StaffId"])){
+           $StaffId= $data["StaffId"];
+            $res=Db::table('poker')->where('StaffId',$StaffId)->count();
+        }
+        if (isset($data["CustomerId"])){
+            $CustomerId=$data["CustomerId"];
+            $res=Db::table('poker')->where('CustomerId',$CustomerId)->count();
+        }
+
+        if (!$res){
+            echo returnData(0,"出错了");
+            exit;
+        }
+        echo returnData(1,$res);
+        exit;
+    }
+
+
+    /**
+     *读取技师所有晒单评价
+     * 请求参数：StaffIdj技师ID
+     * 通过技师ID，读取技师所有晒单的评语
+     */
+    public function getPokerCommentByStaff()
+    {
+
+    }
+
+    /**
+     *新建和保存晒单
+     */
+    public function savePoker()
+    {
+
+    }
+
+
+    /**
+     *通过约单获取晒单
+     */
+    public function getPokerByRESNId()
+    {
+
+    }
+
+    /**
+     *获取我的晒单收藏
+     */
+    public function getPokerByFavor()
+    {
+
+    }
+
+    /**
+     *统计晒单收藏总数 poker_favor表
+     * 请求参数：CustomerId 顾客id
+     * 返回参数：code为1成功  PokerCount 指定用户的晒单总数
+     */
+    public function countPokerByFavor()
+    {
+        //前端传技师StaffId或者顾客CustomerId
+        $request=Request::instance();
+        $data=$request->param();
+        //通过参数获取晒单数据
+        if (!isset($data["CustomerId"])){
+            echo returnData(0,"CustomerId参数不能为空");
+            exit;
+
+        }
+
+        $CustomerId=$data["CustomerId"];
+        $res=Db::table('poker_favor')->where('UserId',$CustomerId)->count();
+        if (!$res){
+            echo returnData(0,"读取数据出错了");
+            exit;
+        }
+         echo returnData(1,$res);
+         exit;
+    }
+
+}

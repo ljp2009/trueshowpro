@@ -1,0 +1,181 @@
+ <cu-custom bgColor="bg-gradual-white" isBack="{{true}}">
+  <view slot="content"></view>
+</cu-custom>
+<!-- 滑块 -->
+<swiper indicator-active-color='#fff'  indicator-dots="true">
+    <block wx:for="{{imgs}}" wx:for-index="index" wx:key="swiperItem" wx:for-item="item" >
+      <swiper-item class="swiper-items"  >
+      <!--滑块内容详细布局  --> 
+        <!-- 模态框布局开始 -->
+            <!-- <view class="cu-modal {{modalName=='Modal'?'':''}}">
+              <view class="cu-dialog">  
+                <view class="cu-bar bg-white justify-end">
+                  <view class="action" bindtap="hideModal">
+                    <text class="cuIcon-close text-red"></text>
+                  </view>
+                </view> -->
+        <!-- 模态框内容布局 -->
+                <!-- <view class=" " bindtap="hideModal">               
+                  <image src="http://ljp.jujiaoweb.com/images/page.png" ></image>                
+                </view> 
+              </view>  
+            </view>      -->
+        <!-- 模态框结束 -->  
+            <about wx:if="{{PageCur=='about'}}"></about>
+              <view class="contain">   
+              <!-- 第一次进入提示 -->
+              <view style="background-color:black;opacity:0.8;position:absolute;top:0rpx;height:100%;width:100%;z-index:999;" class="firstInfo" bindtap="firstLeadInfo" hidden="{{hiddenName}}">
+              <image src="{{webRoot}}/images/index/guide2.png" style="position:absolute;top:0rpx;height:100%;z-index:999;margin-left:10%" ></image>
+              
+              </view>
+                  
+                
+              <!--第一次提示结束  -->
+                 <view class="bg-img  padding-tb-xl bgImg" style="background-image: url('{{item.url}}') ;background-size: cover;border-radius:30rpx;" >  
+            <!--最上布局  -->
+                <view class="flex topContainer justify-between">
+                  <!-- 上左 店名等的布局 -->
+                  <view class="flex-sub  padding-sm margin-xs  radius left">
+                    <view class="shopname">{{item.shopname}}青花瓷美甲店</view>
+                    <view class="firmList"><text>机构</text><image src="{{webRoot}}/images/index/icon8.png" class="staff"></image>
+                    <view class="sale">满减</view></view>
+                    <view class="firmListOne"> 
+                      <text class="cuIcon-locationfill kmClass" ></text>4KM
+                      <text class="cuIcon-emoji numClass"></text>4</view>
+                  </view>
+                  <!-- 上右 带头像等布局 -->
+                  <view class="right">
+                   <image src="{{webRoot}}/images/index/test.jpg" class="staffImg"></image>
+                   <view>
+
+                   </view>
+                   <view class="firmList"><text class="name">丽热巴</text><image src="{{webRoot}}/images/index/icon8.png" class="staff"></image>
+                    <view class="firmList">456</view>
+                    <view class="firmList" >
+                            <view class='assess-star'>
+                              <view class='star-wrap'>
+                                <view class='star-item' wx:for="{{stars}}" wx:key="" style='background:url("{{item.flag==1?item.lightImg:item.blackImg}}") no-repeat top;background-size:100%;' data-index="{{index}}" bindtap='starClick'></view>
+                              </view>
+                              
+                            </view>
+
+
+                      <!-- <image src="{{webRoot}}/images/index/test.jpg" class="star"></image> -->
+                    </view>
+                   </view>
+                  </view>
+                </view>
+              <!--上部分布局结束  -->
+                <!-- 弹幕部分********************* -->
+                <view>
+                  <view class="doommview">
+                    <block wx:for="{{doommData}}" wx:key="id">
+                       
+                      <text wx:if="{{item.display}}" class="aon" style="animation: first {{item.time}}s linear forwards;top:{{item.top}}%;color:{{item.color}};">
+                        <text class="itemText">{{userInfo.nickName}}：{{item.text}}</text> 
+                    </text>
+                    </block>
+                  </view>
+                </view>
+                <view>  
+                  <view class="hide{{showView?'show':''}}">
+                    <view class="flex button">
+                      <view class="flex-sub  padding-sm margin-xs radius danmuinput">
+                        <input bindblur="bind_shoot" type="text" value="{{bind_value}}" class="bulletInput" />
+                      </view>
+                      <view catchtap="bindbt" class="hide{{showView?'show':''}} flex-sub  padding-sm margin-xs radius">
+                        发送弹幕
+                      </view>
+                    </view>
+                  </view>
+              </view>
+        <!-- 弹幕结束 -->
+        <!-- 晒单服务项目 到数布局 -->
+        <view class="flex topContainer justify-between bulletAndSave">
+                  <!-- 上左 店名等的布局 -->
+                  <view class="flex-sub  padding-sm margin-xs  radius left">
+                    <view class="shopnameOne">黑白釉美甲系列</view>
+                  </view>
+                  <!-- 上右 带头像等布局 -->
+                  <view class="right">
+                  <view class="flex-sub  padding-sm margin-xs radius infoAndSave ">
+                      <image class="hide{{showView?'show':'show'}} info1" bindtap="onChangeShowState" src="{{webRoot}}/images/index/bullet.png"></image>
+                      <image class="save" src="{{webRoot}}/images/index/heart.png"></image>
+                    </view>
+                   <view>
+                   </view>
+                  
+                  
+                  </view>
+            </view>           
+        <!-- 到数布局结束 -->        
+          <view class="start_k secondBottom ">
+          <view >
+          <image class="img_big " src='{{webRoot}}/images/index/test.jpg'></image>            
+          </view>
+        <view class=" padding-lg margin-xs radius">
+            <view class="nameNo">CocoLe(匿名)</view>
+            <view class=" evaluate">评:第一次尝试这种效果，非常满意第一次尝试这种效果，</view> 
+            <view class="grid col-4 grid-square bg-imgSmall">
+                  <view class="" wx:for="{{imgs}}" wx:key style="background-image:url('{{item.url}}');">
+                  </view>
+            </view>
+   
+    </view>
+</view>
+        <!-- 下部分************************ -->      
+                <!-- 底部开始 -->
+                  <view class="bottomFinish">
+
+                        <view class="cu-bar tabbar  shadow foot">
+                          <image src="{{webRoot}}/images/index/poker/pic.png" class="classify"></image>
+                          <button class="cu-btn bg-gray round btnKm">5km</button>
+                          <!-- 秀 -->
+                          <view class="action" bindtap="NavChange" data-cur="show">
+                            <view class='cuIcon-cu-image'>
+                              <image src="{{webRoot}}/libs/colorui/images/tabbar/basics{{PageCur=='show'?'_cur':''}}.png"></image>
+                            </view>
+                            <view class="{{PageCur=='show'?'text-green':'text-gray'}}">秀</view>
+                          </view>
+                          <!-- 约 -->
+                          <view class="action" bindtap="NavChange" data-cur="reservation">
+                            <view class='cuIcon-cu-image'>
+                              <image src="{{webRoot}}/libs/colorui/images/tabbar/component{{PageCur=='reservation'?'_cur':''}}.png"></image>
+                              <view class="cu-tag badge">99+</view>
+                            </view>
+                            <view class="{{PageCur=='reservation'?'text-green':'text-gray'}}">约</view>
+                          </view>
+                          <!-- 问 -->
+                          <view class="action" bindtap="NavChange" data-cur="plugin">
+                            <view class='cuIcon-cu-image'>
+                              <image src="{{webRoot}}/libs/colorui/images/tabbar/plugin{{PageCur=='plugin'?'_cur':''}}.png"></image>
+                            </view>
+                            <view class="{{PageCur=='plugin'?'text-green':'text-gray'}}">问</view>
+                          </view>
+                          <!-- 我 -->
+                          <view class="action" bindtap="NavChange" data-cur="about">
+                            <view class='cuIcon-cu-image'>
+                              <image src="{{webRoot}}/libs/colorui/images/tabbar/about{{PageCur=='about'?'_cur':''}}.png"></image>
+                            </view>
+                            <view class="{{PageCur=='about'?'text-green':'text-gray'}}">我</view>
+                          </view>
+                        </view>
+                      </view>
+      <!--底部  结束 -->
+
+              </view>   
+             <!-- 背景图结束 -->
+
+            </view>
+            <!--  -->
+           
+            
+      <!--滑块中内容布局结束  -->
+      </swiper-item> 
+      
+    </block>       
+</swiper>
+
+
+
+

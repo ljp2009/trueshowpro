@@ -1,0 +1,91 @@
+
+const app = getApp();
+Page({
+  data: {
+    webRoot: app.globalData.webroot,  //得到根
+    // 下拉菜单变量
+    index: null,
+    picker: ['单笔满减，满200减20', '熟客折扣，20%OFF', '首单折扣'],
+    //下拉菜单变量结束
+    CustomBar: app.globalData.CustomBar,
+    TabCur: 0,  
+    // basicsList: [{
+    //   icon: 'usefullfill',
+    //   name: '预约'   
+    // }, {
+    //   icon: 'radioboxfill',
+    //   name: '到店'
+    // }, {
+    //   icon: 'roundclosefill',
+    //   name: '服务中'
+    // }, {
+    //   icon: 'roundcheckfill',
+    //   name: '支付'
+    // }, {
+    //   icon: 'roundcheckfill',
+    //   name: '晒单'
+    // },
+    // ],
+    webRoot: app.globalData.webroot,
+    basics: 0,
+    // 预约进度条
+    numList: [{
+      name: '预约'
+    }, {
+      name: '到店'
+    }, {
+      name: '服务中'
+    }, {
+      name: '支付'
+    }, {
+      name: '晒单'
+    },],
+    num: 0,  //对勾的 0是第一步  1是第二步
+    // scroll: 0,
+    dateArr: []   //放时间的
+  },
+  onLoad: function () {
+    // 关于日期的js
+    var date = new Date();
+    var arr = [];
+    var showDate = date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate();
+    console.log("今天日期是" + showDate)   //今天日期
+    arr.push(date.getDate());
+    for (var i = 1; i <= 6; i++) {//后7天
+      date.setDate(date.getDate() + 1);
+      showDate = date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate();
+      // console.log(showDate)
+      arr.push(date.getDate());
+      console.log(date.getDate())
+    }
+    this.setData({
+      dateArr: arr
+    })
+    console.log(this.data.dateArr);
+  },
+  // 下拉菜单选择事件
+  PickerChange(e) {
+  
+    console.log(e);
+    this.setData({
+      index: e.detail.value
+    })
+  },
+  // tabSelect(e) {
+  //   console.log("导入的模块");
+  //   console.log(e);
+  //   this.setData({
+  //     TabCur: e.currentTarget.dataset.id,
+  //     scrollLeft: (e.currentTarget.dataset.id - 1) * 60
+  //   })
+  // },
+  // 选择日期点击事件
+  chooseDate: function (e) {
+    console.log("选择的日期是" + e.currentTarget.dataset.item);
+    console.log("点击选择的index是" + e.currentTarget.dataset.index);
+  },
+  // 点击预约事件
+  makeOrder:function(){
+    console.log("点击了预约");
+  }
+})

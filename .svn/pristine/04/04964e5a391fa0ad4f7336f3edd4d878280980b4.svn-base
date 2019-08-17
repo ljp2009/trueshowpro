@@ -1,0 +1,30 @@
+<view>
+  <!-- 进度条 -->
+   <view class="padding setps allStemp">
+        <view class="cu-steps">
+          <view class="cu-item {{index>num?'':'text-blue'}}" wx:for="{{numList}}" wx:key>
+            <text class="num {{index==6?'err':''}}" data-index="{{index + 1}}"></text> {{item.name}}
+          </view>
+        </view>
+    </view>
+    <view>
+      <view style="text-align:center;">预约成功,请按约定时间前往门店</view>
+      <view style="height:100rpx;border:1rpx solid red;">
+          <!-- <view class="bord">dddd</view>
+          <view style="display:inline-block;width:48%;">
+          <view  style="display:inline-block;"> ttttttt</view>
+          <view style="display:inline-block;"> 11111111</view> -->
+          <!-- </view> -->
+      </view>
+    </view>
+    <view style="text-align:center;">  
+      <button style="margin:0 3%; " class="cu-btn round bg-white {{shadow?'':''}}">红色</button>
+      <button style="margin:0 3%;" class="cu-btn round bg-white {{shadow?'':''}}">红色</button>
+      <button style="margin:0 3%;" class="cu-btn round bg-red {{shadow?'':''}}">红色</button>      
+    </view>
+  <!-- 进度条 -->
+  <!-- 地图 -->
+  <view style="height:100rpx;border:1rpx solid red;">
+  </view>
+  <!-- 地图结束 -->
+</view>
