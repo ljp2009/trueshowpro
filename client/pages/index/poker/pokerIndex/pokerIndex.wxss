@@ -198,7 +198,7 @@ text{
    justify-content : center;
   /* position: fixed; */
   /* bottom: 0; */
-  border: 1rpx solid red;
+  /* border: 1rpx solid red; */
 align-items : center; 
 }
 
@@ -213,7 +213,7 @@ align-items : center;
 
 }
 .foot{
-border: 3rxp solid red;
+/* border: 3rxp solid red; */
 }
 /* 底部分类图片 */
 .classify{

@@ -1,0 +1,15 @@
+<view>
+  <view style='diaplay:flex'>
+      <block>
+          9:00
+      </block>
+      <block>
+          点击拖动选择时段
+      </block>
+      <block>
+          22:00
+      </block>
+  </view>
+  <canvas  style="width: 90%; height: 100px;margin-left:5%" canvas-id="timeCanvas" bindtouchmove="move" bindtouchstart="start" bindtouchend="end"></canvas>
+
+</view>

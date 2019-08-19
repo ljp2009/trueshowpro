@@ -1,0 +1,41 @@
+<!--pages/index/reservation/customer/modules/statusSeven/statusSeven.wxml-->
+<!-- <text>pages/index/reservation/customer/modules/statusSeven/statusSeven.wxml</text> -->
+<view style="margin-left:5%;">
+    <!-- <view class="cu-tag round bg-orange lg" style="border:1rpx solid red;margin-top:-2%;border:1rpx solid red;"><text class="text-lg">0</text>
+    </view>
+    <text class="text-lg">个服务项目正在等待你的评价</text>
+    <view style="text-align:center;margin-top:15%;">本约单已完成</view>
+     <view style="text-align:center;">你可以在"我->美丽档案"中检查</view>
+      <view class="padding flex flex-direction">
+        <button class="goodbutton  bg-orange sm" style="border:1rpx solid red;text-align:center;"><text  decode="{{true}}">好&nbsp;&nbsp;&nbsp;&nbsp;的</text></button>     
+    </view> -->
+<!-- 地图 -->
+<!-- <button bindtap="mapView" style="margin:10px">查看地图</button> -->
+<!-- 搜索 -->
+<!-- <view wx:if="{{hasLocation==true}}" class="view">
+<text>纬度：{{ location.latitude }}</text>
+<text>经度：{{ location.longitude }}</text>
+<text>地方：{{ location.address }}</text>
+<text>名字：{{ location.name }}</text>
+</view>
+<button bindtap="mapViewTap" style="margin:10px">查看地图</button>
+<button catchtap="MapView" style="margin:10px">选择位置</button> -->
+<map id="myMap"
+    markers="{{markers}}"
+    style="width:98%;height:300px;margin-left:-2%"
+    longitude="{{poi.longitude}}"
+    latitude="{{poi.latitude}}" scale='16' show-location>
+</map>
+<!--form表单  地图-->
+<form bindsubmit="formSubmit">
+    <!--地址输入框,例：39.984060,116.307520-->
+    <!-- <input style="border:1px solid #000;" name="reverseGeo"></input> -->
+    <!--提交表单按钮-->
+    <!-- <button form-type="submit">逆地址解析</button> -->
+</form>
+<!-- <view>当前位置为：{{markers[0].title}}</view> -->
+<!-- 地图结束 -->
+
+
+
+</view>

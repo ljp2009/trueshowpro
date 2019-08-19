@@ -1,0 +1,67 @@
+<!-- <cu-custom bgColor="bg-gradual-blue" isBack="{{true}}"><view slot="backText">返回</view><view slot="content">布局</view>
+</cu-custom> -->
+<!-- 没有约单的情况 -->
+<view >
+没有约单
+</view>
+<!-- 没有约单的情况 -->
+<!-- 有约单的情况  要有wx:for="{{imgs}}"-->
+<swiper class="swiper" > 
+        <view wx:for="{{imgs}}" wx:for-index="index" wx:key="swiperItem" wx:for-item="item" >
+          <swiper-item  >
+            <!-- 滑块内布局 -->  
+            <view class="haveReservation" >
+              <!-- 最上部分布局 -->
+              <scroll-view class=" nav text-center topContain" >
+                  <view class="cu-item " >美甲店</view>
+                  <view class="cu-item " >机构<text class="cuIcon-check"></text></view>
+                  <view class="cu-item" ><text class="cuIcon-locationfill" style="margin-right:8rpx;"></text>4KM</view>
+                  <view class="cu-item" ><text class="cuIcon-emoji" style="margin-right:8rpx;" ></text>4</view>
+                  <view class="cu-item" >小岗路100号43</view>
+                  <!-- 上第二部分布局 青花瓷美甲店部分 -->
+                  <view class="padding">   
+                    <view class="flex  p-xs mb-sm">
+                      <view class="flex-sub padding-sm  radius">
+                        <view class="cu-avatar xl round margin-left leftStyle" style="background-image:url('{{webRoot}}/images/index/test2.jpg');"></view>
+                      </view> 
+                      <view class="flex-twice   staffinfocontain">
+                        <text class="staffinfo text-xl">青花瓷美甲店</text>
+                        <text class="staffinfo text-sm">小岗路100号434之一</text>
+                        <text class="staffinfo text-sm">迪丽热巴</text>
+                        <text class="staffinfo text-df">星级图片</text>
+                      </view> 
+                      <view class="flex-treble padding-sm  radius">
+                        <view class="cu-avatar xl padding-sm round margin-left" style="background-image:url('{{webRoot}}/images/index/test1.jpg');"></view>
+                      </view>
+                    </view>
+              <!--上第二部分布局 青花瓷美甲店部分 结束  -->
+                    
+                </view>
+              </scroll-view>
+              <!-- 上部分布局结束  -->
+              <!-- 导入的 -->
+              <!-- <import src="../modules/statusZero/statusZero.wxml" />
+              <template is="header" ></template> -->
+
+              <!-- 导入的结束 -->
+              <block wx:if="{{TabCur==0}}">
+                <include src="../modules/statusZero/statusZero.wxml"/>
+              </block>  
+              <!-- 导入底部 -->
+              <block style="positon:absolute;bottom:0rpx;z-index:999" >
+                <view style="margin-left:45%;">
+                  <include src="../../../../common/footer/footer.wxml"/>
+                </view>
+                
+              </block>
+              <!-- 导入底部结束 -->
+             
+            </view>
+            <!-- 滑块内布局结束 -->
+          </swiper-item>
+        </view> 
+</swiper>
+  
+<!-- 有约单的情况 -->
+ 
+

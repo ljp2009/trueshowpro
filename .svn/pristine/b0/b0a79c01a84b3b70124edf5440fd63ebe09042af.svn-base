@@ -1,0 +1,8 @@
+{
+ 
+  "usingComponents": {
+    "wux-cell-group": "../../../../../assets/libswux-weapp/dist/cell-group/index",
+    "wux-cell": "../../../../../assets/libswux-weapp/dist/cell/index",
+    "wux-rater": "../../../../../assets/libswux-weapp/dist/rater/index"
+  }
+}

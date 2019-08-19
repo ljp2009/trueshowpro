@@ -1,0 +1,18 @@
+<view>
+
+
+<view class="flex solid-bottom  justify-between" style='margin-top:50rpx;margin-left:5%;margin-right:5%'>
+      <view class="">{{startwork}}</view>
+      <view class="">点击拖动选择时段</view>
+      <view class="">{{endwork}}</view>
+</view>
+
+  <canvas  style="width: 90%; height: 100px;margin-left:5%" canvas-id="timeCanvas" bindtouchmove="move" bindtouchstart="start" bindtouchend="end"></canvas>
+
+  <view class="flex   justify-between" style='margin-left:5%;margin-right:5%'>
+      <view class="">选取的时间区间为：{{startserver}}-{{endserver}}</view>
+      <!-- <view class="">点击拖动选择时段</view>
+      <view class="">{{endwork}}</view> -->
+</view>
+
+</view>

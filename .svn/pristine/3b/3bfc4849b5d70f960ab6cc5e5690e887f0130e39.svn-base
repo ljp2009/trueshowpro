@@ -1,0 +1,246 @@
+// 引入SDK核心类
+import QQMapWX from '../../../../../utils/qqmap-wx-jssdk.min.js';
+// 实例化API核心类
+
+const app = getApp();
+Page({
+  data: {
+   
+    //优惠 变量
+    allList: [{
+      selected: false,
+      "select": 0,
+      'itemEach':'单笔满减',
+      'itemVal':'满200减20'
+    },
+      {
+        selected: false,
+        "select": 1,
+        'itemEach': '熟客折扣',
+        'itemVal': '20%OFF'
+      },
+      {
+        selected: false,
+        "select": 2,
+        'itemEach': '首单折扣',
+      },
+      ],
+    // 文件上传
+    imgList: [],
+    // 星星 
+    one_2: 0,
+    two_2: 5,
+    // 星星
+    //滑块的
+    imgs: [
+      '测试数据1111111', '测试数据2222222','测试数据33333'
+    ],
+    //滑块结束
+    _num: 0, 
+    pageBackgroundColor:'red',  //点击添加背景
+    webRoot: app.globalData.webroot,  //得到根
+    // 下拉菜单变量  
+    index: null,
+    //下拉菜单变量结束
+    CustomBar: app.globalData.CustomBar,
+    TabCur: 0,  
+    num: 1,  //对勾的 0是第一步  1是第二步
+    webRoot: app.globalData.webroot,
+    basics: 0,
+    // 预约进度条
+    numList: [{
+      name: '预约'
+    }, {
+      name: '到店'
+    }, {
+      name: '服务中'
+    }, {
+      name: '支付'
+    }, {
+      name: '晒单'
+    },],
+   
+    // scroll: 0,
+    dateArr: []   //放时间的
+  },
+  // 地图
+  
+  // 地图结束
+  //优惠点击事件
+  allList:function(e){
+    console.log("----");
+    // var that = this;
+    console.log(e.currentTarget.dataset.index);
+    // console.log(e.target.dataset.index);
+    // console.log(e.target.dataset.numone);
+    let string = "allList[" + e.currentTarget.dataset.index + "].selected"
+    this.setData({
+      [string]: !this.data.allList[e.currentTarget.dataset.index].selected
+    })
+    let detailValue = this.data.allList.filter(it => it.selected).map(it => it.select)
+    console.log('所有选中的值为：', detailValue);
+    console.log(string); 
+  
+    
+  },
+  // 文件上传
+  ChooseImage() {
+    console.log("上传");
+    wx.chooseImage({
+      count: 3, //默认9
+      sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album'], //从相册选择
+      success: (res) => {
+        if (this.data.imgList.length != 0) {
+          this.setData({
+            imgList: this.data.imgList.concat(res.tempFilePaths)
+          })
+        } else {
+          this.setData({
+            imgList: res.tempFilePaths
+          })
+        }
+        console.log(this.data.imgList);
+        console.log(this.data.imgList.length);
+        if (this.data.imgList.length==3){
+          wx.showModal({
+            title: '提示',
+            content: '确认提交',
+            success:(res)=> {
+              if (res.confirm) {
+                console.log('用户点击确定');
+                // 把X号隐藏
+                console.log('res是'+res);
+                var that=this;
+                that.setData({
+                  hideX: true  
+                })
+
+              } else if (res.cancel) {
+              
+                console.log('用户点击取消')
+              }
+            }    
+          })
+         
+              // wx.showModal({
+              //   title: '召唤师',
+              //   content: '确定要删除这段回忆吗？',
+              //   cancelText: '再看看',
+              //   confirmText: '再见',
+              //   success: res => {
+              //     if (res.confirm) {
+              //       //上传图片
+              //       console.log("上传图片");
+              //     }
+              //   }
+              // })
+        }
+      }
+    });
+    
+  },
+  ViewImage(e) {
+    console.log("上传11111");
+    wx.previewImage({
+      urls: this.data.imgList,
+      current: e.currentTarget.dataset.url
+    });
+   
+  },
+  DelImg(e) {
+    wx.showModal({
+      title: '召唤师',
+      content: '确定要删除这段回忆吗？',
+      cancelText: '再看看',
+      confirmText: '再见',
+      success: res => {
+        if (res.confirm) {
+          this.data.imgList.splice(e.currentTarget.dataset.index, 1);
+          this.setData({
+            imgList: this.data.imgList
+          })
+        }
+      }
+    })
+  },
+  // 文件上传
+  // 星星
+  in_xin: function (e) {
+    var in_xin = e.currentTarget.dataset.in;
+    var one_2;
+    if (in_xin === 'use_sc2') {
+      one_2 = Number(e.currentTarget.id);
+    } else {
+      one_2 = Number(e.currentTarget.id) + this.data.one_2;
+    }
+    this.setData({
+      one_2: one_2,
+      two_2: 5 - one_2
+    })
+    console.log(in_xin);
+    console.log("满意的星星是"+this.data.one_2);
+    console.log("不满意的星星是"+this.data.two_2);
+  },
+  // 星星结束
+  //textarea 的值
+  textareaAInput:function(e){
+    console.log(e.detail.value) 
+  },
+  
+  onLoad: function () {
+    // 地图
+    var that = this
+    // 实例化腾讯地图API核心类
+    var qqmapsdk = new QQMapWX({
+      key: '4LBBZ-EYNE3-WXN3O-3ECJV-YF2CK-CSF7O' // 必填
+    });
+    //1、获取当前位置坐标
+    wx.getLocation({
+      type: 'wgs84',
+      success: function (res) {
+        //2、根据坐标获取当前位置名称，显示在顶部:腾讯地图逆地址解析
+        qqmapsdk.reverseGeocoder({
+          location: {
+            latitude: res.latitude,
+            longitude: res.longitude
+          },
+          success: function (addressRes) {
+            var address = addressRes.result.formatted_addresses.recommend;
+            that.setData({
+             
+            })
+          }
+        })
+      }
+    })
+   
+    // 地图
+    // 关于日期的js
+    var date = new Date();
+    var arr = [];
+    var showDate = date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate();
+    console.log("今天日期是" + showDate)   //今天日期
+    arr.push(date.getDate());
+    for (var i = 1; i <= 6; i++) {//后7天
+      date.setDate(date.getDate() + 1);
+      showDate = date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate();
+      // console.log(showDate)
+      arr.push(date.getDate());
+      console.log(date.getDate())
+    }
+    this.setData({
+      dateArr: arr
+    })
+    console.log(this.data.dateArr);
+  },
+  // 选择日期点击事件
+  chooseDate: function (e) {
+    console.log("选择的日期是" + e.currentTarget.dataset.item);
+    console.log("点击选择的index是" + e.currentTarget.dataset.index);
+  },
+  // 点击预约事件
+  makeOrder:function(){
+    console.log("点击了预约");
+  }
+})

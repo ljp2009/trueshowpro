@@ -1,0 +1,72 @@
+<!--pages/index/reservation/customer/modules/statusSix/statusSix.wxml-->
+<!-- <text>pages/index/reservation/customer/modules/statusSix/statusSix.wxml</text> -->
+
+<view style="margin-left:5%;">
+<!-- 进度条 -->
+<!-- 进度条结束 -->  
+    <view class="cu-tag round bg-orange lg" style="border:1rpx solid red;margin-top:-2%;border:1rpx solid red;"><text class="text-lg">5</text>
+    </view>
+    <text class="text-lg">个服务项目正在等待你的评价</text>
+    <view class="text-xl text-bold" style="margin-top:8%;">菩草堂腰背舒缓调理</view>
+    <view class="text-lg" style="margin-top:3%;">技师手艺评价：</view>
+    <view class="cu-form-group  " style="margin-left:-5%;">
+		<textarea style="border:1rpx solid gray;" maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaAInput" placeholder="说说你的感受："></textarea>  
+	</view>
+  <view style="text-align:right;margin-right:2%;">
+  (0/100)
+  </view>
+  <view  class="text-lg">
+   <view style="display:inline-block;" class="text-lg">满意度</view>
+   <!-- 星星 -->
+   <view style="display:inline-block;margin-left:47%;">
+     <block wx:for="{{one_2}}" wx:key="index" style="border:1rpx solid blue;">
+      <image class="image" catchtap='in_xin' id='{{index+1}}' data-in='use_sc2' src='image/checked.png'></image>
+      </block>
+      <block wx:for="{{two_2}}" wx:key="index">
+      <image  class="image" catchtap='in_xin' id='{{index+1}}' data-in='use_sc' src='image/unchecked.png'></image>
+      </block>
+   </view>
+   <!-- 星星 -->
+   <!-- 图片 -->
+   <form>
+   <view class="cu-bar  margin-top" style="margin-left:-4%;">
+		<view class="action">
+			图片上传
+		</view>
+		<view class="action" style="margin-left:-4%;">
+			{{imgList.length}}/3
+		</view>   
+	</view>
+	<view class="cu-form-group" style="margin-left:-4%;">
+		<view class="grid col-3 grid-square flex-sub">
+			<view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">  
+      
+				<image src='{{imgList[index]}}' mode='aspectFill'></image>
+				<view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}" hidden="{{hideX}}">
+					<text class="cuIcon-close"></text>
+				</view>
+			</view> 
+			<view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<3}}">
+				<text class="cuIcon-cameraadd"></text>
+			</view>
+		</view>
+	</view> 
+   </form>
+   <!-- 图片 -->
+  <view class="padding flex flex-direction">
+        <button class="goodbutton  bg-orange sm" style="border:1rpx solid red;text-align:center;"><text  decode="{{true}}">完&nbsp;&nbsp;&nbsp;&nbsp;成</text></button>     
+  </view>
+  
+  </view>
+<!-- 测试 -->
+
+<!-- <block wx:for="{{one_2}}" wx:key="index" style="border:1rpx solid blue;">
+<image style="border:1rpx solid red;" class="image" catchtap='in_xin' id='{{index+1}}' data-in='use_sc2' src='image/checked.png'></image>
+</block>
+<block wx:for="{{two_2}}" wx:key="index">
+<image style="border:1rpx solid blue;" class="image" catchtap='in_xin' id='{{index+1}}' data-in='use_sc' src='image/unchecked.png'></image>
+</block>
+<view>{{one_2}}星</view> -->
+
+<!-- 测试 -->
+</view>
