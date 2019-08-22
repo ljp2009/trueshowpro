@@ -1,16 +1,34 @@
-<view>
+ <cu-custom bgColor="bg-gradual-white" >
+ <view slot="backText">返回</view>
+  <view slot="content">
+  <image src='http://ljp.jujiaoweb.com/images/index/icon16.png'></image>
+  <text>当前模块的名称</text>
+  </view>
+</cu-custom>
+
+<!-- <view class="cu-avatar sm round margin-left" style="background-image:url('http://ljp.jujiaoweb.com/images/index/icon16.png');position:fixed;top:7%;" bindtap="backStaffWorkShow"></view> -->
 
 
 <view class="flex solid-bottom  justify-between" style='margin-top:50rpx;margin-left:5%;margin-right:5%'>
-      <view class="">{{startwork}}</view>
+      <view class="">{{timedata.workarea.x1}}</view>
+            <view class="">点击拖动选择时段</view>
+                  <view class="">{{timedata.workarea.x2}}</view>
+                  </view>
+                  
+                  
+                  <view>
+
+
+<view class="flex solid-bottom  justify-between" style='margin-top:50rpx;margin-left:5%;margin-right:5%'>
+      <view class="">{{timedata.workarea.x1}}</view>
       <view class="">点击拖动选择时段</view>
-      <view class="">{{endwork}}</view>
+      <view class="">{{timedata.workarea.x2}}</view>
 </view>
 
-  <canvas  style="width: 90%; height: 100px;margin-left:5%" canvas-id="timeCanvas" bindtouchmove="move" bindtouchstart="start" bindtouchend="end"></canvas>
+  <canvas  style="width: 90%; height: 100px;" canvas-id="timeCanvas" bindtouchmove="move" bindtouchstart="start" bindtouchend="end"></canvas>
 
   <view class="flex   justify-between" style='margin-left:5%;margin-right:5%'>
-      <view class="">选取的时间区间为：{{startserver}}-{{endserver}}</view>
+      <view class="">选取的时间区间为：{{timedata.enabledarea.x1}}-{{timedata.enabledarea.x2}}</view>
       <!-- <view class="">点击拖动选择时段</view>
       <view class="">{{endwork}}</view> -->
 </view>

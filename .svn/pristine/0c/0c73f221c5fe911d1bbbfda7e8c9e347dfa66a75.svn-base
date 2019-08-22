@@ -1,0 +1,75 @@
+  <!-- <cu-custom bgColor="bg-gradual-white" isBack="{{true}}">
+  <view slot="content"></view>
+</cu-custom> -->
+ 
+ <!-- <view class="bg-img  padding-tb-xl bgImg" style="background-image: url('{{webRoot}}/images/index/test.jpg') ;background-size: cover;border-radius:30rpx;background-repeat:no-repeat; background-size:100% 100%;-moz-background-size:100% 100%;" > 
+ </view> -->
+<!-- <view style="background-image: url('{{webRoot}}/images/index/test.jpg');position:absolute;">用absolute定位设置背景图片</view> -->
+<!--  -->
+   
+    <!--  -->
+<view class="bg-img  padding-tb-xl bgImg" style="background-image: url('{{webRoot}}/images/index/hand.png') ;background-size: cover;border-radius:30rpx;height:100%;width:100%;" > 
+   <!-- 黑快 -->
+    <view style="text-align:center;margin-top:-7%;">
+      <view style="width:45%;height:55rpx;display:inline-block;background-color:black;border-radius:0 0 20rpx 20rpx;"></view>
+    </view>
+   <!-- 黑块 -->
+    <view style="margin-top:5%;">
+    <!-- 左侧 -->
+       <view style="display:inline-block;width:10%;">
+             <view class="cu-avatar sm round margin-left" style="background-image:url('{{webRoot}}/images/index/icon16.png');position:fixed;top:7%;" bindtap="backStaffWorkShow"></view>
+       </view>
+        <view style="display:inline-block;width:10%;"></view>
+    <!-- 右侧 -->
+       <view style="display:inline-block;width:75%;text-align:right;">
+         <view class="cu-avatar xl round margin-left bg-red" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg);"></view>
+         <view style="" class="text-xs"><view style="display:inline-block;margin-right:-5%;">迪丽热巴</view><view class="cu-avatar sm round margin-left" style="background-image:url('{{webRoot}}/images/index/icon8.png');display:inline-block;width:25rpx;height:25rpx;margin-right:1%;margin-bottom:1%;"></view>
+          </view>
+          <view style="margin-right:2%;">
+            <text class="text-xs">星星</text>
+          </view>  
+          
+          <!-- <view class="cu-avatar xs round margin-left bg-red" style="background-image:url('{{webRoot}}/images/index/hand.png');"> </view> -->
+       </view>
+    </view>
+    <!-- 占位布局 -->
+    <view style="height:23%;">
+
+    </view>
+    <!-- 占位布局结束 -->
+    <!-- 弹幕 -->
+    <!--index.wxml-->
+      <view class="doommview">
+          <block wx:for="{{doommData}}" wx:key="id">
+              <text wx:if="{{item.display}}" class="aon" style="animation: first {{item.time}}s linear forwards;top:{{item.top}}%;color:{{item.color}};">
+                  <text class="itemText">aaaa：{{item.text}}</text> 
+              </text>
+          </block>
+      </view>
+    <!-- 弹幕结束 -->
+    <!-- 尾部 -->
+    <view style="position:absolute;top:83%;width:100%;">
+        <view class="text-xxl font-bold" style="text-align:center;" >黑白釉美甲系列</view>
+        <!-- 头像组 -->
+        <view style="text-align:center;margin-top:2%;">
+          <view class="cu-avatar-group" style="width:100%;">
+            <view class="cu-avatar  df"  wx:key style="background-image:url('{{webRoot}}/images/index/test.jpg');margin-right:5%;"></view>
+             <view class="cu-avatar  df"  wx:key style="background-image:url('{{webRoot}}/images/index/hand.png');margin-right:5%;"></view>
+              <view class="cu-avatar  df"  wx:key style="background-image:url('{{webRoot}}/images/index/test.jpg');margin-right:5%;"></view>
+               <view class="cu-avatar  df"  wx:key style="background-image:url('{{webRoot}}/images/index/test.jpg');margin-right:5%;"></view>
+                <view class="cu-avatar  df"  wx:key style="background-image:url('{{webRoot}}/images/index/test.jpg');margin-right:5%;"></view>
+                 <view class="cu-avatar  df"  wx:key style="background-image:url('{{webRoot}}/images/index/test.jpg');margin-right:5%;"></view>
+                  <view class="cu-avatar  df"  wx:key style="background-image:url('{{webRoot}}/images/index/test.jpg');margin-right:5%;"></view>
+             <view class="cu-avatar  df"  wx:key style="background-image:url('{{webRoot}}/images/index/test.jpg');margin-right:5%;"></view>
+              <view class="cu-avatar  df"  wx:key style="background-image:url('{{webRoot}}/images/index/test.jpg');margin-right:5%;"></view>
+          </view>
+        </view>
+        <!-- 头像组结束 -->
+        <view style="text-align:center;margin-top:2%;" class="text-lg">2019-08-01</view>
+
+        
+      
+    </view>
+    <!-- 尾部结束 -->
+</view>
+ 

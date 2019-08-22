@@ -40,7 +40,7 @@ Page({
     swiperList: [],
     // 弹幕变量
     doommData: [],
-    arr: [ "消息内容11","发送的内容挺好的"]
+    arr: [ 9,10]
   },   
 
   /**
@@ -276,10 +276,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-  backhome:function(){
-    wx.navigateBack({
-      delta: 1
-    })
   }
 })

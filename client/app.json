@@ -1,8 +1,13 @@
 {
   "pages": [
-    "pages/test/timearea/test1",
-    "pages/test/test1/test1",
     "pages/index/poker/pokerIndex/pokerIndex",
+    "pages/test/timearea/test1",
+    
+    "pages/index/user/customer/index/index",
+    
+    
+    "pages/test/test1/test1", 
+    
     "pages/index/user/staff/staffCard/staffCard",
     "pages/index/reservation/customer/reservationIndex/reservationIndex",
     "pages/index/reservation/staff/reservationIndex/reservationIndex",
@@ -37,7 +42,7 @@
     "pages/index/firm/promote/firmAd/template/manageTemplate/manageTemplate",
     "pages/index/firm/finance/financeIndex/finance",
     "pages/index/user/customer/pokerByStaff/pokerByStaff",
-    "pages/index/user/customer/index/index",
+    
     "pages/index/user/customer/pokerByFavorite/pokerByFavorite",
     "pages/index/user/customer/pokerByCustomer/pokerByCustomer",
     "pages/index/user/customer/pokerDetail/pokerDetail",
