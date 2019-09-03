@@ -1,0 +1,34 @@
+<!--pages/admin/certificateAgain/certificateAgain.wxml-->
+<view class='wrap bg-white'>
+  <cu-custom bgColor="bg-gray" isBack="{{true}}" style="color:#000;">
+    <view slot="backText" style='font-size:36rpx;color:#000;'>返回</view>
+    <view slot="content" style='font-size:39rpx;margin-left:-50rpx;color:#000;'>认证审核</view>
+  </cu-custom>
+  <view class='headDown' style='color:#000;font-size:35rpx;padding-top:10rpx;'>4(24)</view>
+  <view class='main' style='color:#000;font-size:35rpx;'>
+    <view>机构名称：XXXXX美容院</view>
+    <view> 营业执照号码：459345iHDDK435</view>
+    <view style='margin-bottom:60rpx'> 营业地址：XX省XXX市XXX区XXX路XXX号</view>
+    <view>姓名：XXX</view>
+    <view>身份证号：</view>
+    <view>性别：</view>
+    <view style='margin-bottom:120rpx'>住址：XX省XXX市XXX区XXX路XXX号</view>
+  </view>
+  <swiper class="screen-swiper " indicator-dots="true" autoplay="true" style='width:750rpx;height:550rpx;margin:auto;background-color:#F6F6F6;'>
+    <swiper-item wx:key>
+      <image src="http://ljp.jujiaoweb.com/static/images/index/aaa/qSeven.png" style='width:550rpx;height:550rpx;margin:auto;'></image>
+    </swiper-item>
+    <swiper-item wx:key>
+      <image src="http://ljp.jujiaoweb.com/static/images/index/aaa/qSix.png" style='width:550rpx;height:550rpx;margin:auto;'></image>
+    </swiper-item>
+    <swiper-item wx:key>
+      <image src="http://ljp.jujiaoweb.com/static/images/index/aaa/qFive.png" style='width:550rpx;height:550rpx;margin:auto;'></image>
+    </swiper-item>
+    <swiper-item wx:key>
+      <image src="http://ljp.jujiaoweb.com/static/images/index/aaa/qEight.png" style='width:550rpx;height:550rpx;margin:auto;'></image>
+    </swiper-item>
+  </swiper>
+  <view class="padding bg-white solid-bottom footer" style='margin-bottm:40rpx;font-size:38rpx;color:#000;'>
+    认证通过时间：2019-08-08 23:00
+  </view>
+</view>

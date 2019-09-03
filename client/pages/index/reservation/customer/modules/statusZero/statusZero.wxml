@@ -34,7 +34,7 @@
             <view>
            
             <view class="cu-list menu-avatar">
-              <view class="cu-item  ">
+              <view class="cu-item  itemOne">
                 <view class="flex-sub margin-xs secimg">
                   <image src="{{webRoot}}/images/index/test1.jpg"/>
                 </view>

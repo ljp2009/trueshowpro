@@ -1,0 +1,92 @@
+<!--pages/index/firm/firmAd/template/manageTemplate/manageTemplate.wxml-->
+<cu-custom bgColor="bg-gray" isBack="{{true}}" style="color:#000;">
+  <view slot="backText" style='font-size:36rpx;color:#000;'>返回</view>
+  <view slot="content" style='font-size:39rpx;margin-left:-50rpx;color:#000;'>广告卡制作</view>
+</cu-custom>
+<view class="margin padding">
+  <text style='font-size:35rpx;'>广告卡封面</text>
+  <view class="flex p-xs margin-bottom-sm mb-sm text-xl padding margin">
+    <view class=" padding-sm ">
+      <text class="text-left"></text>
+    </view>
+    <view class=" flex-sub border">
+      <view class="padding-left">
+        <text class="text-sub" style='font-size:37rpx;'>店铺/机构名称</text>
+      </view>
+      <view class="padding-left">
+        <text class="text-sm" style='font-size:32rpx;'>机构<text class="cuIcon-roundcheckfill lg text-orange padding-left"></text>
+        <text class="text-white padding-left padding-right margin-left bg-orange full" style='font-size:30rpx;'>满减</text>
+        </text>
+      </view>
+      <view class="padding-left">
+        <text class="text-sm" style='font-size:32rpx;'><text class="cuIcon-location lg text-black"></text>8.5KM
+        <text class="cuIcon-emoji lg text-black padding-left"></text>4</text>
+      </view>
+      <view class="box">
+        <image src="http://ljp.jujiaoweb.com/static/images/index/poster.jpg" class="poster"></image>
+        <view class="content">
+          <text class="cuIcon-roundaddfill xl text-orange"></text>
+        </view>
+      </view>
+    </view>
+    <view class=" padding-sm radius">
+      <text class="text-right"></text>
+      <text class="text-right"></text>
+    </view>
+  </view>
+</view>
+<view class="margin">
+  <view>
+    <text style='font-size:35rpx;'>链接图文</text>
+  </view>
+  <view>
+    <text style='font-size:32rpx;'>点击封面后将展示此图文</text>
+  </view>
+  <view class="text-center margin">
+    <text style='font-size:35rpx;'>第一组</text>
+  </view>
+  <view class="cu-form-group" role="" aria-label="">
+    <view class="grid col-4 grid-square flex-sub margin" role="" aria-label="">
+      <view bindtap="ChooseImage" class="solids" role="" aria-label="">
+        <image src="http://ljp.jujiaoweb.com/static/images/index/qOne.png" style='width:130rpx;height:130rpx;'></image>
+      </view>
+      <view bindtap="ChooseImage" class="solids" role="" aria-label="">
+        <text class="cuIcon-roundaddfill xl" style='color:#F37B1D'></text>
+      </view>
+      <view bindtap="ChooseImage" class="solids" role="" aria-label="">
+        <text class="cuIcon-roundaddfill xl" style='color:#F37B1D'></text>
+      </view>
+    </view>
+  </view>
+
+
+
+  <view class="cu-form-group margin-top " role="" aria-label="">
+    <textarea bindinput="textareaAInput" maxlength="-1" placeholder="广告文本" style='font-size:32rpx;'></textarea>
+  </view>
+
+</view>
+<view class="flex justify-center" role="" aria-label="">
+  <view class="bg-white padding-sm margin-xs solid radius" role="" aria-label="" style='font-size:35rpx;'>
+    <text class="cuIcon-roundaddfill xl text-orange" style='font-size:39rpx;'></text>
+    <text class="padding-left">添加一组</text>
+  </view>
+</view>
+<view class="flex justify-center" role="" aria-label="">
+  <view class=" radius" role="" aria-label="" style='font-size:35rpx;'>
+    <text>最多三组</text>
+  </view>
+</view>
+<view style='height:88rpx;'></view>
+<view>
+  <view class="flex justify-center  padding" role="" aria-label="" style='background-color:#FFF;'>
+    <button class="cu-btn block line-black lg margin padding radius" role="button" aria-label="" aria-disabled="false">
+      <text class="space text-black" style='font-size:45rpx;'>预览</text>
+    </button>
+    <button class="cu-btn block bg-orange lg margin padding" role="button" aria-label="" aria-disabled="false">
+      <navigator style='display:inline-block;' url='/pages/index/firm/firmAd/template/nonetemplateList/nonetemplateList'>
+        <text class="space" style='font-size:45rpx;'>保存</text>
+      </navigator>
+    </button>
+  </view>
+</view>

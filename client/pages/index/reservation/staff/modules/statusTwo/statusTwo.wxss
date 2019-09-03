@@ -1,0 +1,38 @@
+/* .body{
+  background-color: white
+} */
+.page {
+  background:white;
+ }
+.danxuan{
+  width: 10rpx;
+  height:10rpx;
+}
+/* 模态框 */
+.modal-mask {
+width: 100%;
+height: 100%;
+position: fixed;
+top: 0;
+left: 0;
+background: #000;
+opacity: 0.5;
+overflow: hidden;
+z-index: 9000;
+color: #fff;
+}
+.modal-dialog {
+width: 630rpx;
+overflow: hidden;
+position: fixed;
+top: 50%;
+left: -30rpx;
+line-height: 50rpx;
+z-index: 9999;
+background: #f9f9f9;
+margin: -180rpx 105rpx;
+border-radius: 36rpx;
+}
+button{
+  width:220rpx;
+}

@@ -1,0 +1,48 @@
+<scroll-view class='scrollView'>
+  <cu-custom bgColor="bg-gray" isBack="{{true}}" style="color:#000;">
+    <view slot="backText" style='font-size:36rpx;color:#000;'>返回</view>
+    <view slot="content" style='font-size:39rpx;margin-left:-50rpx;color:#000;'>业务流水</view>
+  </cu-custom>  
+   <view class='TEXTOne'>发送40天服务项目l流水到邮箱：</view>
+   <view>
+    <input placeholder='电子邮件地址' class='inputOne'>123</input>
+    <button bindtap='incomeHomeLink'>发送PDF</button>
+    <view class='clearBoth'></view>
+   </view>
+   <view class='tailWrap'>
+    <view class="flex  p-xs margin-bottom-sm mb-sm flexView">
+      <view class="flex-sub padding-sm TEXTOne">服务项目收入流水：</view>
+      <view class="flex-sub padding-sm tailFlexTwo TEXTOne">40天</view>
+    </view>
+    <view class="flex  p-xs margin-bottom-sm mb-sm flexView tailFlexSonOne">
+      <view class="flex-treble padding-sm tailFlexOne ">时间</view>
+      <view class="flex-sub padding-sm tailFlexOne ">价格</view>
+      <view class="flex-sub padding-sm tailFlexOne ">佣金</view>
+      <view class="flex-twice padding-sm tailFlexThree ">收入</view>
+    </view>
+    <view class="flex  p-xs margin-bottom-sm mb-sm flexView tailFlexSonTwo">
+      <view class="flex-treble padding-sm tailFlexFour ">20190808 12:00</view>
+      <view class="flex-sub padding-sm tailFlexFour ">+840.00</view>
+      <view class="flex-sub padding-sm tailFlexFour">-16.8(2%)</view>
+      <view class="flex-twice padding-sm tailFlexFive ">￥840.00</view>
+    </view>
+     <view class="flex  p-xs margin-bottom-sm mb-sm flexView tailFlexSonTwo">
+      <view class="flex-treble padding-sm tailFlexFour ">20190808 12:00</view>
+      <view class="flex-sub padding-sm tailFlexFour ">+840.00</view>
+      <view class="flex-sub padding-sm tailFlexFour">-16.8(2%)</view>
+      <view class="flex-twice padding-sm tailFlexFive ">￥840.00</view>
+    </view>
+     <view class="flex  p-xs margin-bottom-sm mb-sm flexView tailFlexSonTwo">
+      <view class="flex-treble padding-sm tailFlexFour ">20190808 12:00</view>
+      <view class="flex-sub padding-sm tailFlexFour ">+840.00</view>
+      <view class="flex-sub padding-sm tailFlexFour">-16.8(2%)</view>
+      <view class="flex-twice padding-sm tailFlexFive ">￥840.00</view>
+    </view>
+     <view class="flex  p-xs margin-bottom-sm mb-sm flexView tailFlexSonTwo">
+      <view class="flex-treble padding-sm tailFlexFour ">20190808 12:00</view>
+      <view class="flex-sub padding-sm tailFlexFour ">+840.00</view>
+      <view class="flex-sub padding-sm tailFlexFour">-16.8(2%)</view>
+      <view class="flex-twice padding-sm tailFlexFive ">￥840.00</view>
+    </view>
+   </view>
+</scroll-view>

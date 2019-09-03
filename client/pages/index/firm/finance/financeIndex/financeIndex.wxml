@@ -1,0 +1,118 @@
+<scroll-view class='scrollView'>
+  <cu-custom bgColor="bg-gray" isBack="{{true}}" style="color:#000;">
+    <view slot="backText" style='font-size:36rpx;color:#000;'>返回</view>
+    <view slot="content" style='font-size:39rpx;margin-left:-50rpx;color:#000;'>业务收入</view>
+  </cu-custom>
+  <view class="cu-bar bg-white solid-bottom margin-top topOne topOnly">
+    <view class="action">
+      <text class=" leftFontOne">账目流水：</text> 
+    </view>
+    <view >
+    <navigator url='../journal/journal'><view class="accountsLink">查看最近40天账目流水<text class="cuIcon-right lg text-gray"></text></view></navigator>
+    </view>
+  </view>
+  <view class="cu-bar bg-white solid-bottom margin-top topOne topOnly">
+    <view class="action">
+      <view class=" leftFontOne">当前平台佣金：</view>
+    </view>
+    <view>
+      <navigator url='../expenses/expenses'><view class="rightFont">2%<text class="cuIcon-right lg text-gray"></text></view></navigator>
+    </view>
+  </view>
+  <view class="cu-bar bg-white solid-bottom margin-top topTwo">
+    <view class="action">
+      <text class=" leftFontTwo">成员业务汇总：</text> 
+    </view>
+  </view>
+  <view class="cu-bar bg-white solid-bottom margin-top topOne">
+    <view class="action">
+      <text class=" leftFontOne">成员：</text> 
+    </view>
+    <view >
+      <navigator url='../statisticsStaff/statisticsStaff'><view class="rightFont">（全部）李梅 | Alice <text class="cuIcon-right lg text-gray"></text></view></navigator>
+    </view>
+  </view>
+  <view class="cu-bar bg-white solid-bottom margin-top topThree">
+    <view class="action">
+      <text class=" leftFontOne">交易额：</text> 
+    </view>
+    <view >
+      <view class="rightFont">￥848.00</view>
+    </view>
+  </view>
+  <view class="cu-bar bg-white solid-bottom margin-top topThree">
+    <view class="action">
+      <text class=" leftFontOne">平台佣金：</text> 
+    </view>
+    <view >
+      <view class="rightFont">￥-43</view>
+    </view>
+  </view>
+  <view class="cu-bar bg-white solid-bottom margin-top topThree">
+    <view class="action">
+      <text class=" leftFontOne">业绩收入：</text> 
+    </view>
+    <view >
+      <view class="rightFont performance">￥530.00</view>
+    </view>
+  </view>
+  <view class="cu-bar bg-white solid-bottom margin-top topTwo">
+    <view class="action">
+      <text class=" leftFontTwo">收入记录查询：</text> 
+    </view>
+  </view>
+  <view class='tailOuterView'>
+    <view class='tailView'>在陈述时，一定要注意有条有理，突出重点，千万不能把各种成绩堆在一起，让人事经理去挑选对你有利的成绩。
+
+  第一，基本情况概述
+
+  首先要概述工作内容、工作的主客观条件、有利和不利因素以及工作环境等。虽然这些与业绩的取得没有必然的联系，但是，显然如果你处于不利的工作环境，工作条件也甚是恶劣的话，无疑能够使你所取得的业绩大放光彩。
+
+  比如说，你的工作是处理客户投诉，这一工作的环境显然不是十分优越的，它要求员工能够忍受客户的抱怨，甚至是谩骂、侮辱。环境本身的特殊性实际上是业绩的一部分，因此应该把工作环境陈述出来，以使自己的业绩有所依托。当然，在陈述不利条件和环境时，千万不要理直气壮，不管怎么说，这是工作性质所决定的，接受了这份工作就必须接受它所带来的特殊的工作环境。
+
+  第二，陈述自己所取得的成绩
+  陈述自己的成绩是业绩报告的重点。撰写业绩报告的根本目的就是要肯定成绩，突出自己的贡献，从而为公司考核和晋升提供参考。
+  在撰写业绩报告之前应认真思考，尽可能把自己所取得的所有业绩都列出来，然后按照重要程度排序。在陈述时，首先要清楚地表述自己所取得的成绩有哪些，是在什么样的情况下取得的，每项成绩的分量有多大，对企业有多大的贡献。在陈述时，一定要注意有条有理，突出重点，千万不能把各种成绩堆在一起，让人事经理去挑选对你有利的成绩。这种做法不但加重了人事经理的工作，而且还会给人马虎、做事没条理的印象。试想，一个人连自己所取得的成绩都理不出头绪，工作时怎么能够做得有条有理呢。</view>
+    <view class="flex  p-xs margin-bottom-sm mb-sm flexViewReferOne inquireOne">
+      <view class="flex-sub padding-sm"></view>
+      <view class="flex-twice padding-sm">收入记录查询</view>
+      <view class="flex-sub padding-sm">▼</view>
+    </view>
+    <view class="flex  p-xs margin-bottom-sm mb-sm flexViewReferOne inquireTwo">
+      <view class="flex-sub padding-sm"></view>
+      <view class="flex-twice padding-sm">收入记录查询</view>
+      <view class="flex-sub padding-sm">▲</view>
+    </view>
+    <view class='TEXTOne'>选择时间：</view>
+    <view class="flex  p-xs margin-bottom-sm mb-sm flexViewReferThree">
+      <view class="flex-twice padding-sm yearFlexOne">2018</view>
+      <view class="flex-twice padding-sm yearFlexTwo">2019</view>
+      <view class="flex-sub padding-sm yearFlexThree"></view>
+    </view>
+    <view class="flex  p-xs margin-bottom-sm mb-sm flexViewReferTwo">
+      <view class="flex-sub padding-sm">1</view>
+      <view class="flex-sub padding-sm">2</view>
+      <view class="flex-sub padding-sm">3</view>
+      <view class="flex-sub padding-sm">4</view>
+      <view class="flex-sub padding-sm">5</view>
+      <view class="flex-sub padding-sm">6</view>
+    </view>
+    <view class="flex  p-xs margin-bottom-sm mb-sm flexViewReferTwo">
+      <view class="flex-sub padding-sm">7</view>
+      <view class="flex-sub padding-sm">8</view>
+      <view class="flex-sub padding-sm">9</view>
+      <view class="flex-sub padding-sm">10</view>
+      <view class="flex-sub padding-sm mouthFlexEleven">11</view>
+      <view class="flex-sub padding-sm mouthFlexTwelve">12</view>
+    </view>
+    <view class='TEXTOne'>选择成员：</view>
+    <view class="flex  p-xs margin-bottom-sm mb-sm flexViewReferThree">
+      <view class="flex-sub padding-sm memberFlexOne">COCO</view>
+      <view class="flex-sub padding-sm">李梅/Amei</view>
+      <view class="flex-sub padding-sm">Alice</view>
+    </view>
+    <view class="flex  p-xs margin-bottom-sm mb-sm flexViewReferFour">
+      <view class="flex-sub padding-sm"><button>查询</button></view>
+    </view>
+  </view>
+</scroll-view>

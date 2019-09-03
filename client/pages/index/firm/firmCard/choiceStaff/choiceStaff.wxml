@@ -1,0 +1,272 @@
+<!--pages/index/firm/firmCard/choiceStaff/choiceStaff.wxml-->
+<view class='scrollView'>
+  <cu-custom bgColor="bg-gray" isBack="{{true}}" style="color:#000;">
+    <view slot="backText" style='font-size:36rpx;color:#000;'>返回</view>
+    <view slot="content" style='font-size:39rpx;margin-left:-50rpx;color:#000;'>选择技师</view>
+  </cu-custom>
+  <view style='margin-top:20rpx;margin-bottom:10rpx;'>
+    <view style='display:inline-block;max-width:25%;width:800rpx;text-align:center;position:relative;z-index:999;'>
+      <image src='http://ljp.jujiaoweb.com/static/images/index/qThree.png' style='width:190rpx;height:190rpx;background-color:#FFF;border-radius:50%;border:2rpx solid #EEE;'></image>
+    </view>
+    <view style='height:155rpx;display:inline-block;vertical-align:top;margin-top:10rpx;max-width:75%;width:900rpx;'>
+      <view class="cu-bar bg-white" style='margin:-26rpx 0 0 -26rpx;border-radius:60rpx 0 0 60rpx;margin-bottom:-10rpx;'>
+        <view class="action">
+          <view style='font-size:45rpx;color:#133;font-family:"微软雅黑";'>胡敏
+            <text class="cuIcon-roundcheckfill lg text-black"></text>
+          </view>
+        </view>
+        <view style='margin-right:20rpx;'>
+          <view style='font-size:35rpx;height:55rpx;line-height:55rpx;display:inline-block;vertical-align:middle;color:#100;'>星级评价：</view>
+          <text class="cuIcon-favorfill lg text-orange" style='width:45rpx;height:55rpx;line-height:55rpx;font-size:36rpx;vertical-align:middle;'></text>
+          <text class="cuIcon-favorfill lg text-orange" style='width:45rpx;height:55rpx;line-height:55rpx;font-size:36rpx;vertical-align:middle;'></text>
+          <text class="cuIcon-favorfill lg text-orange" style='width:45rpx;height:55rpx;line-height:55rpx;font-size:36rpx;vertical-align:middle;'></text>
+          <text class="cuIcon-favorfill lg text-orange" style='width:45rpx;height:55rpx;line-height:55rpx;font-size:36rpx;vertical-align:middle;'></text>
+          <text class="cuIcon-favorfill lg text-gray" style='width:45rpx;height:55rpx;line-height:55rpx;font-size:36rpx;vertical-align:middle;'></text>
+        </view>
+      </view>
+      <view class='flex' style='font-size:35rpx;color:#133;font-family:"微软雅黑";margin:-10rpx 25rpx 10rpx 0;'>
+        <view class="flex-sub">经验:
+          <text style='color:#000;margin-right:20rpx;'>8888</text>
+        </view>
+        <view class="flex-sub" style='text-align:center;'>作品赞：
+          <text style='color:#000;margin-right:20rpx;'>88k</text>
+        </view>
+        <view class="flex-sub" style='text-align:right;'>获关注：
+          <text style='color:#000;'>0</text>
+        </view>
+      </view>
+      <view>
+        <view style="font-size:35rpx;color:#000;display:inline-block;position:relative;z-index:999;">擅长：美甲，彩妆</view>
+        <button style='background-color:#FF7700;color:#FFF;display:inline-block;height:50rpx;line-height:50rpx;font-size:36rpx;float:right;position:relative;z-index:999;margin-right:20rpx;'>选择</button>
+      </view>
+    </view>
+  </view>
+  <view class="cu-bar bg-white" style='margin-left:20rpx;margin-right:20rpx;'>
+    <view class="action" style='margin-left:10rpx;'>
+      <view style='font-size:35rpx;color:#133;'>空闲时段：</view>
+    </view>
+    <view>
+      <view style='font-size:36rpx;color:#FFF;background-color:#FF6600;margin-right:15rpx;width:60rpx;height:60rpx;line-height:60rpx;border-radius:50%;text-align:center;display:inline-block;'>今</view>
+      <view style='font-size:36rpx;color:#000;background-color:#FFF;border:1rpx solid #888;margin-right:15rpx;width:60rpx;height:60rpx;line-height:60rpx;border-radius:50%;text-align:center;display:inline-block;'>明</view>
+      <view style='font-size:36rpx;color:#000;background-color:#FFF;border:1rpx solid #333;margin-right:15rpx;width:60rpx;height:60rpx;line-height:60rpx;border-radius:50%;text-align:center;display:inline-block;'>后</view>
+      <view style='font-size:36rpx;color:#000;background-color:#FFF;border:1rpx solid #888;margin-right:15rpx;width:60rpx;height:60rpx;line-height:60rpx;border-radius:50%;text-align:center;display:inline-block;'>11</view>
+      <view style='font-size:36rpx;color:#000;background-color:#FFF;border:1rpx solid #FF6600;margin-right:15rpx;width:60rpx;height:60rpx;line-height:60rpx;border-radius:50%;text-align:center;display:inline-block;'>12</view>
+      <view style='font-size:36rpx;color:#000;background-color:#FFF;border:1rpx solid #FF6600;margin-right:15rpx;width:60rpx;height:60rpx;line-height:60rpx;border-radius:50%;text-align:center;display:inline-block;'>13</view>
+      <view style='font-size:36rpx;color:#000;background-color:#FFF;border:1rpx solid #FF6600;margin-right:15rpx;width:60rpx;height:60rpx;line-height:60rpx;border-radius:50%;text-align:center;display:inline-block;'>14</view>
+    </view>
+  </view>
+  <view class="bg-white" style='margin:0 20rpx 16rpx;padding:0;height:40rpx;line-height:40rpx;'>
+    <view class="action" style='margin:0 10rpx;height:40rpx;line-height:40rpx;display:inline-block;float:left;'>
+      <view style='font-size:30rpx;color:#133;'>9:00</view>
+    </view>
+    <view class="action" style='margin:0 10rpx;height:40rpx;line-height:40rpx;display:inline-block;float:right;'>
+      <view style='font-size:30rpx;color:#133;'>20:00</view>
+    </view>
+  </view>
+  <view style='margin:0 30rpx 30rpx;font-size:30rpx;'>
+    <scroll-view scroll-x class="bg-white nav text-center" style='color:#000;border:2rpx solid #BBB;max-height:72rpx;'>
+      <view class="cu-item" style='margin:0;height:66rpx;line-height:66rpx;'>
+        9:00
+      </view>
+      <view class="cu-item" style='margin:0;height:66rpx;line-height:66rpx;'>
+        9:30
+      </view>
+      <view class="cu-item" style='margin:0;height:66rpx;line-height:66rpx;background-color:#E6E6E6;border-left:1rpx solid #BBB;'>
+        10:00
+      </view>
+      <view class="cu-item" style='margin:0;height:66rpx;line-height:66rpx;;background-color:#E6E6E6;'>
+        10:30
+      </view>
+      <view class="cu-item" style='margin:0;height:66rpx;line-height:66rpx;;background-color:#E6E6E6;border-right:1rpx solid #BBB;'>
+        11:00
+      </view>
+      <view class="cu-item" style='margin:0;height:66rpx;line-height:66rpx;'>
+        11:30
+      </view>
+      <view class="cu-item" style='margin:0;height:66rpx;line-height:66rpx;'>
+        12:00
+      </view>
+      <view class="cu-item" style='margin:0;height:66rpx;line-height:66rpx;'>
+        12:30
+      </view>
+      <view class="cu-item" style='margin:0;height:66rpx;line-height:66rpx;'>
+        13:00
+      </view>
+      <view class="cu-item" style='margin:0;height:66rpx;line-height:66rpx;'>
+        13:30
+      </view>
+      <view class="cu-item" style='margin:0;height:66rpx;line-height:66rpx;'>
+        14:00
+      </view>
+      <view class="cu-item" style='margin:0;height:66rpx;line-height:66rpx;'>
+        14:30
+      </view>
+      <view class="cu-item" style='margin:0;height:66rpx;line-height:66rpx;'>
+        15:00
+      </view>
+      <view class="cu-item" style='margin:0;height:66rpx;line-height:66rpx;'>
+        15:30
+      </view>
+      <view class="cu-item" style='margin:0;height:66rpx;line-height:66rpx;'>
+        16:00
+      </view>
+      <view class="cu-item" style='margin:0;height:66rpx;line-height:66rpx;'>
+        16:30
+      </view>
+      <view class="cu-item" style='margin:0;height:66rpx;line-height:66rpx;'>
+        17:00
+      </view>
+      <view class="cu-item" style='margin:0;height:66rpx;line-height:66rpx;'>
+        17:30
+      </view>
+      <view class="cu-item" style='margin:0;height:66rpx;line-height:66rpx;'>
+        18:00
+      </view>
+      <view class="cu-item" style='margin:0;height:66rpx;line-height:66rpx;'>
+        18:30
+      </view>
+      <view class="cu-item" style='margin:0;height:66rpx;line-height:66rpx;'>
+        19:00
+      </view>
+      <view class="cu-item" style='margin:0;height:66rpx;line-height:66rpx;'>
+        19:30
+      </view>
+      <view class="cu-item" style='margin:0;height:66rpx;line-height:66rpx;'>
+        20:00
+      </view>
+    </scroll-view>
+  </view>
+  <view style='border:2rpx solid #BBB;position:relative;z-index:999;'></view>
+  <view style='margin-top:20rpx;margin-bottom:10rpx;'>
+    <view style='display:inline-block;max-width:25%;width:800rpx;text-align:center;position:relative;z-index:999;'>
+      <image src='http://ljp.jujiaoweb.com/static/images/index/qThree.png ' style='width:180rpx;height:180rpx;background-color:#FFF;border-radius:50%;border:2rpx solid #EEE;'></image>
+    </view>
+    <view style='height:155rpx;display:inline-block;vertical-align:top;margin-top:10rpx;max-width:75%;width:900rpx;'>
+      <view class="cu-bar bg-white" style='margin:-26rpx 0 0 -26rpx;border-radius:60rpx 0 0 60rpx;margin-bottom:-10rpx;'>
+        <view class="action">
+          <view style='font-size:45rpx;color:#133;font-family:"微软雅黑";'>胡敏
+            <text class="cuIcon-roundcheckfill lg text-black"></text>
+          </view>
+        </view>
+        <view style='margin-right:20rpx;'>
+          <view style='font-size:35rpx;height:55rpx;line-height:55rpx;display:inline-block;vertical-align:middle;color:#100;'>星级评价：</view>
+          <text class="cuIcon-favorfill lg text-orange" style='width:45rpx;height:55rpx;line-height:55rpx;font-size:36rpx;vertical-align:middle;'></text>
+          <text class="cuIcon-favorfill lg text-orange" style='width:45rpx;height:55rpx;line-height:55rpx;font-size:36rpx;vertical-align:middle;'></text>
+          <text class="cuIcon-favorfill lg text-orange" style='width:45rpx;height:55rpx;line-height:55rpx;font-size:36rpx;vertical-align:middle;'></text>
+          <text class="cuIcon-favorfill lg text-orange" style='width:45rpx;height:55rpx;line-height:55rpx;font-size:36rpx;vertical-align:middle;'></text>
+          <text class="cuIcon-favorfill lg text-gray" style='width:45rpx;height:55rpx;line-height:55rpx;font-size:36rpx;vertical-align:middle;'></text>
+        </view>
+      </view>
+      <view class='flex' style='font-size:35rpx;color:#133;font-family:"微软雅黑";margin:-10rpx 25rpx 10rpx 0;'>
+        <view class="flex-sub">接单:
+          <text style='color:#000;margin-right:20rpx;'>8888</text>
+        </view>
+        <view class="flex-sub" style='text-align:center;'>赞：
+          <text style='color:#000;margin-right:20rpx;'>88k</text>
+        </view>
+        <view class="flex-sub" style='text-align:right;'>爽约：
+          <text style='color:#000;'>0</text>
+        </view>
+      </view>
+      <view>
+        <view style="font-size:35rpx;color:#000;display:inline-block;position:relative;z-index:999;">擅长：美甲，彩妆</view>
+        <button style='background-color:#FF7700;color:#FFF;display:inline-block;height:50rpx;line-height:50rpx;font-size:36rpx;float:right;position:relative;z-index:999;margin-right:20rpx;'>选择</button>
+      </view>
+    </view>
+  </view>
+  <view class="cu-bar bg-white" style='margin-left:20rpx;margin-right:20rpx;'>
+    <view class="action" style='margin-left:10rpx;'>
+      <view style='font-size:35rpx;color:#133;'>空闲时段：</view>
+    </view>
+    <view>
+      <view style='font-size:36rpx;color:#FFF;background-color:#FF6600;margin-right:15rpx;width:60rpx;height:60rpx;line-height:60rpx;border-radius:50%;text-align:center;display:inline-block;'>今</view>
+      <view style='font-size:36rpx;color:#000;background-color:#FFF;border:1rpx solid #888;margin-right:15rpx;width:60rpx;height:60rpx;line-height:60rpx;border-radius:50%;text-align:center;display:inline-block;'>明</view>
+      <view style='font-size:36rpx;color:#000;background-color:#FFF;border:1rpx solid #333;margin-right:15rpx;width:60rpx;height:60rpx;line-height:60rpx;border-radius:50%;text-align:center;display:inline-block;'>后</view>
+      <view style='font-size:36rpx;color:#000;background-color:#FFF;border:1rpx solid #888;margin-right:15rpx;width:60rpx;height:60rpx;line-height:60rpx;border-radius:50%;text-align:center;display:inline-block;'>11</view>
+      <view style='font-size:36rpx;color:#000;background-color:#FFF;border:1rpx solid #FF6600;margin-right:15rpx;width:60rpx;height:60rpx;line-height:60rpx;border-radius:50%;text-align:center;display:inline-block;'>12</view>
+      <view style='font-size:36rpx;color:#000;background-color:#FFF;border:1rpx solid #FF6600;margin-right:15rpx;width:60rpx;height:60rpx;line-height:60rpx;border-radius:50%;text-align:center;display:inline-block;'>13</view>
+      <view style='font-size:36rpx;color:#000;background-color:#FFF;border:1rpx solid #FF6600;margin-right:15rpx;width:60rpx;height:60rpx;line-height:60rpx;border-radius:50%;text-align:center;display:inline-block;'>14</view>
+    </view>
+  </view>
+  <view class="bg-white" style='margin:0 20rpx 16rpx;padding:0;height:40rpx;line-height:40rpx;'>
+    <view class="action" style='margin:0 10rpx;height:40rpx;line-height:40rpx;display:inline-block;float:left;'>
+      <view style='font-size:30rpx;color:#133;'>9:00</view>
+    </view>
+    <view class="action" style='margin:0 10rpx;height:40rpx;line-height:40rpx;display:inline-block;float:right;'>
+      <view style='font-size:30rpx;color:#133;'>20:00</view>
+    </view>
+  </view>
+  <view style='margin:0 30rpx 30rpx;font-size:30rpx;'>
+    <scroll-view scroll-x class="bg-white nav text-center" style='color:#000;border:2rpx solid #BBB;max-height:72rpx;'>
+      <view class="cu-item" style='margin:0;height:66rpx;line-height:66rpx;'>
+        9:00
+      </view>
+      <view class="cu-item" style='margin:0;height:66rpx;line-height:66rpx;'>
+        9:30
+      </view>
+      <view class="cu-item" style='margin:0;height:66rpx;line-height:66rpx;background-color:#E6E6E6;border-left:1rpx solid #BBB;'>
+        10:00
+      </view>
+      <view class="cu-item" style='margin:0;height:66rpx;line-height:66rpx;;background-color:#E6E6E6;'>
+        10:30
+      </view>
+      <view class="cu-item" style='margin:0;height:66rpx;line-height:66rpx;;background-color:#E6E6E6;border-right:1rpx solid #BBB;'>
+        11:00
+      </view>
+      <view class="cu-item" style='margin:0;height:66rpx;line-height:66rpx;'>
+        11:30
+      </view>
+      <view class="cu-item" style='margin:0;height:66rpx;line-height:66rpx;'>
+        12:00
+      </view>
+      <view class="cu-item" style='margin:0;height:66rpx;line-height:66rpx;'>
+        12:30
+      </view>
+      <view class="cu-item" style='margin:0;height:66rpx;line-height:66rpx;'>
+        13:00
+      </view>
+      <view class="cu-item" style='margin:0;height:66rpx;line-height:66rpx;'>
+        13:30
+      </view>
+      <view class="cu-item" style='margin:0;height:66rpx;line-height:66rpx;'>
+        14:00
+      </view>
+      <view class="cu-item" style='margin:0;height:66rpx;line-height:66rpx;'>
+        14:30
+      </view>
+      <view class="cu-item" style='margin:0;height:66rpx;line-height:66rpx;'>
+        15:00
+      </view>
+      <view class="cu-item" style='margin:0;height:66rpx;line-height:66rpx;'>
+        15:30
+      </view>
+      <view class="cu-item" style='margin:0;height:66rpx;line-height:66rpx;'>
+        16:00
+      </view>
+      <view class="cu-item" style='margin:0;height:66rpx;line-height:66rpx;'>
+        16:30
+      </view>
+      <view class="cu-item" style='margin:0;height:66rpx;line-height:66rpx;'>
+        17:00
+      </view>
+      <view class="cu-item" style='margin:0;height:66rpx;line-height:66rpx;'>
+        17:30
+      </view>
+      <view class="cu-item" style='margin:0;height:66rpx;line-height:66rpx;'>
+        18:00
+      </view>
+      <view class="cu-item" style='margin:0;height:66rpx;line-height:66rpx;'>
+        18:30
+      </view>
+      <view class="cu-item" style='margin:0;height:66rpx;line-height:66rpx;'>
+        19:00
+      </view>
+      <view class="cu-item" style='margin:0;height:66rpx;line-height:66rpx;'>
+        19:30
+      </view>
+      <view class="cu-item" style='margin:0;height:66rpx;line-height:66rpx;'>
+        20:00
+      </view>
+    </scroll-view>
+  </view>
+</view>

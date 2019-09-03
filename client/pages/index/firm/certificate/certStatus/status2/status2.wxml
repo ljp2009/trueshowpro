@@ -1,0 +1,52 @@
+   <cu-custom bgColor="bg-gradual-white" isBack="{{true}}"><view slot="backText"></view><view slot="content">机构认证</view></cu-custom>
+
+ <view class="count">
+
+<view class="cu-bar margin-top bg-white">
+<view class="action">
+    审核流程：
+  </view>
+</view>
+<view class="cu-list grid col-3">
+  <view class="cu-item" wx:for="{{icon}}" wx:key wx:if="{{item.isShow}}">
+    <text class="cuIcon-texi lg text-gray"></text>
+    <text>{{item.name}}</text>
+  </view>
+</view>
+<!-- 审核流程：
+ -->
+  <view class="bg-white padding margin-top-xs padd">
+  <view class="cu-steps">
+    <view class="cu-item {{index>basics?'':'text-orange'}}" wx:for="{{basicsList}}" wx:key style=" font-size:20rpx">
+      <text class="cuIcon-{{index>basics?'round':item.icon}}"></text> {{item.name}}
+    </view>
+  </view>
+</view>
+<view class="solids-bottom padding-xs flex align-center">
+    
+    <view class="flex-sub text-center">
+      <view class="solid-bottom text-xl "style="margin-top:40rpx">
+        <text class="text-black text-bold">审核通过，请支付审核费用
+ </text>
+      </view>
+      
+    </view>
+  </view>
+<view class="cu-bar margin-top bg-white">
+<view class="action">
+    实际支付：
+  </view>
+</view>
+<view class="solids-bottom padding-xs flex align-center">
+   
+    <view class="flex-sub text-center">
+      <view class="solid-bottom text-xxl">
+        ￥<text  class=" text-red ">180.00</text>元
+      </view>   
+    </view>
+  </view>
+<view class="cu-bar margin-top btn-group">
+    <button class="cu-btn bg-green shadow-blur">立刻微信支付
+</button>   
+  </view>
+  </view>

@@ -1,0 +1,4 @@
+/* pages/index/user/staff/staffWorkShow/staffWorkShow.wxss */
+page{
+  background-color: white;
+}

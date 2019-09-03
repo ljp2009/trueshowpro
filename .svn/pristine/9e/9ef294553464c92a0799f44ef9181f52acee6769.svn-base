@@ -1,0 +1,24 @@
+/* pages/admin/certificateAgain/certificateAgain.wxss */
+/* pages/admin/certificate/certificate.wxss */
+/* 中心内容 */
+.main{
+  font-weight: bold;
+  margin-left: 30rpx;
+}
+/* 最外层容器 */
+.wrap{
+  position: relative;
+  height: 100%;
+}
+/* 底部按钮容器 */
+.footer{
+  height: 6%;
+  width: 100%;
+  position: absolute;
+  bottom: 0rpx;
+  text-align: center;
+}
+.headDown{
+  text-align: center;
+  font-weight: bold;
+}

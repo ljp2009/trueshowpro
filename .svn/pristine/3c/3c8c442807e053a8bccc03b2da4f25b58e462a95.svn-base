@@ -1,0 +1,10 @@
+<view>
+  <view wx:if="{{type==0}}">
+  <button  class="cu-btn round line-yello" open-type="getUserInfo" bindgetuserinfo="getUserInfo">立即体验11</button>
+  </view>
+  <view wx:else>
+    <view>无法获取用户信息，请您同意授权！</view>
+    <button  class="cu-btn round line-yello" open-type="getUserInfo" bindgetuserinfo="getUserInfo">立即授权</button>
+  </view>
+ 
+</view>

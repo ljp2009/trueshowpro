@@ -1,0 +1,149 @@
+<!--pages/index/poker/pokerDetail/pokerDetail.wxml-->
+
+<view style="position:absolute;top:0rpx;z-index:998;height:100% ">
+
+<view style='position:absolute;top:40rpx;z-index:999;left:10rpx;' bindtap='backhome'>
+  <image src='http://ljp.jujiaoweb.com/images/index/icon16.png' style='width:30rpx;height:30rpx;'></image>
+</view>
+
+<!-- <cu-custom bgColor="bg-gradual-pink" isBack="{{true}}">
+  <view slot="backText">返回</view>
+</cu-custom> -->
+
+
+
+ 
+
+
+<swiper class="screen-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" class="swiperContainer">
+  <swiper-item wx:for="{{swiperList}}" wx:key>
+  <!-- <view class="bg-img  padding-tb-xl bgImg" style="background-image: url({{item.url}}) ;background-size: cover;"> -->
+    <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
+  </swiper-item>
+</swiper>
+<view>
+<!--  服务项目名称-->  
+  <view class="project">服务项目名称</view>  
+  <view class="flex">
+    <view class="flex-sub  padding-sm margin-xs radius item">黑白豹纹美甲系列</view>
+  </view>
+  <view class="flex itemOne">
+    <view class="flex-sub  padding-sm margin-xs radius">
+      <view>10年经验,活筋活络</view>
+    </view>
+    <view class="flex-sub  padding-sm margin-xs radius">
+      <view>时常:约60分钟</view>
+    </view>
+  </view>
+<!-- 技师和服务机构 -->
+  <view class="project">技师和服务机构</view>  
+</view>
+<!-- 图片文字布局 -->
+<view class="start_k ">
+    <view >
+     <image class="img_big" src='{{webRoot}}/static/images/index/test.jpg'></image>            
+    </view>
+    
+   <view class=" padding-lg margin-xs radius ">
+      <view >
+        <text class="staffName">胡敏</text>   
+        <image src="{{webRoot}}/static/images/index/icon8.png" class="staff"></image>   
+        <text class="ifAttention">是否关注</text>
+      </view>
+      <view class="estimate">
+        顾客评价：********
+      </view>
+      <view class="staffOrder">
+      <text class="styleLittle">接单:435</text>    
+       <text class="styleLittle">赞：4.2k</text>    
+      <text class="styleLittle">爽约:4</text></view>
+      <view class="goodAt ">     
+        擅长：<text>美甲，彩妆</text>
+      </view>
+    </view>
+</view>
+<!-- 机构 -->
+<view class="firm"></view>  
+<view class="start_k ">
+    <view >
+     <image class="img_big" src='{{webRoot}}/static/images/index/icon11.png'></image>             
+   </view>
+   <view class=" padding-lg margin-xs radius ">
+      <view >冠乃馨美容美体连锁机构</view>
+      <view class="address">地址:xxxx223号</view>
+      <view class="firmOne ">     
+       机构<image src="{{webRoot}}/static/images/index/icon8.png" class="staffTwo"></image>   
+        <text class="cuIcon-locationfill kmIcom"></text>
+       <text class="km">4KM</text>   
+       <text class="cuIcon-emoji kmIcom"></text>
+       <text>4</text>
+      
+      </view>
+    </view>
+    <view class="saleLittle">
+     <text>单笔满减</text>
+    </view>
+</view>
+<!-- 顾客 -->
+<view class="project">顾客:</view>  
+<view class="start_k ">
+    <view >
+     <image class="img_big" src='{{webRoot}}/static/images/index/poker/1.jpg'></image>              </view>
+   <view class=" padding-lg margin-xs radius">
+      <view >CocoLe(匿名)</view>
+      <view class="words">评:第一次尝试这种效果，非常满意第一次尝试这种效果，</view>
+      <view class="doom">     
+        
+        <block>
+        <text class="text-md">
+          弹幕：
+          </text> 
+        </block>
+
+        <view wx:for="{{arr}}" wx:key="id">
+
+           <text class="itemText text-sm">{{item}}</text> 
+
+        </view>
+
+      </view>
+    </view>
+</view>
+<view class="firm"></view>   
+<!-- 弹幕 -->
+ <view class="cu-list menu-avatar" >
+  
+  <!-- 消息item -->
+  <!-- <view class="cu-item" wx:for="{{arr}}">
+      <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
+      <view class="content">
+        <view class="text-grey">{{userInfo.nickName}}</view>
+        <view class="text-gray text-sm flex">
+          <text class="text-cut">
+							<text class=" text-red  margin-right-xs"></text> {{item}}
+          </text>
+        </view>
+      </view>
+      
+    </view> -->
+
+ </view>
+
+
+
+<view >
+
+</view>
+<!-- 弹幕发送 -->
+<view class="firm"></view>   
+<view class="textBottom">
+  <view class="cu-bar input">
+    <view class="action">
+      <text class="cuIcon-roundaddfill text-grey"></text>
+    </view>
+    <input placeholder='我也说一句' class="solid-bottom" maxlength="300" cursor-spacing="10" bindblur="bind_shoot"  type="text" value="{{bind_value}}"></input>
+    
+    <button style='background: #ff6600;' class="cu-btn bg-green shadow-blur" catchtap="bindbt">发送</button>
+  </view>
+</view>
+</view>

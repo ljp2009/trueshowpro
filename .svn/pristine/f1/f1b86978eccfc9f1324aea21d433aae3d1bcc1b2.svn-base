@@ -1,0 +1,179 @@
+<!--pages/index/poker/pokerDetail/pokerDetail.wxml-->
+
+<view style="position:absolute;top:0rpx;z-index:998;height:100% ">
+
+<view style='position:absolute;top:40rpx;z-index:999;left:10rpx;' bindtap='backhome'>
+  <image src='http://ljp.jujiaoweb.com/images/index/icon16.png' style='width:30rpx;height:30rpx;'></image>
+</view>
+
+<!-- <cu-custom bgColor="bg-gradual-pink" isBack="{{true}}">
+  <view slot="backText">返回</view>
+</cu-custom> -->
+
+
+
+ 
+
+
+<swiper class="screen-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" class="swiperContainer">
+  <swiper-item wx:for="{{swiperList}}" wx:key>
+  
+    <block wx:if="{{item.type==0}}">
+      <image  style="width:100%;height:51%" src="{{webRoot}}/static/images/index/{{item.imgname}}" mode="aspectFill" ></image>   
+   </block>
+
+   <block wx:else>
+      <image  style="width:100%;height:100%" src="{{webRoot}}/static/images/index/{{item.imgname}}" mode="aspectFill" ></image>
+   </block>
+
+   <image  style="width:100%;height:51%" src="http://ljp.jujiaoweb.com/static/images/index/hand.png" mode="aspectFill" ></image>
+      
+  
+  </swiper-item>
+</swiper>
+<view>
+<!--  服务项目名称-->  
+  <view class="project">服务项目名称</view>    
+     <view class="flex">
+    <view class="flex-sub  padding-sm margin-xs radius item">{{serverData.serviceName}}</view>
+    </view>
+    <view class="flex itemOne">
+      <view class="flex-sub  padding-sm margin-xs radius">
+        <view>{{serverData.serviceDiscription}}</view>
+      </view>
+      <view class="flex-sub  padding-sm margin-xs radius">
+        <view>时常:{{serverData.serviceTime}}</view>
+      </view>
+    </view>
+
+<!-- 技师和服务机构 -->
+  <view class="project">技师和服务机构</view>  
+</view>
+<!-- 图片文字布局 -->
+<view class="start_k ">
+    <view >
+     <image class="img_big" src='{{webRoot}}/static/images/index/{{staffData.staffAvatar}}'></image>            
+    </view>
+    <!--  : otherstaffAndFirmIdList['Avatar'],
+          :otherstaffAndFirmIdList['Nickname'],
+          :res.data.msg['iffollower'],  //是否关注 0-没有 1-有
+          satisfection:otherstaffAndFirmIdList['Satisfection'],  //评分
+          experience:otherstaffAndFirmIdList['Experience'],   //接单数
+          like:res.data.msg['WorkLike'],   //赞
+          pigeonStaff:res.data.msg['PigeonStaff'],     //爽约！！！！！！！要问一下
+          :res.data.msg['SkillName'],            //擅长  数组 -->
+   <view class=" padding-lg margin-xs radius ">
+      <view >
+        <text class="staffName">{{staffData.staffName}}</text>   
+        <image src="{{webRoot}}/static/images/index/icon8.png" class="staff"></image>   
+        <text wx:if="{{staffData.ifFollower==1}}" class="ifAttention">已关注</text>
+        <text class="unAttention" wx:elif="{{staffData.ifFollower==0}}">关注</text>
+      </view>
+      <view class="estimate">
+        顾客评价：{{staffData.satisfection}}
+      </view>
+      <view class="staffOrder">
+      <text class="styleLittle">{{staffData.experience}}</text>    
+       <text class="styleLittle">赞：{{staffData.like}}</text>    
+      <text class="styleLittle">爽约:{{staffData.pigeonStaff}}</text></view>
+      <view class="goodAt ">     
+        擅长：<text wx:for="{{staffData.skills}}" >{{item}},</text>
+        <!-- <text wx:for="{{staffData.skills}}" wx:elif="{{index!=staffData.skillsCount-1}}">{{item}},</text> -->
+      </view>
+    </view>
+</view>
+<!-- 机构 -->
+<!-- firmData -->
+<!--  : otherstaffAndFirmIdList['firmName'],  //机构名字
+          :res.data.msg['Province']+res.data.msg['City']+res.data.msg['District']+res.data.msg['FirmAddr'],
+          : otherstaffAndFirmIdList['firmCert'],   //机构类型
+          : otherstaffAndFirmIdList['ids'],      //距离
+          : otherstaffAndFirmIdList['staffs']  //成员数 -->
+<view class="firm" style="background-color:rgb(222,216,216)"></view>  
+<view class="start_k ">
+    <view >
+     <image class="img_big" src='{{webRoot}}/static/images/index/icon11.png'></image>             
+   </view>
+   <view class=" padding-lg margin-xs radius ">
+      <view >{{firmData.firmName}}</view>
+      <view class="address">地址:{{firmData.firmAddr}}</view>
+      <view class="firmOne ">    
+       <text wx:if="{{firmData.firmCert==0}}">个体</text>
+      <text wx:elif="{{firmData.firmCert==1}}">企业</text>
+      <text wx:elif="{{firmData.firmCert==2}}">工作室</text>
+      <text wx:else>连锁</text> 
+       <image src="{{webRoot}}/static/images/index/icon8.png" class="staffTwo"></image>   
+        <text class="cuIcon-locationfill kmIcom"></text>
+       <text class="km">{{firmData.dis}}KM</text>   
+       <text class="cuIcon-emoji kmIcom"></text>
+       <text>{{firmData.staffs}}</text>
+      </view>
+    </view>
+    <view class="saleLittle">
+     <text>{{firmData.proTitle}}</text>
+    </view>
+</view>  
+<!-- 顾客 -->
+<view class="project">顾客:</view>  
+<view class="start_k ">
+    <view >
+    <!-- {{customData.customAvatat}} -->
+     <image class="img_big" src='{{webRoot}}/static/images/index/poker/1.jpg'></image>              </view>
+   <view class=" padding-lg margin-xs radius">
+      <view >{{customData.customNickName}}(匿名)</view>
+      <view class="words">评:{{customData.customDiscription}}</view>
+      <view class="doom">     
+        
+        <block>
+        <text class="text-md">
+          弹幕：
+          </text>    
+        </block>
+
+        <view wx:for="{{arr}}" wx:key="id">
+
+           <text class="itemText text-sm">{{item.nickname}}--{{item.text}}</text> 
+
+        </view> 
+
+      </view>
+    </view>
+</view>
+<view class="firm"></view>   
+<!-- 弹幕 -->
+ <view class="cu-list menu-avatar" >
+  
+  <!-- 消息item -->
+  <!-- <view class="cu-item" wx:for="{{arr}}">
+      <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
+      <view class="content">
+        <view class="text-grey">{{userInfo.nickName}}</view>
+        <view class="text-gray text-sm flex">
+          <text class="text-cut">
+							<text class=" text-red  margin-right-xs"></text> {{item}}
+          </text>
+        </view>
+      </view>
+      
+    </view> -->
+
+ </view>
+
+
+
+<view >
+
+</view>
+<!-- 弹幕发送 -->
+<view class="firm"></view>   
+<view class="textBottom">
+  <view class="cu-bar input">
+    <view class="action">
+      <text class="cuIcon-roundaddfill text-grey"></text>
+    </view>
+    <input placeholder='我也说一句' class="solid-bottom" maxlength="300" cursor-spacing="10" bindblur="bind_shoot"  type="text" value="{{bind_value}}"></input>
+    
+    <button style='background: #ff6600;' class="cu-btn bg-green shadow-blur" catchtap="bindbt">发送</button>
+  </view>
+</view>
+</view>

@@ -1,0 +1,12 @@
+<view>
+  <view>
+    <text>
+    无法获取用户信息
+    </text>
+  </view>
+  <view>
+     <button open-type="getUserInfo" class="cu-btn bg-red margin-tb-sm lg" bindgetuserinfo='getUserInfo'>授权</button>
+  </view>
+  
+
+</view>

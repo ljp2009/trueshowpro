@@ -1,0 +1,46 @@
+<!--pages/index/firm/firmIndex/searchFirm/searchFirm.wxml-->
+<cu-custom bgColor="bg-gray" isBack="{{true}}" style="color:#000;">
+  <view slot="backText" style='font-size:36rpx;color:#000;'>返回</view>
+  <view slot="content" style='font-size:39rpx;margin-left:-50rpx;color:#000;'>隶属服务机构</view>
+</cu-custom>
+<!-- 标题 -->
+<view class='hidOne'>
+  <view class='join'>搜索加入：</view>
+  <view class="searchFirm">
+    <!-- <button class="black line-grey bg-white margin-tb-sm lg btnOne" disabled>服务机构名称关键字：</button> -->
+    <input class='bg-white line-grey radio btnOne' placeholder='服务机构名称关键字:'></input>
+    <navigator url='/pages/index/firm/joinStaff/searchFirm/searchFirm'>
+      <button class="black bg-orange margin-tb-sm lg btnTwo" type="">查找</button>
+    </navigator>
+  </view>
+  <view class="searchFirm" style='margin-top: 50rpx;'>
+    <button class="black bg-orange margin-tb-sm lg btnTwo" type="">
+      <view style='display:inline-block;height:88rpx;line-height:80rpx;vertical-align:top;'>我是顾客</view>
+      <text class="cuIcon-emoji lg text-icon" style='display:inline-block;font-size:50rpx;height:88rpx;line-height:88rpx;color:#333;'></text>
+    </button>
+  </view>
+</view>
+<view class='hidTwo' style='font-size:35rpx;width:90%;margin:auto;'>
+  <view class='main'>正在申请加入机构</view>
+  <view style='height:5rpx;'></view>
+  <view class="padding-lr bg-white">
+    <view class="solid-bottom padding">
+      <view class='mainHead'>
+        <text class='txt'>欢欢美甲连锁店</text>
+        <text class="cuIcon-roundcheckfill lg text-orange"></text>
+      </view>
+      <view style='marin-bottom:20rpx'>地 址：上海市徐汇区XXX路XXX号100号</view>
+      <view>负责人：小昭 1380***4343</view>
+    </view>
+  </view>
+  <view style='height:20rpx;'></view>
+  <view class='state'>状态：</view>
+  <view style='height:10rpx;'></view>
+  <view class='audit' style='text-align:center;font-size:42rpx;color:#222;'>正在等待负责人审核通过</view>
+  <view class='hint' style='text-align:center;'>提示：你可以联系负责人加速确认</view>
+  <view style='height:80rpx;'></view>
+  <button class="black bg-orange margin-tb-sm lg btn {{shadow?'shadow':''}}">取消申请</button>
+  <view style='height:60rpx;'></view>
+  <view class='refresh' style='text-align:center;font-size:38rpx;'>刷新</view>
+  <view style='height:260rpx;'></view>
+</view>

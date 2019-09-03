@@ -1,0 +1,4 @@
+<view>
+
+ <button  class="cu-btn round line-yello" open-type="getUserInfo" bindgetuserinfo="getUserInfo">立即体验11</button>
+</view>

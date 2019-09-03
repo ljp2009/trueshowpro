@@ -1,0 +1,32 @@
+<!--pages/index/reservation/staff/modules/jordanMoadlOne/jordanModalOne.wxml-->
+<cu-custom bgColor="bg-gray" isBack="{{true}}" style="color:#000;">
+  <view slot="backText" style='font-size:36rpx;color:#000;'>返回</view>
+  <view slot="content" style='font-size:39rpx;margin-left:-50rpx;color:#000;'>每日上下班时间</view>
+</cu-custom>
+<view class='bg-white' style='position:relative;height:360rpx;padding-top:45rpx;'>
+  <view class='flex' >
+    <view class='flex-sub'>
+      <view style='text-align:center;font-size:42rpx;'>上班时间:</view>
+    </view>
+    <view class='flex-sub'>
+      <input style='text-align:center;border:1rpx solid #666;text-align:center;width:210rpx;height:70rpx;line-height:70rpx;margin:auto;font-size:45rpx;' placeholder='9:00'></input>
+    </view>
+  </view>
+  <view style='height:30rpx;'></view>
+  <view class='flex'>
+    <view class='flex-sub'>
+      <view style='text-align:center;font-size:42rpx;'>下班时间:</view>
+    </view>
+    <view class='flex-sub' style=''>
+      <input style='text-align:center;border:1rpx solid #666;text-align:center;width:210rpx;height:70rpx;line-height:70rpx;margin:auto;font-size:45rpx;' placeholder='20:00'></input>
+    </view>
+  </view>
+  <view class="padding bg-white solid-bottom footer">
+    <navigator style='display:inline-block;' url='/pages/index/reservation/staff/modules/jordan/jordan'>
+      <button class='radiu bg-white btnOne'>取消</button>
+    </navigator>
+    <navigator style='display:inline-block;' url='/pages/index/reservation/staff/modules/jordan/jordan'>
+      <button class='radiu bg-orange btnTwo'>确定</button>
+    </navigator>
+  </view>
+</view>

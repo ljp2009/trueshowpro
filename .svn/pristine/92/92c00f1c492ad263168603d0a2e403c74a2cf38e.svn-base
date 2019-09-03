@@ -1,0 +1,43 @@
+/* pages/index/user/customer/getFollow/getFollow.wxss */
+.sum-text1{
+padding-left: 80%;
+font-weight: bold;
+}
+.time-sum1{
+  text-align: center;
+}
+
+.box1{
+  width: 91%;
+  margin: auto;
+
+}
+.paice1{
+ width: 22.3%;
+ float: left;
+ margin-right: 19rpx;
+ margin-top: 15rpx;
+ position: relative;
+
+}
+.paice1 image{
+border: 1rpx solid red;
+height: 145rpx;
+border-radius: 90rpx;
+color: white;
+}
+.paice1 .text-text{
+  padding-left: 5%;
+}
+.paice1 .text-text text{
+  border-radius: 45rpx;
+  background-color: orange;
+  margin-left: 5rpx;
+}
+.icon-sum1{
+font-size: 85%;
+}
+.icon-sum1 text{
+ margin-left: 5%;
+
+}

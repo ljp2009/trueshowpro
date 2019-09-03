@@ -1,0 +1,37 @@
+<!--pages/index/user/customer/pakerByStaff/pakerByStaff.wxml-->
+<cu-custom bgColor="bg-gradual-white" isBack="{{true}}"><view slot="back" ></view><view slot="content"b>技师日记底图</view></cu-custom>
+<view class="containner">
+<view class="containner-img"></view>
+      <view class="count-text">
+      <view class="count-left">
+      <view class=" cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"></view>
+      </view>
+        
+        <view class="count-reght">
+          <view>凯尔 <text class="cuIcon-check" style=" background-color: orange; border-radius:45rpx;color: white;"></text> 
+          <button > 取关</button>
+          </view>
+              <view class="">
+                2019-09-09 12：00
+              </view>
+              <view class="">
+          折磨生出苦难，苦难又会加剧折磨，凡间这无穷的循环，将有我来终结！
+        </view>        
+        </view>
+       
+      </view>
+      <view>
+      </view>
+      <view class="count1-text">
+              <input ></input>  
+              <view class="text-icon">
+             
+                
+              <image src="../../../../../assets/images/index/bullet.png"></image>
+              <text class="cuIcon-messagefill "></text>
+              <text class=" ">12.km</text> 
+            </view>
+      
+      </view> 
+
+</view>

@@ -1,0 +1,114 @@
+/* pages/index/firm/finance/financeIndex/financeIndex.wxss */
+.scrollView{
+  width: 100%;
+}
+.leftFontOne{
+  font-size: 36rpx;
+}
+.leftFontTwo{
+  font-size: 38rpx;
+  font-weight: bold;
+  margin-left: -5px;
+}
+.topOne,.topTwo{
+  color: #555555;
+}
+.topTwo{
+  margin-top: 0;
+  background-color: #F1F1F1;
+}
+.topOne,.topThree{
+  margin-top: 0;
+}
+.rightFont{
+  font-size: 36rpx;
+  margin-right: 10rpx;
+}
+.rightFont>text{
+  display: inline-block;
+}
+.topOnly .rightFont{
+  color: #FF0000;
+  background-color: #FFFFFF;
+}
+.topThree .rightFont{
+  margin-right: 35rpx;
+}
+.performance{
+  color: #FF6600;
+}
+.tailOuterView{
+  background-color: #FFFFFF;
+  width: 100%;
+  height: 1200rpx;
+  padding: 10rpx;
+  overflow: auto;
+}
+.tailView{
+  border: 1rpx solid #999;
+  width: 100%;
+  height: 400rpx;
+  font-size: 35rpx;
+  text-indent: 66rpx;
+  padding: 20rpx;
+  overflow: auto;
+}
+.flexViewReferOne,.flexViewReferTwo,.flexViewReferThree{
+  margin-bottom: 0;
+}
+.flexViewReferOne>.flex-sub>.lg{
+  font-size: 80rpx;
+}
+.flexViewReferThree .padding-sm,.flexViewReferTwo .padding-sm{
+  text-align: center;
+  background-color: #999999;
+  color: #FFFFFF;
+  font-size: 33rpx;
+  margin: 5rpx;
+}
+.flexViewReferThree .yearFlexOne,.flexViewReferThree .yearFlexThree{
+  border: 1rpx solid #999999;
+  background-color: #FFFFFF;
+  color: #555555;
+}
+.flexViewReferTwo .mouthFlexEleven{
+  border: 1rpx solid #999999;
+  background-color: #CCC;
+}
+.flexViewReferTwo .mouthFlexTwelve{
+  border: 1rpx solid #999;
+  background-color: #FFF;
+  color: #999;
+}
+.flexViewReferThree .memberFlexOne{
+  border: 1rpx solid #999;
+  background-color: #FFF;
+  color: #555;
+}
+.flexViewReferOne .padding-sm{
+  text-align: center;
+  font-size: 39rpx;
+  font-weight: bold;
+}
+.TEXTOne{
+  font-size: 36rpx;
+  font-weight: bold;
+  margin: 5rpx;
+}
+.flexViewReferFour{
+  height: 70rpx;
+}
+.flexViewReferFour button{
+  width: 180rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  text-align: center;
+  letter-spacing: 10rpx;
+  background-color: #FF6600;
+  color: #FFF;
+}
+.accountsLink{
+  color: #FF3333;
+  font-size: 33rpx;
+  margin-right: 10rpx;
+}

@@ -1,0 +1,377 @@
+<!--pages/index/user/staff/staffCard/staffCard.wxml-->
+<!-- <text>pages/index/user/staff/staffCard/staffCard.wxml</text> -->
+ <!-- 轮播 -->
+  <!-- <cu-custom bgColor="bg-gradual-red" isBack="{{true}}">
+  <view slot="content"></view>
+</cu-custom> -->
+<view style="height:6%;text-align:center;background-color:rgb(246,246,246);">
+  <view style="width:45%;height:55rpx;display:inline-block;background-color:black;border-radius:0 0 20rpx 20rpx;"></view>
+</view>
+<swiper indicatorDots="{true}" autoplay="{true}" indicator-active-color="#00ae61" style="height:500rpx;background-color:rgb(222,216,216);opacity:0.5%;">
+  <block wx:for="{{imgUrls}}" wx:key="*this">  
+    <swiper-item>
+      <image src="{{item}}" class="slide-image"/>
+      <view class='swipertitle'>
+        <!-- 表头 -->
+        
+        <view class='swipertitle text-lg' hidden="{{navHid}}"  class="cu-item {{index==TabCur?'text-green cur':''}}" wx:for="{{list}}"  bindtap='tabSelect' data-id="{{index}}" style="margin-top:5%;">
+          <!-- <view style="display:inline-block;width:20%"><text>  </text></view>  -->
+           <view style="display:inline-block;width:25%;text-align:center;float:left;" > {{item}}</view>
+           <!-- <view style="display:inline-block;width:25%;text-align:center;" >服务项目</view>
+           <view style="display:inline-block;width:25%;text-align:center;" >作品</view>
+          <view style="display:inline-block;width:25%;text-align:center;" >评价</view> -->
+        </view> 
+      
+        <!-- 表头结束 -->
+        <!-- 约 -->
+        <view >
+                <view  style="display:inline-block;position:fixed;bottom:25%;right:4%;z-index:999;" bindtap="showModal" data-target="DialogModal1">
+          <view class="cu-bar tabbar " style="display:inline-block;">
+                <view class="action">
+                <view class="cuIcon-cu-image">
+                  <view class="btn" >
+                  <text class="btn-yulan text-xxl">约</text>                
+              </view>
+              <view class="cu-tag badge">99+</view>
+                  </view>
+                </view>
+          </view>
+        </view>
+        </view>       
+        <!-- 约结束 -->
+        <!-- 背景 -->
+        <view style="position:fixed;bottom:27%;right:0%;height:21%;width:18%;border-radius:50rpx 0 0 50rpx;background-color:rgb(255,102,0);"></view>
+        <!-- 背景结束 -->
+      </view>
+    </swiper-item>
+  </block>
+</swiper>
+<!-- 轮播 -->
+<!-- 胡敏 -->
+<!-- 详细内容 -->
+<view class="start_k " style="margin-left:7%;margin-top:-30rpx;">
+    <view >
+     <image class="img_big" src='{{webRoot}}/images/index/test.jpg'></image>            
+    </view>  
+    <view class=" padding-lg margin-xs radius text-df" style="width:80%;">
+      <view >
+        <text class="staffName">胡敏</text>   
+        <image src="{{webRoot}}/images/index/icon8.png" class="staff"></image>   
+        <text class="ifAttention">关注</text>
+        <view style="display:inline-block;margin-left:5%;">顾客评价</view>
+      </view>
+     
+      <view class="staffOrder">
+      <text class="styleLittle">经验：<text>435</text></text>    
+        <view style="display:inline-block;margin-right:5%;" >作品赞：4.2k</view>    
+        <text>获关注：4</text>
+      </view>
+      <view class="goodAt " style="margin-top:2%;">     
+        擅长：<text>美甲，彩妆</text>
+        <view style="display:inline-block;margin-left:8%;">动态：6</view>
+      </view>
+    </view>
+</view>
+<!-- 详情 -->
+<!-- 胡敏结束 -->
+<!-- 空闲时段 -->
+<view class="flex shoplist" style="margin-left:7%;margin-top:-2%;" >
+      <view class="arriveTime text-lg" style="margin-right:5%;" >到店时间:</view>
+      <view class=" right text-xs" wx:for="{{dateArr}}" >
+      <view bindtap="chooseDate" data-index="{{index}}" data-item="{{item}}">      
+       <view wx:if="{{index==0}}" style="background-color:rgb(255,102,0);display:inline-block;border:1rpx solid red;" class="roundOne text-xs" > 今</view>
+        <view wx:elif="{{index==1}}" class="roundOne text-xs" style="display:inline-block;background-color:red;"> 明</view>
+        <view wx:elif="{{index==2}}" class="roundOne text-xs" style="display:inline-block;"> 后</view>
+        <view wx:else class="roundOne" style="display:inline-block;">{{item}}</view>
+        </view>
+      </view>
+    </view>
+<!-- 空闲时段结束 -->
+
+<!-- 测试 -->
+<scroll-view class="" scroll-y scroll-with-animation style="height:calc(100vh - 800rpx)" scroll-into-view="main-{{MainCur}}" >
+    <view class=" padding-lr" wx:for="{{list}}" wx:key id="main-{{index}}" style="background-color:white;">
+    <!-- <view wx:if="{{index==0}}">5555555555555555555</view> -->
+      <view class='cu-bar solid-bottom ' >
+        <view  >
+          <!-- <text class='cuIcon-title text-green'></text> {{item}}  -->
+          <view wx:if="{{index==0}}">
+          <text class='cuIcon-title text-green'></text> <text class=" text-lg text-bold">个人信息</text>           </view>
+           <view wx:elif="{{index==1}}">
+          <text class='cuIcon-title text-green'></text> <text class=" text-lg text-bold">服务项目</text>           </view>
+           <view wx:elif="{{index==2}}">
+          <text class='cuIcon-title text-green'></text> <text class=" text-lg text-bold">作品展示</text>           </view>
+           <view wx:elif="{{index==3}}">
+          <text class='cuIcon-title text-green'></text> <text class=" text-lg text-bold">评价</text>           </view>
+        
+        </view>
+        
+      </view>  
+      <!-- 布局内容1 -->
+      <view  wx:if="{{index==0}}" style="background-color:white;">
+          <!-- 个人信息 -->
+<view style="height:2%;border:1rpx solid rgb(227,227,227);background-color:rgb(227,227,227);opacity:0.5%;"></view>
+<view style="margin-left:5%;margin-top:1%;" >
+   
+    <view>
+        <view style="width:97%;margin-top:2%;">
+        身份认证：<view style="display:inline-block;width:75%;text-align:right;">已认证</view>
+        </view>
+        <view style="width:97%;margin-top:2%;">
+        学历证书：有<view style="display:inline-block;width:70%;text-align:right;">
+        <image src="{{webRoot}}/images/index/test.jpg" style="width:40rpx;height:40rpx;margin-left:3%;"></image>
+        <image src="{{webRoot}}/images/index/test.jpg" style="width:40rpx;height:40rpx;margin-left:3%;"></image>
+        <image src="{{webRoot}}/images/index/test.jpg" style="width:40rpx;height:40rpx;margin-left:3%;"></image>
+        </view>
+        </view>
+        <view style="width:95%;margin-top:2%;">
+        空闲时段：从业10年，经验丰富，有专业资格证书公共营养师培训专业，中药调理师证书。
+        </view>     
+    </view>
+    <!-- 机构 -->
+     <view style="width:97%;margin-top:2%;" class="text-lg">
+        隶属机构：
+      </view>
+      <view style="width:97%;margin-top:1%;" class="text-lg">
+        小辣椒美容院<view style="display:inline-block;width:69%;text-align:right;"><image src="{{webRoot}}/images/index/back.png" style="width:40rpx;height:40rpx;top:7rpx;"></image></view>
+      </view>
+      <view style="width:97%;margin-top:2%;" >
+        小岗路100号434之一
+      </view>
+</view>
+<!-- 个人信息结束 -->
+      </view>
+    <!-- 布局内容2 -->
+    <view wx:elif="{{index==1}}">
+        <!-- 服务项目 -->
+<view style="height:2%;border:1rpx solid rgb(227,227,227);background-color:rgb(227,227,227);opacity:0.5%;"></view>
+<view style="margin-left:4%;">
+ 
+   <!--服务项目 测试滑块  美发 美睫/眉 化妆等-->
+  <view style="margin-top:1%;">  
+    <scroll-view scroll-x class="nav" scroll-with-animation scroll-left="{{scrollLeft}}">
+      <view class=" {{index==TabCur?'selectedItem':'selectItemOne'}}" wx:for="{{serviceList.items}}" wx:key bindtap="tabSelect1" data-id="{{index}}" style="display:inline-block;margin-right:3%;width:16%;text-align:center;height:120%;line-height:120%;">
+       <view  style="display:inline-block;magin-bottom:-2%;" >{{item}}</view>
+      </view>          
+    </scroll-view>
+  </view>
+</view>
+<!-- 滑块 -->
+<!-- 中医滑块 -->
+<swiper catchtouchmove="moveLittleSwiper" class="serviceSwiper" style="margin-top:3%;margin-left:5%;">
+        <block wx:for="{{imgs}}" wx:for-index="index" wx:key="swiperItem" wx:for-item="item" >
+          <swiper-item class="swiper-items" >
+            <view>          
+            <view class="cu-list menu-avatar" >
+              <view class="cu-item  " >
+                <view class="flex-sub margin-xs secimg">
+                  <image src="{{webRoot}}/images/index/test1.jpg"/>
+                </view>
+                <view class="content" >
+                  <view class="text-gray text-sm flex" >
+                    <text class="text-black itemTitle text-lg text-bold"> 中医美背推拿60分钟</text>
+                  </view>
+                  <view class="text-gray text-sm flex">
+                    <text class="text-black experice text-sm">10年经验，活筋活络</text>
+                  </view>
+                  <view class="text-gray text-sm flex">
+                    <text class="text-black  text-lg text-bold text-orange">￥120.00</text><text class="text-black textBigOne text-xl" style="margin-right:12%;">元</text><text class="text-black minute text-lg">约60分钟</text>
+                  </view>
+                </view>
+                <view class="action" >
+                  <view class="text-black text-xl"><text class="cuIcon-delete"></text></view>  
+                </view>
+              </view>
+            </view>
+
+            <!-- 服务项目 -->
+            <view class="cu-list menu-avatar">
+              <view class="cu-item  " >
+                <view class="flex-sub margin-xs secimg">
+                  <image src="{{webRoot}}/images/index/test1.jpg"/>
+                </view>
+                <view class="content" >
+                  <view class="text-gray text-sm flex" >
+                    <text class="text-black itemTitle text-lg text-bold"> 中医美背推拿60分钟</text>
+                  </view>
+                  <view class="text-gray text-sm flex">
+                    <text class="text-black experice text-sm">10年经验，活筋活络</text>
+                  </view>
+                  <view class="text-gray text-sm flex">
+                    <text class="text-black  text-lg text-bold text-orange">￥120.00</text><text class="text-black textBigOne text-xl" style="margin-right:12%;">元</text><text class="text-black minute text-lg">约60分钟</text>
+                  </view>
+                </view>
+                <view class="action" >
+                  <view class="text-black text-xl"><text class="cuIcon-delete"></text></view>  
+                </view>
+              </view>
+            </view>
+            <!-- 服务项目 -->   
+     </view>  
+     <!-- 两部分结束 -->
+          </swiper-item>
+        </block>
+</swiper>
+<!-- 服务项目结束  滑块结束 -->
+<!-- 滑块结束 -->
+<!-- 服务项目结束 -->
+    </view>
+    <!-- 布局内容2结束 -->
+     <!-- 布局内容3 -->
+    <view wx:elif="{{index==2}}">
+        <!-- 作品展示 -->
+<view style="height:2%;border:1rpx solid rgb(227,227,227);background-color:rgb(227,227,227);opacity:0.5%;margin-top:1%;"></view>
+<view style="margin-left:5%;maggin-top:1%;">
+  <view style="width:97%;margin-top:1%;" class="text-lg text-bold">
+    作品展示<view style="display:inline-block;width:78%;text-align:right;">569<image src="{{webRoot}}/images/index/back.png" style="width:40rpx;height:40rpx;top:7rpx;" bindtap="showWorks"></image></view>
+  </view>
+  <view>
+    <view style="display:inline-block;width:32%;"><image src="{{webRoot}}/images/index/test.jpg" style="width:90%;height:300rpx;top:7rpx;margin-right:3%;border-radius:5%;"></image></view>
+    <view style="display:inline-block;width:32%;"><image src="{{webRoot}}/images/index/test.jpg" style="width:90%;height:300rpx;top:7rpx;margin-right:3%;border-radius:5%;"></image></view>
+    <view style="display:inline-block;width:32%;"><image src="{{webRoot}}/images/index/test.jpg" style="width:90%;height:300rpx;top:7rpx;margin-right:3%;border-radius:5%;"></image></view>
+  </view>
+</view>
+<!-- 作品展示结束 -->
+    </view>
+    <!-- 布局内容3结束 -->
+    <!-- 布局内容4 -->
+    <view wx:elif="{{index==3}}">
+        <!-- 评价 -->
+<view style="height:2%;border:1rpx solid rgb(227,227,227);background-color:rgb(227,227,227);opacity:0.5%;margin-top:2%;"></view>
+<view style="margin-left:5%;margin-top:1%;">
+  <view style="width:97%;margin-top:1%;" class="text-lg text-bold">
+    评价<view style="display:inline-block;width:87%;text-align:right;">569<image src="{{webRoot}}/images/index/back.png" style="width:40rpx;height:40rpx;top:7rpx;"></image></view>
+  </view>
+  <view style="width:93%;margin-top:2%;border-bottom:1rpx solid gray;">
+      <text>Coco：</text><text>第一次尝试这种效果，非常满意，强烈推荐！</text> 
+  </view>  
+  <view style="width:93%;margin-top:2%;border-bottom:1rpx solid gray;">
+      <text>Coco：</text><text>第一次尝试这种效果，非常满意，强烈推荐！</text> 
+  </view> 
+  <view style="width:93%;margin-top:2%;border-bottom:1rpx solid gray;">
+      <text>Coco：</text><text>第一次尝试这种效果，非常满意，强烈推荐！</text> 
+  </view> 
+  <view style="width:93%;margin-top:2%;border-bottom:1rpx solid gray;">
+      <text>Coco：</text><text>第一次尝试这种效果，非常满意，强烈推荐！强烈推荐</text> 
+  </view> 
+</view>
+<!-- 评价结束 -->
+    </view>
+    <!-- 布局内容4结束 -->
+      <!-- <view class="cu-list menu-avatar "style="background-color:rgb(240,240,240);" >
+        <view class="cu-item" style="background-color:rgb(240,240,240);">
+        11111---{{index}}
+        </view>
+       
+      </view> -->
+      <!-- 每一项布局内容 -->
+
+      <!-- <view class="cu-list menu-avatar">
+        <view class="cu-item">
+        
+        </view>
+       
+      </view>
+
+<view class="cu-list menu-avatar">
+        <view class="cu-item"> -->
+        
+        <!-- </view> -->
+       
+      <!-- </view> -->
+
+
+    </view>
+  </scroll-view>
+<!-- 测试结束 -->
+
+
+
+
+
+<!-- 时间滑块 -->
+<view style="text-align:center;" class="text-lg;">时间滑块</view>
+<!-- 时间滑块结束 -->
+<!-- 滑块 -->
+<!-- 滑块结束 -->  
+
+  
+
+
+
+
+
+
+<view style="margin-top:1%;height:1rpx;"></view>
+<!-- 测试 -->
+
+
+<view class="cu-modal {{modalName=='DialogModal1'?'show':''}}">
+  <view class="cu-dialog">
+  
+    <view class="padding-xl">
+     <!-- 滑块内的布局 -->
+     <view style="width:100%;">
+    <!-- 遍历出来的 image -->
+    <!-- 测试 -->
+    <view class="padding" style="width:100%;text-align:left;margin-left:-13%;">
+      <view  class="cu-avatar round lg margin-left" wx:for="{{2}}" wx:key style="border:4rpx solid orange;background-image:url({{webRoot}}/images/index/test.jpg);" >
+        <view class="cu-tag badge text-white {{index%2==0?' bg-orange':' bg-gray'}}">7</view>
+      </view>
+    </view>
+    <!-- 测试结束 -->
+    <!-- 服务清单 -->
+    <view>
+      <view class="text-lg text-bold" style="border-bottom:1rpx solid rgb(230,230,230);text-align:left;padding-bottom:1%;">
+        服务清单
+      </view>
+      <view style="">
+        <view style="border-bottom:1rpx solid rgb(230,230,230);margin-top:3%;text-align:left;">
+          <view class="text-lg" style="">中医美背部推拿60分钟</view>
+          <view><view style="display:inline-block;margin-right:30%;"><text class="text-red text-bold">￥120.00</text>元</view><view style="display:inline-block;margin-right:20%;">60分钟</view><view class="text-black text-xl" style="display:inline-block;border:1prx solid red;bottom:20rpx;"><view class="cuIcon-delete" style="display:inline-block;"></view></view> </view>
+        </view>
+        <!--  -->
+        <view style="border-bottom:1rpx solid rgb(230,230,230);margin-top:3%;text-align:left;">
+          <view class="text-lg">中医美背部推拿60分钟</view>
+          <view><view style="display:inline-block;margin-right:30%;"><text class="text-red text-bold">￥120.00</text>元</view><view style="display:inline-block;margin-right:20%;">60分钟</view><view class="text-black text-xl" style="display:inline-block;bottom:20rpx;"><text class="cuIcon-delete"></text></view> </view>
+        </view>
+        <!--  -->
+      </view>
+      <!-- 总计 --> 
+      <view>
+      <view  style="text-align:left;margin-top:3%;">
+        <view style="display:inline-block;margin-right:38%;" >总计：</view>
+        <view style="display:inline-block;width:45%;text-align:right;" ><text class="text-red  text-bold">￥120.00</text>元</view>
+      </view>
+      
+        <view style="width:98%;margin-top:2%;text-align:right;">
+        约60分钟
+        </view>
+      </view>
+      <!-- 总计结束 -->
+      <!-- 按钮两个 -->
+      <view style="text-align:left;">
+        <view style="margin-top:5%;">
+        <button style="margin-right:5%;width:35%" class="cu-btn round bg-orange {{shadow?'':''}}" bindtap="intoReservation">转到约单</button>
+        <button style="margin:0 1%;width:55%" class="cu-btn round bg-gray {{shadow?'':''}}" bindtap="hideModal"><text  decode="{{true}}">继&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;续</text></button>
+        <!-- <button class="goodbutton  bg-orange sm" style="border:1rpx solid red;text-align:center;"><text  decode="{{true}}">好&nbsp;&nbsp;&nbsp;&nbsp;的</text></button> -->
+    </view>
+      </view>
+      
+      <!-- 按钮结束 -->
+    </view>
+    <!-- 服务清单结束 -->
+</view>
+<!-- 弹出层布局结束 -->
+     <!-- 布局结束 -->
+    </view>
+   
+  </view>
+</view>
+<!-- 测试结束 -->
+
+
+<!-- 弹出层布局 -->
+
+
+

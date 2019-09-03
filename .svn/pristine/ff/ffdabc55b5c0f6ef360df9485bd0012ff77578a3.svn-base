@@ -1,0 +1,44 @@
+<view  wx:if="{{allShow}}">
+  <view>
+    <text>
+    无法获取地理位置
+    </text>
+  </view>
+  <view>
+     <button class="cu-btn bg-red margin-tb-sm lg" bindtap='getgo'>授权定位</button>
+  </view>
+  <view>  
+      <view>
+          <text>或自行定位</text>
+
+          <view class="cu-form-group">
+            <view class="title">地址选择</view>
+            <view>
+            <picker mode="region" bindchange="RegionChange" value="{{region}}" custom-item="{{customItem}}">
+              <view class="picker">
+                {{region[0]}}，{{region[1]}}，{{region[2]}}
+              </view>
+              
+            </picker>
+            </view>
+            <view>
+   
+  
+           <button bindtap="intomap">点击地图事件</button>
+            <button class="cu-btn bg-red margin-tb-sm lg" bindtap='goto'>进入</button>
+            </view>
+          </view>
+      </view>
+  </view>
+ 
+</view>  
+  
+<!-- 地图 -->  
+<map id="map" wx:if="{{showmap}}"  scale="14" bindcontroltap="controltap" polygons="{{polygons}}" bindregionchange="regionchange" markers="{{markers}}" bindmarkertap="markertap" show-location style="width: 100%; height: 100%;"></map>
+
+
+ 
+ 
+
+
+

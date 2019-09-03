@@ -1,0 +1,68 @@
+<!--pages/index/firm/firmIndex/firmInfo/firmInfo.wxml-->
+<!-- <text>pages/index/firm/firmIndex/firmInfo/firmInfo.wxml</text> -->
+<view style="height:6%;text-align:center;">
+  <view style="width:45%;height:55rpx;display:inline-block;background-color:black;border-radius:0 0 20rpx 20rpx;"></view>
+</view>
+<!--头部 机构信息  -->
+<view class="start_k " style="margin-left:5%;">
+    <view >
+     <image class="img_big" src='{{webRoot}}/images/index/icon11.png'></image>             
+   </view>
+   <view class=" padding-lg margin-xs radius ">
+      <view class="text-xl text-bold">冠乃馨美容美体连锁机构</view>
+      <view class="address text-lg">地址:xxxx223号</view>
+      <view class="firmOne ">     
+       <text class="text-sm">机构</text><image src="{{webRoot}}/images/index/icon8.png" class="staffTwo"></image>   
+        <text class="cuIcon-locationfill kmIcom" ></text>
+       <text class="km text-sm">4KM</text>   
+       <text class="cuIcon-emoji kmIcom"></text>
+       <text class="text-sm">4</text>
+      
+      </view>
+    </view>
+</view>
+<!-- 头部 机构信息结束 -->
+<!-- 约 -->
+    <view>
+        <view >
+            <view  style="display:inline-block;position:fixed;top:25%;right:4%;z-index:999;" bindtap="showModal" data-target="DialogModal1">
+      <view class="cu-bar tabbar " style="display:inline-block;">
+            <view class="action">
+            <view class="cuIcon-cu-image">
+              <view class="btn" >
+              <text class="btn-yulan text-xxl">约</text>                
+          </view>
+          <view class="cu-tag badge" style="margin-left:-10%;"><view style="display:inline-block;border:1rpx solid black;">9</view></view>
+              </view>
+            </view>
+      </view>
+     </view>
+    </view>  
+ <!-- 背景 -->
+    <view style="position:fixed;top:24%;right:0%;height:8%;width:18%;border-radius:50rpx 0 0 50rpx;background-color:rgb(255,102,0);"></view>
+    </view>
+<!-- 背景结束 -->
+<!-- 约结束 -->
+<!-- 活动 成员 -->
+<view style="text-align:center;" class="text-lg">
+  <view style="display:inline-block;border:1rpx solid red;margin-right:5%;margin-left:10%;">活动</view>
+  <view style="display:inline-block;border:1rpx solid red;margin-right:5%;">成员</view>
+  <view style="display:inline-block;border:1rpx solid red;margin-right:5%;">项目</view>
+  <view style="display:inline-block;border:1rpx solid red;margin-right:5%;">简介</view>
+</view>
+<!-- 活动 成员结束 -->
+<!-- 活动部分 -->
+<view>
+<view class="text-lg">活动：活动标题，欢迎光临</view>
+<view>
+      <view   >
+            <view style="display:inline-block;border:1rpx solid red;width:10%;text-align:center;border-radius:15rpx;background-color:orange;margin-right:3%;" class="text-sm">满减</view>
+            <view style="display:inline-block;" class="text-sm">满200减20</view>
+      </view> 
+      <view   >
+            <view style="display:inline-block;border:1rpx solid red;width:10%;text-align:center;border-radius:15rpx;background-color:orange;margin-right:3%;" class="text-sm">折扣</view>
+            <view style="display:inline-block;" class="text-sm">20%</view>
+      </view> 
+</view>
+</view>
+<!-- 活动部分结束 -->

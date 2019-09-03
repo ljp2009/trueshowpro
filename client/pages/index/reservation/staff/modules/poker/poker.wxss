@@ -1,0 +1,80 @@
+.icon-position{
+  position: absolute;
+  top: 70%;
+  left: 45%;
+  font-size: 40rpx
+}
+.clickupload{
+  top:80%;
+  position: absolute;
+  left:30%
+}
+.middleleft,.middleright{
+  vertical-align: top
+}
+/* 尾部有1的是右边带分割线的框框的上面部分的类 */
+.icon-position1{
+  position: absolute;
+  top: 27%;
+  left: 45%;
+  font-size: 40rpx
+}
+.clickupload1{
+  top:35%;
+  position: absolute;
+}
+/* 尾部有2的是右边带分割线的框框的下面部分类 */
+.icon-position2{
+  position: absolute;
+  top: 78%;
+  left: 45%;
+  font-size: 40rpx
+}
+.clickupload2{
+  top:85%;
+  position: absolute;
+  left:30%
+}
+.add-img{
+border: 1rpx solid gray;
+width:280rpx;
+height: 500rpx;
+position: relative;
+display: inline-block;
+background-color: white;
+}
+button{
+  width:250rpx;
+  letter-spacing: 15rpx;
+}
+.rightimage{
+  margin-left:35rpx 
+}
+/* 模态框 */
+.modal-mask {
+width: 100%;
+height: 100%;
+position: fixed;
+top: 0;
+left: 0;
+background: #000;
+opacity: 0.5;
+overflow: hidden;
+z-index: 9000;
+color: #fff;
+}
+.modal-dialog {
+width: 630rpx;
+overflow: hidden;
+position: fixed;
+top: 50%;
+left: -30rpx;
+line-height: 50rpx;
+z-index: 9999;
+background: #f9f9f9;
+margin: -180rpx 105rpx;
+border-radius: 36rpx;
+}
+button{
+  width:220rpx;
+}

@@ -1,0 +1,26 @@
+/* pages/index/firm/firmIndex/searchFirm/searchFirm.wxss */
+/* 搜索加入 */
+.join{
+  font-size: 36rpx;
+  padding: 5rpx;
+  letter-spacing: 3rpx;
+  text-align: center;
+  margin: 50rpx auto 30rpx auto;
+}
+.searchFirm{
+  width: 90%;
+  margin: auto;
+}
+.searchFirm .btnOne{
+  color: black;
+  font-size: 36rpx;
+  height: 90rpx;
+  text-align: center;
+}
+.searchFirm .btnTwo{
+  height: 88rpx;
+  line-height: 88rpx;
+   letter-spacing:30rpx;
+   font-size: 42rpx;
+   color: white;
+}

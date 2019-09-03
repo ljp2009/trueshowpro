@@ -1,0 +1,275 @@
+<!--pages/index/firm/firmCard/firmMessage/firmMessage.wxml-->
+<!-- class="hidOne"/"hidTwo" 交替dispaly:none; -->
+
+<view class='scrollView'>
+  <cu-custom bgColor="bg-gray" isBack="{{true}}" style="color:#000;">
+    <view slot="backText" style='font-size:36rpx;color:#000;'>返回</view>
+    <view slot="content" style='font-size:39rpx;margin-left:-50rpx;color:#000;'>机构信息主页</view>
+  </cu-custom>
+  <view style='background-color:#FF6600;position:fixed;top:27%;right:0;height:120rpx;width:3%;z-index:666;'></view>
+  <view style='background-color:#FF6000;position:fixed;top:27%;right:3%;height:120rpx;width:120rpx;border-radius:50% 0 0 50%;z-index:667;'>
+    <view style='font-size:60rpx;height:100rpx;width:100rpx;line-height:100rpx;text-align:center;border-radius:50%;margin-left:10rpx;margin-top:10rpx;background-color:#666;color:#FFF;'>约</view>
+  </view>
+  <view style='position:fixed;right:3%;top:27%;font-size:32rpx;width:40rpx;height:40rpx;line-height:40rpx;border-radius:50%;background-color:#FF0000;text-align:center;color:#FFF;z-index:668;'>2</view>
+  <!-- 经营状态 -->
+  <view class='hidOne'>
+    <view style='margin-top:20rpx;border-bottom:1rpx solid #999;'>
+      <view style='display:inline-block;max-width:20%;width:800rpx;text-align:center;margin-top:4rpx;'>
+        <image src='http://ljp.jujiaoweb.com/static/images/index/icon11.png ' style='width:100rpx;height:100rpx;border-radius:50%;'></image>
+        <image src='http://ljp.jujiaoweb.com/static/images/index/icon12.png ' style='width:100rpx;height:100rpx;border-radius:50%;'></image>
+      </view>
+      <view style='height:260rpx;display:inline-block;vertical-align:top;max-width:80%;width:900rpx;'>
+        <view style='font-size:45rpx;color:#133;font-weight:bold;font-family:"微软雅黑"'>寇乃馨美容美体连锁机构</view>
+        <view style='font-size:31rpx;color:#133;font-family:"微软雅黑";padding:10rpx 0;'>地址：晓港中路323号434</view>
+        <view style='font-size:31rpx;color:#133;font-family:"微软雅黑";padding:10rpx 0;'>
+          机构
+          <text class="cuIcon-roundcheckfill  text-block" style='margin:0 10rpx;'></text>
+          <text class="cuIcon-locationfill  text-black" style='margin-left:30rpx;'></text>8.5km
+          <navigator url='/pages/index/firm/firmCard/firmStaff/firmStaff' style='display:inline-block;'>
+            <text class="cuIcon-emoji  text-black" style='margin-left:30rpx;'></text>4</navigator>
+        </view>
+        <view class="flex  p-xs mb-sm" style='font-size:38rpx;color:#133;font-family:"微软雅黑";padding:10rpx 28% 0 0;'>
+          <view class="flex-sub " style='color:#FF7711;'>活动</view>
+          <view class="flex-sub " style='color:#FF7711;'>成员</view>
+          <view class="flex-sub " style='color:#FF7711;'>项目</view>
+          <view class="flex-sub " style='color:#FF7711;'>简介</view>
+        </view>
+      </view>
+    </view>
+    <view style='font-size:36rpx;height:60rpx;line-height:60rpx;margin-left:20rpx;'>活动：活动标题，欢迎光临</view>
+    <view style='margin-left:20rpx;'>
+      <text style='background-color:#FF6600;padding:0 25rpx 0 20rpx;font-size:26rpx;vertical-align:middle;color:#FFF;border-radius:30rpx;margin-right:30rpx;'>满减</text>
+      <text style='font-size:31rpx;vertical-align:middle;'>满200减20</text>
+    </view>
+    <view style='padding-left:20rpx;padding-bottom:10rpx;'>
+      <text style='background-color:#FF6600;padding:0 25rpx 0 20rpx;font-size:26rpx;vertical-align:middle;color:#FFF;border-radius:30rpx;margin-right:30rpx;'>折扣</text>
+      <text style='font-size:31rpx;vertical-align:middle;'>20%</text>
+    </view>
+    <view class="cu-bar bg-white solid-bottom margin-top" style='margin-left:20rpx;margin-right:20rpx;margin-bottom:16rpx;'>
+      <view class="action" style='margin-left:10rpx;'>
+        <view style='font-size:36rpx;color:#133;'>成员技师：</view>
+      </view>
+      <view>
+        <navigator url='/pages/index/firm/firmCard/firmStaff/firmStaff'>
+          <view style='font-size:36rpx;color:#133;margin-right:40rpx;'>
+            <text class="cuIcon-emoji  text-black" style='margin-right:12rpx;'></text>4</view>
+        </navigator>
+      </view>
+    </view>
+    <view class="flex  p-xs mb-sm textFlexWrapOne">
+      <view class="flex-sub  textFlex">
+        <image src='http://ljp.jujiaoweb.com/static/images/index/qTwo.png' style='width:160rpx;height:160rpx;border-radius:50%;'></image>
+      </view>
+      <view class="flex-sub  textFlex">
+        <image src='http://ljp.jujiaoweb.com/static/images/index/qTwo.png' style='width:160rpx;height:160rpx;border-radius:50%;'></image>
+      </view>
+      <view class="flex-sub  textFlex">
+        <image src='http://ljp.jujiaoweb.com/static/images/index/qTwo.png' style='width:160rpx;height:160rpx;border-radius:50%;'></image>
+      </view>
+      <view class="flex-sub  textFlex">
+        <image src='http://ljp.jujiaoweb.com/static/images/index/qTwo.png' style='width:160rpx;height:160rpx;border-radius:50%;'></image>
+      </view>
+    </view>
+    <view class="flex  p-xs mb-sm textFlexWrapTwo">
+      <view class="flex-sub  textFlex">迪丽热巴
+        <text class="cuIcon-roundcheckfill  text-orange"></text>
+      </view>
+      <view class="flex-sub  textFlex">迪丽热巴
+        <text class="cuIcon-roundcheckfill  text-orange"></text>
+      </view>
+      <view class="flex-sub  textFlex">迪丽热巴
+        <text class="cuIcon-roundcheckfill  text-orange"></text>
+      </view>
+      <view class="flex-sub  textFlex">迪丽热巴
+        <text class="cuIcon-roundcheckfill  text-orange"></text>
+      </view>
+    </view>
+    <view class="flex  p-xs mb-sm textFlexWrapThree">
+      <view class="flex-sub  textFlex">
+        <view class="flex  p-xs mb-sm">
+          <view class="flex-sub">
+            <image src='http://ljp.jujiaoweb.com/images/index/star_light.png' style='width:32rpx;height:32rpx;' bindtap='incomeHomeLink'></image>
+          </view>
+          <view class="flex-sub">
+            <image src='http://ljp.jujiaoweb.com/images/index/star_light.png' style='width:32rpx;height:32rpx;' bindtap='incomeHomeLink'></image>
+          </view>
+          <view class="flex-sub">
+            <image src='http://ljp.jujiaoweb.com/images/index/star_light.png' style='width:32rpx;height:32rpx;' bindtap='incomeHomeLink'></image>
+          </view>
+          <view class="flex-sub">
+            <image src='http://ljp.jujiaoweb.com/images/index/star_light.png' style='width:32rpx;height:32rpx;' bindtap='incomeHomeLink'></image>
+          </view>
+          <view class="flex-sub">
+            <image src='http://ljp.jujiaoweb.com/images/index/star_black.png' style='width:32rpx;height:32rpx;'></image>
+          </view>
+        </view>
+      </view>
+      <view class="flex-sub  textFlex">
+        <view class="flex  p-xs mb-sm">
+          <view class="flex-sub">
+            <image src='http://ljp.jujiaoweb.com/images/index/star_light.png' style='width:32rpx;height:32rpx;' bindtap='incomeHomeLink'></image>
+          </view>
+          <view class="flex-sub">
+            <image src='http://ljp.jujiaoweb.com/images/index/star_light.png' style='width:32rpx;height:32rpx;' bindtap='incomeHomeLink'></image>
+          </view>
+          <view class="flex-sub">
+            <image src='http://ljp.jujiaoweb.com/images/index/star_light.png' style='width:32rpx;height:32rpx;' bindtap='incomeHomeLink'></image>
+          </view>
+          <view class="flex-sub">
+            <image src='http://ljp.jujiaoweb.com/images/index/star_light.png' style='width:32rpx;height:32rpx;' bindtap='incomeHomeLink'></image>
+          </view>
+          <view class="flex-sub">
+            <image src='http://ljp.jujiaoweb.com/images/index/star_black.png' style='width:32rpx;height:32rpx;'></image>
+          </view>
+        </view>
+      </view>
+      <view class="flex-sub  textFlex">
+        <view class="flex  p-xs mb-sm">
+          <view class="flex-sub">
+            <image src='http://ljp.jujiaoweb.com/images/index/star_light.png' style='width:32rpx;height:32rpx;' bindtap='incomeHomeLink'></image>
+          </view>
+          <view class="flex-sub">
+            <image src='http://ljp.jujiaoweb.com/images/index/star_light.png' style='width:32rpx;height:32rpx;' bindtap='incomeHomeLink'></image>
+          </view>
+          <view class="flex-sub">
+            <image src='http://ljp.jujiaoweb.com/images/index/star_light.png' style='width:32rpx;height:32rpx;' bindtap='incomeHomeLink'></image>
+          </view>
+          <view class="flex-sub">
+            <image src='http://ljp.jujiaoweb.com/images/index/star_light.png' style='width:32rpx;height:32rpx;' bindtap='incomeHomeLink'></image>
+          </view>
+          <view class="flex-sub">
+            <image src='http://ljp.jujiaoweb.com/images/index/star_black.png' style='width:32rpx;height:32rpx;'></image>
+          </view>
+        </view>
+      </view>
+      <view class="flex-sub  textFlex">
+        <view class="flex  p-xs mb-sm">
+          <view class="flex-sub">
+            <image src='http://ljp.jujiaoweb.com/images/index/star_light.png' style='width:32rpx;height:32rpx;' bindtap='incomeHomeLink'></image>
+          </view>
+          <view class="flex-sub">
+            <image src='http://ljp.jujiaoweb.com/images/index/star_light.png' style='width:32rpx;height:32rpx;' bindtap='incomeHomeLink'></image>
+          </view>
+          <view class="flex-sub">
+            <image src='http://ljp.jujiaoweb.com/images/index/star_light.png' style='width:32rpx;height:32rpx;' bindtap='incomeHomeLink'></image>
+          </view>
+          <view class="flex-sub">
+            <image src='http://ljp.jujiaoweb.com/images/index/star_light.png' style='width:32rpx;height:32rpx;' bindtap='incomeHomeLink'></image>
+          </view>
+          <view class="flex-sub">
+            <image src='http://ljp.jujiaoweb.com/images/index/star_black.png' style='width:32rpx;height:32rpx;'></image>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="cu-bar bg-white solid-bottom margin-top" style='margin-left:20rpx;margin-right:20rpx;'>
+      <view style='font-size:36rpx;color:#133;margin-left:10rpx;'>服务项目：</view>
+    </view>
+    <view style="height:2%;border:1rpx solid rgb(227,227,227);background-color:rgb(227,227,227);opacity:0.5%;"></view>
+    <view style="margin-left:4%;">
+      <view style="margin-top:1%;">
+        <scroll-view scroll-x class="nav" scroll-with-animation scroll-left="{{scrollLeft}}">
+          <view class=" {{index==TabCur?'selectedItem':'selectItemOne'}}" wx:for="{{serviceList.items}}" wx:key bindtap="tabSelect1" data-id="{{index}}" style="display:inline-block;margin-right:3%;width:18%;text-align:center;height:160%;line-height:160%;font-size:32rpx;color:#FF6600;background-color:#EEE;border-radius:15rpx;">
+            <view style="display:inline-block;magin-bottom:-2%;">{{item}}</view>
+          </view>
+        </scroll-view>
+      </view>
+    </view>
+    <view style='margin-top:20rpx;margin-right:50rpx;margin-left:20rpx;'>
+      <view style='display:inline-block;max-width:28%;text-align:center;padding-top:10rpx;width:170rpx;height:170rpx;overflow:hidden;'>
+        <navigator url='../serveItem/serveItem'>
+          <image src='http://ljp.jujiaoweb.com/static/images/index/icon17.jpg ' style='width:170rpx;height:170rpx;'></image>
+        </navigator>
+      </view>
+      <view style='display:inline-block;vertical-align:top;max-width:60%;width:900rpx;'>
+        <navigator url='../serveItem/serveItem' style='margin-left:10rpx;'>
+          <view style='font-size:40rpx;color:#133;font-family:"粗体";margin-top:10rpx;'>中医背部推拿60分钟</view>
+          <view style='font-size:29rpx;color:#133;font-family:"微软雅黑";padding:10rpx 0;'>10年经验，舒筋活络</view>
+          <view style='margin-right:30rpx;'>
+            <view style='font-size:31rpx;color:#133;font-family:"微软雅黑";display:inline-block;float:left;'>
+              <text style='color:#F00;font-size:44rpx;'>￥120.00</text> 元</view>
+            <view style='font-size:31rpx;color:#133;font-family:"微软雅黑";display:inline-block;float:right;padding-top:12rpx;'>约60分钟</view>
+          </view>
+        </navigator>
+      </view>
+      <view style='display:inline-block;max-width:12%;width:800rpx;text-align:center;margin-top:4rpx;'>
+        <navigator url='/pages/index/firm/firmCard/choiceStaff/choiceStaff'>
+          <image src='/assets/images/index/add.png' style='width:80rpx;height:80rpx;background-color:#FF6600;border-radius:50%;margin-bottom:40rpx;margin-left:45rpx;'></image>
+        </navigator>
+      </view>
+    </view>
+    <view style='margin:0 18rpx;border:1rpx solid #BBB;'></view>
+    <view style='margin-right:50rpx;margin-left:20rpx;'>
+      <view style='display:inline-block;max-width:28%;text-align:center;padding-top:10rpx;width:170rpx;height:170rpx;overflow:hidden;'>
+        <navigator url='../serveItem/serveItem'>
+          <image src='http://ljp.jujiaoweb.com/static/images/index/icon17.jpg ' style='width:170rpx;height:170rpx;'></image>
+        </navigator>
+      </view>
+      <view style='display:inline-block;vertical-align:top;max-width:60%;width:900rpx;'>
+        <navigator url='../serveItem/serveItem' style='margin-left:10rpx;'>
+          <view style='font-size:40rpx;color:#133;font-family:"粗体";margin-top:10rpx;'>中医背部推拿60分钟</view>
+          <view style='font-size:29rpx;color:#133;font-family:"微软雅黑";padding:10rpx 0;'>10年经验，舒筋活络</view>
+          <view style='margin-right:30rpx;'>
+            <view style='font-size:31rpx;color:#133;font-family:"微软雅黑";display:inline-block;float:left;'>
+              <text style='color:#F00;font-size:44rpx;'>￥120.00</text> 元</view>
+            <view style='font-size:31rpx;color:#133;font-family:"微软雅黑";display:inline-block;float:right;padding-top:12rpx;'>约60分钟</view>
+          </view>
+        </navigator>
+      </view>
+      <view style='display:inline-block;max-width:12%;width:800rpx;text-align:center;margin-top:4rpx;'>
+        <navigator url='/pages/index/firm/firmCard/choiceStaff/choiceStaff'>
+          <image src='/assets/images/index/add.png' style='width:80rpx;height:80rpx;background-color:#FF6600;border-radius:50%;margin-bottom:40rpx;margin-left:45rpx;'></image>
+        </navigator>
+      </view>
+    </view>
+    <view style='font-size:36rpx;color:#133;height:60rpx;line-height:60rpx;margin-left:30rpx;' class="margin-top">机构简介：</view>
+    <view style='font-size:30rpx;margin-left:30rpx;text-indent:30rpx;margin-bottom:60rpx;'>采用美国进口Lash be long品牌空心睫毛，美国进口阿拉伯树胶（防 敏无刺激）双眼160根，五点定位一对一分层嫁接方法，舒适自然，零 负重感。</view>
+    <view style='font-size:36rpx;color:#133;height:60rpx;line-height:60rpx;margin-left:20rpx;' class="margin-top">场所</view>
+    <swiper class="screen-swiper " indicator-dots="true" autoplay="true">
+      <swiper-item wx:key>
+        <image src="http://ljp.jujiaoweb.com/static/images/index/qFour.png"></image>
+      </swiper-item>
+      <swiper-item wx:key>
+        <image src="http://ljp.jujiaoweb.com/static/images/index/qFour.png"></image>
+      </swiper-item>
+      <swiper-item wx:key>
+        <image src="http://ljp.jujiaoweb.com/static/images/index/qFour.png"></image>
+      </swiper-item>
+    </swiper>
+    <view style='font-size:36rpx;color:#133;height:60rpx;line-height:60rpx;margin-left:20rpx;margin-bottom:20rpx;' class="margin-top">仪器和服务过程</view>
+    <swiper class="screen-swiper " indicator-dots="true" autoplay="true">
+      <swiper-item wx:key>
+        <image src="http://ljp.jujiaoweb.com/static/images/index/qFour.png"></image>
+      </swiper-item>
+      <swiper-item wx:key>
+        <image src="http://ljp.jujiaoweb.com/static/images/index/qFour.png"></image>
+      </swiper-item>
+      <swiper-item wx:key>
+        <image src="http://ljp.jujiaoweb.com/static/images/index/qFour.png"></image>
+      </swiper-item>
+    </swiper>
+  </view>
+  <view style='height:30rpx;background-color:#FFF;'></view>
+  <!-- 非经营状态如下 -->
+  <view style='margin-top:20rpx;border-bottom:1rpx solid #999;' class='hidTwo'>
+    <view style='display:inline-block;max-width:20%;width:800rpx;text-align:center;margin-top:4rpx;'>
+      <image src='http://ljp.jujiaoweb.com/static/images/index/icon11.png' style='width:100rpx;height:100rpx;border-radius:50%;'></image>
+      <image src='http://ljp.jujiaoweb.com/static/images/index/icon12.png ' style='width:100rpx;height:100rpx;border-radius:50%;'></image>
+    </view>
+    <view style='height:200rpx;display:inline-block;vertical-align:top;max-width:80%;width:900rpx;'>
+      <view style='font-size:45rpx;color:#000;font-weight:bold;font-family:"微软雅黑"'>寇乃馨美容美体连锁机构</view>
+      <view style='font-size:31rpx;color:#133;font-family:"微软雅黑";padding:10rpx 0;'>地址：晓港中路323号434</view>
+      <view style='font-size:31rpx;color:#133;font-family:"微软雅黑";padding:10rpx 0;'>
+        机构
+        <text class="cuIcon-roundcheckfill  text-block" style='margin:0 10rpx;'></text>
+        <text class="cuIcon-locationfill  text-black" style='margin-left:30rpx;'></text>8.5km
+        <navigator url='/pages/index/firm/firmCard/serveItem/serveItem' style='display:inline-block;'>
+          <text class="cuIcon-emoji  text-black" style='margin-left:30rpx;'></text>4</navigator>
+      </view>
+    </view>
+    <view style='font-size:36rpx;height:60rpx;line-height:60rpx;margin-left:20rpx;color:#000;'>该机构在非正常经营，可能原因如下：</view>
+    <view style='font-size:33rpx;height:60rpx;line-height:60rpx;margin-left:20rpx;'>1、暂停线上营业</view>
+    <view style='font-size:33rpx;height:60rpx;line-height:60rpx;margin-left:20rpx;'>2、自主或被强制退出平台</view>
+    <view style='height:30rpx;background-color:#FFF;'></view>
+  </view>
+</view>

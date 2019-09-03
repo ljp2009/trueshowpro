@@ -1,0 +1,20 @@
+<!--pages/index/firm/joinStaff/join/join.wxml-->
+<cu-custom bgColor="bg-gray" isBack="{{true}}" style="color:#000;">
+  <view slot="backText" style='font-size:36rpx;color:#000;'>返回</view>
+  <view slot="content" style='font-size:39rpx;margin-left:-50rpx;color:#000;'>加入机构</view>
+</cu-custom>
+<view class='bg-white' style='position:relative;height:400rpx;padding-top:45rpx;'>
+  <view style='text-align:center;color:#333;font-size:36rpx;'>你是否确认作为成员加入：</view>
+  <view style='height:20rpx;'></view>
+  <view style='text-align:center;color:#333;font-weight:bold;font-size:42rpx;'>欢欢健身俱乐部</view>
+  <view style='height:60rpx;'></view>
+  <view style='text-align:center;color:#666;font-size:35rpx;'>（需等待机构负责人审核通过）</view>
+  <view class="padding bg-white solid-bottom footer">
+    <navigator style='display:inline-block;' url='/pages/index/firm/joinStaff/searchFirm/searchFirm'>
+      <button class='radiu bg-white btnOne'>取消</button>
+    </navigator>
+    <navigator style='display:inline-block;' url='/pages/index/firm/joinStaff/staffIndex/staffIndex'>
+      <button class='radiu bg-orange btnTwo'>确定</button>
+    </navigator>
+  </view>
+</view>

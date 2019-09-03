@@ -1,0 +1,145 @@
+<!--pages/index/firm/firmCard/serveItem/serveItem.wxml-->
+<view class='scrollView'>
+  <cu-custom bgColor="bg-gray" isBack="{{true}}" style="color:#000;">
+    <view slot="backText" style='font-size:36rpx;color:#000;'>返回</view>
+    <view slot="content" style='font-size:39rpx;margin-left:-50rpx;color:#000;'>服务项目详情</view>
+  </cu-custom>
+  <view style='background-color:#FF6600;position:fixed;top:27%;right:0;height:120rpx;width:3%;z-index:666;'></view>
+  <view style='background-color:#FF6000;position:fixed;top:27%;right:3%;height:120rpx;width:120rpx;border-radius:50% 0 0 50%;z-index:667;'>
+    <view style='font-size:60rpx;height:100rpx;width:100rpx;line-height:100rpx;text-align:center;border-radius:50%;margin-left:10rpx;margin-top:10rpx;background-color:#666;color:#FFF;'>约</view>
+  </view>
+  <view style='position:fixed;right:3%;top:27%;font-size:32rpx;width:40rpx;height:40rpx;line-height:40rpx;border-radius:50%;background-color:#FF0000;text-align:center;color:#FFF;z-index:668;'>2</view>
+  <swiper class="screen-swiper " indicator-dots="true" autoplay="true" style='font-size:10rpx;'>
+    <swiper-item wx:key>
+      <image src="http://ljp.jujiaoweb.com/static/images/index/qFour.png"></image>
+    </swiper-item>
+    <swiper-item wx:key>
+      <image src="http://ljp.jujiaoweb.com/static/images/index/qFour.png"></image>
+    </swiper-item>
+    <swiper-item wx:key>
+      <image src="http://ljp.jujiaoweb.com/static/images/index/qFour.png"></image>
+    </swiper-item>
+  </swiper>
+  <view style='margin-top:20rpx;margin-left:16rpx;'>
+    <view style="font-size:42rpx;color:#FF6600;display:inline-block;">￥188.00-￥398.00</view>
+    <view style='display:inline-block;height:50rpx;line-height:50rpx;font-size:30rpx;float:right;font-family:"微软雅黑";margin-right:15rpx;'>6人已体验</view>
+  </view>
+  <view style='margin-left:20rpx;'>
+    <view style="font-size:30rpx;height:50rpx;line-height:50rpx;font-family:'微软雅黑';display:inline-block;">到店后设计/选择/定制后确定价格</view>
+    <view style='display:inline-block;height:50rpx;line-height:50rpx;font-size:30rpx;margin-right:15rpx;float:right;'>耗时：120分钟</view>
+  </view>
+  <view style='border:5rpx solid #F0F0F0'></view>
+  <view style='margin-left:17rpx;font-size:36rpx;font-weight:bold;font-family:"微软雅黑";color:#333;'>自然款日式美睫160根根根分明</view>
+  <view style='margin-left:17rpx;font-size:30rpx;'>多种密度根数可供选择，自然卷曲，靓丽动人</view>
+  <view class='hidOne' style='padding-bottom:30rpx;'>
+    <view style="height:20rpx;"></view>
+    <view style='font-size:37rpx;height:60rpx;line-height:60rpx;margin-left:18rpx;'>活动：</view>
+    <view style='margin-left:18rpx;margin-bottom:20rpx;'>
+      <text style='background-color:#FF6600;padding:0 25rpx 0 20rpx;font-size:26rpx;vertical-align:middle;color:#FFF;border-radius:30rpx;margin-right:30rpx;'>满减</text>
+      <text style='font-size:30rpx;vertical-align:middle;'>满200减20</text>
+    </view>
+    <view style='font-size:37rpx;height:50rpx;line-height:50rpx;margin-left:18rpx;'>项目描述：</view>
+    <view style='font-size:30rpx;height:126rpx;line-height:42rpx;margin-left:18rpx;'>采用美国进口Lash be long品牌空心睫毛，美国进口阿拉伯树胶(防 敏无刺激)双眼160根，五点定位一对一分层嫁接方法，舒适自然，零 负重感。</view>
+    <view style='font-size:30rpx;margin-left:19rpx;'>
+      <text style='font-size:33rpx;vertical-align:middle;'>*</text> 根据每位顾客眼型进行私人定制
+    </view>
+    <view style='font-size:30rpx;margin-left:19rpx;'>
+      <text style='font-size:33rpx;vertical-align:middle;'>*</text> 睫毛翘度:C/B/J
+    </view>
+    <view style='font-size:30rpx;margin-left:19rpx;'>
+      <text style='font-size:33rpx;vertical-align:middle;'>*</text> 睫毛直径：0.12mm*
+    </view>
+    <view style='font-size:30rpx;margin-left:19rpx;'>
+      <text style='font-size:33rpx;vertical-align:middle;'>*</text> 长度分为：8mm-12mm（个人效果，图片仅供参考）
+    </view>
+    <view style='font-size:30rpx;margin-left:19rpx;'>
+      <text style='font-size:33rpx;vertical-align:middle;'>*</text> 维持：20天 项目服务包含卸睫毛
+    </view>
+    <view style='border:5rpx solid #F0F0F0'></view>
+    <view style='font-size:37rpx;height:60rpx;line-height:60rpx;margin-left:18rpx;'>咨询：</view>
+    <view style='margin:20rpx -15rpx;'>
+      <view style='display:inline-block;max-width:20%;width:800rpx;text-align:center;margin-top:-10rpx;'>
+        <image src='http://ljp.jujiaoweb.com/static/images/index/qOne.png ' style='width:120rpx;height:120rpx;border-radius:50%;border:6rpx solid #BBB;'></image>
+      </view>
+      <view style='height:100rpx;display:inline-block;vertical-align:top;max-width:80%;width:900rpx;'>
+        <view style='font-size:38rpx;color:#133;font-weight:bold;font-family:"微软雅黑"'>Cath：</view>
+        <view style='font-size:31rpx;color:#133;font-family:"微软雅黑";padding:10rpx 0;'>请问有200根密度的吗？</view>
+      </view>
+    </view>
+    <view style='margin:20rpx -15rpx;'>
+      <view style='display:inline-block;max-width:20%;width:800rpx;text-align:center;margin-top:-10rpx;'>
+        <image src='http://ljp.jujiaoweb.com/static/images/index/qOne.png ' style='width:120rpx;height:120rpx;border-radius:50%;border:6rpx solid #BBB;'></image>
+      </view>
+      <view style='height:100rpx;display:inline-block;vertical-align:top;max-width:80%;width:900rpx;'>
+        <view style='font-size:38rpx;color:#133;font-weight:bold;font-family:"微软雅黑"'>Cath：</view>
+        <view style='font-size:31rpx;color:#133;font-family:"微软雅黑";padding:10rpx 0;'>请问有200根密度的吗？</view>
+      </view>
+    </view>
+    <view style='border:3rpx solid #B3B3B3;margin:0 18rpx;'></view>
+    <view style='margin:20rpx -15rpx;'>
+      <view style='display:inline-block;max-width:20%;width:800rpx;text-align:center;margin-top:-10rpx;'>
+        <image src='http://ljp.jujiaoweb.com/static/images/index/qOne.png ' style='width:120rpx;height:120rpx;border-radius:50%;border:6rpx solid #BBB;'></image>
+      </view>
+      <view style='height:120rpx;display:inline-block;vertical-align:top;max-width:80%;width:900rpx;'>
+        <view style='font-size:38rpx;color:#133;font-weight:bold;font-family:"微软雅黑"'>菜菜子：</view>
+        <view style='font-size:31rpx;color:#133;font-family:"微软雅黑";padding:10rpx 0;'>
+          <textarea style='border:1rpx solid #CCC;height:60rpx;line-height:60rpx;max-width:60%;display:inline-block;padding-left:10rpx;'></textarea>
+          <button style='background-color:#FF5500;color:#FFF;display:inline-block;height:62rpx;line-height:62rpx;font-size:36rpx;width:20%;letter-spacing:10rpx;width:160rpx;margin-left:10rpx;text-align:center;'>咨询</button>
+        </view>
+      </view>
+    </view>
+    <view style="height:30rpx;"></view>
+    <view style='margin:20rpx 0;border-bottom:1rpx solid #999;'>
+      <view style='display:inline-block;max-width:32%;width:800rpx;text-align:center;margin-top:4rpx;'>
+        <image src='http://ljp.jujiaoweb.com/static/images/index/qTwo.png ' style='width:200rpx;height:200rpx;border-radius:50%;border:2rpx solid #CCC;'></image>
+      </view>
+      <view style='height:160rpx;display:inline-block;vertical-align:top;max-width:48%;width:900rpx;'>
+        <view style='font-size:45rpx;color:#133;font-weight:bold;font-family:"微软雅黑"'>青花瓷美甲店</view>
+        <view style='font-size:31rpx;color:#133;font-family:"微软雅黑";padding:10rpx 0;'>小岗路100号434之一</view>
+        <view style='margin:0 20rpx 20rpx 0;display:inline-block;max-width:60%;'>
+          <view class="flex  p-xs mb-sm textFlexWrapTwo">
+            <view class="flex-sub  textFlex" style='font-size:32rpx;'>迪丽热巴
+              <text class="cuIcon-roundcheckfill  text-orange"></text>
+            </view>
+          </view>
+          <view class="flex  p-xs mb-sm textFlexWrapThree">
+            <view class="flex-sub  textFlex">
+              <view class="flex  p-xs mb-sm" style='width:145rpx;'>
+                <view class="flex-sub">
+                  <image src='http://ljp.jujiaoweb.com/static/images/index/star_light.png' style='width:32rpx;height:32rpx;' bindtap='incomeHomeLink'></image>
+                </view>
+                <view class="flex-sub">
+                  <image src='http://ljp.jujiaoweb.com/static/images/index/star_light.png' style='width:32rpx;height:32rpx;' bindtap='incomeHomeLink'></image>
+                </view>
+                <view class="flex-sub">
+                  <image src='http://ljp.jujiaoweb.com/static/images/index/star_light.png' style='width:32rpx;height:32rpx;' bindtap='incomeHomeLink'></image>
+                </view>
+                <view class="flex-sub">
+                  <image src='http://ljp.jujiaoweb.com/static/images/index/star_light.png' style='width:32rpx;height:32rpx;' bindtap='incomeHomeLink'></image>
+                </view>
+                <view class="flex-sub">
+                  <image src='http://ljp.jujiaoweb.com/static/images/index/star_black.png' style='width:32rpx;height:32rpx;'></image>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view style='height:100rpx;display:inline-block;vertical-align:top;max-width:80%;width:900rpx;max-width:40%;'>
+          <navigator url='/pages/index/firm/firmCard/choiceStaff/choiceStaff'>
+            <view style='font-size:38rpx;color:#133;font-weight:bold;font-family:"微软雅黑";color:#FF6600;margin:10rpx 0 0 0;'>换技师</view>
+          </navigator>
+        </view>
+      </view>
+      <button style='background-color:#FF5500;color:#FFF;display:inline-block;height:200rpx;width:160rpx;text-align:center;max-width:18%;float:right;position:relative;right:10rpx;top:5rpx;'>
+        <text style="height:60rpx;width:100rpx;line-height:60rpx;font-size:35rpx;text-align:center;position:absolute;top:42rpx;left:22rpx;">约TA</text>
+        <view style="height:60rpx;width:100rpx;line-height:60rpx;font-size:35rpx;text-align:center;position:absolute;top:92rpx;left:22rpx;">（0）</view>
+      </button>
+    </view>
+    <button style="text-align:center;width:260rpx;height:80rpx;line-height:80rpx;letter-spacing:20rpx;color:#FFF;background-color:#FF6600;margin:auto;">返回</button>
+  </view>
+  <view class='hidTwo' style='margin-top:50rpx;'>
+    <view style='width:300rpx;height:50rpx;line-height:50rpx;margin:auto;text-align:center;font-size:36rpx;'>该服务项目已下架</view>
+    <view style='height:200rpx;border-top:10rpx solid #EEE;'></view>
+    <button style="text-align:center;width:260rpx;height:80rpx;line-height:80rpx;letter-spacing:20rpx;color:#FFF;background-color:#FF6600;margin:auto;">返回</button>
+  </view>
+</view>

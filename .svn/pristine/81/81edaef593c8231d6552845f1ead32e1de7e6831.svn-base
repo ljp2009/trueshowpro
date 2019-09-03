@@ -1,0 +1,61 @@
+/* pages/index/user/customer/pokerByStaff/pokerByStaff.wxss */
+	.tower-swiper .tower-item {
+		transform: scale(calc(0.5 + var(--index) / 10));
+		margin-left: calc(var(--left) * 100rpx - 150rpx);
+		z-index: var(--index);
+	}
+
+  .count-text{
+    height: 160rpx;
+    margin-top: 40rpx;
+   
+  
+   
+  }
+  .count-left{
+     width: 20%;
+     padding: 30rpx;
+     float: left;
+    
+  }
+  .count-reght{
+     width: 78%;
+     float: right;
+      
+  }
+
+  .count1-text input{
+  
+    margin-left: 5%;
+    border: 1rpx solid rgb(18, 19, 18);
+    width: 65%;
+    display: inline-block;
+    height: 30rpx;
+  
+  }
+
+
+  .text-icon{
+  
+     display: inline-block;
+     height: 50rpx;
+     line-height: 50rpx;
+      float: right;
+      margin-right: 5%;
+    
+      
+  }
+  .text-icon text{
+    margin-left: 15rpx;
+    height: 100rpx;
+    width: 100rpx;
+   
+  }
+   .count-text button{
+     display: inline; 
+     height: 28rpx;
+     margin-left: 5%;
+     color: white;
+     font-size: 25rpx;
+     background-color: black;
+   }

@@ -1,0 +1,80 @@
+<!--pages/index/user/customer/getFollow/getFollow.wxml-->
+<cu-custom bgColor="bg-gradual-white" isBack="{{true}}"><view slot="back" ></view><view slot="content"b>技师</view></cu-custom>
+<view class="box1">
+<view class="paice1" >
+ <image src="../../../../../assets/image/index/catebg.png"></image>
+
+ <view class="text-text"> 迪丽热巴<text class="cuIcon-check " style="color: white;"></text> </view>
+ <view class="icon-sum1  ">
+      <text class="cuIcon-favorfill " style="color: orange;"></text> 
+      <text class="cuIcon-favorfill " style="color: orange;"></text>
+      <text class="cuIcon-favorfill " style="color: orange;"></text>
+      <text class="cuIcon-favorfill " style="color: orange;"></text>
+      <text class="cuIcon-favorfill "></text>
+    </view>
+</view>
+<view class="paice1" >
+ <image src="../../../../../assets/image/index/catebg.png"></image>
+ <view class="text-text"> 迪丽热巴<text class="cuIcon-check " style="color: white;"></text> </view>
+ <view class="icon-sum1  ">
+      <text class="cuIcon-favorfill " style="color: orange;"></text> 
+      <text class="cuIcon-favorfill " style="color: orange;"></text>
+      <text class="cuIcon-favorfill " style="color: orange;"></text>
+      <text class="cuIcon-favorfill " style="color: orange;"></text>
+      <text class="cuIcon-favorfill "></text>
+    </view>
+</view>
+<view class="paice1" >
+ <image src="../../../../../assets/image/index/catebg.png"></image>
+ <view class="text-text"> 迪丽热巴<text class="cuIcon-check " style="color: white;"></text> </view>
+ <view class="icon-sum1  ">
+      <text class="cuIcon-favorfill " style="color: orange;"></text> 
+      <text class="cuIcon-favorfill " style="color: orange;"></text>
+      <text class="cuIcon-favorfill " style="color: orange;"></text>
+      <text class="cuIcon-favorfill " style="color: orange;"></text>
+      <text class="cuIcon-favorfill "></text>
+    </view>
+</view>
+
+<view class="paice1" >
+ <image src="../../../../../assets/image/index/catebg.png"></image>
+
+ <view class="text-text"> 迪丽热巴<text class="cuIcon-check " style="color: white;"></text> </view>
+  <view class="icon-sum1  ">
+     <text class="cuIcon-favorfill " style="color: orange;"></text> 
+        <text class="cuIcon-favorfill" style="color: orange;"></text>
+        <text class="cuIcon-favorfill " style="color: orange;"></text>
+        <text class="cuIcon-favorfill " style="color: orange;"></text>
+        <text class="cuIcon-favorfill "></text>
+      </view>
+</view>
+<view class="paice1" >
+ <image src="../../../../../assets/image/index/catebg.png"></image>
+
+ <view class="text-text"> 迪丽热巴<text class="cuIcon-check " style="color: white;"></text> </view>
+  <view class="icon-sum1  ">
+     <text class="cuIcon-favorfill " style="color: orange;"></text> 
+        <text class="cuIcon-favorfill" style="color: orange;"></text>
+        <text class="cuIcon-favorfill " style="color: orange;"></text>
+        <text class="cuIcon-favorfill " style="color: orange;"></text>
+        <text class="cuIcon-favorfill "></text>
+      </view>
+</view>
+<view class="paice1" >
+ <image src="../../../../../assets/image/index/catebg.png"></image>
+
+ <view class="text-text"> 迪丽热巴<text class="cuIcon-check " style="color: white;"></text> </view>
+  <view class="icon-sum1  ">
+     <text class="cuIcon-favorfill " style="color: orange;"></text> 
+        <text class="cuIcon-favorfill" style="color: orange;"></text>
+        <text class="cuIcon-favorfill " style="color: orange;"></text>
+        <text class="cuIcon-favorfill " style="color: orange;"></text>
+        <text class="cuIcon-favorfill "></text>
+      </view>
+</view>
+
+
+
+
+</view>
+

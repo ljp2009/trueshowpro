@@ -1,0 +1,57 @@
+/* pages/index/firm/certificate/manageCert/manageCert.wxss */
+
+.head .cu-bar{
+   min-height:  200rpx;  
+}
+.head .cu-bar text{
+    font-size: 40rpx;
+    margin-right: 40%;
+    
+} 
+ raido .orange{
+   width: 13rpx;
+   height: 13rpx;
+ }
+.cu-bar {
+    min-height:  20rpx;
+}
+.count{
+ padding-bottom: 50rpx;
+  background-color: white;
+
+}
+.section input{
+  border: 1rpx rgb(116, 112, 112) solid;
+  background-color: white;
+  margin: 30rpx
+  
+}
+.cu-box .a{
+  border: 1rpx rgb(116, 112, 112) solid;
+  display: inline-block;
+  width: 30%;
+  color: rgb(116, 112, 112);
+  margin-left: 10rpx;
+  
+}
+
+.solids{
+  width: 100%;
+height: 100%;
+display: flex;
+justify-content: center;  
+
+}
+.icon-position{
+position: absolute;
+top: 40%;
+left: 40%;
+}
+.add-img{
+border: 1rpx solid gray;
+width:180rpx;
+height: 180rpx;
+position: relative;
+display: inline-block;
+margin-left: 45rpx;
+}

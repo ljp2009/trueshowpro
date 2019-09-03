@@ -1,0 +1,432 @@
+<?php
+namespace app\index\controller;
+//机构类
+use think\Db;
+use think\Request;
+class Firm
+{
+    private $addDis=50;
+    /**
+     *获取附近机构
+     * 1、获取用户地理位置坐标（微信）
+     * 2、按距离参数查找附近机构，结果按最后更新时间排序，为空或不足数量则扩大50km范围重查
+     * （营业状态=1，负责人Manager !="" ，技师数staffs>1,晒单数DealPoker>1）,读取数量不大于200，最多扩大范围查3次
+     */
+    public function FirmNearby()
+    {
+        ////按照用户的当前位置的经纬度 距离 $km之内的机构信息
+        $slat  =39.95318;//纬度
+        $slng =116.814;//经度
+        $distance=5;//距离
+
+        $sql=$this->bulidSqlFromFirmNearby($slat,$slng,$distance);
+        $shop_list = Db::query($sql);
+        $count=count($shop_list);
+        //echo $count;
+
+        /////记得修改成200
+        if ($count<10){
+            //重新扩大范围查询
+            $sql=$this->bulidSqlFromFirmNearby($slat,$slng,$distance+$this->addDis);
+            $count1=count($shop_list);
+            $shop_list = Db::query($sql);
+//            echo "扩大50之后的条数：";
+//            echo $count1;
+
+            /////记得修改成200
+            if ($count1<10){
+                //还要扩大范围查询
+                $sql=$this->bulidSqlFromFirmNearby($slat,$slng,$distance+2*$this->addDis);
+                $shop_list = Db::query($sql);
+            }
+        }
+
+//        return $shop_list;
+        //echo $res;
+
+        print_r($shop_list);
+        exit;
+    }
+
+
+
+    public function bulidSqlFromFirmNearby($userlat,$userlng,$distance){
+            $sql="select * from firm where sqrt( 
+    ( (($userlng-Lng)*PI()*12656*cos((($userlat+Lat)/2)*PI()/180)/180) 
+    * (($userlng-Lng)*PI()*12656*cos ((($userlat+Lat)/2)*PI()/180)/180) 
+    ) + ( (($userlat-Lat)*PI()*12656/180) * (($userlat-Lat)*PI()*12656/180) 
+    ) )<$distance and Status=1 and Manager!='' and Staffs>1 and DealPoker>1  order by LastUpdate desc";
+            return $sql;
+    }
+
+    /**
+     * 求两个已知经纬度之间的距离,单位为千米
+     * @param lng1 $ ,lng2 经度
+     * @param lat1 $ ,lat2 纬度
+     * @return float 距离，单位千米
+     */
+    function getdistance($lng1, $lat1, $lng2, $lat2) {
+        // 将角度转为狐度
+        $radLat1 = deg2rad($lat1); //deg2rad()函数将角度转换为弧度
+        $radLat2 = deg2rad($lat2);
+        $radLng1 = deg2rad($lng1);
+        $radLng2 = deg2rad($lng2);
+        $a = $radLat1 - $radLat2;
+        $b = $radLng1 - $radLng2;
+        $s = 2 * asin(sqrt(pow(sin($a / 2), 2) + cos($radLat1) * cos($radLat2) * pow(sin($b / 2), 2))) * 6378.137;
+        return $s;
+    }
+
+
+    /**
+     *获取机构基本信息 （2表查询：Firm ,promote）
+     * 请求参数：机构id Lng经度  Lat纬度
+     */
+    public function getFirmById()
+    {
+        $request=Request::instance();
+        $data=$request->param();
+        if (!isset($data["FirmId"])){
+            echo returnData(0,"FirmId参数不能为空");
+            exit;
+        }
+        $FirmId= $data["FirmId"];//机构ID
+        $longitude= $data["Lng"];//经度
+        $latitude= $data["Lat"];//纬度
+        $res=Db::table("firm")
+            ->alias("f")
+            ->join("promote p","f.ID=p.FirmId","left")
+            ->field(["f.FirmName","f.FirmTitle","f.FirmType","f.Certificated","f.Staffs","f.Lng","f.Lat","f.Province","f.City","f.District","f.FirmAddr","group_concat(p.Title) Promo","f.Discription","f.Tester"," ROUND(6378.138*2*ASIN(SQRT(POW(SIN(($latitude*PI()/180-f.Lat*PI()/180)/2),2)+COS($latitude*PI()/180)*COS(f.Lat*PI()/180)*POW(SIN(($longitude*PI()/180-f.Lng*PI()/180)/2),2)))*1000) Distance"])
+            ->group("f.ID")
+            ->where(["f.ID"=>$FirmId])
+            ->find();
+        //返回的距离 单位为米
+        $res["Promo"]=explode(",",$res["Promo"]);
+//         print_r($res);
+//         exit;
+        if (!$res){
+            echo returnData(0,"出错了");
+            exit;
+        }
+        echo returnData(1,$res);
+        exit;
+    }
+    /**
+     *获取机构简介信息 （1表查询：Firm ）
+     * 请求参数：机构id
+     * 返回参数：
+     * Discription	string	机构简介
+       pic	string	机构简介图片。图片上传和保存方案待定
+     */
+    public function getDescInFirm()
+    {
+        $request=Request::instance();
+        $data=$request->param();
+        if (!isset($data["FirmId"])){
+            echo returnData(0,"FirmId参数不能为空");
+            exit;
+        }
+        $FirmId= $data["FirmId"];//机构ID
+        $res=Db::table("firm")->where("ID",$FirmId)->field(["Discription","pic"])->find();
+        $res["pic"]=json_decode($res["pic"],true);
+//        print_r($res);
+//        exit;
+        if (!$res){
+            echo returnData(0,"出错了");
+            exit;
+        }
+        echo returnData(1,$res);
+        exit;
+    }
+    /**
+     *搜索机构 （2表查询：Firm ,User）
+     *搜索机构全称、简称，返回有包含关键词的结果
+     */
+    public function searchFirm()
+    {
+        $request=Request::instance();
+        $data=$request->param();
+        if (!isset($data["Keyword"])){
+            echo returnData(0,"Keyword参数不能为空");
+            exit;
+        }
+        $Keyword= $data["Keyword"];//搜索关键词
+        $Min=isset($data["Min"]) ? $data["Min"] : 0;//请求的开始序号  索引值
+        $Max=isset($data["Max"]) ? $data["Max"] : 19;//请求的结束序号
+        $res=Db::table("firm")
+            ->alias("f")
+            ->join("user u","f.Manager=u.UserId","left")
+            ->field(["f.FirmName","f.FirmTitle","f.Certificated","f.Lng","f.Lat","f.Province","f.City","f.District","f.FirmAddr","u.RealName Manager","u.Mobile"])
+            ->where('f.FirmName|f.FirmTitle','like','%'.$Keyword.'%')
+            ->limit($Min,$Max-$Min+1)
+            ->select();
+        $len=count($res);
+        for ($i=0;$i<$len;$i++){
+            //替换字符串的子串
+            //负责人手机号（星号代替5-8位）1380****358
+            $res[$i]["Mobile"] = substr_replace($res[$i]["Mobile"], '****', 3, 4);
+        }
+//        print_r($res);
+//         exit;
+        if (!$res){
+            echo returnData(0,"出错了");
+            exit;
+        }
+        echo returnData(1,$res);
+        exit;
+    }
+
+    /**
+     *新建/保存机构基础信息
+     * 新增时：更新用户表当前用户StaffLevel为负责人（3），和FirmId
+     * 思路：如果ID为空即为新增一条数据 为值的话则是更新这条数据的某个数据
+      返回参数：机构ID
+     */
+    public function saveFirm()
+    {
+        $request=Request::instance();
+        $data=$request->param();
+        //通过参数获取晒单数据
+        if (!isset($data["UserId"]) || !isset($data["ID"]) || !isset($data["FirmName"]) || !isset($data["Province"]) || !isset($data["City"]) || !isset($data["District"]) || !isset($data["FirmAddr"])){
+            echo returnData(0,"参数不能为空");
+            exit;
+        }
+        $UserId= $data["UserId"];//当前用户id
+        $ID= $data["ID"];//机构ID。传值为空 表示新增
+        $FirmName= $data["FirmName"];//机构名称
+        $FirmTitle=isset($data["FirmTitle"]) ? $data["FirmTitle"] :"";//机构简称
+        $Province= $data["Province"];//省
+        $City= $data["City"];//市
+        $District= $data["District"];//区/镇
+        $FirmAddr= $data["FirmAddr"];//街道和门牌地址
+        $Lng=isset($data["Lng"]) ? $data["Lng"] :"";//经度
+        $Lat=isset($data["Lat"]) ? $data["Lat"] :"";//纬度
+        $data=[
+            "FirmName"=>$FirmName,
+            "FirmTitle"=>$FirmTitle,
+            "Province"=>$Province,
+            "City"=>$City,
+            "District"=>$District,
+            "FirmAddr"=>$FirmAddr,
+            "Lat"=>$Lat,
+            "Lng"=>$Lng,
+        ];
+        if ($ID==""){
+            //新增
+            $data["Staffs"]=1;
+            $resfirmId=Db::table("firm")->insertGetId($data);//新增并获取到自增的机构id
+            //更新用户表当前用户StaffLevel为负责人（3），和FirmId
+            $res=Db::table("user")->where("UserId",$UserId)->update(["StaffLevel"=>3,"FirmId"=>$resfirmId]);
+            if (!$res){
+                echo returnData(0,"出错了");
+                exit;
+            }
+            echo returnData(1,$resfirmId);
+            exit;
+        }else{
+            //更新记录
+            $res=Db::table("firm")->where("ID",$ID)->update($data);
+            if (!$res){
+                echo returnData(0,"出错了");
+                exit;
+            }
+            echo returnData(1,$ID);
+            exit;
+        }
+    }
+
+    /**
+     *更新机构信息
+     * 1、根据请求参数更新对应字段
+       2、增加日志记录
+     */
+    public function updFirm()
+    {
+        $request=Request::instance();
+        $data=$request->param();
+        if (!isset($data["FirmId"]) || !isset($data["UserId"]) || !isset($data["NickName"])){
+            echo returnData(0,"FirmId参数不能为空");
+            exit;
+        }
+        $FirmId= $data["FirmId"];//机构ID。
+        $UserId= $data["UserId"];//当前用户ID
+        $NickName= $data["NickName"];//当前用户的昵称
+       if (isset($data["Discription"])){
+           $Discription=$data["Discription"];//机构简介
+           //更新 firm 表的 Discription字段
+           $res=Db::table("firm")->where("ID",$FirmId)->update(["Discription"=>$Discription]);
+           //增加日志记录 ActionCode为1：修改公司简介(FirmId)， RelatedId为机构id
+            $data=[
+                "UserId"=>$UserId,
+                "NickName"=>$NickName,
+                "Actions"=>"修改公司简介",//描述
+                "ActionCode"=>1,
+                "RelatedId"=>$FirmId,
+                "ActTime"=>date("Y-m-d H:i:s")
+            ];
+           $res1=Db::table("log")->insert($data);
+           if ($res && $res1){
+               echo returnData(1,"操作成功");
+               exit;
+           }
+           echo returnData(0,"失败");
+           exit;
+       }
+////////////////////////////上传图片问题需要补////////////////////////////////////////////
+        if (isset($data["Pic"])){
+            //机构图片上传和保存方案待定
+        }
+
+
+        if (isset($data["Status"])){
+            $Status=$data["Status"];//营业状态
+            //更新 firm 表的 Status 字段
+            $res=Db::table("firm")->where("ID",$FirmId)->update(["Status"=>$Status]);
+        }
+
+        ////////////////////////是否需要换算一下佣金比？？？看前台传来的值决定//////////////////////////////////////////////////////
+        if (isset($data["RakeOff"])){
+            $RakeOff=$data["RakeOff"];//佣金比
+            //更新 firm 表的 Discription字段
+            $res=Db::table("firm")->where("ID",$FirmId)->update(["Rakeoff"=>$RakeOff]);
+        }
+        if (!$res){
+            echo returnData(0,"出错了");
+            exit;
+        }
+        echo returnData(1,"成功");
+        exit;
+
+    }
+
+    /**
+     *新建/修改机构认证
+     * 请求参数：
+     *
+        FirmId	N	int	机构ID 必传 为空表示新增 必传 可空可不空
+     * 机构信息
+        //CertName	N	string	认证机构名称同营业执照
+        //FirmType	N	int	机构类型。0：个体，1：企业，2：工作室  3:连锁 （工作室，连锁企业在下个版本）
+        //CertFirmID	N	int	营业执照号码
+        //Province	N	int	省
+       // City	N	int	市
+        //District	N	int	区/镇
+        //CertAddr	N	string	认证地址同营业执照
+        //CertPic   N    营业执照照片
+     * 经营者信息
+        Juristic	N	string	机构负责人姓名（法人）
+        JuristicIDNo	N	string	法人身份证号
+        JuristicAddr	N	string	法人身份证地址
+        JuristicMobile	N	string	法人手机号
+        IDPic           N           法人身份证照片 正反面两张
+        JuristicGender	N	int	法人性别。0：女，1：男
+        CertStatus	N	int	认证状态：0：未认证，1：等待审核，2：等待支付，3：认证通过，4：不通过
+     *
+     返回参数：FirmId	int	机构ID
+     */
+    ///////////////////////////////////////还是没有写明白？？？/////////////////////////////////////////////////////////
+    /// //分开写函数 分场景
+    public function newCertFirm()
+    {
+        ////////////把第一步数据先存到缓存里 等第二步填写好了之后再统一一次写入数据库
+        $request=Request::instance();
+        $data=$request->param();
+        if (!isset($data["FirmId"])){
+            echo returnData(0,"FirmId参数不能为空");
+            exit;
+        }
+        //validate验证
+        $validate = validate('Login');
+        if(!$validate->scene("login")->check($data)){
+            // echo returnData("-1",$validate->getError());
+            echo returnData("-1","出错了");
+            exit;
+        }
+        $FirmId= $data["FirmId"];//机构ID。
+        $CertId= $data["CertId"];//认证表id 为空表示新增
+        $CertName= $data["CertName"];//认证机构名称同营业执照
+        $FirmType= $data["FirmType"];//机构类型。0：个体，1：企业，2：工作室  3:连锁 （工作室，连锁企业在下个版本）
+        $CertFirmID= $data["CertFirmID"];//营业执照号码
+        $Province= $data["Province"];//省
+        $City= $data["City"];//市
+        $District= $data["District"];//区/镇
+        $CertAddr= $data["CertAddr"];//认证地址同营业执照。
+        $CertPic= $data["CertPic"];//营业执照照片//////////////////到时候视情况改
+        $Juristic= $data["Juristic"];//机构负责人姓名（法人）
+        $JuristicIDNo= $data["JuristicIDNo"];//法人身份证号
+        $JuristicAddr= $data["JuristicAddr"];//法人身份证地址
+        $JuristicMobile= $data["JuristicMobile"];//法人手机号
+        $IDPic= $data["IDPic"];//法人身份证照片 正反面两张
+        $JuristicGender= $data["JuristicGender"];//法人性别。0：女，1：男
+        if ($CertId==""){
+                $data1=[
+                    "FirmId"=>$FirmId,
+                    "FirmType"=>$FirmType,
+                    "CertStatus"=>1,//等待审核
+                    "CertFirmID"=>$CertFirmID,
+                    "CertName"=>$CertName,
+                    "Province"=>$Province,
+                    "City"=>$City,
+                    "District"=>$District,
+                    "CertAddr"=>$CertAddr,
+                    "CertPic"=>$CertPic,//营业执照照片///////////////////////看看是否到时候要改
+                    "Juristic"=>$CertPic,
+                    "JuristicIDNo"=>$JuristicIDNo,
+                    "JuristicAddr"=>$JuristicAddr,
+                    "JuristicMobile"=>$JuristicMobile,
+                    "JuristicGender"=>$JuristicGender,
+                    "IDPic"=>$IDPic//身份证照片/ 两张//////////////////////看看是否到时候要改
+                ];
+                //1.新增机构信息
+                $res=Db::table("cert_firm")->insertGetId($data1);//新增并获取当前自增的CertId值
+                if (!$res){
+                    echo returnData(0,"出错了");
+                    exit;
+                }
+                echo returnData(1,$FirmId);//成功了返回机构id
+                exit;
+            }else{
+             //修改 记录有当前firmId的数据
+
+           }
+
+
+        //审核
+        //支付
+
+    }
+    /**
+     *获取机构认证信息
+     */
+    public function getCertFirm()
+    {
+        //一个只是机构的认证信息  一个是后台看见的待审核的认证机构信息
+        $request=Request::instance();
+        $data=$request->param();
+        $FirmId=isset($data["FirmId"]) ? $data["FirmId"] : "";
+        if (isset($data["CertStatus"])){
+            $CertStatus= $data["CertStatus"];//认证状态
+            ///////////////////////////////一条一条的滑动 应该按索引值来获取
+            $res=Db::table("cert_firm")->where("CertStatus",$CertStatus)->select();
+        }
+        if ($FirmId!=0 || $FirmId!=""){
+            //获取这条机构的认证信息
+            $res=Db::table("cert_firm")->where("FirmId",$FirmId)->find();
+        }
+
+        if (!$res){
+            echo returnData(0,"出错了");
+            exit;
+        }
+        echo returnData(1,"成功");
+        exit;
+    }
+
+    /**
+     *机构二维码
+     */
+    public function getFirm2DCode()
+    {
+
+    }
+}

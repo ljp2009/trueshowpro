@@ -1,0 +1,114 @@
+<cu-custom bgColor="bg-gradual-white" isBack="{{true}}">
+  <view slot="back"></view>
+  <view slot="content" b>机构认证</view>
+</cu-custom>
+<view class="count">
+  <view class="cu-bar margin-top bg-white">
+    <view class="action">
+      审核流程：
+    </view>
+  </view>
+  <view class="cu-list grid col-3">
+    <view class="cu-item" wx:for="{{icon}}" wx:key wx:if="{{item.isShow}}">
+      <text class="cuIcon-texi lg text-gray"></text>
+      <text>{{item.name}}</text>
+    </view>
+  </view>
+  <!-- 审核流程：
+ -->
+  <view class="bg-white padding margin-top-xs padd">
+    <view class="cu-steps">
+      <view class="cu-item {{index>basics?'':'text-orange'}}" wx:for="{{basicsList}}" wx:key style=" font-size:20rpx">
+        <text class="cuIcon-{{index>basics?'round':item.icon}}"></text> {{item.name}}
+      </view>
+    </view>
+  </view>
+  <view class="cu-bar margin-top bg-white">
+    <view class="action">
+      镂机构类型
+    </view>
+    <view class="action">
+      <radio-group bindchange="SetBorderSize">
+        <label class="margin-left-sm">
+          <radio class="orange  " value="" checked></radio>
+          <text> 企业</text>
+        </label>
+        <label class="margin-left-xm">
+          <radio class="orange  " value=""></radio>
+          <text> 个体/团体</text>
+        </label>
+      </radio-group>
+    </view>
+  </view>
+  <view class="cu-bar margin-top bg-white">
+    <view class="action">
+      <text>机构名称</text>
+    </view>
+  </view>
+  <view class="section">
+    <input placeholder="与营业执照一致/个体户填写经营者姓名" />
+  </view>
+
+
+  <view class="cu-bar margin-top bg-white">
+    <view class="action">
+      营业执照注册号
+    </view>
+  </view>
+  <view class="section">
+    <input placeholder="15位营业执照注册号或18位统一社会信用代码" />
+  </view>
+
+  <view class="cu-bar margin-top bg-white">
+    <view class="action">
+      区 域：
+    </view>
+  </view>
+  <view class="cu-form-group">
+
+    <picker mode="region" bindchange="RegionChange" value="{{region}}" custom-item="{{customItem}}">
+      <view class="cu-box">
+        <view class="a">{{region[0]}}</view>
+        <view class="a">{{region[1]}}</view>
+        <view class="a">{{region[2]}}</view>
+      </view>
+    </picker>
+  </view>
+
+  <view class="cu-bar margin-top bg-white">
+    <view class="action">
+      营业场地的道路和门牌号：
+    </view>
+  </view>
+  <view class="section">
+    <input placeholder="必须与营业执照一致" />
+  </view>
+
+  <view class="cu-bar margin-top bg-white">
+    <view class="action">
+      上传身营业执照：
+    </view>
+  </view>
+  <view class="cu-form-group" style="margin-top:30rpx">
+    <view class="grid col-4 grid-square flex-sub">
+      <view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
+        <image src='{{imgList[index]}}' mode='aspectFill'></image>
+        <view class="cu- bg-red" catchtap="DelImg" data-index="{{index}}">
+          <text class="cuIcon-close"></text>
+        </view>
+      </view>
+      <view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<4}}">
+        <text class="cuIcon-roundaddfill" style="font-size:30rpx;color:orange">
+        </text>
+
+
+      </view>
+
+    </view>
+  </view>
+  <navigator style='width:50%;margin-left:25%;' url='/pages/index/firm/certificate/manageCert1/manageCert1'>
+    <view class="cu-bar margin-top " style='width:100%'>
+      <button class="cu-btn sm-orange shadow-blur" bindtap="basicsSteps" style='width:100%;'>下一步</button>
+    </view>
+  </navigator>
+</view>

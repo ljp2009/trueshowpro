@@ -1,0 +1,79 @@
+/* pages/index/user/customer/pakerByStaff/pakerByStaff.wxss */
+.containner{
+  height: 100%;
+  width: 100%;
+  background-color: white;
+}
+.containner-img{
+border: 1rpx solid red;
+background-image: url(http://ljp.jujiaoweb.com/images/index/img.jpg);
+background-repeat: repeat;
+background-position: center;
+width: 95%;
+height: 70%;
+margin: auto;
+}
+
+
+  .count-text{
+    height: 160rpx;
+    margin-top: 20rpx;
+  }
+  .count-left{
+     width: 20%;
+     padding: 30rpx;
+     float: left;
+    
+  }
+  .count-reght{
+     width: 78%;
+     float: right;      
+  }
+.count1-text{
+  
+  margin-top:5%;
+  position: relative;
+  
+}
+  .count1-text input{
+    margin-left: 5%;
+    border: 1rpx solid rgb(208,208,208);
+    width: 65%;
+    display: inline-block;
+    height: 30rpx;
+    position:absolute;
+  
+  }
+    .count1-text image{
+     
+    width: 35rpx;
+    height: 35rpx;
+    top:10rpx;
+    left:5rpx;
+  }
+   .count1-text text{
+     
+   }
+  .text-icon{
+     display: inline-block;
+     height: 50rpx;
+     line-height: 50rpx;
+      float: right;
+      margin-right: 5%;
+    
+      
+  }
+  .text-icon text{
+    margin-left: 15rpx;
+    height: 100rpx;
+    width: 100rpx;
+   
+  }
+   .count-text button{
+     display: inline; 
+     height: 28rpx;
+     margin-left: 5%;
+     color: white;
+     font-size: 25rpx;
+     background-color: black;
+   }

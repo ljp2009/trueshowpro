@@ -1,0 +1,44 @@
+<!--pages/index/user/staff/staffWorkShow/staffWorkShow.wxml-->
+<!-- <text>pages/index/user/staff/staffWorkShow/staffWorkShow.wxml</text> -->
+<!-- <cu-custom bgColor="bg-gradual-gray" isBack="{{true}}"><view slot="backText"></view><view slot="content"><text class="text-lg">作品展示</text></view>
+</cu-custom> -->
+
+<view style="height:6%;text-align:center;background-color:rgb(240,240,240);">
+  <view style="width:45%;height:55rpx;display:inline-block;background-color:black;border-radius:0 0 20rpx 20rpx;"></view>
+</view>
+<view style="background-color:rgb(240,240,240);">
+    <view style="display:inline-block;width:10%;">
+          <view class="cu-avatar sm round margin-left" style="background-image:url('{{webRoot}}/images/index/icon16.png');position:fixed;top:5%;" bindtap="backStaffCard"></view>
+    </view>
+    <view style="display:inline-block;width:79%;text-align:center;">作品展示</view>
+    <view style="display:inline-block;width:10%;"></view>
+</view>
+<view style="background-color:rgb(240,240,240);">
+  <view style="height:100rpx;padding-top:5%;" class="text-lg">
+      <view style="display:inline-block;width:35%;padding-left:5%;">胡敏的作品</view>
+      <view style="display:inline-block;text-align:right;width:64%;padding-right:4%;">共565</view>
+  </view>
+</view>
+<!-- 作品 -->
+<view style="margin-top:2%;background-color:white;">
+  <view style="text-align:center;">2019-08</view>
+  <view style="margin-left:6%;">
+    <view style="display:inline-block;width:32%;" bindtap="staffWorkShowDetail"><image src="{{webRoot}}/images/index/test.jpg" style="width:90%;height:300rpx;top:7rpx;margin-right:3%;border-radius:5%;"></image></view>
+    <view style="display:inline-block;width:32%;" bindtap="staffWorkShowDetail"><image src="{{webRoot}}/images/index/test.jpg" style="width:90%;height:300rpx;top:7rpx;margin-right:3%;border-radius:5%;"></image></view>
+    <view style="display:inline-block;width:32%;" bindtap="staffWorkShowDetail"><image src="{{webRoot}}/images/index/test.jpg" style="width:90%;height:300rpx;top:7rpx;margin-right:3%;border-radius:5%;"></image></view>
+    <view style="display:inline-block;width:32%;" bindtap="staffWorkShowDetail"><image src="{{webRoot}}/images/index/test.jpg" style="width:90%;height:300rpx;top:7rpx;margin-right:3%;border-radius:5%;"></image></view>
+    <view style="display:inline-block;width:32%;" bindtap="staffWorkShowDetail"><image src="{{webRoot}}/images/index/test.jpg" style="width:90%;height:300rpx;top:7rpx;margin-right:3%;border-radius:5%;"></image></view>
+  </view>
+</view>
+<!-- 作品结束 -->
+<!-- 作品   复制上面的-->
+<view style="margin-top:2%;background-color:white;">
+  <view style="text-align:center;">2019-07</view>
+  <view style="margin-left:6%;">
+    <view style="display:inline-block;width:32%;" bindtap="staffWorkShowDetail"><image src="{{webRoot}}/images/index/test.jpg" style="width:90%;height:300rpx;top:7rpx;margin-right:3%;border-radius:5%;"></image></view>
+    
+    
+  </view>
+</view>
+<!-- 作品结束 -->
+

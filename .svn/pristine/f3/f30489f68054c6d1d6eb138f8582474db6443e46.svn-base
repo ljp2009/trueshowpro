@@ -1,0 +1,221 @@
+<cu-custom bgColor="bg-gray" isBack="{{true}}" style="color:#000;">
+  <view slot="backText" style='font-size:36rpx;color:#000;'>返回</view>
+  <view slot="content" style='font-size:39rpx;margin-left:-50rpx;color:#000;'>约单详情</view>
+</cu-custom>
+<view style='padding-bottom:10rpx;background-color:#FFE375;'>
+  <view style='margin-left:15rpx;padding-top:15rpx;font-size:35rpx'>扫码查询结果：</view>
+  <text style='margin-left:15rpx;padding-bottom:15rpx;font-size:35rpx'>本接单由技师Aima提供服务</text>
+  <navigator style='display:inline-block;' url='/pages/index/reservation/staff/modules/statusOneModal/statusOneModal'>
+    <text style='margin-left:170rpx' class="removetome" bindtap="showDialogBtn">转移给我</text>
+  </navigator>
+</view>
+<view style='height:30rpx;'></view>
+<view style='height:50rpx;line-hright:50rpx;font-size:35rpx;margin-left:25rpx;'>顾客信息:</view>
+<view class=" bg-white " style='font-size:29rpx;'>
+  <view class="flex solid-bottom padding align-start">
+    <view class="cu-avatar lg round" style="background-image:url(http://ljp.jujiaoweb.com/static/images/index/qOne.png);width:150rpx;height:150rpx;"></view>
+    <view class='infomiddle'>
+      <view style='height:8rpx;'></view>
+      <view>COCO
+        <text style='margin-left:30rpx;'>123456789</text>
+      </view>
+      <view>老顾客(3)
+        <text>总计消费：￥1314.0</text>
+      </view>
+      <view>
+        <view class='infoCenter'>
+          <text>预计时间：<text class='time'>13:00-14:00（约60分钟）</text></text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<view style='height:30rpx;'></view>
+<view style='height:50rpx;line-hright:50rpx;font-size:35rpx;margin-left:25rpx;'>预约服务项目:</view>
+<view class="bg-white" style='font-size:25rpx'>
+  <view class="solid-bottom padding align-start">
+    <view class='infoCenter' style="font-size:29rpx;">
+      <text class="cu-tag round bg-orange sm" style='width:100rpx;;height:40rpx;line-height:40rpx;font-size:29rpx;'>美甲</text>
+      <text class='textmiddle'>无草堂腰背舒缓调理</text>
+      <text class='moneytime'>
+        <text style='margin-right:20rpx'>￥120.00</text>
+      <text>60分钟</text>
+      </text>
+
+    </view>
+    <view class='infoCenter' style="font-size:29rpx;">
+      <text class="cu-tag round bg-orange sm" style='width:100rpx;;height:40rpx;line-height:40rpx;font-size:29rpx;'>美眉</text>
+      <text class='textmiddle'>春日小可爱同款荷包蛋美甲</text>
+      <text class='moneytime'>
+        <text style='margin-right:20rpx'>￥120.00</text>
+      <text>60分钟</text>
+      </text>
+    </view>
+    <view style='margin-top:20rpx;height:120rpx;font-size:29rpx;'>
+      简短留言：
+      <textarea placeholder='这里是简短留言，不超过100个字' style='border:1rpx solid #999;height:100rpx;margin-top:10rpx;padding-left:10rpx;padding-top:5rpx;'></textarea>
+    </view>
+  </view>
+</view>
+<view style='height:30rpx;'></view>
+<view style='height:50rpx;line-hright:50rpx;font-size:35rpx;margin-left:25rpx;'>当前流程:</view>
+<view class='hidOne'>
+  <view class="bg-white">
+    <view class="solid-bottom padding align-start">
+      <view style="font-size:38rpx;text-align:center;color:#333;">顾客已预约，等待顾客到店</view>
+      <view style='margin-top:20rpx;font-size:29rpx;color:#333;'>
+        如需改签,请联系客户并说明原因,由客户更改服务时间
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 模态框部分 -->
+<view class='hidTwo'>
+  <view class="bg-white">
+    <view class="solid-bottom padding align-start">
+      <view style="font-size:38rpx;text-align:center;color:#333;">预约时间已到，等待顾客确认</view>
+      <view style='margin-top:20rpx;font-size:29rpx;color:#333;'>
+        如顾客已到店，请提醒顾客在“约”页面确认“到店”
+      </view>
+      <button class="cu-btn round bg-white shadow" style='width:56%;margin-left:22%;margin-top:40rpx;border:1rpx solid #999;font-size:31rpx;'>顾客未到，取消本约单</button>
+      <view style='margin-top:20rpx;height:120rpx;font-size:29rpx;height:150rpx;'>
+        简短留言：
+        <textarea placeholder='这里是简短留言，不超过100个字' style='border:1rpx solid #999;height:100rpx;margin-top:10rpx;padding-left:10rpx;padding-top:5rpx;'></textarea>
+      </view>
+      <view style='margin-bottom:30rpx;height:45rpx;line-height:45rpx;font-size:31rpx;'>有多次爽约记录的顾客，系统自动要求顾客支付少量押金；爽约后自动付给商家</view>
+    </view>
+  </view>
+</view>
+<view class='hidThree' style="background-color:#FFF;">
+  <view class='page' style='font-size:35rpx;'>
+    <view class=' mb-sm text-ms' style='padding:30rpx 25rpx;'>
+      <view style='margin-top:10rpx;'>服务进行中，如已完成，请发起支付请求(买单)</view>
+      <view class='' style='margin-top:10rpx;'>约单价格:
+        <text style='margin-left:30rpx'>￥300.0</text>
+      </view>
+      <view style='margin-top:10rpx'>顾客结账金额:</view>
+      <textarea class=" solid  text-right" style='margin-top:10rpx;padding:10rpx 15rpx 10rpx 0;height:60rpx;line-height:60rpx;font-weight:bold;color:#000;' placeholder='888' placeholder-style='color:#111;border:1rpx solid #999;'></textarea>
+    </view>
+    <!-- 本店优惠部分 -->
+    <view>
+      <text class="basis-xs  margin-xs padding-sm radius">本店优惠:</text>
+      <view class="basis-xl margin-xs padding-sm radius" style='margin-left:100rpx'>
+        <view>
+          <text class="cu-tag round bg-orange sm" style='width:160rpx;height:50rpx;line-height:50rpx;font-size:35rpx;'>单笔满减</text>
+          <text class='textmiddle' style='margin-left:30rpx'>满400减100</text>
+          <text style='float:right'>-100.00</text>
+        </view>
+        <view style='margin-top:30rpx'>
+          <text class="cu-tag round bg-orange sm" style='width:160rpx;height:50rpx;line-height:50rpx;font-size:35rpx;'>熟客折扣</text>
+          <text class='textmiddle' style='margin-left:30rpx'>*95%</text>
+          <text style='float:right'>-50.0</text>
+        </view>
+      </view>
+    </view>
+    <!-- 兑换优惠部分 -->
+    <view class="flex padding-sm">
+      <view style='width:160rpx;hieght:56rpx;line-height:56rpx;margin-right:150rpx;'>兑换优惠</view>
+      <radio-group bindchange="SetBorderSize">
+        <label style='margin-right:30rpx;'>
+          <radio class="orange danxuan" value="" style='transform:scale(0.6);height:50rpx;line-height:50rpx;'></radio>
+          <text style='margin-left:24rpx'> 已另协商</text>
+        </label>
+        <label>
+          <radio class="orange danxuan" value="" checked style='transform:scale(0.6);height:50rpx;line-height:50rpx;'></radio>
+          <text style='margin-left:33rpx'>兑现优惠</text>
+        </label>
+      </radio-group>
+    </view>
+    <view class="flex padding-sm">
+      <view class=" ">顾客支付：</view>
+      <view style='margin-left:350rpx;font-size:40rpx;color:red'>￥300.00</view>
+    </view>
+    <view style='margin:10rpx 0 0 20rpx'>价格说明:</view>
+    <textarea class=" solid" style='margin:10rpx auto auto auto;padding:20rpx 20rpx 10rpx 40rpx;color:grey;height:200rpx;color:#111;' placeholder='如约单价格与结账价格不一致，请简短说明原因，如顾客要求增加项目或使用不同材料、仪器等。' placeholder-style='color:#333;'></textarea>
+    <view style='margin:10rpx 0 0 20rpx'>实收金额:</view>
+    <view class='text-center'>
+      <view style='height:20rpx;'></view>
+      <view class="cu-item">
+        <navigator style='display:inline-block;' url='/pages/index/reservation/staff/modules/statusTwoModal/statusTwoModal'>
+          <text class="cuIcon-questionfill  text-yellow" style='font-size:30rpx' bindtap="showDialogBtn"></text>
+          <text style='color:#FFCC00'>平台佣金：</text>
+          <text>2%</text>
+        </navigator>
+        <text style='margin-left:50rpx'>实收:￥294.00</text>
+      </view>
+    </view>
+    <button class="cu-btn bg-orange margin" style='font-size:35rpx;width:34%;margin-left:33%;'>请顾客买单</button>
+  </view>
+  <!-- 模态框部分 -->
+</view>
+<view class='hidFour'>
+  <view class='bg-white'>
+    <view class='text-center' style="padding-top:35rpx;font-size:35rpx;">正在等待顾客支付</view>
+    <view class='text-center' style='color:red;font-size:45rpx;'>￥300.00</view>
+    <view style='height:45rpx;'></view>
+    <view style='padding-bottom:45rpx;font-size:30rpx;margin:0 25rpx;'>（如客户页面未及时响应，可能需要提醒顾客刷新约单）</view>
+  </view>
+</view>
+<view class='hidFive'>
+  <view class="bg-white bg text-center">
+    <text style='font-size:37rpx;color:#444;'>已成功收到款项：</text>
+    <text style='color:red;margin-left:20rpx;font-size:38rpx'>￥300.00</text>
+    <view style='font-weight:bold;font-size:42rpx;color:#111;margin-top:20rpx;padding-bottom:15rpx;'>请尽快晒单 </view>
+  </view>
+  <view style='height:30rpx;'></view>
+  <view style='height:50rpx;line-hright:50rpx;font-size:35rpx;margin-left:25rpx;'>晒单服务项目</view>
+  <view class="bg-white" style='padding-top:15rpx;'>
+    <view>
+      <text style="font-size:37rpx;color:#444;margin-left:25rpx;width:50rpx;height:60rpx;line-height:70rpx;">菩草堂腰背舒缓调理</text>
+      <text class="cu-tag  round bg-grey" style='margin-left:250rpx;font-size:35rpx;width:60rpx;height:60rpx;vertical-align:top;margin-top:0;'>秀</text>
+      <navigator style='display:inline-block;vertical-align:top;' url='/pages/index/reservation/staff/modules/poker/poker'>
+        <button class="cu-btn round sm bg-orange" style='margin-left:15rpx;font-size:35rpx;width:60rpx;height:60rpx;'>秀</button>
+      </navigator>
+    </view>
+    <view style='height:20rpx;'></view>
+    <view style="font-size:35rpx;margin-left:25rpx;">顾客评价：
+      <text class="cuIcon-favorfill lg text-orange" style='margin-left:360rpx'></text>
+      <text class="cuIcon-favorfill lg text-orange"></text>
+      <text class="cuIcon-favorfill lg text-orange"></text>
+      <text class="cuIcon-favorfill lg text-orange"></text>
+      <text class="cuIcon-favorfill lg text-grey"></text>
+    </view>
+    <view style='height:10rpx;'></view>
+    <view class="flex" style="font-size:35rpx;margin-left:25rpx;">
+      <view class="flex-sub ">顾客评语：</view>
+      <view class="flex-twice" style='margin-left:-110rpx'>顾客评语顾客评语，顾客评语顾客评语，顾客评语，顾客评语顾客评语。</view>
+    </view>
+    <view style='height:20rpx;'></view>
+    <view class="flex" style="font-size:35rpx;margin-left:25rpx;">
+      <view class="flex-sub ">顾客晒图：</view>
+      <view class="flex-twice" style='margin-left:-140rpx;'>
+        <view bindtap="ChooseImage" class="solids">
+          <image src="../../../../../../assets/imageAppont/small.jpg" style='width:100rpx;height:100rpx;'></image>
+        </view>
+        <view bindtap="ChooseImage" class="solids" role="" aria-label="">
+          <image src="../../../../../../assets/imageAppont/small.jpg" style='width:100rpx;height:100rpx;'></image>
+        </view>
+        <view bindtap="ChooseImage" class="solids" role="" aria-label="">
+          <image src="../../../../../../assets/imageAppont/small.jpg" style='width:100rpx;height:100rpx;'></image>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="bg-white" style='margin-top:20rpx;padding-top:15rpx'>
+    <view>
+      <text style="font-size:37rpx;color:#444;margin-left:25rpx;width:50rpx;height:60rpx;line-height:70rpx;">春日乔恩小可爱同款荷包蛋美甲</text>
+      <navigator style='display:inline-block;vertical-align:top;' url='/pages/index/reservation/staff/modules/poker/poker'>
+        <button class="cu-btn round sm bg-orange" style='margin-left:60rpx;font-size:35rpx;width:140rpx;text-align:center;letter-spacing:10rpx;height:60rpx;'>晒单</button>
+      </navigator>
+    </view>
+    <view class=" text-sub margin flex-sub" style='font-size:35rpx;'>顾客评价：
+      <text style='margin-left:420rpx'>未评</text>
+    </view>
+    <view class=" text-sub margin flex-sub" style='font-size:35rpx;'>顾客评语：
+      <text style='margin-left:420rpx'>未评</text>
+    </view>
+    <view class=" text-sub margin flex-sub" style='padding-bottom:50rpx;font-size:35rpx;'>顾客晒图：
+      <text style='margin-left:420rpx'>无</text>
+    </view>
+  </view>
+</view>

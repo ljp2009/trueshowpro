@@ -1,0 +1,62 @@
+   <cu-custom bgColor="bg-gradual-white" isBack="{{true}}"><view slot="backText"></view><view slot="content">机构认证</view></cu-custom>
+
+ <view class="count">
+ <view class='head'>  
+      <view class="box">已成功认证信息
+</view>
+</view>
+ 
+<view class="cu-bar margin-top bg-white"style="margin-top:80rpx">
+<view class="action">
+   机构名称：
+   <text>XXXXX美容院</text>
+
+  </view>
+</view>
+<view class="cu-bar margin-top bg-white">
+<view class="action">
+    机构类型：企业/个体户
+
+  </view>
+</view>
+<view class="cu-bar margin-top bg-white">
+<view class="action">
+  营业执照号：
+
+  </view>
+</view>
+<view class="cu-bar margin-top bg-white">
+<view class="action">
+   地址：
+
+  </view>
+</view>
+<view class="cu-bar margin-top bg-white">
+<view class="action">
+  负责人： XXX
+
+  </view>
+</view>
+<view class="cu-bar margin-top bg-white">
+<view class="action">
+  身份证号：8888888888888***888
+
+  </view>
+</view>
+<view class="cu-bar margin-top bg-white">
+<view class="action">
+   住址：XXX省XXX市XXX镇/区XXX路XXX号
+
+  </view>
+</view>
+<view class="cu-bar margin-top bg-white">
+<view class="action">
+  有效期至：2020年9月9日
+
+  </view>
+</view>
+
+ 
+
+
+  </view>

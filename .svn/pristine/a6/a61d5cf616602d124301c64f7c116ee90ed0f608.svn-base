@@ -1,0 +1,191 @@
+// pages/index/index/auth/auth.js
+const app = getApp()
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+
+  },
+
+
+  // 同意授权事件
+  getUserInfo: function (e) {
+    console.log(e)
+    app.globalData.userInfo = e.detail.userInfo
+    this.setData({
+      userInfo: e.detail.userInfo,
+      hasUserInfo: true
+    })
+    console.log("获得用户的基本信息是");
+    console.log(e.detail.rawData);
+    if (e.detail.rawData != undefined) {
+      var infoLists = JSON.parse(e.detail.rawData);
+      // 得到了用户 信息   
+      console.log(infoLists);
+      console.log(infoLists.nickName);
+      console.log(infoLists.avatarUrl);
+
+
+
+      // wx.showToast({
+      //   title: '登录',
+      //   duration: 1000
+      // })
+
+      //////////////////////////////test--授权成功写入缓存 test--1
+      // wx.setStorageSync("test", "1")
+      // setTimeout(function () {
+      //   wx.navigateTo({
+      //     url: '/pages/index/poker/pokerIndex/pokerIndex',
+      //   })
+
+      // }, 1000)
+
+      // return;
+      //pc///////////////////// 登录
+      wx.login({
+        success: res => {
+          // 发送 res.code 到后台换取 openId, sessionKey, unionId
+
+
+          /////////////////////////////////////////server///
+          var obj = {}
+          if (wx.getStorageSync("user")) {
+            if (JSON.parse(wx.getStorageSync("user"))["noLogin"]["region"].length > 0) {
+              obj = JSON.parse(wx.getStorageSync("user"))["noLogin"];
+            }
+          }
+          var objstr = JSON.stringify(obj);
+
+          wx.request({
+            url: 'http://trueshow/index/userlogin/WechatLogin', //仅为示例，并非真实的接口地址
+            method: "get",
+            data: {
+              code: res.code,
+              nickName: infoLists.nickName,
+              avatarUrl: infoLists.avatarUrl,
+              gender: infoLists.gender,
+              region: objstr
+            },
+            header: {
+              'content-type': 'application/json' // 默认值
+            },
+            success(res) {
+              // console.log(res.data);
+
+              var code = res.data.code;
+              var dataArr = res.data.msg;
+              //console.log(typeof dataArr);
+              //console.log(code);
+              if (code == 1) {
+                //console.log("----")
+                //JSON.stringify(jsonobj); 转为json字符串
+                var uid = dataArr["UserId"];//用户id
+                var entry = dataArr["Entry"];//界面 0-顾客界面 1-技师界面
+                var staffLevel = dataArr["StaffLevel"];//隶属状态
+                var userinfoobj = {
+                  uid: uid,
+                  entry: entry,
+                  staffLevel: staffLevel
+                }
+                var userinfoobj1 = JSON.stringify(userinfoobj);//转为json字符串
+                ///////////往缓存user中写入数据
+                ////把数据存到缓存中
+
+                //读取
+                var obj = JSON.parse(wx.getStorageSync("user"));
+                obj["userinfo"] = {
+                  uid: uid,
+                  entry: entry,
+                  staffLevel: staffLevel,
+                  nickName: infoLists.nickName,
+                  avatarUrl: infoLists.avatarUrl,
+                  gender: infoLists.gender,
+                }
+                wx.setStorageSync("user", JSON.stringify(obj));
+
+
+                console.log(wx.getStorageSync("user"))
+
+
+
+
+
+                wx.navigateTo({
+                  url: '/pages/index/poker/pokerIndex/pokerIndex',
+                })
+
+              }
+
+            }
+          })
+        }
+      })
+
+    } else if (e.detail.rawData == undefined) {
+      console.log("用户拒绝了授权");
+      wx.navigateTo({
+        url: '/pages/index/index/auth/auth',
+      })
+    }
+
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  }
+})

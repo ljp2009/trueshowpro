@@ -1,0 +1,37 @@
+/* pages/index/firm/firmIndex/firmInfo/firmInfo.wxss */
+@import "../../../../common/footer/footer.wxss";
+page{
+  /* background-color: white; */
+}
+ /* //图片样式 */
+  .start_k{
+   display: flex;
+  align-items: center;
+  justify-content: left;
+}
+.img_big{
+  width: 128rpx;
+  height: 128rpx;
+ 
+  border-radius: 50%;
+}
+.staffOrder,.address,.firmOne,.words,.doom{
+  margin-top: 2%
+}
+.staffTwo{ 
+  margin-left: 5%;
+  margin-right: 5%;
+  top: 8rpx;
+  /* margin-top: 50rpx; */
+  width: 30rpx;
+  height:30rpx;
+  display: inline-block;
+  padding-bottom:3rpx;
+  /* border: 1rpx solid rebeccapurple  */
+}
+.kmIcom{
+  margin-right: 2%
+}
+.km{
+  margin-right: 5%
+}

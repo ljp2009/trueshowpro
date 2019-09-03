@@ -1,0 +1,55 @@
+<!--pages/index/firm/firmAd/adPay/adPay.wxml-->
+<cu-custom bgColor="bg-gray" isBack="{{true}}" style="color:#000;">
+  <view slot="backText" style='font-size:36rpx;color:#000;'>返回</view>
+  <view slot="content" style='font-size:39rpx;margin-left:-50rpx;color:#000;'>广告投放</view>
+</cu-custom>
+<view class="text-sub text-center">
+  <text class="padding-left" style='font-size:35rpx;'>请购买点击数，顾客点击浏览扣减一次,</text>
+</view>
+<view class="text-sub text-center">
+  <text class="padding-left" style='font-size:35rpx;'>投放有效期30次</text>
+</view>
+<view class="bg-white margin">
+  <view class="padding-left">
+    <view style='height:30rpx;'></view>
+    <view class="margin-bottom">
+      <text style='font-size:36rpx;'>使用模板：春节专用广告</text>
+    </view>
+    <view class="margin-bottom" style=''>
+      <text style='font-size:36rpx;'>投放开始日期：</text>
+      <picker bindchange="" end="2020-09-01" mode="date" start="2015-09-01" value="2018-12-25" style='font-size:36rpx;'>
+        <view class="picker margin-top text-center" role="" aria-label="" style='font-size:36rpx;width:350rpx;'> 2018-12-25
+          <text class="cuIcon-calendar lg text-grey" style='font-size:36rpx;'></text>
+        </view>
+      </picker>
+    </view>
+    <view class="margin-bottom">
+      <text style='font-size:36rpx;'>购买点击数</text>
+      <view class="section section_gap margin bg" style="background-color:#F1F1F1">
+        <view class="body-view align-center ">
+          <text class="text text-black" style="left:10rpx;font-size:36rpx;">100</text>
+          <slider class="slider" bindchange="slider4change" min="100" max="500" block-size="12" block-color="#FF6600" />
+          <text class="text text-black" style="right:30rpx;font-size:36rpx;">500</text>
+        </view>
+      </view>
+      <text style="padding-left:300rpx" class="text-bold lg" style='font-size:36rpx;'>50</text>
+    </view>
+    <view class="margin-bottom value">
+      <text style='font-size:36rpx;'>计费：</text>
+    </view>
+    <view class="text-center margin-bottom">
+      <text style='font-size:36rpx;'>1.00元 x 250次 = ￥250.00元</text>
+    </view>
+    <view class="margin-bottom">
+      <text style='font-size:36rpx;'>实际支付：</text>
+    </view>
+    <view class="text-center margin-bottom">
+      <text class="text-lg" style='font-size:36rpx;'>￥<text class="text-red">250.00元</text></text>
+    </view>
+    <view class="text-center margin-bottom">
+      <navigator style='display:inline-block;' url='/pages/index/firm/firmAd/firmAdList/firmAdList'>
+        <button class="cu-btn bg-green margin-tb-sm lg" style='font-size:36rpx;'>立刻微信支付</button>
+      </navigator>
+    </view>
+  </view>
+</view>

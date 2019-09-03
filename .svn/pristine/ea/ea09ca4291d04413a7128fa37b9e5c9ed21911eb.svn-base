@@ -1,0 +1,51 @@
+<!-- <view class="title">商品属性值联动选择</view> -->
+<!--options-->
+<view id="filterImg" style="background:url('{{gdata.webroot}}/static/images/index/catebg.png');background-size:100% 50%;background-repeat: no-repeat; ">
+<!-- 过滤显示的背景 -->
+
+      <!-- <image src='{{gdata.webroot}}/images/index/catebg.png'>
+        
+      </image> -->
+</view>
+<view id='filter'> 
+<view class="commodity_attr_list">
+  <!--每组属性-->
+  <view class="attr_box" wx:for="{{attrValueList}}" wx:for-item="attrValueObj" wx:for-index="attrIndex">
+    <!--属性名-->
+    <view class="item">
+    <image class='img' src='{{gdata.webroot}}/static/images/index/{{attrValueObj.icon}}' bindtap='cateClick' data-index="{{attrIndex}}"></image>
+    <text>{{attrValueObj.attrKey}}</text>
+   </view>
+    <!--属性值-->
+    <view class="attr_value_box">
+      <!--每个属性值-->
+      <view class="attr_value {{attrValueObj.attrValueStatus[valueIndex]?'attr_value_active':''}}" bindtap="selectAttrValue"
+      data-index="{{valueIndex}}"
+       data-status="{{attrValueObj.attrValueStatus[valueIndex]}}"
+      data-value="{{value}}" data-key="{{attrValueObj.attrKey}}" data-index1="{{attrIndex}}" data-selectedvalue="{{attrValueObj.selectedValue}}" wx:for="{{attrValueObj.attrValues}}" wx:for-item="value" wx:for-index="valueIndex">{{value}}</view>
+    </view>
+  </view>
+</view>
+</view>
+
+<view class='search'>
+<view>
+  <button bindtap='jumpHome' class="cu-btn bg-grey lg">取消选择</button>
+  <button bindtap='jumpHome' style='background-color:rgb(255,102,0);' class="cu-btn bg-red margin-sm margin-tb-sm lg">筛选分类</button>
+</view>
+
+  
+  <!-- <button bindtap='jumpHome' class="cu-btn margin-sm line-blue margin-tb-sm lg" >取消选择</button> -->
+
+  <!-- <button class='cu-btn line-blue bg-grey lg'>取消选择</button> -->
+
+  <!-- <button class="cu-btn margin-sm line-blue margin-tb-sm lg" disabled>无效状态</button> -->
+
+  <!-- <button bindtap='jumpHome' style='background-color:rgb(255,102,0);' class="cu-btn  bg-blue margin-tb-sm line-blue lg"  type="" >筛选分类</button> -->
+</view>
+
+<!--button-->
+<!-- <view class="weui-btn-area">
+<button class="weui-btn" type="primary" bindtap="submit">取消</button>
+  <button class="weui-btn" type="primary" bindtap="submit">确定</button>
+</view> -->

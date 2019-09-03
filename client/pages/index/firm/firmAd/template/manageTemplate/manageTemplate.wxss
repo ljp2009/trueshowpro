@@ -1,0 +1,43 @@
+/* pages/index/firm/firmAd/template/manageTemplate/manageTemplate.wxss */
+/* 主图预览边框 */
+.border{
+  width:400rpx;
+  height:650rpx;
+  border:3px solid grey;
+  border-radius: 10px;
+}
+/* 满减 */
+.full{
+  border-radius:15rpx;
+}
+.poster{
+  width:650rpx;
+  height:495rpx;
+}
+.box{
+  position: relative;
+}
+.content{
+  position:absolute;
+  top:45%;
+  left:45%;
+  font-size:50rpx;
+}
+/* 添加图片 */
+.in{
+  width:100rpx;
+  height:100rpx;
+  border:1px solid black;
+}
+/* 添加一组 */
+.add{
+  width:200rpx;
+  height:70rpx;
+}
+button{
+  width:200rpx;
+  border-radius:rpx;
+}
+.space{
+  letter-spacing: 10rpx;
+}

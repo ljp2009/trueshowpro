@@ -1,0 +1,41 @@
+<!-- <view class="title">商品属性值联动选择</view> -->
+<!--options-->
+<view id="filterImg" style="background :url('{{gdata.webroot}}/static/images/index/catebg.png');background-size:100% {{nowimgheight+'px'}};background-repeat: no-repeat; " >
+  <view id="reradio1"  wx:for="{{body}}" wx:for-index="Index" wx:for-item="bodyobj" >
+    <image id="reradio"  style="color:#969696;font-size:28rpx;" data-index="{{Index}}" style="left:{{(bodyobj.width)+'px'}};top:{{bodyobj.height+'px'}}"  bindtap='bodytap' data-type="{{bodytype}}"  data-item="{{bodyobj.bodyname}}" src='{{gdata.webroot}}/static/images/index/{{bodyobj.icon}}'></image>
+  </view>
+</view>
+<view class="allchecked">
+  <view class="all" >
+    <image class='img' src='{{gdata.webroot}}/static/images/index/{{allchecked.icon}}' bindtap='allclick'></image>
+    <text>{{allchecked.text}}</text>
+  </view> 
+</view>
+<view id='filter'> 
+  
+  <view class="commodity_attr_list">
+    <!--每组属性-->
+    <view class="attr_box" wx:for="{{attrValueList}}" wx:for-item="attrValueObj" wx:for-index="attrIndex">
+      <!--属性名-->
+      <view class="item">
+      <image class='img' src='{{gdata.webroot}}/static/images/index/{{attrValueObj.icon}}' bindtap='cateClick' data-index="{{attrIndex}}"></image>
+      <text >{{attrValueObj.attrKey}}</text>
+    </view>
+      <!--属性值-->
+      <view class="attr_value_box">
+        <!--每个属性值-->
+        <view class="attr_value {{attrValueObj.attrValueStatus[valueIndex]?'attr_value_active':''}}" bindtap="selectAttrValue"
+        data-index="{{valueIndex}}"
+        data-status="{{attrValueObj.attrValueStatus[valueIndex]}}"
+        data-value="{{value}}" data-key="{{attrValueObj.attrKey}}" data-index1="{{attrIndex}}" data-selectedvalue="{{attrValueObj.selectedValue}}" wx:for="{{attrValueObj.attrValues}}" wx:for-item="value" wx:for-index="valueIndex" data-seq="{{value}}"><text >{{value}}</text></view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class='search'>
+  <view>
+    <button bindtap='jumpHome' class="cu-btn bg-grey lg">取消选择</button>
+    <button bindtap='jumpHome' style='background-color:rgb(255,102,0);' class="cu-btn bg-red margin-sm margin-tb-sm lg">筛选分类         </button>
+  </view>
+</view>

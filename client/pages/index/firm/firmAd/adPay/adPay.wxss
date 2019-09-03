@@ -1,0 +1,33 @@
+/* pages/index/firm/firmAd/adPay/adPay.wxss */
+/* border可删除 */
+.border{
+  border:1rpx solid black
+}
+/* 日历 */
+.picker{
+  border:1px solid #D0D0D0;
+  height:80rpx;
+  line-height: 80rpx;
+  width:240rpx;
+}
+/* 滑块背景 */
+.bg{
+  height:55rpx;
+  line-height: 55rpx;
+  background-color: #F1F1F1;
+  border-radius:30rpx;
+  position: relative;
+}
+/* 滑块 */
+.slider{
+  width:400rpx;
+  position: absolute;
+  left:50rpx;
+  top:-10rpx;
+}
+.text{
+  position: absolute
+}
+.value{
+  margin-top: 50rpx;
+}

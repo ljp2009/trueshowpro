@@ -1,6 +1,6 @@
 //app.js
 App({
-  onLaunch: function () {
+  onLaunch: function () {  
 
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
@@ -8,13 +8,14 @@ App({
     wx.setStorageSync('logs', logs)
     var that=this;
     
-    // 获取用户信息
+    // 获取用户信息   
     wx.getSetting({
       success: res => {
         if (res.authSetting['scope.userInfo']) {
+          console.log("---用户同意授权---")
           // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
           wx.getUserInfo({
-            success: res => {
+            success: res => {  
               // 可以将 res 发送给后台解码出 unionId
               this.globalData.userInfo = res.userInfo
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
@@ -24,62 +25,15 @@ App({
               }
               console.log(this.globalData.userInfo)
 
-              // 登录
-              wx.login({
-                success: res => {
-                  // 发送 res.code 到后台换取 openId, sessionKey, unionId
-                  wx.request({
-                    url: 'http://trueshow/index/userlogin/WechatLogin', //仅为示例，并非真实的接口地址
-                    method: "get",
-                    data: {
-                      code: res.code,
-                      nickName: that.globalData.userInfo.nickName,
-                      avatarUrl: that.globalData.userInfo.avatarUrl,
-                      gender: that.globalData.userInfo.gender,
-                    },
-                    header: {
-                      'content-type': 'application/json' // 默认值
-                    },
-                    success(res) {
-                      //console.log(res.data);
-                      // return;
-                      var code = res.data.code;
-                      var dataArr = res.data.msg;
-                      //console.log(typeof dataArr);
-                      //console.log(code);
-                      if (code == 0) {
-                        //console.log("----")
-                        //JSON.stringify(jsonobj); 转为json字符串
-                        var uid = dataArr["UserId"];//用户id
-                        var entry = dataArr["Entry"];//界面 0-顾客界面 1-技师界面
-                        var staffLevel = dataArr["StaffLevel"];//隶属状态
-                        var userinfoobj={
-                          uid:uid,
-                          entry: entry,
-                          staffLevel: staffLevel
-                        }
-                        var userinfoobj1 = JSON.stringify(userinfoobj);//转为json字符串
-                        if (!wx.getStorageSync('userinfo')) {
-                          wx.setStorageSync("userinfo", userinfoobj1);
-                          //console.log(wx.getStorageSync('userinfo'))
-                        } else {
-                          console.log(wx.getStorageSync('userinfo'))
-                          //console.log(JSON.parse(wx.getStorageSync('userinfo')).uid)
-                        }
-                        
-                      
-                      }
-
-                    }
-                  })
-                }
-              })
+              
             }
           })
+        }  else{
+          console.log("---用户不同意授权----")
         }
       }
     }),
-      wx.getSystemInfo({
+      wx.getSystemInfo({ 
         success: e => {
           this.globalData.StatusBar = e.statusBarHeight;
           let custom = wx.getMenuButtonBoundingClientRect();
@@ -88,49 +42,67 @@ App({
         }
       })
     
-    //获取用户位置
-    wx.getSetting({
-      success(res) {
-        if (!res.authSetting['scope.userLocation']) {
-          wx.authorize({
-            scope: 'scope.userLocation',
-            success() {
-              // 用户已经同意
-                 wx.getLocation({
-                  type: 'wgs84',
-                  success(res) {
-                    var latitude = res.latitude
-                    var longitude = res.longitude
-                    var speed = res.speed
-                    var accuracy = res.accuracy
-                    console.log("纬度=" + latitude + "--经度=" + longitude);
-                  }
-                })
-            }
-          })
-        }else{
-          wx.getLocation({
-            type: 'wgs84',
-            success(res) {
-              var latitude = res.latitude
-              var longitude = res.longitude
-              var speed = res.speed
-              var accuracy = res.accuracy
-              console.log("纬度=" + latitude + "--经度=" + longitude);
-            }
-          })
-        }
-       
-          
-        }
-      })
-  
+   
+     
   },
+  //
+  
+
+  // 地理位置结束
   onShow:function() {
    // console.log(this.globalData.userInfo)
     
   },
+  onHide:function(){
+    var that=this;
+    console.log("推出了小程序11111");
+
+    //更新用户在数据库表中的最后在线时间
+
+    //更新当前用户的最后在线时间
+    //传用户id
+    if (JSON.parse(wx.getStorageSync("user"))["userinfo"]["uid"]) {
+      //读取缓存中的userinfo是否存在如果存在就把当前的选择的城市信息写入数据库再跳到pokeIndex
+      wx.request({
+        url: that.globalData.webroot+'/index/userlogin/UpdateUserLastLoginTime', //仅为示例，并非真实的接口地址
+        method: "get",
+        data: {
+          uid: JSON.parse(wx.getStorageSync("user"))["userinfo"]["uid"],
+        },
+        header: {
+          'content-type': 'application/json' // 默认值
+        },
+        success(res) {
+          console.log(res.data);
+        }
+      })
+
+      var staffLevel = JSON.parse(wx.getStorageSync("user"))["userinfo"]["staffLevel"];
+      var uid = JSON.parse(wx.getStorageSync("user"))["userinfo"]["uid"];
+      ///判断用户是否是技师 技师需要写入技师在线表
+      if (staffLevel >= 2) {
+        //该用户是技师
+        wx.request({
+          url: that.globalData.webroot + '/index/userlogin/ifInsertStaffOnline',
+          data: {
+            StaffId: uid,//技师id
+            type: 0  // 1-上线 0-下线
+          },
+          header: {
+            'content-type': 'application/json' // 默认值
+          },
+          success(res) {
+            console.log(res.data)
+            // console.log(res.data.msg)
+          }
+        })
+      }
+    }
+
+
+  },
   onUnload:function(){
+    console.log("推出了小程序");
     wx.request({
       url: 'http://trueshow/index/userlogin/testunLoad',
       method:"get",
@@ -225,5 +197,9 @@ App({
       color: '#ffffff'
     },
     ]
+  },
+  data: {
+    addServiceOne: "block",
+    addServiceTwo: "none"
   }
 })

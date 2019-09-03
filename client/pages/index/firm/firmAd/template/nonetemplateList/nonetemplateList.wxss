@@ -1,0 +1,8 @@
+/* pages/index/firm/firmAd/template/templateList/nonetemplateList.wxss */
+.yellow{
+  background-color: #FFE374
+}
+.return{
+  width:30rpx;
+  height:30rpx
+}

@@ -1,0 +1,9 @@
+.bg{
+  padding-top:30rpx;
+}
+.solids{
+  background-color: #666;
+  width:100rpx;height:100rpx;
+  display: inline-block;
+  margin:0 20rpx;
+}

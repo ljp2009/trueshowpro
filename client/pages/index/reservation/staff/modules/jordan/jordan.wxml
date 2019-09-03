@@ -1,0 +1,258 @@
+<!--pages/index/reservation/staff/modules/jordan/jordan.wxml-->
+<cu-custom bgColor="bg-gray" isBack="{{true}}" style="color:#000;">
+  <view slot="backText" style='font-size:36rpx;color:#000;'>返回</view>
+  <view slot="content" style='font-size:39rpx;margin-left:-50rpx;color:#000;'>技约单首页</view>
+</cu-custom>
+<navigator style='width:100%;' url='/pages/index/reservation/staff/modules/scanCode/scanCode'>
+  <view class='flex' style='width:93%;margin:auto;'>
+    <button class='flex-sub' style='display:inline-block;height:50rpx;line-height:50rpx;font-size:35rpx;'>
+      <view style='display:inline-block;width:33%;text-align:right;'>
+        <image src="/assets/images/index/icon1.png " style="background-color:#333;width:50rpx;height:50rpx;vertical-align:top;" />
+      </view>
+      <view style='display:inline-block;width:67%;text-align:left;'>扫一扫预约凭证</view>
+    </button>
+  </view>
+</navigator>
+<view style='height:30rpx;'></view>
+<navigator url='/pages/index/reservation/staff/modules/jordanMoadlOne/jordanModalOne'>
+  <view class='flex' style='width:93%;margin:auto;'>
+    <button class='flex-sub' style='display:inline-block;height:50rpx;line-height:50rpx;font-size:35rpx;'>
+      <view style='display:inline-block;width:33%;text-align:right;'>
+        <image src="/assets/images/index/icon4.png " style="background-color:#333;width:50rpx;height:50rpx;vertical-align:top;border-radius:10rpx;" />
+      </view>
+      <view style='display:inline-block;width:67%;text-align:left;'>设置上下班时间</view>
+    </button>
+  </view>
+</navigator>
+<view style='height:30rpx;'></view>
+<view class='flex' style='width:93%;margin:auto;'>
+  <button class='flex-sub' style='display:inline-block;height:50rpx;line-height:50rpx;font-size:35rpx;'>
+    <view style='display:inline-block;width:33%;text-align:right;'>
+      <image src="/assets/images/index/icon3.png " style="background-color:#333;width:50rpx;height:50rpx;vertical-align:top;border-radius:10rpx;" />
+    </view>
+    <view style='display:inline-block;width:67%;text-align:left;'>查看历史约单</view>
+  </button>
+</view>
+
+<view style='height:30rpx;'></view>
+<view class='flex' style='font-size:32rpx;width:93%;margin:auto;'>
+  <view class='flex-sub'>9:00</view>
+  <view class='flex-sub' style='text-align:center;font-size:35rpx;'>今天(2)</view>
+  <view class='flex-sub' style='text-align:right;'>21:00</view>
+</view>
+<navigator url='/pages/index/reservation/staff/modules/jordanModalTwo/jordanModalTwo'>
+  <view class='flex' style='width:93%;border:1rpx solid #BBB;margin:auto;height:45rpx;background-color:#FFF;'>
+    <view class='flex-treble'></view>
+    <view class='flex-treble' style='background-color:#9F0;height:45rpx;margin-top:-3rpx;'></view>
+    <view class='flex-twice'></view>
+    <view class='flex-sub' style='background-color:#9F0;height:45rpx;margin-top:-3rpx;'></view>
+    <view class='flex-treble'></view>
+    <view class='flex-twice'></view>
+  </view>
+</navigator>
+<navigator url='/pages/index/reservation/staff/modules/statusOne/statusOne'>
+  <view class=" bg-white " style='font-size:31rpx;color:#333;width:93%;border:1rpx solid #FFF;margin:auto;'>
+    <view class="flex solid-bottom padding align-start">
+      <view style='margin:20rpx -15rpx;'>
+        <view style='display:inline-block;max-width:18%;width:800rpx;text-align:center;margin-top:-30rpx;vertical-align:top;'>
+          <image src='http://ljp.jujiaoweb.com/static/images/index/qOne.png ' style='width:150rpx;height:150rpx;border-radius:50%;border:6rpx solid #BBB;'></image>
+        </view>
+        <view style='margin-top:-30rpx;display:inline-block;max-width:58%;width:900rpx;font-size:31rpx;position:relative;'>
+          <view style='width:86%;display:inline-block;'>
+            <view style='color:#133;font-family:"微软雅黑"'>COCO
+              <text style='margin-left:20rpx;'>138-0000-0000</text>
+            </view>
+            <view style='color:#133;font-family:"微软雅黑"'>10:00-11:30
+              <text style='margin-left:20rpx;'>(约120分钟)</text>
+            </view>
+            <view style="height:5rpx;"></view>
+            <view class='infoCenter' style="font-size:29rpx;">
+              <text class="cu-tag round bg-orange sm" style='width:100rpx;;height:36rpx;line-height:36rpx;font-size:29rpx;'>美甲</text>
+              <text class='textmiddle'>无草堂腰背舒缓调理</text>
+            </view>
+            <view class='infoCenter' style="font-size:29rpx;">
+              <text class="cu-tag round bg-orange sm" style='width:100rpx;;height:36rpx;line-height:36rpx;font-size:29rpx;'>美眉</text>
+              <text class='textmiddle'>春日小可爱同款荷包蛋美甲</text>
+            </view>
+          </view>
+          <view style='display:inline-block;width:23%;position:absolute;right:0;top:25%;'>
+            <button class="cu-btn round sm bg-orange" style='font-size:31rpx;width:60rpx;height:60rpx;'>秀</button>
+            <text class="cuIcon-right lg" style='color:#444;font-size:45rpx;line-height:60rpx;position:absolute;right:0;'></text>
+          </view>
+        </view>
+        <view style='height:12rpx;'></view>
+        <view style='width:74%;color:#133;font-family:"微软雅黑";text-align:center;'>状态：
+          <text>已完成</text>
+        </view>
+        <view style='color:#133;font-family:"微软雅黑";margin-left:43rpx;'>备注：
+          <text>2019-08-08 12：30 顾客编辑改期</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</navigator>
+<view style='height:12rpx;'></view>
+<navigator url='/pages/index/reservation/staff/modules/statusOne/statusOne'>
+  <view class=" bg-white " style='font-size:31rpx;color:#333;width:93%;border:1rpx solid #FFF;margin:auto;'>
+    <view class="flex solid-bottom padding align-start">
+      <view style='margin:20rpx -15rpx;'>
+        <view style='display:inline-block;max-width:18%;width:800rpx;text-align:center;margin-top:-30rpx;vertical-align:top;'>
+          <image src='http://ljp.jujiaoweb.com/static/images/index/qOne.png ' style='width:150rpx;height:150rpx;border-radius:50%;border:6rpx solid #BBB;'></image>
+        </view>
+        <view style='margin-top:-30rpx;display:inline-block;max-width:58%;width:900rpx;font-size:31rpx;position:relative;'>
+          <view style='width:86%;display:inline-block;'>
+            <view style='color:#133;font-family:"微软雅黑"'>COCO
+              <text style='margin-left:20rpx;'>138-0000-0000</text>
+            </view>
+            <view style='color:#133;font-family:"微软雅黑"'>10:00-11:30
+              <text style='margin-left:20rpx;'>(约120分钟)</text>
+            </view>
+            <view style="height:5rpx;"></view>
+            <view class='infoCenter' style="font-size:29rpx;">
+              <text class="cu-tag round bg-orange sm" style='width:100rpx;;height:36rpx;line-height:36rpx;font-size:29rpx;'>美甲</text>
+              <text class='textmiddle'>无草堂腰背舒缓调理</text>
+            </view>
+            <view class='infoCenter' style="font-size:29rpx;">
+              <text class="cu-tag round bg-orange sm" style='width:100rpx;;height:36rpx;line-height:36rpx;font-size:29rpx;'>美眉</text>
+              <text class='textmiddle'>春日小可爱同款荷包蛋美甲</text>
+            </view>
+          </view>
+          <view style='display:inline-block;width:23%;position:absolute;right:0;top:25%;'>
+            <button class="cu-btn round sm bg-orange" style='font-size:31rpx;width:60rpx;height:60rpx;'>秀</button>
+            <text class="cuIcon-right lg" style='color:#444;font-size:45rpx;line-height:60rpx;position:absolute;right:0;'></text>
+          </view>
+        </view>
+        <view style='height:12rpx;'></view>
+        <view style='width:74%;color:#133;font-family:"微软雅黑";text-align:center;'>状态：
+          <text>等待你发起支付</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</navigator>
+<view style='height:16rpx;'></view>
+
+<view class='flex' style='font-size:32rpx;width:93%;margin:auto;'>
+  <view class='flex-sub'>9:00</view>
+  <view class='flex-sub' style='text-align:center;font-size:35rpx;'>明天(1)</view>
+  <view class='flex-sub' style='text-align:right;'>21:00</view>
+</view>
+<navigator url='/pages/index/reservation/staff/modules/jordanModalTwo/jordanModalTwo'>
+  <view class='flex' style='width:93%;border:1rpx solid #BBB;margin:auto;height:45rpx;background-color:#FFF;'>
+    <view class='flex-twice'></view>
+    <view class='flex-twice' style='background-color:#9F0;height:45rpx;margin-top:-3rpx;'></view>
+    <view class='flex-twice'></view>
+    <view class='flex-twice'></view>
+    <view class='flex-sub' style='background-color:#BBB;height:45rpx;margin-top:-3rpx;'></view>
+    <view class='flex-treble'></view>
+    <view class='flex-twice'></view>
+  </view>
+</navigator>
+<navigator url='/pages/index/reservation/staff/modules/statusOne/statusOne'>
+  <view class=" bg-white " style='font-size:31rpx;color:#333;width:93%;border:1rpx solid #FFF;margin:auto;'>
+    <view class="flex solid-bottom padding align-start">
+      <view style='margin:20rpx -15rpx;'>
+        <view style='display:inline-block;max-width:18%;width:800rpx;text-align:center;margin-top:-30rpx;vertical-align:top;'>
+          <image src='http://ljp.jujiaoweb.com/static/images/index/qOne.png ' style='width:150rpx;height:150rpx;border-radius:50%;border:6rpx solid #BBB;'></image>
+        </view>
+        <view style='margin-top:-30rpx;display:inline-block;max-width:58%;width:900rpx;font-size:31rpx;position:relative;'>
+          <view style='width:86%;display:inline-block;'>
+            <view style='color:#133;font-family:"微软雅黑"'>COCO
+              <text style='margin-left:20rpx;'>138-0000-0000</text>
+            </view>
+            <view style='color:#133;font-family:"微软雅黑"'>10:00-11:30
+              <text style='margin-left:20rpx;'>(约120分钟)</text>
+            </view>
+            <view style="height:5rpx;"></view>
+            <view class='infoCenter' style="font-size:29rpx;">
+              <text class="cu-tag round bg-orange sm" style='width:100rpx;;height:36rpx;line-height:36rpx;font-size:29rpx;'>美甲</text>
+              <text class='textmiddle'>无草堂腰背舒缓调理</text>
+            </view>
+            <view class='infoCenter' style="font-size:29rpx;">
+              <text class="cu-tag round bg-orange sm" style='width:100rpx;;height:36rpx;line-height:36rpx;font-size:29rpx;'>美眉</text>
+              <text class='textmiddle'>春日小可爱同款荷包蛋美甲</text>
+            </view>
+          </view>
+          <view style='display:inline-block;width:23%;position:absolute;right:0;top:25%;'>
+            <button class="cu-btn round sm bg-orange" style='font-size:31rpx;width:60rpx;height:60rpx;'>秀</button>
+            <text class="cuIcon-right lg" style='color:#444;font-size:45rpx;line-height:60rpx;position:absolute;right:0;'></text>
+          </view>
+        </view>
+        <view style='height:12rpx;'></view>
+        <view style='width:74%;color:#133;font-family:"微软雅黑";text-align:center;'>状态：
+          <text>等待顾客到店</text>
+          <text style='display:inline-block;width:40rpx;text-align:center;'>/</text>
+          <text style='color:#F00;'>等待晒单</text>
+        </view>
+        <view style='color:#133;font-family:"微软雅黑";margin-left:43rpx;'>备注：
+          <text>2019-08-08 12：30 顾客编辑改期</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</navigator>
+<view style='height:16rpx;'></view>
+<view class='flex' style='font-size:32rpx;width:93%;margin:auto;'>
+  <view class='flex-sub'>9:00</view>
+  <view class='flex-sub' style='text-align:center;font-size:35rpx;'>后天(0)</view>
+  <view class='flex-sub' style='text-align:right;'>21:00</view>
+</view>
+<navigator url='/pages/index/reservation/staff/modules/jordanModalTwo/jordanModalTwo'>
+  <view class='flex' style='width:93%;border:1rpx solid #BBB;margin:auto;height:45rpx;background-color:#FFF;'>
+    <view class='flex-twice'></view>
+    <view class='flex-twice'></view>
+    <view class='flex-twice'></view>
+    <view class='flex-twice'></view>
+    <view class='flex-sub'></view>
+    <view class='flex-treble'></view>
+    <view class='flex-twice'></view>
+  </view>
+</navigator>
+<view style='height:16rpx;'></view>
+<view class='flex' style='font-size:32rpx;width:93%;margin:auto;'>
+  <view class='flex-sub'>9:00</view>
+  <view class='flex-sub' style='text-align:center;font-size:35rpx;'>8月8日(0)</view>
+  <view class='flex-sub' style='text-align:right;'>21:00</view>
+</view>
+<navigator url='/pages/index/reservation/staff/modules/jordanModalTwo/jordanModalTwo'>
+  <view class='flex' style='width:93%;border:1rpx solid #BBB;margin:auto;height:45rpx;background-color:#FFF;'>
+    <view class='flex-twice'></view>
+    <view class='flex-twice'></view>
+    <view class='flex-twice'></view>
+    <view class='flex-twice'></view>
+    <view class='flex-sub'></view>
+    <view class='flex-treble'></view>
+    <view class='flex-twice'></view>
+  </view>
+</navigator>
+<view style='height:16rpx;'></view>
+<view class='flex' style='font-size:32rpx;width:93%;margin:auto;'>
+  <view class='flex-sub'>9:00</view>
+  <view class='flex-sub' style='text-align:center;font-size:35rpx;'>8月9日(0)</view>
+  <view class='flex-sub' style='text-align:right;'>21:00</view>
+</view>
+<navigator url='/pages/index/reservation/staff/modules/jordanModalTwo/jordanModalTwo'>
+  <view class='flex' style='width:93%;border:1rpx solid #BBB;margin:auto;height:45rpx;background-color:#FFF;'>
+    <view class='flex-twice'></view>
+    <view class='flex-twice'></view>
+    <view class='flex-twice'></view>
+    <view class='flex-twice'></view>
+    <view class='flex-sub'></view>
+    <view class='flex-treble'></view>
+    <view class='flex-twice'></view>
+  </view>
+</navigator>
+<view style='height:60rpx;'></view>
+<view class='flex' style='font-size:45rpx;color:#000;'>
+  <view class='flex-treble'></view>
+  <view class='flex-twice' style='text-align:center;'>机构</view>
+  <view style='display:inline-block;width:30rpx;text-align:center;font-size:50rpx;height:50rpx;line-height:50rpx;'>|</view>
+  <view class='flex-twice' style='text-align:center;background-color:#FF6600;color:#FFF;border-radius:10rpx;position:relative;'>约单
+    <view style='width:32rpx;height:32rpx;line-height:32rpx;font-size:32rpx;border-radius:50%;background-color:#F00;position:absolute;right:-6rpx;top:-6rpx;'>2</view>
+  </view>
+  <view style='display:inline-block;width:30rpx;text-align:center;font-size:50rpx;height:50rpx;line-height:50rpx;'>|</view>
+  <view class='flex-twice' style='text-align:center;'>问答</view>
+  <view style='display:inline-block;width:30rpx;font-size:50rpx;height:50rpx;line-height:50rpx;text-align:center;'>|</view>
+  <view class='flex-twice' style='text-align:center;'>我的</view>
+</view>
+<view style='height:30rpx;'></view>

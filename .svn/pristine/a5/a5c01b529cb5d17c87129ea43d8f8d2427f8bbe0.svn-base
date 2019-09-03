@@ -1,0 +1,29 @@
+/* pages/index/reservation/staff/modules/statusOneModal/statusOneModal.wxss */
+.footer{
+  height: 6%;
+  width: 100%;
+  position: absolute;
+  bottom: 0rpx;
+  float: left;
+}
+/* 不通过按钮 */
+.btnOne{
+  position: absolute;
+  left: 5%;
+  bottom: 25rpx;
+  width: 43%;
+  height: 85rpx;
+  line-height: 85rpx;
+  border: 1rpx solid #111;
+  letter-spacing: 30rpx;
+}
+/* 通过按钮 */
+.btnTwo{
+  position: absolute;
+  right: 5%;
+  width: 43%;
+  height: 85rpx;
+  bottom: 25rpx;
+  line-height: 85rpx;
+  letter-spacing: 30rpx;
+}

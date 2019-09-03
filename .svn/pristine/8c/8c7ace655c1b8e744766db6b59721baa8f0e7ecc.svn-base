@@ -1,0 +1,25 @@
+/* pages/index/firm/firmAd/firmAdList/firmAdList.wxss */
+/* 投放记录 */
+.record{
+  padding-left:20rpx
+}
+/* 海报尺寸 */
+.poster{
+  width:200rpx;
+  height:230rpx;
+}
+/* 字体大小 */
+.font{
+  font-size:31rpx; 
+}
+/* 绿色圈圈 */
+.circle{
+  border-radius: 50%;
+  width:135rpx;
+  height:135rpx;
+  line-height:135rpx; 
+}
+/* 投放中 */
+.top{
+  margin-top:40%
+}

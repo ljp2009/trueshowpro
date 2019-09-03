@@ -1,0 +1,78 @@
+.scrollView{
+  width: 100%;
+}
+.leftFontTwo{
+  font-size: 36rpx;
+  margin-left: -5px;
+}
+.topOne{
+  color: #333;
+  margin-top: 0;
+}
+.topTwo{
+  color: #444;
+  margin-top: 0;
+  margin-bottom: 0;
+  background-color: #F1F1F1;
+}
+.topThree{
+  margin-top: 0;
+  color: #222;
+}
+.rightFont{
+  font-size: 36rpx;
+  margin-right: 10rpx;
+}
+.rightFont>text{
+  display: inline-block;
+}
+.flexWrapView{
+  margin: 20rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+.flexOne{
+  padding-top: 28rpx;
+  border-radius:40rpx 0 0 40rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  font-size: 35rpx;
+  margin-left: 10rpx;
+}
+.flexTwo{
+  padding-top: 28rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  border-radius:0 40rpx 40rpx 0;
+  font-size: 35rpx;
+  margin-right: 10rpx;
+}
+.circleViewTailFather{
+  height: 80rpx;
+}
+.topThree{
+  margin-top: 60rpx;
+  background-color: #F1F1F1;
+}
+.TextTwo{
+  margin: 20rpx;
+  font-size: 30rpx;
+  padding-left: 60rpx;
+}
+.TextThree{
+  display: inline-block;
+  margin-left: -60rpx;
+}
+.tailFlexTwo{
+  font-size: 31rpx;
+  padding-left: 10rpx;
+}
+.tailRightFlex{
+  text-align: center;
+}

@@ -1,0 +1,19 @@
+/* pages/index/firm/firmCard/firmStaff/firmStaff.wxss */
+.scrollView{
+  width: 100%;
+  min-height: 100%;
+  background-color: #FFF;
+}
+.textFlexWrapOne{
+  margin-top: 20rpx;
+}
+.textFlexWrapThree{
+  margin-bottom: 40rpx;
+}
+.textFlex{
+  font-size: 32rpx;
+  text-align: center;
+  color:#333;
+  margin-left:10rpx;
+  margin-right: 10rpx;
+}

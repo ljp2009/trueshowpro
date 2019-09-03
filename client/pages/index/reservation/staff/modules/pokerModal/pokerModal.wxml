@@ -1,0 +1,21 @@
+<!--pages/index/reservation/staff/modules/pokerModal/pokerModal.wxml-->
+<cu-custom bgColor="bg-gray" isBack="{{true}}" style="color:#000;">
+  <view slot="backText" style='font-size:36rpx;color:#000;'>返回</view>
+  <view slot="content" style='font-size:39rpx;color:#000;'>注意事项</view>
+</cu-custom>
+<view class="wrapView" style='width:750;height:555rpx;background-color:#FFF;border-radius:20rpx;margin:auto 0 auto 0;'>
+  <view style="text-align:center;font-size:42rpx;margin-right:15rpx;padding-top:15rpx;padding-bottom:10rpx;">
+    <text class="cuIcon-questionfill  text-yellow" style="font-size:44rpx;"></text>注意事项</view>
+  <view style='font-size:33rpx;margin-left:30rpx;'>
+    <view class="viewOne" style='height:50rpx;line-height:50rpx;'>1、晒单内容必须与本次服务和交易相关</view>
+    <view class='viewOne' style='height:50rpx;line-height:50rpx;'>2、含⼤占比正⾯⼈像照片，可能会被顾客屏蔽</view>
+    <view class='viewOne' style='height:50rpx;line-height:50rpx;'>3、在此晒单中上传如下内容，可导致被封号</view>
+    <view class='viewOne' style='height:50rpx;line-height:50rpx;'>-涉及黄赌毒等违反国家法律法规的图片</view>
+    <view class='viewOne' style='height:50rpx;line-height:50rpx;'>-含文字内容或与本服务⽆关的商品⼴告</view>
+    <view class='viewOne' style='height:50rpx;line-height:50rpx;'>-其它影响顾客浏览和使⽤体验的照片</view>
+  </view>
+  <view style='height:50rpx;'></view>
+  <navigator style='display:inline-block;width:40%;margin-left:30%;' url='/pages/index/reservation/staff/modules/poker/poker'>
+    <button class='radiu' style='width:100%;height:80rpx;line-height:80rpx;letter-spacing:6rpx;text-align:center;background-color:#FF6600;color:#FFF;'>知道了</button>
+  </navigator>
+</view>

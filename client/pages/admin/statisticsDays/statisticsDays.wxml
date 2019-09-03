@@ -1,0 +1,88 @@
+<!--pages/admin/statisticsDays/statisticsDays.wxml-->
+<cu-custom bgColor="bg-gray" isBack="{{true}}" style="color:#000;">
+  <view slot="backText" style='font-size:36rpx;color:#000;'>返回</view>
+  <view slot="content" style='font-size:39rpx;margin-left:-50rpx;color:#000;'>顾客机构技师</view>
+</cu-custom>
+<view class="flex" style='height:90rpx;line-height:60rpx;font-size:35rpx;padding-top:30rpx;background-color:#F0F0F0;'>
+  <view class="flex-sub " style='height:60rpx;line-height:60rpx;margin-left:35rpx;'>时间：</view>
+  <input class="flex-twice " style="border:1rpx solid #999;height:60rpx;line-height:60rpx;padding-left:5rpx;" placeholder='2019-08-09' placeholder-style='color:#333;'></input>
+  <view style='display:inline-block;width:60rpx;font-size:40rpx;height:60rpx;line-height:60rpx;text-align:center;'>--</view>
+  <input class="flex-twice " style="border:1rpx solid #999;height:60rpx;line-height:60rpx;margin-right:35rpx;padding-left:5rpx;" placeholder='2019-09-09' placeholder-style='color:#333;'></input>
+</view>
+<view class="flex" style='height:100rpx;line-height:60rpx;font-size:35rpx;padding-top:10rpx;padding-bottom:30rpx;background-color:#F0F0F0;'>
+  <view class="flex-sub " style='height:60rpx;line-height:60rpx;margin-left:35rpx;'>地区：</view>
+  <input class="flex-sub " style="border:1rpx solid #999;height:60rpx;line-height:60rpx;padding-left:8rpx;margin-left:2rpx;margin-right:30rpx;" placeholder='广东' placeholder-style='color:#333;'></input>
+  <input class="flex-sub " style="border:1rpx solid #999;height:60rpx;line-height:60rpx;padding-left:8rpx;margin-right:30rpx;" placeholder='广州' placeholder-style='color:#333;'></input>
+  <input class="flex-sub " style="border:1rpx solid #999;height:60rpx;line-height:60rpx;margin-right:35rpx;padding-left:8rpx;" placeholder='番禺' placeholder-style='color:#333;'></input>
+  <view class="flex-sub"></view>
+</view>
+<view class="flex" style="font-size:35rpx;padding-bottom:30rpx;text-align:center">
+  <view class='flex-sub' style='margin-left:6rpx;'>日视图</view>
+  <view style='width:10rpx;'></view>
+  <view class='flex-sub'></view>
+  <view class='flex-sub'></view>
+  <view class='flex-sub'></view>
+  <view class='flex-sub'></view>
+</view>
+<view class="flex" style='height:95rpx;line-height:70rpx;font-size:36rpx;padding-top:25rpx;background-color:#FFF;border-bottom:1rpx solid #BBB;padding-right:2%;'>
+  <view class="flex-twice"></view>
+  <view class="flex-sub " style='text-align:center;'>总数</view>
+  <view class="flex-sub" style='text-align:center;'>平均增长率</view>
+</view>
+<view class="flex" style='height:70rpx;line-height:70rpx;font-size:36rpx;background-color:#FFF;border-bottom:4rpx solid #DDD;padding-right:2%;'>
+  <view class="flex-twice">
+    <view style="height:100%;background-color:#33CC33;width:70%;margin-left:3%;color:#000;padding-left:10%;">顾客</view>
+  </view>
+  <view class="flex-sub " style='text-align:center;'>435</view>
+  <view class="flex-sub" style='text-align:center;'>5%</view>
+</view>
+<view class="flex" style='height:70rpx;line-height:70rpx;font-size:36rpx;background-color:#FFF;border-bottom:4rpx solid #DDD;padding-right:2%;'>
+  <view class="flex-twice">
+    <view style="height:100%;background-color:#69F;width:70%;margin-left:3%;color:#000;padding-left:10%;">机构</view>
+  </view>
+  <view class="flex-sub " style='text-align:center;'>435</view>
+  <view class="flex-sub" style='text-align:center;'>5%</view>
+</view>
+<view class="flex" style='height:70rpx;line-height:70rpx;font-size:36rpx;background-color:#FFF;border-bottom:4rpx solid #DDD;padding-right:2%;'>
+  <view class="flex-twice">
+    <view style="height:100%;background-color:#F60;width:70%;margin-left:3%;color:#000;padding-left:10%;">技师</view>
+  </view>
+  <view class="flex-sub " style='text-align:center;'>4435</view>
+  <view class="flex-sub" style='text-align:center;'>5%</view>
+</view>
+<view class="wrapView" style='padding-top:66rpx;'>
+  <view class='wrap bg-white' style='height:100%;'>
+    <!-- 头部 -->
+    <!-- 中心内容 -->
+    <!-- 统计 -->
+    <!-- 总数，平均增长率 -->
+    <!-- 佣金 -->
+    <!-- 机构认证费 -->
+    <!-- 图表 -->
+    <view class="container">
+      <canvas canvas-id="lineCanvas" disable-scroll="true" class="canvas" bindtouchstart="touchHandler"></canvas>
+    </view>
+    <!--表格  -->
+    <view class="table" style='margin-top:66rpx;'>
+      <view class="tr">
+        <view class="th">日期</view>
+        <view class="th">佣金</view>
+        <view class="th">认证费</view>
+        <view class="th tdRight">广告费</view>
+      </view>
+      <view class="tr" wx:for="{{12}}">
+        <view class="td">2019-09-09</view>
+        <view class="td">10</view>
+        <view class="td">4</view>
+        <view class="td tdRight">4</view>
+      </view>
+      <view class="tr" wx:for="{{2}}">
+        <view class="td"></view>
+        <view class="td"></view>
+        <view class="td"></view>
+        <view class="td"></view>
+      </view>
+    </view>
+  </view>
+</view>
+<view style='height:60rpx;background-color:#FFF;'></view>

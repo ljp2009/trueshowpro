@@ -1,0 +1,18 @@
+<!--pages/index/reservation/staff/modules/statusTwoModal/statusTwoModal.wxml-->
+<cu-custom bgColor="bg-gray" isBack="{{true}}" style="color:#000;">
+  <view slot="backText" style='font-size:36rpx;color:#000;'>返回</view>
+  <view slot="content" style='font-size:39rpx;color:#000;'>平台佣金说明</view>
+</cu-custom>
+<view class="wrapView" style='width:750;height:450rpx;background-color:#FFF;border-radius:20rpx;margin:auto 0 auto 0;'>
+  <view style="text-align:center;font-size:42rpx;margin-right:15rpx;padding-top:15rpx;padding-bottom:10rpx;letter-spacing:15rpx;">
+    <text class="cuIcon-questionfill  text-yellow" style="font-size:44rpx;"></text>说明</view>
+  <view style='font-size:33rpx;margin-left:30rpx;'>
+    <view class="viewOne" style='height:50rpx;line-height:50rpx;'>·平台佣金可由机构负责人自行调整，最低至1%；</view>
+    <view class='viewOne' style='height:50rpx;line-height:50rpx;'> 页面：机构首页->财务结算->佣金比例</view>
+    <view class='viewOne' style='height:50rpx;line-height:50rpx;'>·佣金比例大小会影响晒单作品呈现的顺序和次数</view>
+  </view>
+  <view style='height:50rpx;'></view>
+  <navigator style='display:inline-block;width:40%;margin-left:30%;' url='/pages/index/reservation/staff/modules/statusOne/statusOne'>
+    <button class='radiu' style='width:100%;height:80rpx;line-height:80rpx;letter-spacing:6rpx;text-align:center;background-color:#FF6600;color:#FFF;'>知道了</button>
+  </navigator>
+</view>

@@ -1,0 +1,47 @@
+<!--pages/index/firm/finance/expenses/expenses.wxml-->
+<scroll-view class='scrollView'>
+  <cu-custom bgColor="bg-gray" isBack="{{true}}" style="color:#000;">
+    <view slot="backText" style='font-size:36rpx;color:#000;'>返回</view>
+    <view slot="content" style='font-size:39rpx;margin-left:-50rpx;color:#000;'>平台佣金设置</view>
+  </cu-custom>
+  <view class="cu-bar bg-white solid-bottom margin-top topTwo">
+    <view class="action">
+      <text class=" leftFontTwo">请选择平台佣金费率：</text> 
+    </view>
+  </view>
+  <view class='' style='text-align:center;color:red;font-size:42rpx;margin:20rpx;'>2%</view>  
+  <view class="flex  p-xs margin-bottom-sm mb-sm tailFlexOne">
+      <view class="flex-sub bg-white padding-sm flexOne">0%</view>
+      <view class="basis-xl bg-white " style="height:80rpx;">
+        <view class="section section_gap">
+          <view class="body-view">
+            <slider bindchange="slider4change" min="50" max="200" activeColor="#FF8822" backgroundColor="#999" block-color="#FF8822" block-size="18"/>
+          </view>
+        </view>
+      </view>
+      <view class="flex-sub bg-white padding-sm flexTwo">20%</view>
+  </view>
+  <view class="cu-bar bg-white solid-bottom margin-top topThree">
+    <view class="action">
+      <text class=" leftFontTwo">注：</text>
+    </view>
+  </view>
+  <view class='TextTwo'><view class='TextThree'>1、</view>此费率是每一笔交易的给平台的佣金占比,顾客支付后自动扣除;</view> 
+  <view class='TextTwo'><view class='TextThree'>2、</view>此费率对你机构所有晒单在秀场中展示的顺序排名有30%的影响；</view> 
+  <view class='TextTwo'><view class='TextThree'>3、</view>修改后生效，维持72小时,期间不能再次修改。</view>
+  <view class="cu-bar bg-white solid-bottom margin-top topThree">
+    <view class="action">
+      <text class=" leftFontTwo">佣金修改记录：</text> 
+    </view>
+  </view>
+  <view class="flex  p-xs margin-bottom-sm mb-sm tailFlexTwo">
+    <view class="flex-treble  margin-xs tailLeftFlex ">20190808 12:00</view>
+    <view class="flex-sub   margin-xs tailRightFlex ">2%</view>
+    <view class="flex-treble   margin-xs tailRightFlex">6天6小时</view>
+  </view>
+  <view class="flex  p-xs margin-bottom-sm mb-sm tailFlexTwo">
+    <view class="flex-treble  margin-xs tailLeftFlex ">20190808 12:00</view>
+    <view class="flex-sub   margin-xs tailRightFlex ">2%</view>
+    <view class="flex-treble   margin-xs tailRightFlex">6天6小时</view>
+  </view>
+</scroll-view>

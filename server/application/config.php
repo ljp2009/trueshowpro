@@ -242,7 +242,7 @@ return [
     ],
     //微信小程序的appid和密钥 配置
     "wxmini"=>[
-      "appid"=>"wx1a742e9678438791",
-      "appsecret"=>"7dd080428fdd458e1e184a3ab890fd20"
+      "appid"=>"wx5bb750738f41242c",
+      "appsecret"=>"ea0984c0c865c78341c7205459406dff"
     ]
 ];
