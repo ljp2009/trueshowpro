@@ -45,7 +45,7 @@
 
               <!-- 导入的结束 -->
               <block wx:if="{{TabCur==0}}">
-                <include src="../modules/statusSeven/statusSeven.wxml"/>
+                <include src="../modules/statusZero/statusZero.wxml"/>
               </block>  
               <!-- 导入底部 -->
               <block style="positon:absolute;bottom:0rpx;z-index:999" >
