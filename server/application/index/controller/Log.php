@@ -1,7 +1,9 @@
 <?php
 namespace app\index\controller;
 //日志类
-class Log
+use think\Controller;
+
+class Log extends Controller
 {
     /**
      *获取日志

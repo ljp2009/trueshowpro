@@ -1,0 +1,84 @@
+<!--pages/index/firm/firmCard/choiceStaff/choiceStaff.wxml-->
+<view class='scrollView'>
+  <cu-custom bgColor="bg-gray" isBack="{{true}}" style="color:#000;">
+    <view slot="backText" style='font-size:36rpx;color:#000;'>返回</view>
+    <view slot="content" style='font-size:39rpx;margin-left:-50rpx;color:#000;'>选择技师</view>
+  </cu-custom>
+  <!-- 第一个 -->
+  <view wx:for="{{staffDetail}}" wx:for-item="staffDetailObj">
+        <view style='margin-top:20rpx;margin-bottom:10rpx;'>
+          <view style='display:inline-block;max-width:25%;width:800rpx;text-align:center;position:relative;z-index:999;'>
+            <image src='http://ljp.jujiaoweb.com/static/images/index/qThree.png' style='width:180rpx;height:180rpx;background-color:#FFF;border-radius:50%;border:2rpx solid #EEE;'></image>
+          </view>
+          <view style='height:155rpx;display:inline-block;vertical-align:top;margin-top:10rpx;max-width:75%;width :900rpx;'>
+            <view class="cu-bar bg-white" style='margin:-26rpx 0 0 -26rpx;border-radius:60rpx 0 0 60rpx;margin-bottom:-10rpx;'>
+              <view class="action">
+                <view style='color:#133;' class="text-xxl text-bold">{{staffDetailObj.StaffId}}{{staffDetailObj.NickName}}
+                   <text wx:if="{{staffDetailObj.staffCert==1}}"><text  class="cuIcon-roundcheckfill lg " style='color:#ff6600;margin-right:20rpx;'></text></text>
+                      <text wx:elif="{{staffDetailObj.staffCert==0}}"><text  class="cuIcon-roundcheckfill lg " style='color:#fff;margin-right:20rpx;'></text></text>
+                </view>
+              </view>
+              <view style='margin-right:20rpx;'>
+                <view class="text-lg" style='height:55rpx;line-height:55rpx;display:inline-block;vertical-align:middle;color:#100;'>星级评价：</view>
+                <view style="display:inline-block;">
+                  <!-- 星星 -->
+                    <view class='star-wrap' wx:for="{{stars1}}" wx:for-index="index" wx:for-item="starsobj" style="display:inline-block;"  wx:key="">
+                  <view class='star-item'  wx:key="" wx:if="{{staffDetailObj['stars']<=index}}" style='background:url("http://ljp.jujiaoweb.com/static/images/index/star_black.png") no-repeat top;background-size:100%;'   data-index="{{index}}" catchtap='starClick'></view>
+                  <view class='star-item'  wx:key="" wx:elif="{{staffDetailObj['stars']>index}}" style='background:url("http://ljp.jujiaoweb.com/static/images/index/star_light.png") no-repeat top;background-size:100%;'   data-index="{{index}}" catchtap='starClick'></view>        
+                </view>
+                <!-- 星星 -->
+                </view>
+              </view>
+            </view>
+            <!-- 接单等 -->
+            <view class="staffOrder">
+            <text class="styleLittle">接单：{{staffDetailObj.Experience}}</text>    
+            <text class="styleLittle">赞：{{staffDetailObj.WorkLike}}</text>    
+            <text class="styleLittle">爽约:{{staffDetailObj.PigeonStaff}}</text></view>
+            <!-- 接单等结束 -->
+            <view>
+              <view style="color:#000;display:inline-block;position:relative;z-index:999;" class="text-lg">擅长：<text  >{{staffDetailObj.Skill1}}</text></view>
+              
+              <button style='background-color:#FF7700;color:#FFF;display:inline-block;height:50rpx;line-height:50rpx;font-size:36rpx;float:right;position:relative;z-index:999;margin-right:20rpx;'>选择</button>
+            </view>
+            
+          </view>
+        </view>
+      
+  <!-- 空闲时段 -->
+<view>
+      <view class="cu-bar bg-white" style='margin-right:20rpx;' style="border:1rpx solid green;">
+        <view class="action" >
+          <view style='color:#133;' class="text-lg">空闲时段：</view>
+        </view>
+        <view  wx:for="{{dateArr}}" wx:key="">
+            <view  class="text-lg" >
+              <view wx:if="{{index==0}}" style='background-color:#FF6600;color:#000;border:1rpx solid #FF6600;margin-right:15rpx;width:60rpx;height:60rpx;line-height:60rpx;border-radius:50%;text-align:center;display:inline-block;'>今</view>
+              <view wx:elif="{{index==1}}" style='color:#000;background-color:#FFF;border:1rpx solid #FF6600;margin-right:15rpx;width:60rpx;height:60rpx;line-height:60rpx;border-radius:50%;text-align:center;display:inline-block;'>明</view>
+              <view wx:elif="{{index==2}}" style='color:#000;background-color:#FFF;border:1rpx solid #FF6600;margin-right:15rpx;width:60rpx;height:60rpx;line-height:60rpx;border-radius:50%;text-align:center;display:inline-block;'>后</view>
+              <view wx:else style='color:#000;background-color:#FFF;border:1rpx solid #FF6600;margin-right:15rpx;width:60rpx;height:60rpx;line-height:60rpx;border-radius:50%;text-align:center;display:inline-block;'>{{item}}</view>
+            </view>
+        </view>  
+      </view>  
+      <view >时间滑块----
+            <timearea id="timearea"></timearea>
+      </view>
+</view>
+  <!-- 空闲时段结束 -->
+ 
+  
+  <view style='border:2rpx solid #BBB;position:relative;z-index:999;'></view>
+  </view>
+  <!-- 第一个结束 -->
+  
+
+
+
+
+  
+  
+</view>
+
+
+
+

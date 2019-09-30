@@ -1,0 +1,126 @@
+<!--pages/index/user/staff/certificate/certStatus/certStatus.wxml-->
+
+<!-- 最大容器 -->
+<view class='wrap'>
+ <view class='head'>
+ <view class="cu-bar margin-top bg-white">
+ <!-- 头部图片 -->
+  <view class="action">
+  <image src='http://ljp.jujiaoweb.com/images/index/icon16.png' style='width:60rpx;height:60rpx;'></image>
+   
+  </view>
+  <text>实名认证</text>
+  
+   </view>
+  
+      <view class="box">提示：技师身份认证审核需支付￥48元/年</view>
+    
+  
+</view>
+<view class="cu-bar margin-top bg-white">
+<view class="action">
+    审核流程：
+  </view>
+</view>
+<view class="cu-list grid col-3">
+  <view class="cu-item" wx:for="{{icon}}" wx:key wx:if="{{item.isShow}}">
+    <text class="cuIcon-texi lg text-gray"></text>
+    <text>{{item.name}}</text>
+  </view>
+</view>
+<!-- 审核流程：
+ -->
+ 
+ <view class="bg-white padding margin-top-xs padd">
+  <view class="cu-steps">
+    <view class="cu-item {{index>basics?'':'text-orange'}}" wx:for="{{basicsList}}" wx:key>
+      <text class="cuIcon-{{index>basics?'round':item.icon}}"></text> {{item.name}}
+    </view>
+  </view>
+</view>
+  <!-- 真是姓名 -->
+  <view class='name'>
+    <view>
+      <text>真实姓名：</text>
+      <text class='edu'>需与学历证书一致</text></view>
+      <input type='text' placeholder='胡敏'></input>
+    </view>
+  <view>
+  <!-- 身份证号 -->
+  <view class='number'>
+  <text>身份证号：</text>
+  <input></input>
+  </view>
+  <!-- 地址 -->
+  <view class='add'>
+  <text>住址：</text>
+  <input></input>
+  </view>
+  <!-- 性别 -->
+   <view class="cu-bar bg-white">
+  <view class="action">
+    性别
+  </view>
+  <view class="action">
+    <radio-group bindchange="SetBorderSize">
+      <label class="margin-left-sm">
+        <radio class="orange sm " value="" checked></radio>
+        <text>女</text>
+      </label>
+      <label class="margin-left-sm">
+        <radio class="orange xm " value="s"></radio>
+        <text>男</text>
+      </label>
+    </radio-group>
+  </view>
+</view>
+    <view class='clear'></view>
+    <!-- 上传身份证 -->
+<view class="flex">
+      <view class="flex-sub   ">
+      
+          
+      <view class="cu-form-group">
+        <view class="grid col-2 grid-square flex-sub">
+          <view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<4}}">
+            <text class="cuIcon-cameraadd"></text>
+          </view>
+        </view>
+      </view>
+      <text>身份证正面</text>
+      
+      </view>
+      <view class="flex-sub   ">
+      
+          
+      <view class="cu-form-group">
+        <view class="grid col-2 grid-square flex-sub">
+          <view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<4}}">
+            <text class="cuIcon-cameraadd"></text>
+          </view>
+        </view>
+      </view>
+      <text>身份证反面</text>
+      </view>
+    </view>
+
+
+    
+    <!-- 上传学历 -->
+    <view class='edu1'>
+      <text>上传学历(培训)证书：</text>
+      <text class='fit'>证书持有人姓名需与身份证一致</text>
+      <view class="cu-form-group">
+        <view class="grid col-4 grid-square flex-sub">
+          <view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<4}}">
+            <text class="cuIcon-cameraadd"></text>
+          </view>
+        </view>
+      </view>
+      
+    </view>
+
+
+    <button>下一步</button>
+  </view>
+</view>

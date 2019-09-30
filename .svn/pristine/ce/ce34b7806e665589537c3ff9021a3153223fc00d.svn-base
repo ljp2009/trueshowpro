@@ -1,0 +1,206 @@
+/* 头部返回按钮 */
+image{
+  width: 35rpx;
+  height: 35rpx;
+}
+
+/* 表单添加边框 */
+input{
+  border: 1rpx solid gray
+}
+
+/* 分类 */
+.classify text{
+  display: inline-block;
+  margin-left:20rpx;
+}
+.classify .title{
+  width: 100rpx;
+  text-align: center;
+  border: 1rpx solid black;
+  border-radius: 20rpx;
+  background-color: black;
+  color: white;
+}
+.classify .choose-content{
+  width: 100rpx;
+  text-align: center;
+  border: 1rpx solid orange;
+  border-radius: 20rpx;
+  background-color: orange;
+  color: white;
+}
+
+/* 价格区间 */
+/* 模态框 */
+.ensure-btn {
+  margin: auto ; 
+}
+
+.modal-mask {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  opacity: 0.5;
+  overflow: hidden;
+  z-index: 9000;
+  color: #fff;
+}
+.modal-dialog {
+  width: 540rpx;
+  overflow: hidden;
+  position: fixed;
+  top: 50%;
+  left: 0;
+  z-index: 9999;
+  background: #f9f9f9;
+  margin: -180rpx 105rpx;
+  border-radius: 36rpx;
+}
+
+.price-content{
+  height: 150rpx;
+  line-height: 150rpx;
+}
+
+.price-input{
+  display: inline-block;
+  width: 140rpx;
+  height: 70rpx;
+  margin-top: 35rpx;
+  background-color: white;
+  border-radius: 10rpx;
+}
+
+/* 服务介绍 */
+.area-size{
+  width: 90%;
+  height: 200rpx;
+  background-color: white;
+  margin: auto;
+}
+
+/* 服务介绍添加的图片 */
+.add-img{
+  border: 1rpx solid gray;
+  width:180rpx;
+  height: 180rpx;
+  position: relative;
+  display: inline-block;
+  margin-left: 45rpx;
+}
+.icon-position{
+  position: absolute;
+  top: 36%;
+  left: 36%;
+}
+
+/* 保存 */
+.btn-size{
+  display: inline-block;
+  width: 40%;
+  height: 88rpx;
+  line-height: 88rpx;
+  letter-spacing: 20rpx;
+  font-size: 50rpx;
+  margin: auto;
+}
+.ui_uploader{
+  width: 20rpx;
+  height:20rpx;
+  border:#000 1rpx;
+}
+
+/*图片上传样式*/
+/* pages/upload/upload.wxss */
+.img{
+  display: inline-block;
+}
+ 
+.pic {
+  border: 1px red solid;
+  padding:10rpx;
+  width: 30%;
+  height: 250rpx;
+  float:left;
+  position:relative;
+  margin-right:9px;
+  margin-bottom:9px;
+}
+.pic image{
+  width:100%;
+  height: 100%;
+}
+.showAddImg{
+  display:block;
+}
+.hideAddImg{
+  display: none;
+}
+ 
+.delete-btn{
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+ 
+.weui-uploader{
+  padding: 10rpx;
+}
+ 
+ 
+.lineHeight {
+  width: 100%;
+  line-height: 80rpx;
+  border-bottom: 1px solid #ccc;
+  font-size: 30rpx;
+}
+.container {
+  padding: 0;
+  align-items: left;
+  padding-left: 15rpx;
+}
+.numberInfo {
+  font-size: 24rpx;
+  text-indent: 15rpx;
+  border-bottom: 1px solid #ccc;
+}
+ 
+/* .input {
+  display: inline-block;
+  border: 1px solid #ccc;
+  line-height: 80rpx;
+  vertical-align: middle;
+  margin-left: 11%;
+  width: 75%;
+} */
+.input,
+.input-7 ,
+.input-15{
+  margin-left: 7%;
+  display: inline-block;
+  /* border: 1px solid #ccc; */
+  line-height: 80rpx;
+  vertical-align: middle;
+  width: 75%;
+}
+.input{
+  margin-left: 11%;
+}
+ 
+button {
+  width: 100%;
+  margin-top: 30rpx;
+}
+.select{
+  margin-left: 7%;
+  color: #666;
+}
+ 
+.input-15{
+  margin-left:15%;
+}
+/* 添加服务项目与修改服务项目的切换 */

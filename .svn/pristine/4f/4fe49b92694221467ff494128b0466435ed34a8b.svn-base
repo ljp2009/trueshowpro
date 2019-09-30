@@ -1,0 +1,102 @@
+/* pages/index/qa/qaIndex/qaIndex.wxss */
+/* radio样式 */
+.selectItem{
+  background-color: orange;
+}
+/*  */
+page{
+    width:100%;
+    height:100%;
+}
+ 
+scroll-view {
+    height:100%;
+    /* other the code.. */
+}
+ .start_k{
+   display: flex;
+  align-items: center;
+  justify-content: left;
+}
+.img_big{
+  width: 100rpx;
+  height: 100rpx;
+}
+.head{
+  height: 45rpx;
+  /* border: 1rpx solid #000; */
+}
+.addQ{
+  /* border: 1rpx solid #000; */
+  height: 50rpx;
+  margin-top: 48rpx;
+  font-size: 45rpx;
+  
+}
+.current-item{
+    display: inline-block;
+    height: 50rpx;
+    line-height: 50rpx;
+    margin: 0 10rpx;
+    padding: 0 20rpx;
+}
+/* 选中按钮时的样式 */
+.current{
+  color: white;
+  background-color: #FF6600;
+  border-radius:40rpx; 
+}
+image{
+  display: inline-block;
+  width: 50rpx;
+
+}
+.changeSize{
+  font-size: 35rpx;
+}
+/* 搜索框css */
+.search{ 
+  width: 100%;      
+}      
+.search_arr {       
+   border: 1px solid #d0d0d0;        
+   border-radius: 10rpx;          
+   margin-top: 48rpx 
+}      
+.search_arr input{       
+  margin-left: 60rpx; 
+  height: 20rpx;        
+  border-radius: 5px;      
+  }      
+.bc_text {        
+  line-height: 68rpx;        
+  height: 68rpx;       
+  margin-top: 34rpx;      
+  }            
+.sousuo {        
+  margin-left: 15rpx;        
+  width: 15%;        
+  line-height: 150%;        
+  text-align: center;        
+  border: 1px solid #d0d0d0;        
+  border-radius: 10rpx;      
+  }      
+.page_row{        
+  display: flex;        
+  flex-direction: row      
+  }      
+.searchcion {        
+  margin: 10rpx 10rpx 10rpx 10rpx;        
+  position: absolute;        
+  left:25rpx;        
+  z-index: 2;        
+  width: 20px;        
+  height: 20px;        
+  text-align: center;      
+  }  
+
+
+
+
+
+

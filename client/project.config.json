@@ -6,25 +6,25 @@
 	"setting": {
 		"urlCheck": false,
 		"es6": true,
-		"enhance": true,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
-		"coverView": true,
+		"nodeModules": true,
 		"autoAudits": false,
 		"checkInvalidKey": true,
+		"enhance": true,
+		"coverView": true,
 		"checkSiteMap": false,
 		"uploadWithSourceMap": true,
 		"babelSetting": {
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
-		},
-		"nodeModules": true
+		}
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.7.7",
-	"appid": "wx09d62912bc4c17c6",
+	"appid": "wxa5ec17098b9f6637",
 	"projectname": "trueshow",
 	"cloudfunctionTemplateRoot": "",
 	"debugOptions": {

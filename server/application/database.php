@@ -13,13 +13,13 @@ return [
     // 数据库类型
     'type'            => 'mysql',
     // 服务器地址
-    'hostname'        => '192.168.1.136',
+    'hostname'        => '47.100.218.253',
     // 数据库名
     'database'        => 'trueshow',
     // 用户名
     'username'        => 'root',
     // 密码
-    'password'        => 'root',
+    'password'        => 'MyNewPwd123!@#',
     // 端口
     'hostport'        => '3306',
     // 连接dsn

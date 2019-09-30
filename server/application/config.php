@@ -89,7 +89,7 @@ return [
     // 是否开启路由
     'url_route_on'           => true,
     // 路由使用完整匹配
-    'route_complete_match'   => false,
+    'route_complete_match'   => true,
     // 路由配置文件（支持配置多个）
     'route_config_file'      => ['route'],
     // 是否开启路由解析缓存
@@ -242,7 +242,11 @@ return [
     ],
     //微信小程序的appid和密钥 配置
     "wxmini"=>[
-      "appid"=>"wx5bb750738f41242c",
-      "appsecret"=>"ea0984c0c865c78341c7205459406dff"
+      "appid"=>"wxa5ec17098b9f6637",
+      "appsecret"=>"68fac6cd8404ab74ce825954da47fa9a"
+    ],
+    "webroot"=>[
+        "webroot"=>"http://ljp.jujiaoweb.com"
     ]
+
 ];

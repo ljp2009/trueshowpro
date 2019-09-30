@@ -1,0 +1,57 @@
+<!--pages/index/firm/firmAd/template/templateList/templateList.wxml-->
+<cu-custom bgColor="bg-gray" isBack="{{true}}" style="color:#000;">
+  <view slot="backText" style='font-size:36rpx;color:#000;'>返回</view>
+  <view slot="content" style='font-size:39rpx;margin-left:-50rpx;color:#000;'>广告发布</view>
+</cu-custom>
+<view class='hidOne'>
+  <view class="text-lg text-center">
+    <text class="text-orange" style='font-size:35rpx;height:55rpx;line-height:55rpx;'>模板库</text>
+    <text style='font-size:35rpx;'>|</text>
+    <navigator style='display:inline-block;' url='/pages/index/firm/firmAd/firmAdList/firmAdList?firmid={{firmId}}'>
+      <text class="text-balck padding-left" style='font-size:35rpx;height:55rpx;line-height:55rpx;'>投放记录</text>
+    </navigator>
+    <view style='display:inline-block;float:right;padding-right:30rpx;'>
+      <text bindtap="gotoAddAdTemplate" class="cuIcon-roundaddfill lg text-orange" style='font-size:55rpx;height:55rpx;line-height:55rpx;'></text>
+    </view>
+  </view>
+  <view class="yellow light text-center margin-top padding">
+    <text class="text-black" style='font-size:30rpx;'>提示：广告卡模板发布后，将在“秀”页面中随机出现</text>
+    <view>
+      <text class="text-black" style='font-size:30rpx;'>根据大数据计算精准推送至你的周边顾客</text>
+    </view>
+  </view>
+</view>
+<view class='hidTwo'>
+  <view style="margin-top:30rpx;">
+    <view class="padding">
+      <text style='font-size:35rpx;'>广告卡模板</text>
+    </view>
+    <!-- 还没有广告模板数据时显示的布局 -->
+  <view wx:if="{{adTemplateData==false}}">
+    <view  class="text-center">
+      <text class="text-xl" style='font-size:39rpx;'>还没有广告模板</text>
+    </view>
+    <view class="text-center">
+      <text class="text-xl" style='font-size:39rpx;height:55rpx;line-height:55rpx;'>请在右上角点击<text class="cuIcon-roundaddfill lg text-orange" style='font-size:55rpx;height:55rpx;line-height:55rpx;position:relative;top:6rpx;'></text>开始制作</text>
+    </view>
+  </view>
+    <!-- 有广告模板数据时渲染数据的布局 -->
+    <!-- 模板list开始 -->
+    <view wx:else  style="text-align:center;" >
+      <!-- 每一个模板数据开始 -->
+      <view wx:for="{{adTemplateData}}" wx:for-index="index" wx:key="" wx:for-item="item" style="width:42%;float:left;margin-left:5%;"> 
+       <image bindtap="gotoTemplateDec" data-tid="{{item.TemplateId}}" data-fid="{{item.FirmId}}" src="{{webRoot}}/static/images/uploads/{{item.MainPic[0]['img']}}" class="poster" style="width:100%;"></image>
+        <view class="text-sm" style='font-size:32rpx;'>标题:{{item.Title}}</view> 
+        <view class="flex  p-xs margin-bottom-sm mb-sm text-center">
+            <view bindtap="delADTemplate" data-tid="{{item.TemplateId}}" class="flex-sub bg-orange radius box" style='font-size:39rpx;'>删除</view>
+            <view class='flex-twice bg-orange margin-left radius box' >
+              <view bindtap="adServing" data-tid="{{item.TemplateId}}" data-tetitle="{{item.Title}}"  data-fid="{{item.FirmId}}" data-cdate="{{item.CreateDate}}" style="letter-spacing: 15rpx;font-size:39rpx;tetx-align:center;">投放</view>
+            </view>
+          </view>
+      </view>
+      <!-- 每一个模板数据结束 -->
+    </view> 
+    <!-- 模板list结束 -->
+
+  </view>
+</view>

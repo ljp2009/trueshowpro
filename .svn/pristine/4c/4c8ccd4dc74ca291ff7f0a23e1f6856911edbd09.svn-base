@@ -1,0 +1,127 @@
+<!--pages/index/user/staff/index/index.wxml-->
+<cu-custom bgColor="bg-gray" isBack="{{true}}" style="color:#000;">
+  <view slot="backText" style='font-size:36rpx;color:#000;'>返回</view>
+  <view slot="content" style='font-size:39rpx;margin-left:-50rpx;color:#000;'>
+  <text style="">我的</text>
+  <button class="cu-btn round bg-grey sm" role="button" style="height:40rpx;vertical-align:middle;margin-left:10px;" aria-disabled="false">切换身份</button>
+  </view>
+</cu-custom>
+<!-- <navigator url='/pages/index/user/staff/staffCard/staffCard?firmId={{firmId}}'> -->
+<!-- <view >
+  <button class="cu-btn round bg-grey" role="button" aria-disabled="false">切换身份</button>
+</view> -->
+<view catchtap="toDetail">
+
+  <view style='margin-top:20rpx;background-color:#FFF;padding-top:10rpx;'>
+
+    <view style='display:inline-block;max-width:30%;width:800rpx;text-align:center;position:relative;z-index:999;' catchtap="changeAvatar">
+      <image src='{{avatar}}' style='width:190rpx;height:190rpx;background-color:#FFF;border-radius:50%;border:2rpx solid #EEE;'></image>
+      <image src='/pages/images/1231431.jpg' style='width:32rpx;height:32rpx;background-color:#666;position:absolute;bottom:10rpx;right:20rpx;'></image>
+    </view>
+
+    <view style='height:155rpx;display:inline-block;vertical-align:top;margin-top:10rpx;max-width:70%;width:900rpx;'>
+      <view class="cu-bar " style='margin:-26rpx 0 -10rpx -26rpx;border-radius:60rpx 0 0 60rpx;'>
+      <!-- realName start  -->
+        <!-- <view class="">
+          <view style='font-size:36rpx;'>{{info.RealName}}
+            <text class="cuIcon-roundcheckfill lg {{info.Certificated == 0?'':'text-orange'}} "></text>
+          </view>
+        </view> -->
+
+        <view class="example" style='overflow:hidden;width:30%;margin-left:12px;'>
+          <view class="marquee_box">
+            <view class="marquee_text" style="{{orientation}}:{{realName.marqueeDistance2}}px;font-size: {{realName.size}}px;">
+              {{info.RealName}}<text class="cuIcon-roundcheckfill lg {{info.Certificated == 0?'':'text-orange'}} "></text>
+            </view>
+          </view>
+        </view>
+        <!-- realName end  -->
+        <view>
+          <view style='font-size:28rpx;height:55rpx;line-height:55rpx;display:inline-block;vertical-align:middle;color:#100;'>顾客评价：</view>
+          <block wx:for="{{info.Satisfection}}" wx:key>
+          <text class="cuIcon-favorfill lg text-orange" style='width:45rpx;height:55rpx;line-height:55rpx;font-size:36rpx;vertical-align:middle;'></text>
+          </block>
+           <block wx:for="{{5-info.Satisfection}}" wx:key>
+          <text class="cuIcon-favorfill lg text-gray" style='width:45rpx;height:55rpx;line-height:55rpx;font-size:36rpx;vertical-align:middle;'></text>
+          </block>
+        </view>
+      </view>
+      <view class='flex' style='font-size:30rpx;color:#133;font-family:"微软雅黑";margin:-10rpx 25rpx 10rpx 3rpx;position:relative;z-index:999;'>
+        <view class="" style="padding-right:10rpx;">经验:
+          <text style='color:#000;'>{{info.Experience}}</text>
+        </view>
+        <view style='text-align:center;padding-left:10rpx;'>作品赞：
+          <text style='color:#000;'>{{info.WorkLike}}</text>
+        </view>
+        <view class="" style='text-align:right;padding-left:10rpx;'>获关注：
+          <text style='color:#000;'>{{info.Fans}}</text>
+        </view>
+      </view>
+      <view>
+
+      <!-- 擅长 走马灯 start -->
+        <!-- <view style="color:#000;display:inline-block;width:60%;vertical-align:top"> -->
+        <!-- 擅长：<text style="font-size:16px">{{info.Skill}}</text> -->
+        <!-- 跑马灯效果  -->
+        <view class="example" style='overflow:hidden'>
+          <view class="marquee_box">
+            <view class="marquee_text" style="{{orientation}}:{{advan.marqueeDistance2}}px;font-size: {{size}}px;">
+              <text > 擅长：<text  style="font-size: {{size+2}}px;">{{info.Skill}}</text></text>
+            </view>
+          </view>
+        </view>
+        <!-- </view> -->
+
+<!-- 擅长 走马灯 end -->
+        <view style='display:inline-block;color:#000;vertical-align:top;padding-left:10rpx'>日记
+          <text>{{info.Diary}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+<!-- </navigator> -->
+</view>
+
+<!-- 目录部分 -->
+<view>
+  <view class="cu-list menu padding-top-sm" role="" aria-label="">
+    <navigator url='/pages/index/user/staff/diary/diaryIndex/diaryIndex' class="cu-item arrow" role="" aria-label="">
+      <view class="content" role="" aria-label="">
+        <text class="text-black" style='font-size:35rpx;'>我的日记</text>
+      </view>
+    </navigator>
+    <navigator url='/pages/index/user/staff/userInfo/userInfo?firmId={{firmId}}' class="cu-item arrow" role="" aria-label="">
+      <view class="content" role="" aria-label="">
+        <text class="text-black" style='font-size:35rpx;'>个人资料</text>
+      </view>
+      <view style='font-size:33rpx;'><block wx:if="{{info.Certificated == 0}}">未认证</block><block wx:else>已认证</block></view>
+    </navigator>
+    <navigator url='/pages/index/user/staff/serviceList/serviceList?firmId={{firmId}}' class="cu-item arrow" role="" aria-label="">
+      <view class="content" role="" aria-label="">
+        <text class="text-black" style='font-size:35rpx;color:#000;'>我的服务项目</text>
+        <text style="float:right;">{{info.serviceCount}}</text>
+      </view>
+    </navigator>
+    <navigator class="cu-item arrow" url='/pages/index/user/staff/code/code?firmId={{staffId}}&staffId={{firmId}}'>
+      <view class="content" role="" aria-label="">
+        <text class="text-black" style='font-size:35rpx;'>二维码名片</text>
+      </view>
+    </navigator>
+    <navigator url='/pages/index/user/staff/pokerByStaff/pokerByStaff?firmId={{firmId}}' class="cu-item arrow" role="" aria-label="">
+      <view class="content" role="" aria-label="">
+        <text class="text-black" style='font-size:35rpx;'>晒单作品</text>
+        <text style="float:right;">{{pokerCount}}</text>
+      </view>
+    </navigator>
+    <navigator url='/pages/index/user/staff/professionalPic/professionalPic' class="cu-item arrow" role="" aria-label="">
+      <view class="content" role="" aria-label="">
+        <text class="text-black" style='font-size:35rpx;'>形象照片</text>
+      </view>
+    </navigator>
+    <navigator url='/pages/index/user/staff/statisticsStaff/statisticsStaff' class="cu-item arrow" role="" aria-label="">
+      <view class="content" role="" aria-label="">
+        <text class="text-black" style='font-size:35rpx;'>一周人气统计</text>
+      </view>
+    </navigator>
+  </view>
+</view>

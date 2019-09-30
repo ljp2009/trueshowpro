@@ -1,0 +1,109 @@
+<!--pages/index/user/staff/diaryIndex/diaryIndex.wxml-->
+<!-- 技师日记 -->
+<cu-custom bgColor="bg-gray" isBack="{{true}}" style="color:#000;" >
+  <view slot="backText" style='font-size:36rpx;color:#000;'>返回</view>
+  <view slot="content" style='font-size:39rpx;margin-left:-50rpx;color:#000;'>技师日记</view>
+</cu-custom>
+<!-- <view style=""> -->
+      <!-- <view class="text-xl text-bold" style="display:inline-block;padding-top:20rpx;width:52%;text-align:right;">技师日记</view> -->
+      <!-- <view class="text-xl text-bold">技师日记</view> -->
+      
+      <!-- <view style="display:inline-block;height:30rpx;width:44%;text-align:right;">
+      <image src="http://ljp.jujiaoweb.com/static/images/index/bullet.png " style="background-color:#333;width:45rpx;height:45rpx;vertical-align:top;border-radius:10rpx;margin-left:10rpx;margin-right:5rpx;" />
+      <text class="cuIcon-roundaddfill lg text-orange add" style="background-color:#333;width:100rpx;height:100rpx;vertical-align:top;border-radius:10rpx;margin-left:5rpx;"></text>
+      </view>
+</view> -->
+
+
+
+
+<!-- <navigator style='width:100%;'> -->
+  <!-- <view class='flex' style='width:93%;margin:auto;'>
+    <button class='flex-sub' style='display:inline-block;height:50rpx;line-height:48rpx;font-size:35rpx;padding-top:2rpx;'>
+      <view style='display:inline-block;width:33%;text-align:right;vertical-align:middle;'>
+        <image src="http://ljp.jujiaoweb.com/static/images/index/bullet.png" style="background-color:#333;width:45rpx;height:45rpx;border-radius:50%;" />
+      </view>
+      <view style='display:inline-block;width:67%;text-align:left;'>开启/关闭弹幕</view>
+    </button>
+  </view> -->
+<!-- </navigator> -->
+<!-- <view style='height:15rpx;'></view>
+<navigator url='/pages/index/user/staff/diary/addDiary/addDiary' style='width:100%;'>
+  <view class='flex' style='width:93%;margin:auto;'>
+    <button class='flex-sub' style='display:inline-block;height:50rpx;line-height:48rpx;font-size:35rpx;padding-top:1rpx;'>
+      <view style='display:inline-block;width:33%;text-align:right;vertical-align:middle;'>
+        <text class="cuIcon-roundaddfill lg text-orange add" style='display:inline-block;width:50rpx;height:50rpx;font-size:45rpx;'></text>
+      </view>
+      <view style='display:inline-block;width:67%;text-align:left;'>添加动态</view>
+    </button>
+  </view>
+</navigator> -->
+
+<view class="btnContain">
+ <view class="btn1">
+    <image src="http://ljp.jujiaoweb.com/static/images/index/bullet.png" ></image>
+    <text>开启/关闭弹幕</text>
+ </view>
+
+ <view  class="{{staffId==-1?'hide':'btn2'}}  " catchtap="addDiary">
+ <image src="/pages/images/adds.png" ></image>
+ <text>添加动态</text>
+ </view>
+
+</view>
+<block wx:if="{{diary.length>0}}">
+<block  wx:for="{{diary}}" wx:key >
+<view style='height:20rpx;'></view>
+<view class="cu-card case firstCard {{isCard?'no-card':''}}">
+  <view class="cu-item shadow">
+    <view class="image {{item.Pic.length>0?'':'hide'}}" >
+      <!-- <image src="https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg" mode="widthFix"></image> -->
+
+    <!-- 轮播 start -->
+    <swiper class="screen-swiper round-dot" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
+  <swiper-item wx:for="{{item.Pic}}" wx:for-item="pics" wx:key>
+    <image src="{{pics}}" mode="aspectFill" ></image>
+  
+  </swiper-item>
+</swiper>
+
+    <!-- 轮播 end -->
+    </view>
+
+    <view style='height:20rpx;'></view>
+    <view class="cu-list menu-avatar">
+      <view class="cu-item">
+        <view class="cu-avatar round lg" style="background-image:url({{item.info.Avatar}});"></view>
+        <view class="content flex-sub">
+          <view class="text-black" style='font-size:35rpx;'>{{item.info.RealName}}
+            
+            <text class="cuIcon-roundcheckfill lg {{item.info.Certificated==0?'text-gray':'text-orange'}} add " ></text>
+            <!-- <view class="cu-tag bg-grey sm radius" style='font-size:26rpx;'>取关</view> -->
+          </view>
+          <view class="text-black text-sm">
+            <view>
+              {{item.CreateTime}}
+            </view>
+            <view class=' '>
+              {{item.Contents}}
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="box" style='margin-top:0;padding-top:0;'>
+      <view class="cu-bar input">
+        <input class="solid" focus="{{false}}" maxlength="300" cursor-spacing="10" style='padding-left:10rpx;padding-top:5rpx;'></input>
+        <view class="text-black">
+          <text class="cuIcon-messagefill margin-lr-xs"></text>
+          <text data-iszan="{{item.isZan}}" data-id="{{item.DiaryId}}" data-like="{{item.Like}}" catchtap="thumbUp" class="cuIcon-appreciatefill margin-lr-xs {{item.isZan == 1?'red':''}}"></text> {{item.formatLike}}
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+</block>
+</block>
+<block wx:else>
+  <view style="text-align:center;font-size:16px;padding:10px;">目前还没有任何技师日记！！！</view>
+</block>

@@ -1,0 +1,268 @@
+// pages/index/firm/firmCard/choiceStaff/choiceStaff.js
+
+// var myfunc=require( "../../../../common/timearea/timearea.js",);
+const app = getApp();
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    webRoot: app.globalData.webroot,
+    webRoot1: app.globalData.webroot1,
+    
+    dateArr:[],  //时间
+    staffDetail:[],  //技师详细信息
+    // 星星
+    stars1: [{
+      lightImg: 'http://ljp.jujiaoweb.com/static/images/index/star_light.png',
+      blackImg: 'http://ljp.jujiaoweb.com/static/images/index/star_black.png',
+      flag: 0,
+      message: '非常不满意，各方面都很差'
+    }, {
+      lightImg: 'http://ljp.jujiaoweb.com/static/images/index/star_light.png',
+      blackImg: 'http://ljp.jujiaoweb.com/static/images/index/star_black.png',
+      flag: 0,
+      message: '不满意，比较差'
+    }, {
+      lightImg: 'http://ljp.jujiaoweb.com/static/images/index/star_light.png',
+      blackImg: 'http://ljp.jujiaoweb.com/static/images/index/star_black.png',
+      flag: 0,
+      message: '一般，还要改善'
+    }, {
+      lightImg: 'http://ljp.jujiaoweb.com/static/images/index/star_light.png',
+      blackImg: 'http://ljp.jujiaoweb.com/static/images/index/star_black.png',
+      flag: 0,
+      message: '一般，还要改善'
+    }, {
+      lightImg: 'http://ljp.jujiaoweb.com/static/images/index/star_light.png',
+      blackImg: 'http://ljp.jujiaoweb.com/static/images/index/star_black.png',
+      flag: 0,
+      message: '一般，还要改善'
+    }],
+    //时间滑块 变量
+    
+
+
+    serviceId:0, //当前这个服务项目的id
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    var that = this;
+    var serviceId = options.serviceId;
+    that.setData({
+      serviceId: serviceId
+    })
+    // 关于时间滑块
+    //计算拖拽时的时间和坐标之间的转换
+    this.changeworktime()
+
+    //绘制不可选区域 和可选区域
+    // this.drawarea()
+    // 时间滑块结束
+   
+    // 关于日期的js
+    var date = new Date();
+    var arr = [];
+    var showDate = date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate();
+    console.log("今天日期是" + showDate)   //今天日期
+    arr.push(date.getDate());
+    for (var i = 1; i <= 6; i++) {//后7天
+      date.setDate(date.getDate() + 1);
+      showDate = date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate();
+      // console.log(showDate)
+      arr.push(date.getDate());
+      console.log(date.getDate())
+    }
+    that.setData({
+      dateArr: arr
+    })
+    console.log(that.data.dateArr);
+    // 请求后端 得到数据
+    wx.request({
+      //url: app.globalData.webroot + '/index/user/getStaffByService',
+      url: app.globalData.webroot1 + '/index/user/getStaffByService',
+      method: "post",
+      data: {
+        serviceId: that.data.serviceId,    //服务项目id
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded' //post请求
+      },
+      success(res) {
+       console.log(res.data.msg);
+        var data = res.data.msg;
+        that.setData({
+          staffDetail: data
+        })
+        console.log(that.data.staffDetail);
+        //
+        for (var i = 0; i < data.length; i++) {
+          
+          console.log(i);
+          var satisfection = data[i]['Satisfection'] / 10;//评分
+          var num = Math.round(satisfection);//四舍五入分
+          console.log(satisfection + "========");
+          console.log(num + "-----")
+
+
+          data[i]['stars'] = num;
+          this.timeareafun();
+          // data[i]['timedata'] = {      //记录当前不能选的区域 以及可以选的区域
+          //   workarea: {
+          //     x1: "09:00",
+          //     x2: "22:00",
+          //     x1x: 0,
+          //     x2x: 0
+          //   },
+
+          //   // 已经预约出去的时间
+          //   disabledarea: [{
+          //     x1: "09:30",
+          //     x2: "14:00",
+          //     x1x: 0,
+          //     x2x: 0
+          //   },
+          //     {
+          //       x1: "12:30",
+          //       x2: "13:00",
+          //       x1x: 0,
+          //       x2x: 0
+          //     }],
+          //   //开始服务
+          //   enabledarea: {
+          //     x1: "14:30",
+          //     x2: "15:00",
+          //     x1x: 0,
+          //     x2x: 0
+          //   },
+          //   leftarea: 20,   //绘制的市和左边的距离
+          //   rightarea: 20,  //绘制的市和右边的距离
+          //   xdis: 10,
+          //   startX: 0,
+          //   movex: 0,
+          //   down: {
+          //     x1: 0,
+          //     x2: 0
+          //   },
+          //   sideswidth: 0.9,   //当前canva占用总区域的百分比 
+
+          // }
+        }
+        console.log("整理得---");
+        console.log(data);
+        that.setData({
+          staffDetail: data
+        })
+        console.log(that.data.staffDetail);
+        
+      }
+    })
+  },
+  timeareafun:function(){
+    var header = this.selectComponent("#timearea")
+
+
+    var obj = {
+      ifshowenable: true,   //控制选择时间
+      ifShowworkTxt: true,   //控制上班时间是否显示
+      workarea: {          //指定工作时间和结束时间
+        x1: "08:00",
+        x2: "22:00",
+        x1x: 0,
+        x2x: 0
+      },
+      disabledarea: [    //已经预约出去的时间
+
+        {
+          x1: "08:30",
+          x2: "11:00",
+          x1x: 0,
+          x2x: 0
+        },
+        {
+          x1: "11:30",
+          x2: "12:00",
+          x1x: 0,
+          x2x: 0
+        }
+      ],
+
+      currentorderarea: [   //绿色时间 ---技师约单界面会用到当前约单的时间
+        {
+          x1: "15:30",
+          x2: "16:00",
+          x1x: 0,
+          x2x: 0
+        },
+        {
+          x1: "16:30",
+          x2: "18:00",
+          x1x: 0,
+          x2x: 0
+        }
+      ],
+      enabledarea: {
+        x1: "12:30",
+        x2: "14:00",
+        x1x: 0,
+        x2x: 0
+      },
+
+    }
+    header.canvasdraw(obj)
+  },
+  // 时间滑块结束
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  }
+})

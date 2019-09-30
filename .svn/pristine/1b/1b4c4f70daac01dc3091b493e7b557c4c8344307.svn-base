@@ -1,0 +1,317 @@
+ <!-- <cu-custom bgColor="bg-gradual-white" isBack="{{true}}">
+  <view slot="content"></view>
+</cu-custom> -->
+<!-- <cu-custom bgColor="bg-gradual-white" isBack="{{true}}"><view slot="back" ></view><view slot="content"></view></cu-custom> -->
+
+<!-- 第一次进入提示----------显示引导页 -->
+<view wx:if='{{ifShow}}' style="background-color:black;opacity:0.8;position:absolute;top:0rpx;height:100%;width:100%;z-index:999;display:{{hiddenName}};  justify-content: center;align-items:center;margin-top:20%" class="firstInfo" catchtap="firstLeadInfo" >
+  <image src="{{webRoot}}/static/images/index/guide3.png"   mode="widthFix" style="position:absolute;top:0rpx;z-index:999;" ></image>
+ </view >
+
+<!-- 正常显示   没有数据     加载中 -->
+<view wx:if="{{ifloading==2}}">
+<!-- 没有数据情况 -->
+ <view class="bg-img bg-mask " style="background-image: url('https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg');height: 1300rpx;background-size: cover;">
+  <view class="padding-xl text-white">
+    <view class="padding-xs text-xl">
+      当前无晒单数据
+    </view>
+    <view class="padding-xs">
+     
+    </view>
+  </view>
+</view>
+</view>
+<!--  -->
+<view >
+  <view style="position:absolute;top:0rpx;height:100%;width:100%;z-index:998;display:flex; ">
+
+<swiper style="height:100%;display:flex; " class='swipe' current="{{cur}}" bindchange="swiperChange" >
+    <block wx:for="{{imgs}}" wx:for-index="index" wx:key="swiperItem" wx:for-item="item" >
+      <swiper-item class="swiper-items"  >
+      
+        <!-- 模态框结束 -->    
+            <view wx:if="{{item.type==1}}">
+              <view class="contain"  >      
+              <!--晒单的主图  -->
+                 <view  class="bg-img  padding-tb-xl bgImg"style="background-image: url('{{webRoot}}/static/images/index/{{item.staffPic}}') ;background-size: cover;border-radius:30rpx;" catchtap="jumpDetail"> 
+               
+
+            <!--最上布局  -->
+                <view class="flex topContainer justify-between" >
+                  <!-- 上左 店名等的布局 -->
+                  <view  catchtap="jumpfirm" class="flex-sub  padding-sm  radius left magin-top" >
+                    <view class="shopname text-lg">
+            
+                  <text>{{item.FirmId}}---{{item.firmName}}--- {{item.pokerid}}---</text> <text class="shop-text">{{item.firmName}}</text> 
+            
+                    </view>
+                   
+                    <view class="firmList" >
+                    <text class="text-md" style='margin-right:20rpx;'>
+                    <text wx:if="{{item.firmType==0}}">个体</text>
+                      <text wx:elif="{{item.firmType==1}}">企业</text>
+                      <text wx:elif="{{item.firmType==2}}">工作室</text>
+                      <text wx:else>连锁</text>
+                    </text>
+                    <text  wx:if="{{item.firmCert==1}}"><text  class="cuIcon-roundcheckfill lg " style='color:#ff6600;margin-right:10rpx;'></text></text>
+                    <text  wx:elif="{{item.firmCert==0}}"><text  class="cuIcon-roundcheckfill lg " style='color:gray;margin-right:10rpx;'></text></text>
+                    <!-- <text style="border:1rpx solid blue;"> -->
+                      <text style="display:inline-block;padding-left:2%;" class="sale" wx:for="{{item.proTitle}}" >
+                      <text wx:if="{{item==0}}" decode="{{true}}">折扣&ensp;</text>
+                      <text wx:elif="{{item==1}}" decode="{{true}}">单笔满减&ensp;</text>
+                      <text wx:elif="{{item==2}}" decode="{{true}}">熟客优惠&ensp;</text>
+                      <text wx:elif="{{item==4}}" decode="{{true}}">首单折扣&ensp;</text>
+                      <!-- <text  decode="{{true}}">{{item}}</text> -->
+                      </text>
+                  
+                    
+                    </view>
+                    <view class="firmListOne"> 
+                      <text class="cuIcon-locationfill kmClass text-sm" ></text ><text class="text-md">{{item.dis}}KM</text>
+                      <text class="cuIcon-emoji numClass"></text>
+                      <text class="text-md">{{item.staffs}}</text>
+                      </view>
+                  </view>
+                  <!-- 上右 带头像等布局 -->
+                  <view class="right" style="margin-top:10%" catchtap='jumpstaff'>
+                      <view class="cu-item"role=""aria-label="">
+                          <view class="cu-avatar round md"  style="background-image:url('{{item.vatar}}');"role=""aria-label=""></view>
+                          <view class="content flex-sub"role=""aria-label="">
+                            <view class="text-white text-md"role=""aria-label="">{{item.nickName}}
+                              <text wx:if="{{item.staffCert==1}}"><text  class="cuIcon-roundcheckfill lg " style='color:#ff6600;margin-right:20rpx;'></text></text>
+                      <text wx:elif="{{item.staffCert==0}}"><text  class="cuIcon-roundcheckfill lg " style='color:#fff;margin-right:20rpx;'></text></text>
+                            </view>
+                            <view class="text-white text-md"role=""aria-label="">{{item.experience}}</view>
+
+                            <view class='assess-star'>
+                               <view class='star-wrap'>
+                                <view class='star-item' wx:for="{{item.stars}}" wx:for-index="index" wx:for-item="starsobj" wx:key="" style='background:url("{{starsobj.flag==1?starsobj.lightImg:starsobj.blackImg}}") no-repeat top;background-size:100%;' data-index="{{index}}" catchtap='starClick'></view>
+                              </view>
+                              
+                            </view>
+                        </view>
+                        </view>
+
+
+                   
+                  </view>
+                </view>
+              <!--上部分布局结束  -->
+                <!-- 弹幕部分********************* -->      
+                         
+                                <view>
+                                  <view class="doommview">
+                                    <block wx:for="{{doommData}}" wx:key="id">
+                                      
+                                      <text wx:if="{{item.display}}" class="aon" style="animation: first {{item.time}}s linear forwards;top:{{item.top}}%;color:{{item.color}};">
+                                        <text class="itemText text-md" >{{item.nickname}}：{{item.text}}</text> 
+                                    </text>
+                                    </block>
+                                  </view>
+                                </view>
+                                <view>  
+                                  <view class="hide{{showView?'show':''}}">
+                                    <view class="flex button">
+                                      <view class="flex-sub  padding-sm margin-xs radius danmuinput" hover-stop-propagation='true'>
+                                        <input bindblur="bind_shoot" type="text" value="{{bind_value}}" class="bulletInput"  catchtap="aaa"/>
+                                      </view>
+                                      <view catchtap="bindbt" class="hide{{showView?'show':''}} flex-sub  padding-sm margin-xs radius">
+                                        发送弹幕
+                                      </view>
+                                    </view>
+                                  </view>
+                              </view>
+        <!-- 弹幕结束 -->
+
+
+
+         
+          
+               
+         
+          <!-- 服务名称往下 -->
+           <view class="border-image "  >
+
+            <!-- 晒单服务项目 到数布局 -->
+        <view class="flex topContainer justify-between" >
+                  <!-- 上左 店名等的布局 -->
+                 <view style="display:inline-block;padding-top:20rpx"     >
+                    {{item.serviceName}}     
+                  </view>
+                   <view style="display:inline-block;margin-right:6%;">
+                   <view style="display:inline-block;" catchtap="onChangeShowState">
+                    <image class="hide{{showView?'show':'show'}} info1"  style="display:inline-block;width:70rpx;height:70rpx;margin-right:20rpx;padding-right:20rpx;" src="{{webRoot}}/static/images/index/bullet.png"></image>
+                    </view>
+                    <view style="display:inline-block;">
+                    <image catchtap="favor" data-staffid="{{item.staffId}}" data-iffavor="{{item.iffavor}}" data-pokerid="{{item.pokerid}}" wx:if="{{item.iffavor==1}}" class="save" class="save"  style="display:inline-block;width:55rpx;height:55rpx;" src="{{webRoot}}/static/images/index/hearted.png"></image>  
+                    <image catchtap="favor" data-staffid="{{item.staffId}}" data-iffavor="{{item.iffavor}}" data-pokerid="{{item.pokerid}}" wx:elif="{{item.iffavor==0}}"class="save" class="save"  style="display:inline-block;width:55rpx;height:55rpx;" src="{{webRoot}}/static/images/index/heart.png"></image>
+                    </view>
+                     
+                   </view>
+                  <!-- 上右 带头像等布局 -->
+                  
+            </view>  
+<!-- wx:if="{{save1}}" -->
+            <view wx:if="{{saveView==0}}" >
+              <view style="border-radius: 10rpx;background-color:rgb(237,229,224);opacity:0.8;width:15%;height:4%;text-align:center;margin-top: 73%;margin-right:1%; " >
+            <view style="display:inline-block;margin-top:4%;font-weight:bold;" >
+            {{favormsg}}
+            </view>
+            </view>  
+        
+            </view>      
+        <!-- 到数布局结束 -->  
+
+
+           <!-- ---------------------用户昵称 -->
+            
+            <view class="border-l" style="magin-top:0rpx;">
+        <view class="cu-avatar round lg" style="background-image:url('{{userInfo.avatarUrl}}');top:20rpx"></view>
+        </view>
+        <view class="border-r">
+        <view class="text1"><text>{{userInfo.nickName}}</text>(匿名)</view>         
+          <view class="text2" style="font-size: 23rpx;">
+            评:<text>{{item.comment}}</text>
+          </view>
+          <view class=" image-image" >
+                  <view >    
+                  <!-- <image src="'{{item.url}}'"></image>  -->
+                  <image src="http://ljp.jujiaoweb.com/static/images/index/test.jpg"></image>
+                  <image src="http://ljp.jujiaoweb.com/static/images/index/hand.png"></image>
+                   <image src="http://ljp.jujiaoweb.com/static/images/index/test.jpg"></image>
+                  </view>
+                  
+            </view>
+        </view>
+          
+       
+     
+
+</view>
+
+ <!-- 距离 -->
+<view class="page-section " wx:if="{{disShow}}" >
+    
+      <view class="page-section-div" style="border-radius: 90rpx;margin-bottom:5%;">
+      <text class="page-section-text" > {{sliderVal}}</text>
+        <slider style="border:1rpx solid red;" value="{{sliderVal}}" catchchanging="kmChange" min="0" max="100"  block-size="18" block-color="orange" 
+        style="display:inline-block;width:450rpx;margin-left:10rpx;"/>
+       <text class="page-section-ok" catchtap="sureKm" style="border:1rpx solid blue;" >ok</text>
+      </view>
+    </view>
+      <!--底部  结束 -->
+
+
+
+
+        <!-- 下部分************************ -->      
+                <!-- 底部开始 -->
+       <view class="bottomFinish" >
+                 <view>   
+                  <!-- 筛选图标 -->
+                    <image catchtap='jumpfilter' src="{{webRoot}}/static/images/index/poker/pic.png" class="classify"></image> 
+                 </view> 
+                 <view style="display:inline-block;width:20%;padding-left:-5%;margin-left:-3%;">
+                  <!-- 公里数 -->  
+                  <view style="border:1rpx solid red;display:inline-block;"  class="km text-md margin-left-sm" catchtap="sureKm" style='padding:10rpx 30rpx; font-size:30rpx;'>{{sliderVal}}km</view> 
+                 </view>  
+                 <view style="weight:60rpx">
+               
+                   <include src="../../../common/footer/footer.wxml"/>
+                </view>    
+        </view>
+
+
+
+
+        
+
+  </view>   
+
+</view>  
+  </view>
+   <!-- 广告布局 -->
+<view wx:elif="{{item.type==0}}" style="margin-top:50%;height:500rpx"style="background-image: url('{{item.mainPic}}') ;background-size: cover;border-radius:30rpx;height:100%;" >
+  <view  style="background-color:rgb(72,72,72);position:absolute;top:0rpx;height:100%;width:100%;z-index:999;justify-content: center;align-items:center;" class="firstInfo" >
+  <view class="flex topContainer justify-between" style="margin-top:7%;">
+                  <!-- 上左 店名等的布局 -->
+                  <view class="flex-sub  padding-sm  radius left magin-top"  >
+                    <view class="shopname text-lg">
+                  <text>{{item.firmName}}--- {{item.pokerid}}---</text> <text class="shop-text">{{item.firmName}}</text> 
+                    </view>
+                    <view class="firmList">
+                    <text class="text-md" style='margin-right:20rpx;'>
+                    <text wx:if="{{item.firmType==0}}">个体</text>
+                      <text wx:elif="{{item.firmType==1}}">企业</text>
+                      <text wx:elif="{{item.firmType==2}}">工作室</text>
+                      <text wx:else>连锁</text>
+                    </text>
+                    <text  wx:if="{{item.firmCert==1}}"><text  class="cuIcon-roundcheckfill lg " style='color:#ff6600;margin-right:10rpx;'></text></text>
+                    <text  wx:elif="{{item.firmCert==0}}"><text  class="cuIcon-roundcheckfill lg " style='color:gray;margin-right:10rpx;'></text></text>
+                    <!-- <text style="border:1rpx solid blue;"> -->
+                      <text style="display:inline-block;padding-left:2%;" class="sale" wx:for="{{item.proTitle}}" >
+                      <text wx:if="{{item==0}}" decode="{{true}}">折扣&ensp;</text>
+                      <text wx:elif="{{item==1}}" decode="{{true}}">单笔满减&ensp;</text>
+                      <text wx:elif="{{item==2}}" decode="{{true}}">熟客优惠&ensp;</text>
+                      <text wx:elif="{{item==4}}" decode="{{true}}">首单折扣&ensp;</text>
+                      <!-- <text  decode="{{true}}">{{item}}</text> -->
+                      </text>
+                    </view>
+                    <view class="firmListOne"> 
+                      <text class="cuIcon-locationfill kmClass text-sm" ></text ><text class="text-md">{{item.dis}}KM</text>
+                      <text class="cuIcon-emoji numClass"></text>
+                      <text class="text-md">{{item.staffs}}</text>
+                      </view>
+                  </view>
+                  </view>
+<!-- 广告 -->
+ <view  class="bg-img  padding-tb-xl bgImg" style="background-image: url('{{item['mainPic']}}') ;background-size: cover;border-radius:25rpx;height:70%;width:90%;margin-top:2%;margin-left:5%;" catchtap="jumpDetail"> 
+ </view>
+<!-- 广告结束 -->
+                
+               <view class="bottomFinish" >
+                 <view>   
+                  <!-- 筛选图标 -->
+                    <image catchtap='jumpfilter' src="{{webRoot}}/static/images/index/poker/pic.png" class="classify"></image> 
+                 </view> 
+                 <view style="display:inline-block;width:20%;padding-left:-5%;margin-left:-3%;">
+                  <!-- 公里数 -->  
+                  <view style="border:1rpx solid red;display:inline-block;"  class="km text-md margin-left-sm" catchtap="sureKm" style='padding:10rpx 30rpx; font-size:30rpx;'>{{sliderVal}}km</view> 
+                 </view>  
+                 <view style="weight:60rpx">     
+                   <include src="../../../common/footer/footer.wxml"/>
+                </view>    
+        </view>
+<view class="page-section " wx:if="{{disShow}}" >
+      <view class="page-section-div" style="border-radius: 90rpx;margin-bottom:5%;">
+      <text class="page-section-text" > {{sliderVal}}</text>
+        <slider style="border:1rpx solid red;" value="{{sliderVal}}" catchchanging="kmChange" min="0" max="100"  block-size="18" block-color="orange" 
+        style="display:inline-block;width:450rpx;margin-left:10rpx;"/>
+       <text class="page-section-ok" catchtap="sureKm" style="border:1rpx solid blue;" >ok</text>
+      </view>
+ </view>
+<!-- 距离结束 -->
+  </view>           
+ </view>
+ <!-- 底部结束 -->
+ 
+      <!--滑块中内容布局结束  -->
+</swiper-item> 
+      
+    </block>       
+</swiper>
+
+</view>
+</view>
+
+
+
+
+
+
+
+
+
+
+

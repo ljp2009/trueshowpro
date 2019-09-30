@@ -1,4 +1,4 @@
-<view>
 
+<view>
+  <timearea id="timearea"></timearea>
 </view>
-<timearea ></timearea>

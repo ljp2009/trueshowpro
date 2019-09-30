@@ -1,0 +1,735 @@
+
+<!--pages/index/reservation/customer/modules/statusZero/statusZero.wxml-->
+<!-- <text>pages/index/reservation/customer/modules/statusZero/statusZero.wxml</text> -->
+<!--pages/index/reservation/staff/modules/statusZero/statusZero.wxml-->
+<!-- <template name="header"> -->
+    <view class="padding ">
+   <!-- 进度条 -->
+    <!-- <view class="padding setps allStemp">
+        <view class="cu-steps">
+          <view class="cu-item {{index>num?'':'text-blue'}}" wx:for="{{numList}}" wx:key>
+            <text class="num {{index==0?'err':''}}" data-index="{{index + 1}}"></text> {{item.name}}
+          </view>
+        </view>
+      </view> -->
+   <!-- 进度条结束 -->
+    <!--服务清单  -->
+    <!-- <view class="cu-list menu-avatar" style="border:1rpx solid red;background-color:red;">
+       <view class="cu-item service">
+        <view class="flex-sub margin-xs secimg  listServiceTitle">
+          服务清单
+        </view>
+        <view class="action">
+          <view class="text-black text-xl"><text class="cuIcon-roundadd servicelist"></text></view>  
+        </view>
+      </view>
+     </view> -->
+    <!-- 服务清单结束 -->
+   <!-- <view class="empty">11111</view> -->
+     <!-- 两部分的 服务清单 -->
+     <view style="margin-bottom:2%;margin-left:1%;margin-top:-2%;"><view class="text-lg" style="display:inline-block;width:80%;">服务清单: </view><view style="display:inline-block;width:15%;text-align:right;" bindtap="showModal"  data-target="DialogModal1"><image src="http://ljp.jujiaoweb.com/static/images/index/add1.png" style="display:inline-block;width:45rpx;height:45rpx;"></image></view> </view>
+     <!-- 滑块 -->
+      <swiper bindchange="moveServerProSwiper"  class="serviceSwiper" style="margin-top:3%;">
+        <block wx:for="{{imgUrls}}" wx:for-index="index" wx:key="swiperItem" wx:for-item="eachItem" >
+          <swiper-item class="swiper-items"  >
+            <view >
+           <!-- 服务项目开始 -->
+            <view class="cu-list menu-avatar" wx:for="{{eachItem}}" wx:key="" >
+              <view class="cu-item  itemOne" style="margin-top:-1%;">
+                <view data-serviceid="" bindtap="gotoServiceProDesc" class="flex-sub margin-xs secimg" style="margin-left:3%;">
+                  <image src="{{webRoot}}/static/images/index/test1.jpg"/>
+                </view>
+                <view class="content" bindtap="gotoServiceProDesc">
+                  <view class="text-gray text-sm flex">
+                    <text class="text-black itemTitle text-xl">{{item.ServiceName}}</text>
+                  </view>
+                  <view class="text-gray text-sm flex">
+                    <text class="text-black experice text-sm">简介</text>
+                  </view>
+                  <view class="text-gray text-sm flex">
+                    <text class="text-black textBig text-xl text-bold">￥{{item['Price_Min']}}</text><text class="text-black textBigOne text-xl">元</text><text class="text-black minute text-lg">约{{item['Duration']}}分钟</text>
+                  </view>
+                </view>
+                <view class="action">
+                  <view class="text-black text-xl"><text class="cuIcon-delete"></text></view>  
+                </view>
+              </view>
+            </view>
+              <!-- 服务项目结束 -->
+     </view>
+     <!-- 两部分结束 -->
+          </swiper-item>
+        </block>
+</swiper>
+     <!-- 滑块 -->
+      
+    <!-- 时常 -->
+    <view class="flex shoplist">
+      <view class="sale text-lg">总计时长:</view>
+      <view class=" saleOffOne text-lg" >
+       {{imgUrls[0][0]['allTime']}}分钟
+      </view>
+    </view>
+    <!--时常  -->
+    <!-- 到店时间布局  -->
+     <view class="flex shoplist text-lg">
+      <view class="arriveTime">到店时间:</view>
+      <view class=" right" wx:for="{{dateArr}}" >
+      <view bindtap="chooseDate" data-index="{{index}}" data-item="{{item}}">      
+       <view wx:if="{{index==0}}" style="background-color:rgb(255,102,0);display:inline-block;" class="roundOne" > 今</view>
+        <view wx:elif="{{index==1}}" class="roundOne" style="display:inline-block;"> 明</view>
+        <view wx:elif="{{index==2}}" class="roundOne" style="display:inline-block;"> 后</view>
+        <view wx:else class="roundOne" style="display:inline-block;">{{item}}</view>
+        </view>
+      </view>
+    </view>
+  <!-- 到店时间结束 -->
+  <!-- 时间滑块 -->
+    <view class="timeBlock" style="margin-top:3%;">
+      <view>
+<view class="flex solid-bottom  justify-between" >
+      <view class="">{{timedata.workarea.x1}}</view>
+      <view class="">点击拖动选择时段</view>
+      <view class="">{{timedata.workarea.x2}}</view>
+</view>
+  <canvas height="50px" style="width:{{timedata.sideswidth*100+'%'}};height:50px;background-color:white;border:2px solid #ccc;padding:5px; margin:auto" canvas-id="timeCanvas" bindtouchmove="move" bindtouchstart="start" bindtouchend="end"></canvas>
+  <view class="flex   justify-between" style='margin-left:5%;margin-right:5%'>
+      <view class="">选取的时间区间为：{{timedata.enabledarea.x1}}-{{timedata.enabledarea.x2}}</view>
+</view>
+</view>
+</view>
+  <!-- 时间滑块结束 -->
+  <!-- 当日优惠 -->
+  <view class="flex shoplist">
+      <view class="sale text-lg" >当日优惠:</view>
+      <view class=" saleOff text-lg" >
+        新张志庆，优惠酬宾，欢迎来小店体验
+      </view>
+  </view>
+  <!-- 测试 -->
+
+  <!-- 测试结束 -  staffAndFirmobj.promote  && activityList.alternative==1->
+ <!-- ceshi -->
+ <view wx:if="{{staffAndFirmobj.promote != ''}}">
+  
+    <view wx:if="{{staffAndFirmobj.status==1 && staffAndFirmobj.alternative==1}}">
+    多选--正在进行的---
+          <!-- 单选布局 -->
+          <view  wx:for="{{staffAndFirmobj.nowActivity}}" wx:key="" wx:for-index="index1" wx:for-item="item1">
+            <view class="flex" bindtap="allList" data-index="{{index1}}"  >
+                <view class="flex-sub margin-xs"></view>
+                <view  wx:if="{{item1.type==0}}" style="width:100%;margin-left:46%;">
+                      <view class="flex-twice  margin-xs ">
+                      <view class=" text-sm {{item1.selected?'saleX1':'saleX'}}" style="item1.isSelected?'saleX1':'saleX'" >X</view>
+                      <view class=" text-sm {{item1.selected?'saleEach1':'saleEach'}}">
+                      单笔折扣</view>
+                      <text  class="text-sm">{{index1}}---{{item1.sales}}%</text>
+                      </view>  
+                </view>
+                <view  wx:elif="{{item1.type==1}}" style="width:100%;margin-left:46%;">
+                      <view class="flex-twice  margin-xs ">
+                      <view class=" text-sm {{item1.selected?'saleX1':'saleX'}}" >X</view>
+                      <view class=" text-sm {{item1.selected?'saleEach1':'saleEach'}}">
+                      {{item1.selected}}首单折扣</view>
+                      <text  class="text-sm">{{index1}}---{{item1.sales}}%</text>
+                      </view>  
+                </view>
+                <view  wx:elif="{{item1.type==2}}" style="width:100%;margin-left:46%;">
+                      <view class="flex-twice  margin-xs ">
+                      <view class=" text-sm {{item1.selected?'saleX1':'saleX'}}" >X</view>
+                      <view class=" text-sm {{item1.selected?'saleEach1':'saleEach'}}">
+                      熟客折扣</view>
+                      <text  class="text-sm">{{index1}}---{{item1.sales}}%</text>
+                      </view>  
+                </view>
+                 <view  wx:elif="{{item1.type==3}}" style="width:100%;margin-left:46%;">
+                      <view class="flex-twice  margin-xs ">
+                      <view class=" text-sm {{item1.selected?'saleX1':'saleX'}}" >X</view>
+                      <view class=" text-sm {{item1.selected?'saleEach1':'saleEach'}}">
+                      单笔满减</view>
+                      <text  class="text-sm">{{index1}}---满{{item1.sale[0]}}减{{item1.sale[1]}}</text>
+                      </view>  
+                </view>
+            </view>
+        </view>
+          <!-- 单选布局结束 -->
+       
+        
+        
+    </view>
+    <view wx:elif="{{staffAndFirmobj.status==1 && staffAndFirmobj.alternative==0}}">
+    <!-- <view wx:elif="{{obj.status.type==0}}"> 还没开始的---</view> -->
+    单选--正在进行的---
+            <view class="cu-form-group" >
+            <!-- class="block" style="height:60%;" role="radiogroup" aria-label="单选区" bindchange="radioChange" -->
+              <radio-group style="margin-left:50%;" class="block"  role="radiogroup" aria-label="单选区">
+             
+              <!-- 单选按钮 start -->
+            <view wx:for="{{staffAndFirmobj.nowActivity}}" wx:key="" wx:for-index="index1" wx:for-item="item1" style="width:100%;" class="text-sm">
+                  <view  wx:if="{{item1.type==0}}" style="width:400rpx;" >
+                  <!--    <radio class="orange   paddingSize" checked="{{ifselected1}}" value="1" >是</radio> -->
+                    <radio bindtap="radioColor"   data-index="{{index1}}" class="orange "></radio> 
+                    <text  class="{{radioIndex == index1?'red':''}}" >单笔折扣</text>
+                    <text  style="margin-left:2%;">{{item1.sales}}%</text>
+                  </view>
+                  <view  wx:elif="{{item1.type==1}}">
+                    <radio bindtap="radioColor"   data-index="{{index1}}" class="orange "></radio> 
+                    <text  class="{{radioIndex == index1?'red':''}}">首单折扣</text>
+                    <text  style="margin-left:2%;">{{item1.sales}}%</text>
+                  </view>
+                  <view  wx:elif="{{item1.type==2}}">
+                    <radio bindtap="radioColor"   data-index="{{index1}}" class="orange "></radio> 
+                    <text  class="{{radioIndex == index1?'red':''}}">熟客折扣</text>
+                    <text  style="margin-left:2%;">{{item1.sales}}%</text>
+                  </view>
+                   <view  wx:elif="{{item1.type==3}}">
+                    <radio bindtap="radioColor"   data-index="{{index1}}" class="orange "></radio> 
+                    <text  class="{{radioIndex == index1?'red':''}}">单笔满减</text>
+                    <text  style="margin-left:2%;">满{{item1.sale[0]}}减{{item1.sale[1]}}</text>
+                  </view>
+                  <!-- <view>
+                    <radio bindtap="radioColor"   data-index="2" class="orange radio"></radio> 
+                    <text  class="{{radioIndex == 2?'red':''}}">加油！</text>
+                  </view>   -->
+            </view>
+                  <!-- 单选按钮 end -->
+             
+            </radio-group>
+            </view>
+    </view>
+ 
+ </view>
+ <view wx:else>没值---</view>
+ <!-- 测试结束 -->
+  <!-- 单选按钮 -->
+  <!-- <view wx:for="{{allList}}">
+    <view class="flex" bindtap="allList" data-index="{{item.select}}" >
+        <view class="flex-sub margin-xs"></view>
+        <view class="flex-twice  margin-xs "><view class=" text-sm {{item.selected?'saleX1':'saleX'}}" >X</view><view class=" text-sm {{item.selected?'saleEach1':'saleEach'}}">{{item.itemEach}}</view><text  class="text-sm">{{item.itemVal}}</text></view>  
+    </view>
+</view> -->
+  <!-- 单选按钮结束 -->
+ 
+  <!--当日优惠结束  -->
+  <!-- 测试 -->
+  <view wx:if="{{staffAndFirmobj.promote != ''}}">
+   <view wx:for="{{staffAndFirmobj.promote}}" wx:for-item='obj'>
+    <view wx:if="{{obj.status.type==0 }}" >
+    还没开始的----{{obj.PromoteId}}
+          <view  >
+          <view class="flex shoplistOne">
+          <!-- <view wx:if="{{obj.status.type==0}}">
+          </view> -->
+          <view class="sale text-lg">优惠预告:</view>
+          <view style="" class=" saleOffOne text-lg" >
+            {{obj.Title}}
+          </view>
+          <!-- <view style="position:absolute; margin-left: 18%;" class=" saleOffOne" >
+            新张志庆，优惠酬宾，欢迎来小店体验哈哈哈哈哈哈哈哈哈哈哈hhhhhhhhh顶顶顶顶顶
+          </view> -->
+          </view>
+          <!-- 优惠预告结束 -->
+          <!-- 开始时间 -->
+          <view class="flex startTime">
+              <view class="sale text-lg">开始时间:</view>
+              <view class=" saleOffOne text-lg" >
+                {{obj.EffectiveDate}}   （{{obj.poorTime.day}}天后开始）
+              </view>
+          </view>
+          <view class="flex" wx:for="{{obj.itemActivity}}"  wx:key="" wx:for-index="index1" wx:for-item="item1">
+               <view  wx:if="{{item1.type==0}}" style="width:100%;margin-left:46%;">
+                    <view class="flex-sub margin-xs"></view>
+                  <view class="flex-twice  margin-xs ">
+                  <view class="saleX text-sm">X</view>
+                  <view class="saleEach text-sm">单笔折扣</view><text  class="text-sm">{{item1.sales}}%</text>
+                  </view>
+               </view>
+               <view  wx:elif="{{item1.type==1}}" style="width:100%;margin-left:46%;">
+                    <view class="flex-sub margin-xs"></view>
+                  <view class="flex-twice  margin-xs ">
+                  <view class="saleX text-sm">X</view>
+                  <view class="saleEach text-sm" >首单折扣</view><text  class="text-sm">{{item1.sales}}%</text>
+                  </view>
+               </view>
+               <view  wx:elif="{{item1.type==2}}" style="width:100%;margin-left:46%;">
+                    <view class="flex-sub margin-xs"></view>
+                  <view class="flex-twice  margin-xs ">
+                  <view class="saleX text-sm">X</view>
+                  <view class="saleEach text-sm">熟客折扣</view><text  class="text-sm" >{{item1.sales}}%</text>
+                  </view>
+               </view>
+               <view  wx:else style="width:100%;margin-left:46%;">
+                    <view class="flex-sub margin-xs"></view>
+                  <view class="flex-twice  margin-xs ">
+                  <view class="saleX text-sm">X</view>
+                  <view class="saleEach text-sm" >单笔满减</view><text  class="text-sm">满{{item1.sale[0]}}减{{item1.sale[1]}}%</text>
+                  </view>
+               </view>
+              
+          </view>
+          <!-- <view class="flex">
+              <view class="flex-sub margin-xs"></view>
+              <view class="flex-twice  margin-xs "><view class="saleX text-sm" >X</view><view class="saleEach text-sm">熟客折扣</view><text class="text-sm">20%OFF</text></view>
+          </view> -->
+      </view>
+       
+        
+        
+    </view>
+    
+   </view>
+ </view>
+  <!-- 测试结束 -->
+  <!-- 优惠预告 -->
+  <view >
+      
+      <view class="flex shoplistOne">
+      <!-- <view wx:if="{{obj.status.type==0}}">
+      </view> -->
+      <view class="sale text-lg">优惠预告:</view>
+       <view style="" class=" saleOffOne text-lg" >
+        新张志庆，优惠酬宾，欢迎来小店体验
+      </view>
+      <!-- <view style="position:absolute; margin-left: 18%;" class=" saleOffOne" >
+        新张志庆，优惠酬宾，欢迎来小店体验哈哈哈哈哈哈哈哈哈哈哈hhhhhhhhh顶顶顶顶顶
+      </view> -->
+      </view>
+      <!-- 优惠预告结束 -->
+      <!-- 开始时间 -->
+      <view class="flex startTime">
+          <view class="sale text-lg">开始时间:</view>
+          <view class=" saleOffOne text-lg" >
+            2019-08-08   （三天后开始）
+          </view>
+      </view>
+      <view class="flex">
+          <view class="flex-sub margin-xs"></view>
+          <view class="flex-twice  margin-xs "><view class="saleX text-sm">X</view><view class="saleEach text-sm">单笔满减</view><text  class="text-sm">满200减20</text></view>
+      </view>
+      <view class="flex">
+          <view class="flex-sub margin-xs"></view>
+          <view class="flex-twice  margin-xs "><view class="saleX text-sm" >X</view><view class="saleEach text-sm">熟客折扣</view><text class="text-sm">20%OFF</text></view>
+      </view>
+  </view>
+  <!-- 开始时间结束 -->
+  <!-- 金额 -->
+  <view class="flex moneyTwo">
+      <view class="flex-sub margin-xs text-lg">金额：</view>
+      <view class="flex-twice  margin-xs moneyThree">￥100.00-200.00元</view>
+  </view>
+  <!-- 第一个优惠方式 -->
+  <view class="flex">
+      <view class="flex-sub margin-xs">单笔满减：</view>
+      <view class="flex-twice  margin-xs "></view>
+      <view class="flex-sub   margin-xs ">
+        <view ><text style="color:rgb(255,102,0);" class="text-bold">￥100</text>元</view> 
+  </view>
+  </view>
+  <!-- 如果几个优惠条件都有 都显示  这个是第二个优惠方式 -->
+   <view class="flex">
+      <view class="flex-sub margin-xs">熟客折扣：</view>
+      <view class="flex-twice  margin-xs "></view>
+      <view class="flex-sub   margin-xs ">
+        <view ><text style="color:rgb(255,102,0);" class="text-bold">￥100.00</text>元</view> 
+    </view>
+  </view>
+  <!-- 金额结束 -->
+  <!-- 预约选项 -->
+  <view class="flex bottom">  
+      <view class="  secimg del">
+        删除
+      </view>
+      <view class="   wantMoney">
+      <view>意向价格：<text style="color:rgb(255,102,0);" class="text-bold">￥100.00元</text>起</view>
+      </view>
+      <view class=" order">
+        <view catchtap="makeOrder">预约</view>
+        <view>(到店支付)</view>
+      </view>
+  </view>    
+  <!-- 测试 -->
+<!-- 测试 -->
+
+<!-- 测试 -->
+
+
+
+  
+
+        <!-- ccccccc -->
+  
+
+
+    
+  <!-- 测试结束 -->
+<!-- 11111111111111111 -->
+  <!-- 预约选项结束 -->
+  </view>
+<!-- </template> -->
+ 
+
+<!--pages/index/reservation/customer/modules/statusZero/statusZero.wxml-->
+<!-- <text>pages/index/reservation/customer/modules/statusZero/statusZero.wxml</text> -->
+<!--pages/index/reservation/staff/modules/statusZero/statusZero.wxml-->
+<!-- <template name="header"> -->
+    <view class="padding ">
+   <!-- 进度条 -->
+    <!-- <view class="padding setps allStemp">
+        <view class="cu-steps">
+          <view class="cu-item {{index>num?'':'text-blue'}}" wx:for="{{numList}}" wx:key>
+            <text class="num {{index==0?'err':''}}" data-index="{{index + 1}}"></text> {{item.name}}
+          </view>
+        </view>
+      </view> -->
+   <!-- 进度条结束 -->
+    <!--服务清单  -->
+    <!-- <view class="cu-list menu-avatar" style="border:1rpx solid red;background-color:red;">
+       <view class="cu-item service">
+        <view class="flex-sub margin-xs secimg  listServiceTitle">
+          服务清单
+        </view>
+        <view class="action">
+          <view class="text-black text-xl"><text class="cuIcon-roundadd servicelist"></text></view>  
+        </view>
+      </view>
+     </view> -->
+    <!-- 服务清单结束 -->
+   <!-- <view class="empty">11111</view> -->
+     <!-- 两部分的 服务清单 -->
+     <view style="margin-bottom:2%;margin-left:1%;margin-top:-2%;"><view class="text-lg" style="display:inline-block;width:80%;">服务清单: </view><view style="display:inline-block;width:15%;text-align:right;" bindtap="showModal"  data-target="DialogModal1"><image src="http://ljp.jujiaoweb.com/static/images/index/add1.png" style="display:inline-block;width:45rpx;height:45rpx;"></image></view> </view>
+     <!-- 滑块 -->
+      <swiper bindchange="moveServerProSwiper"  class="serviceSwiper" style="margin-top:3%;">
+        <block wx:for="{{imgUrls}}" wx:for-index="index" wx:key="swiperItem" wx:for-item="eachItem" >
+          <swiper-item class="swiper-items"  >
+            <view >
+           <!-- 服务项目开始 -->
+            <view class="cu-list menu-avatar" wx:for="{{eachItem}}" wx:key="" >
+              <view class="cu-item  itemOne" style="margin-top:-1%;">
+                <view data-serviceid="" bindtap="gotoServiceProDesc" class="flex-sub margin-xs secimg" style="margin-left:3%;">
+                  <image src="{{webRoot}}/static/images/index/test1.jpg"/>
+                </view>
+                <view class="content" bindtap="gotoServiceProDesc">
+                  <view class="text-gray text-sm flex">
+                    <text class="text-black itemTitle text-xl">{{item.ServiceName}}</text>
+                  </view>
+                  <view class="text-gray text-sm flex">
+                    <text class="text-black experice text-sm">简介</text>
+                  </view>
+                  <view class="text-gray text-sm flex">
+                    <text class="text-black textBig text-xl text-bold">￥{{item['Price_Min']}}</text><text class="text-black textBigOne text-xl">元</text><text class="text-black minute text-lg">约{{item['Duration']}}分钟</text>
+                  </view>
+                </view>
+                <view class="action">
+                  <view class="text-black text-xl"><text class="cuIcon-delete"></text></view>  
+                </view>
+              </view>
+            </view>
+              <!-- 服务项目结束 -->
+     </view>
+     <!-- 两部分结束 -->
+          </swiper-item>
+        </block>
+</swiper>
+     <!-- 滑块 -->
+      
+    <!-- 时常 -->
+    <view class="flex shoplist">
+      <view class="sale text-lg">总计时长:</view>
+      <view class=" saleOffOne text-lg" >
+       {{imgUrls[0][0]['allTime']}}分钟
+      </view>
+    </view>
+    <!--时常  -->
+    <!-- 到店时间布局  -->
+     <view class="flex shoplist text-lg">
+      <view class="arriveTime">到店时间:</view>
+      <view class=" right" wx:for="{{dateArr}}" >
+      <view bindtap="chooseDate" data-index="{{index}}" data-item="{{item}}">      
+       <view wx:if="{{index==0}}" style="background-color:rgb(255,102,0);display:inline-block;" class="roundOne" > 今</view>
+        <view wx:elif="{{index==1}}" class="roundOne" style="display:inline-block;"> 明</view>
+        <view wx:elif="{{index==2}}" class="roundOne" style="display:inline-block;"> 后</view>
+        <view wx:else class="roundOne" style="display:inline-block;">{{item}}</view>
+        </view>
+      </view>
+    </view>
+  <!-- 到店时间结束 -->
+  <!-- 时间滑块 -->
+    <view class="timeBlock" style="margin-top:3%;">
+      <view>
+<view class="flex solid-bottom  justify-between" >
+      <view class="">{{timedata.workarea.x1}}</view>
+      <view class="">点击拖动选择时段</view>
+      <view class="">{{timedata.workarea.x2}}</view>
+</view>
+  <canvas height="50px" style="width:{{timedata.sideswidth*100+'%'}};height:50px;background-color:white;border:2px solid #ccc;padding:5px; margin:auto" canvas-id="timeCanvas" bindtouchmove="move" bindtouchstart="start" bindtouchend="end"></canvas>
+  <view class="flex   justify-between" style='margin-left:5%;margin-right:5%'>
+      <view class="">选取的时间区间为：{{timedata.enabledarea.x1}}-{{timedata.enabledarea.x2}}</view>
+</view>
+</view>
+</view>
+  <!-- 时间滑块结束 -->
+  <!-- 当日优惠 -->
+<view class="flex shoplist" >
+      <view class="sale">当日优惠:</view>
+      <view class=" saleOff" style="text-align:left;">
+        新张志庆，优惠酬宾，欢迎来小店体验
+      </view>
+  </view>
+  <!-- 当日优惠结束 -->
+ <view wx:if="{{staffAndFirmobj.promote != ''}}">
+  
+    <view wx:if="{{staffAndFirmobj.status==1 && staffAndFirmobj.alternative==1}}">
+    多选--正在进行的---
+          <!-- 单选布局 -->
+          <view  wx:for="{{staffAndFirmobj.nowActivity}}" wx:key="" wx:for-index="index1" wx:for-item="item1">
+            <view class="flex" bindtap="allList" data-index="{{index1}}"  >
+                <view class="flex-sub margin-xs"></view>
+                <view  wx:if="{{item1.type==0}}" style="width:100%;margin-left:46%;">
+                      <view class="flex-twice  margin-xs ">
+                      <view class=" text-sm {{item1.selected?'saleX1':'saleX'}}" style="item1.isSelected?'saleX1':'saleX'" >X</view>
+                      <view class=" text-sm {{item1.selected?'saleEach1':'saleEach'}}">
+                      单笔折扣</view>
+                      <text  class="text-sm">{{index1}}---{{item1.sales}}%</text>
+                      </view>  
+                </view>
+                <view  wx:elif="{{item1.type==1}}" style="width:100%;margin-left:46%;">
+                      <view class="flex-twice  margin-xs ">
+                      <view class=" text-sm {{item1.selected?'saleX1':'saleX'}}" >X</view>
+                      <view class=" text-sm {{item1.selected?'saleEach1':'saleEach'}}">
+                      {{item1.selected}}首单折扣</view>
+                      <text  class="text-sm">{{index1}}---{{item1.sales}}%</text>
+                      </view>  
+                </view>
+                <view  wx:elif="{{item1.type==2}}" style="width:100%;margin-left:46%;">
+                      <view class="flex-twice  margin-xs ">
+                      <view class=" text-sm {{item1.selected?'saleX1':'saleX'}}" >X</view>
+                      <view class=" text-sm {{item1.selected?'saleEach1':'saleEach'}}">
+                      熟客折扣</view>
+                      <text  class="text-sm">{{index1}}---{{item1.sales}}%</text>
+                      </view>  
+                </view>
+                 <view  wx:elif="{{item1.type==3}}" style="width:100%;margin-left:46%;">
+                      <view class="flex-twice  margin-xs ">
+                      <view class=" text-sm {{item1.selected?'saleX1':'saleX'}}" >X</view>
+                      <view class=" text-sm {{item1.selected?'saleEach1':'saleEach'}}">
+                      单笔满减</view>
+                      <text  class="text-sm">{{index1}}---满{{item1.sale[0]}}减{{item1.sale[1]}}</text>
+                      </view>  
+                </view>
+            </view>
+        </view>
+          <!-- 单选布局结束 -->
+       
+        
+        
+    </view>
+    <view wx:elif="{{staffAndFirmobj.status==1 && staffAndFirmobj.alternative==0}}">
+    <!-- <view wx:elif="{{obj.status.type==0}}"> 还没开始的---</view> -->
+    单选--正在进行的---
+            <view class="cu-form-group" >
+            <!-- class="block" style="height:60%;" role="radiogroup" aria-label="单选区" bindchange="radioChange" -->
+              <radio-group style="margin-left:50%;" class="block"  role="radiogroup" aria-label="单选区">
+             
+              <!-- 单选按钮 start -->
+            <view wx:for="{{staffAndFirmobj.nowActivity}}" wx:key="" wx:for-index="index1" wx:for-item="item1" style="width:100%;" class="text-sm">
+                  <view  wx:if="{{item1.type==0}}" style="width:400rpx;" >
+                  <!--    <radio class="orange   paddingSize" checked="{{ifselected1}}" value="1" >是</radio> -->
+                    <radio bindtap="radioColor"   data-index="{{index1}}" class="orange "></radio> 
+                    <text  class="{{radioIndex == index1?'red':''}}" >单笔折扣</text>
+                    <text  style="margin-left:2%;">{{item1.sales}}%</text>
+                  </view>
+                  <view  wx:elif="{{item1.type==1}}">
+                    <radio bindtap="radioColor"   data-index="{{index1}}" class="orange "></radio> 
+                    <text  class="{{radioIndex == index1?'red':''}}">首单折扣</text>
+                    <text  style="margin-left:2%;">{{item1.sales}}%</text>
+                  </view>
+                  <view  wx:elif="{{item1.type==2}}">
+                    <radio bindtap="radioColor"   data-index="{{index1}}" class="orange "></radio> 
+                    <text  class="{{radioIndex == index1?'red':''}}">熟客折扣</text>
+                    <text  style="margin-left:2%;">{{item1.sales}}%</text>
+                  </view>
+                   <view  wx:elif="{{item1.type==3}}">
+                    <radio bindtap="radioColor"   data-index="{{index1}}" class="orange "></radio> 
+                    <text  class="{{radioIndex == index1?'red':''}}">单笔满减</text>
+                    <text  style="margin-left:2%;">满{{item1.sale[0]}}减{{item1.sale[1]}}</text>
+                  </view>
+                  <!-- <view>
+                    <radio bindtap="radioColor"   data-index="2" class="orange radio"></radio> 
+                    <text  class="{{radioIndex == 2?'red':''}}">加油！</text>
+                  </view>   -->
+            </view>
+                  <!-- 单选按钮 end -->
+             
+            </radio-group>
+            </view>
+    </view>
+ 
+ </view>
+ <view wx:else>没值---</view>
+ <!-- 测试结束 -->
+  <!-- 单选按钮 -->
+  <!-- <view wx:for="{{allList}}">
+    <view class="flex" bindtap="allList" data-index="{{item.select}}" >
+        <view class="flex-sub margin-xs"></view>
+        <view class="flex-twice  margin-xs "><view class=" text-sm {{item.selected?'saleX1':'saleX'}}" >X</view><view class=" text-sm {{item.selected?'saleEach1':'saleEach'}}">{{item.itemEach}}</view><text  class="text-sm">{{item.itemVal}}</text></view>  
+    </view>
+</view> -->
+  <!-- 单选按钮结束 -->
+ 
+  <!--当日优惠结束  -->
+  <!-- 测试 -->
+  <view wx:if="{{staffAndFirmobj.promote != ''}}">
+   <view wx:for="{{staffAndFirmobj.promote}}" wx:for-item='obj'>
+    <view wx:if="{{obj.status.type==0 }}" >
+    还没开始的----{{obj.PromoteId}}
+          <view  >
+          <view class="flex shoplistOne">
+          <!-- <view wx:if="{{obj.status.type==0}}">
+          </view> -->
+          <view class="sale text-lg">优惠预告:</view>
+          <view style="" class=" saleOffOne text-lg" >
+            {{obj.Title}}
+          </view>
+          <!-- <view style="position:absolute; margin-left: 18%;" class=" saleOffOne" >
+            新张志庆，优惠酬宾，欢迎来小店体验哈哈哈哈哈哈哈哈哈哈哈hhhhhhhhh顶顶顶顶顶
+          </view> -->
+          </view>
+          <!-- 优惠预告结束 -->
+          <!-- 开始时间 -->
+          <view class="flex startTime">
+              <view class="sale text-lg">开始时间:</view>
+              <view class=" saleOffOne text-lg" >
+                {{obj.EffectiveDate}}   （{{obj.poorTime.day}}天后开始）
+              </view>
+          </view>
+          <view class="flex" wx:for="{{obj.itemActivity}}"  wx:key="" wx:for-index="index1" wx:for-item="item1">
+               <view  wx:if="{{item1.type==0}}" style="width:100%;margin-left:46%;">
+                    <view class="flex-sub margin-xs"></view>
+                  <view class="flex-twice  margin-xs ">
+                  <view class="saleX text-sm">X</view>
+                  <view class="saleEach text-sm">单笔折扣</view><text  class="text-sm">{{item1.sales}}%</text>
+                  </view>
+               </view>
+               <view  wx:elif="{{item1.type==1}}" style="width:100%;margin-left:46%;">
+                    <view class="flex-sub margin-xs"></view>
+                  <view class="flex-twice  margin-xs ">
+                  <view class="saleX text-sm">X</view>
+                  <view class="saleEach text-sm" >首单折扣</view><text  class="text-sm">{{item1.sales}}%</text>
+                  </view>
+               </view>
+               <view  wx:elif="{{item1.type==2}}" style="width:100%;margin-left:46%;">
+                    <view class="flex-sub margin-xs"></view>
+                  <view class="flex-twice  margin-xs ">
+                  <view class="saleX text-sm">X</view>
+                  <view class="saleEach text-sm">熟客折扣</view><text  class="text-sm" >{{item1.sales}}%</text>
+                  </view>
+               </view>
+               <view  wx:else style="width:100%;margin-left:46%;">
+                    <view class="flex-sub margin-xs"></view>
+                  <view class="flex-twice  margin-xs ">
+                  <view class="saleX text-sm">X</view>
+                  <view class="saleEach text-sm" >单笔满减</view><text  class="text-sm">满{{item1.sale[0]}}减{{item1.sale[1]}}%</text>
+                  </view>
+               </view>
+              
+          </view>
+          <!-- <view class="flex">
+              <view class="flex-sub margin-xs"></view>
+              <view class="flex-twice  margin-xs "><view class="saleX text-sm" >X</view><view class="saleEach text-sm">熟客折扣</view><text class="text-sm">20%OFF</text></view>
+          </view> -->
+      </view>
+       
+        
+        
+    </view>
+    
+   </view>
+ </view>
+  <!-- 测试结束 -->
+  <!-- 优惠预告 -->
+  <view >
+      
+      <view class="flex shoplistOne">
+      <!-- <view wx:if="{{obj.status.type==0}}">
+      </view> -->
+      <view class="sale text-lg">优惠预告:</view>
+       <view style="" class=" saleOffOne text-lg" >
+        新张志庆，优惠酬宾，欢迎来小店体验
+      </view>
+      <!-- <view style="position:absolute; margin-left: 18%;" class=" saleOffOne" >
+        新张志庆，优惠酬宾，欢迎来小店体验哈哈哈哈哈哈哈哈哈哈哈hhhhhhhhh顶顶顶顶顶
+      </view> -->
+      </view>
+      <!-- 优惠预告结束 -->
+      <!-- 开始时间 -->
+      <view class="flex startTime">
+          <view class="sale text-lg">开始时间:</view>
+          <view class=" saleOffOne text-lg" >
+            2019-08-08   （三天后开始）
+          </view>
+      </view>
+      <view class="flex">
+          <view class="flex-sub margin-xs"></view>
+          <view class="flex-twice  margin-xs "><view class="saleX text-sm">X</view><view class="saleEach text-sm">单笔满减</view><text  class="text-sm">满200减20</text></view>
+      </view>
+      <view class="flex">
+          <view class="flex-sub margin-xs"></view>
+          <view class="flex-twice  margin-xs "><view class="saleX text-sm" >X</view><view class="saleEach text-sm">熟客折扣</view><text class="text-sm">20%OFF</text></view>
+      </view>
+  </view>
+  <!-- 开始时间结束 -->
+  <!-- 金额 -->
+  <view class="flex moneyTwo">
+      <view class="flex-sub margin-xs text-lg">金额：</view>
+      <view class="flex-twice  margin-xs moneyThree">￥100.00-200.00元</view>
+  </view>
+  <!-- 第一个优惠方式 -->
+  <view class="flex">
+      <view class="flex-sub margin-xs">单笔满减：</view>
+      <view class="flex-twice  margin-xs "></view>
+      <view class="flex-sub   margin-xs ">
+        <view ><text style="color:rgb(255,102,0);" class="text-bold">￥100</text>元</view> 
+  </view>
+  </view>
+  <!-- 如果几个优惠条件都有 都显示  这个是第二个优惠方式 -->
+   <view class="flex">
+      <view class="flex-sub margin-xs">熟客折扣：</view>
+      <view class="flex-twice  margin-xs "></view>
+      <view class="flex-sub   margin-xs ">
+        <view ><text style="color:rgb(255,102,0);" class="text-bold">￥100.00</text>元</view> 
+    </view>
+  </view>
+  <!-- 金额结束 -->
+  <!-- 预约选项 -->
+  <view class="flex bottom">  
+      <view class="  secimg del">
+        删除
+      </view>
+      <view class="   wantMoney">
+      <view>意向价格：<text style="color:rgb(255,102,0);" class="text-bold">￥100.00元</text>起</view>
+      </view>
+      <view class=" order">
+        <view catchtap="makeOrder">预约</view>
+        <view>(到店支付)</view>
+      </view>
+  </view>    
+  <!-- 测试 -->
+<!-- 测试 -->
+
+<!-- 测试 -->
+
+
+
+  
+
+        <!-- ccccccc -->
+  
+
+
+    
+  <!-- 测试结束 -->
+<!-- 11111111111111111 -->
+  <!-- 预约选项结束 -->
+  </view>
+<!-- </template> -->
+ 

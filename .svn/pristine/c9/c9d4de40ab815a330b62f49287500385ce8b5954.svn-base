@@ -1,0 +1,241 @@
+/* pages/index/user/customer/index/index.wxss */
+
+.div-common{
+  background-color: white;
+  height: 100%;
+}
+.common-icon{
+  
+  position: relative;
+}
+.common-icon image{
+  width: 30rpx;
+  height: 30rpx;
+  position: absolute;
+  top: 70%
+  
+}
+.common-icon2{margin: auto;}
+.common-icon3{padding-left: 75%;padding-top: 15rpx}
+.common-icon3 image{
+   width: 30rpx;
+  height: 30rpx;
+  top: 70%;
+  margin-left: 20rpx
+
+}
+.common-icon1 image{
+  width: 30rpx;
+  height: 30rpx;
+  top: 70%;
+  margin-left: 20rpx
+
+  
+}
+.sum{
+  width: 60%;
+  text-align: right;
+  float: right;
+}
+.title{
+
+  width: 30%;
+}
+
+.sum-text{
+padding-left: 80%;
+font-weight: bold;
+}
+.time-sum{
+ 
+  text-align: center;
+}
+.title{
+  font-weight: bold;
+  margin-bottom: 0rpx;
+  padding-bottom: 0rpx;
+}
+.box{
+  width: 93%;
+  margin: auto;
+}
+.cu-form-group{
+  min-height: 60rpx;
+}
+.paice{
+ width: 31.2%;
+ float: left;
+ margin-right: 15rpx;
+ margin-top: 15rpx;
+}
+image{
+
+height: 250rpx;
+ 
+}
+.icon-sum{
+font-size: 85%;
+}
+.icon-sum  image{
+  width: 26rpx;
+  height: 26rpx;
+ margin: 0rpx 5rpx;
+ 
+}
+/* 圆 */
+.sum-text1{
+padding-left: 80%;
+font-weight: bold;
+}
+.time-sum1{
+  text-align: center;
+}
+
+.box1{
+  width: 92%;
+  margin: auto;
+}
+.paice1{
+ width: 22.1%;
+ float: left;
+ margin-right: 15rpx;
+ margin-top: 15rpx;
+ position: relative;
+}
+.paice1 image{
+border: 1rpx solid red;
+height: 145rpx;
+border-radius: 90rpx;
+color: white;
+}
+.paice1 .text-round{
+  border: 1rpx solid red;
+  width: 30rpx;
+  height: 30rpx;
+  position: absolute;
+  text-align: center;
+  font-size: 22rpx;
+  right: 25rpx;
+  color: white;
+  bottom: 200rpx;
+  border-radius:90rpx; 
+  background-color: orange;
+}
+.paice1 .text-text{
+  padding-left: 5%;
+}
+.paice1 .text-text text{
+  border-radius: 45rpx;
+  background-color: orange;
+  margin-left: 5rpx;
+}
+.icon-sum1{
+font-size: 85%;
+}
+.icon-sum1 text{
+ margin-left: 5%;
+
+}
+.text-button-count{
+  text-align: center;
+}
+.text-button-count .text-button{
+  margin: auto;
+}
+.text-button-count .text-button button{
+  margin-top: 30rpx;
+   background-color: orange;
+   height: 60rpx;
+   text-align: center;
+   line-height: 60rpx;
+   border-radius: 45rpx;
+}
+.text-lift{
+  margin-left: 30%;
+}
+/* 星星 */
+.assess-star {
+  /* margin-top: 20rpx; */
+}
+
+.star-wrap {
+  /* width: 150rpx; */
+  /* margin-left: 25rpx; */
+  /* margin: 10rpx auto 10rpx auto; */
+}
+
+.star-item {
+  display: inline-block;
+  height: 30rpx;
+  width: 30rpx;
+  /* margin-right: 10rpx; */
+}
+
+.star-desc {
+  font-size: 30rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 400;
+  color: rgba(243, 162, 0, 1);
+  text-align: center;
+ 
+}
+.page-section{
+
+  line-height: 90rpx;
+
+top:30rpx;
+margin-top: 105%;
+ 
+}
+.page-section-div{
+  border-radius: 90rpx;
+  width:90%;
+  margin: auto;
+ background-color: white;
+}
+.page-section-text{
+  padding: 26rpx;
+  width: 30rpx;
+ color: black;
+ font-size: 35rpx;
+}
+.page-section-ok{
+  display: inline;
+  width: 90rpx;
+  height: 70rpx;
+  padding: 25rpx;
+  font-size: 34rpx;
+ border-radius: 90rpx;
+ background-color: orange;
+
+}
+.border-image{
+  /* margin-top: 138%; */
+   margin-top: 112%;
+  position: absolute;
+  width: 100%;
+}
+.border-l{
+  display: inline-block;
+  width: 18%;
+  height: 100%;
+  position: relative;
+  top:-80rpx;
+  padding-left: 2%;
+}
+.border-r{
+   display: inline-block;
+ width: 82%;
+
+}
+
+.image-image {
+  margin-top: 10rpx;
+}
+.image-image image{
+  width: 60rpx;
+  height: 60rpx;
+  display: inline-block;
+  margin-right: 20rpx;
+
+}

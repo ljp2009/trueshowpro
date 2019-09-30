@@ -1,0 +1,68 @@
+/* pages/index/reservation/staff/modules/statuscommon/statuscommon.wxss */
+.return{
+  width:30rpx;
+  height:30rpx
+}
+.removetome{
+  color:#FF0000;
+  font-size: 35rpx
+}
+.infomiddle{
+  margin-left: 15rpx
+}
+.time{
+  color: #F00;
+}
+.moneytime{
+  float: right
+}
+.infoCenter{
+  margin-top: 10rpx
+}
+.textmiddle{
+  margin-left: 10rpx;
+}
+.cu-tag{
+  margin-top: -5rpx
+}
+
+/* 模态框 */
+.modal-mask {
+width: 100%;
+height: 100%;
+position: fixed;
+top: 0;
+left: 0;
+background: #000;
+opacity: 0.5;
+overflow: hidden;
+z-index: 9000;
+color: #fff;
+}
+.modal-dialog {
+width: 540rpx;
+overflow: hidden;
+position: fixed;
+top: 50%;
+left: 0;
+z-index: 9999;
+background: #f9f9f9;
+margin: -180rpx 105rpx;
+border-radius: 36rpx;
+}
+button{
+  width:220rpx;
+}
+.bg{
+  padding-top:30rpx;
+}
+.solids{
+  background-color: #666;
+  width:100rpx;height:100rpx;
+  display: inline-block;
+  margin:0 20rpx;
+}
+.danxuan{
+  width: 10rpx;
+  height:10rpx;
+}

@@ -1,0 +1,23 @@
+.head .cu-bar{
+   min-height:  200rpx;
+
+ 
+   
+}
+.head .cu-bar text{
+    font-size: 40rpx;
+    margin-right: 40%;
+    
+} 
+.cu-bar {
+    min-height:  20rpx;
+}
+.count{
+ padding-bottom: 50rpx;
+  background-color: white;
+}
+.section input{
+  border: 1rpx rgb(110, 106, 106) solid;
+  background-color: white;
+  margin: 30rpx
+}

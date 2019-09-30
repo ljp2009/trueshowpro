@@ -1,0 +1,16 @@
+<view class='hidThree'>
+  <view class="bg-white">
+    <view class="solid-bottom padding align-start">
+      <view style="font-size:38rpx;text-align:center;color:#333;">预约时间已到，等待顾客确认</view>
+      <view style='margin-top:20rpx;font-size:29rpx;color:#333;'>
+        如顾客已到店，请提醒顾客在“约”页面确认“到店”
+      </view>
+      <button bindtap="updUserIncPigeonCUST" wx:if="{{ifShowBtn==1}}"  class="cu-btn round bg-white shadow" style='width:56%;margin-left:22%;margin-top:40rpx;border:1rpx solid #999;font-size:31rpx;'>顾客未到，取消本约单</button>
+      <view style='margin-top:20rpx;font-size:29rpx;'>
+        备注:
+        <!-- <textarea placeholder='这里是简短留言，不超过100个字' style='border:1rpx solid #999;height:100rpx;margin-top:10rpx;padding-left:10rpx;padding-top:5rpx;'></textarea> -->
+      </view>
+      <view style='margin-bottom:30rpx;height:45rpx;line-height:45rpx;font-size:31rpx;'>有多次爽约记录的顾客，系统自动要求顾客支付少量押金；爽约后自动付给商家</view>
+    </view>
+  </view>
+</view>

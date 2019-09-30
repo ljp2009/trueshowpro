@@ -1,0 +1,75 @@
+<cu-custom bgColor="bg-gray" isBack="{{true}}" style="color:#000;">
+  <view slot="backText" style='font-size:36rpx;color:#000;'>返回</view>
+  <view slot="content" style='font-size:39rpx;margin-left:-50rpx;color:#000;'>约单详情</view>
+</cu-custom>
+<view style='padding-bottom:10rpx;background-color:#FFE375;'>
+  <view style='margin-left:15rpx;padding-top:15rpx;font-size:35rpx'>扫码查询结果：</view>
+  <text style='margin-left:15rpx;padding-bottom:15rpx;font-size:35rpx'>本接单由技师Aima提供服务</text>
+  <navigator style='display:inline-block;' url='/pages/index/reservation/staff/modules/statusOneModal/statusOneModal'>
+    <text style='margin-left:170rpx' class="removetome" bindtap="showDialogBtn">转移给我</text>
+  </navigator>
+</view>
+<view style='height:30rpx;'></view>
+<view style='height:50rpx;line-hright:50rpx;font-size:35rpx;margin-left:25rpx;'>顾客信息:</view>
+<view class=" bg-white " style='font-size:29rpx;'>
+  <view class="flex solid-bottom padding align-start">
+    <view class="cu-avatar lg round" style="background-image:url({{currentReservationInfo.Avatar}});width:150rpx;height:150rpx;"></view>
+    <view class='infomiddle'>
+      <view style='height:8rpx;'></view>
+      <view>{{currentReservationInfo.NickName}}
+        <!-- <text style='margin-left:30rpx;'>123456789</text> -->
+      </view>
+      <view wx:if="{{costCountAllcost.costCount}}">
+        老顾客({{costCountAllcost.costCount}})
+        <text>总计消费：￥{{costCountAllcost.allcost}}</text>
+      </view>
+      <view>
+        <view class='infoCenter'>
+          <text>预约时间：<text class='time'>{{currentReservationInfo.StartTime}}-{{currentReservationInfo.EndTime}}（约{{currentReservationInfo.Poortime}}分钟）</text></text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<view style='height:30rpx;'></view>
+<view style='height:50rpx;line-hright:50rpx;font-size:35rpx;margin-left:25rpx;'>预约服务项目:</view>
+<view class="bg-white" style='font-size:25rpx'>
+  <view class="solid-bottom padding align-start">
+    <!-- 服务项目列表开始 -->
+     <view wx:for="{{currentReservationInfo.service_resn}}" wx:for-index="index" wx:for-item="item"  wx:key="" class='infoCenter' style="font-size:29rpx;">
+      <text class="cu-tag round bg-orange sm" style='width:100rpx;;height:40rpx;line-height:40rpx;font-size:29rpx;'>{{item.Name}}</text>
+      <text class='textmiddle'>{{item.ServiceName}}</text>
+      <text class='moneytime'>
+        <text style='margin-right:20rpx'>￥{{item.Price_Min}}</text>
+      <text>{{item.Duration}}分钟</text>
+      </text>
+     </view> 
+  <!-- 服务项目列表结束 -->
+    
+    <view style='margin-top:20rpx;height:120rpx;font-size:29rpx;'>
+      简短留言：
+      <textarea bindblur="upShortMsg" placeholder='这里是简短留言，不超过100个字' style='border:1rpx solid #999;height:100rpx;margin-top:10rpx;padding-left:10rpx;padding-top:5rpx;' maxlength="100" value="{{shortMsgVal}}"></textarea>
+    </view>
+  </view>
+</view>
+<view style='height:30rpx;'></view>
+<view style='height:50rpx;line-hright:50rpx;font-size:35rpx;margin-left:25rpx;'>当前流程:</view>
+<!-- <view class='hidOne'>
+  <view class="bg-white">
+    <view class="solid-bottom padding align-start">
+      <view style="font-size:38rpx;text-align:center;color:#333;">顾客已预约，等待顾客到店</view>
+      <view style='margin-top:20rpx;font-size:29rpx;color:#333;'>
+        如需改签,请联系客户并说明原因,由客户更改服务时间
+      </view>
+    </view>
+  </view>
+</view> -->
+<!-- <view wx:if="{{currentReservationInfo.Status==1}}">
+
+
+</view> -->
+<!-- <view wx:if="{{currentReservationInfo.Status==2}}"> -->
+<include src="../statusOne/statusOne.wxml"/>
+<!-- </view> -->
+
+

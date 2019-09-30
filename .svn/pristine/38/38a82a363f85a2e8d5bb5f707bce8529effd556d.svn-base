@@ -1,0 +1,28 @@
+<!--pages/index/user/customer/pokerByFavorite/pokerByFavorite.wxml-->
+<cu-custom bgColor="bg-gradual-white" isBack="{{true}}"><view slot="back" ></view><view slot="content"b>我的收藏</view>
+
+</cu-custom>
+<view class="sum-text">共{{favorsCount}}</view>
+
+<!-- 测试 -->
+<!-- 作品 -->
+<view style="margin-top:2%;background-color:white;height:100%;" >
+   <view wx:for="{{saveLists}}" wx:for-item="itemArr">
+         <view style="text-align:center;">{{itemArr[0]['newDate']}}</view>
+        <view style="margin-left:6%;" >
+          <view style="display:inline-block;width:32%;"  wx:for="{{itemArr}}" wx:for-item="obj" ><image  data-pokerid="{{obj.PokerId}}" data-favordate="{{obj.accessTime}}" data-staffid="{{obj.StaffId}}"  bindtap="jumpFavoriteDetail"  src="{{webRoot}}/static/images/index/{{obj.StaffPic.main}}" style="width:90%;height:300rpx;top:7rpx;margin-right:3%;border-radius:5%;"></image>
+          </view>   
+      </view>
+   </view>
+</view>
+<!-- 作品结束 -->
+
+<!-- 测试结束 -->
+
+
+
+
+
+
+
+

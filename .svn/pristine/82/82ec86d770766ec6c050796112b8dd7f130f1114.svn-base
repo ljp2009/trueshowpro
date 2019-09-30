@@ -1,0 +1,181 @@
+<!--pages/index/firm/firmCard/firmMessage/firmMessage.wxml-->
+<!-- class="hidOne"/"hidTwo" 交替dispaly:none; -->
+
+<view class='scrollView'>
+  <cu-custom bgColor="bg-gray" isBack="{{true}}" style="color:#000;">
+    <view slot="backText" style='font-size:36rpx;color:#000;'>返回</view>
+    <view slot="content" style='font-size:39rpx;margin-left:-50rpx;color:#000;'>机构信息主页</view>
+  </cu-custom>
+  <!-- 右边固定得一个约布局开始 -->
+  <view wx:if="{{firmBasicInfo.Status==1}}">
+    <view style='background-color:#FF6600;position:fixed;top:27%;right:0;height:120rpx;width:3%;z-index:666;'></view>
+  <view style='background-color:#FF6000;position:fixed;top:27%;right:3%;height:120rpx;width:120rpx;border-radius:50% 0 0 50%;z-index:667;'>
+    <view style='font-size:60rpx;height:100rpx;width:100rpx;line-height:100rpx;text-align:center;border-radius:50%;margin-left:10rpx;margin-top:10rpx;background-color:#666;color:#FFF;'>约</view>
+  </view>
+  <view style='position:fixed;right:3%;top:27%;font-size:32rpx;width:40rpx;height:40rpx;line-height:40rpx;border-radius:50%;background-color:#FF0000;text-align:center;color:#FFF;z-index:668;'>2</view>
+  </view>
+  <!-- 右边固定得一个约布局结束 -->
+  <!-- 经营状态 -->
+  <view class='hidOne'>
+    <view style='margin-top:20rpx;margin-bottom:5rpx;border-bottom:1rpx solid #999;'>
+      <view style='display:inline-block;max-width:20%;width:800rpx;text-align:center;margin-top:4rpx;'>
+        <image wx:if="{{firmBasicInfo.FirmType==1}}" src='{{webRoot}}/static/images/index/icon11.png ' style='width:100rpx;height:100rpx;border-radius:50%;'></image> 
+        <image wx:else src='{{webRoot}}/static/images/index/icon12.png' style='width:100rpx;height:100rpx;border-radius:50%;'></image>
+      </view>
+      <view style='display:inline-block;vertical-align:top;max-width:80%;width:900rpx;'>
+        <view class="text-xxl" style='color:#133;font-weight:bold;font-family:"微软雅黑"'>{{firmBasicInfo.FirmName}}</view>
+        <view style='font-size:31rpx;color:#133;font-family:"微软雅黑";padding:10rpx 0;'>地址：{{firmBasicInfo.FirmAddr}}</view>
+        <view style='font-size:31rpx;color:#133;font-family:"微软雅黑";padding:10rpx 0;'>
+          机构
+          <text class="cuIcon-roundcheckfill  text-orange" style="margin-left:2%;" wx:if="{{firmBasicInfo.Certificated==1}}"></text>
+          <text wx:elif="{{firmBasicInfo.Certificated==0}}"  class="cuIcon-roundcheckfill  text-block" style='color:gray;margin:0 10rpx;'></text>
+          <text class="cuIcon-locationfill  text-black" style='margin-left:30rpx;'></text>{{firmBasicInfo.Distance}}km
+          <navigator url='/pages/index/firm/firmCard/firmStaff/firmStaff' style='display:inline-block;'>
+            <text class="cuIcon-emoji  text-black" style='margin-left:30rpx;'></text>{{firmBasicInfo.Staffs}}</navigator>
+        </view>
+        <!-- 导航开始 当正常营业得时候才显示 否则隐藏-->
+        <view wx:if="{{firmBasicInfo.Status==1}}"  class="flex  p-xs mb-sm" style='font-size:38rpx;color:#133;font-family:"微软雅黑";padding:10rpx 28% 0 0;'>
+          <view class="flex-sub " style='color:#FF7711;'>活动</view>
+          <view class="flex-sub " style='color:#FF7711;'>成员</view>
+          <view class="flex-sub " style='color:#FF7711;'>项目</view>
+          <view class="flex-sub " style='color:#FF7711;'>简介</view>
+        </view>
+      </view>
+      <!-- 导航结束 -->
+    </view>
+    <!-- 下半部分 正常营业时显示 -->
+    <view  wx:if="{{firmBasicInfo.Status==1}}">
+    <!-- 机构的优惠活动开始 -->
+    <view wx:for="{{firmPromoteInfo}}" wx:for-index="index" wx:for-item="item"  wx:key="" wx:if="{{item.status['type']!=-1}}">
+         <view style='font-size:36rpx;height:60rpx;line-height:60rpx;margin-left:20rpx;'>活动：{{item.Title}}</view>
+      <view style='margin-left:20rpx;' wx:for="{{item.itemActivity}}" wx:key="" wx:for-index="index1" wx:for-item="item1">
+        <text wx:if="{{item1.type==0}}" style='background-color:#FF6600;padding:0 25rpx 0 20rpx;font-size:26rpx;vertical-align:middle;color:#FFF;border-radius:30rpx;margin-right:30rpx;'>单笔折扣</text>
+        <text wx:if="{{item1.type==1}}" style='background-color:#FF6600;padding:0 25rpx 0 20rpx;font-size:26rpx;vertical-align:middle;color:#FFF;border-radius:30rpx;margin-right:30rpx;'>首单折扣</text>
+        <text wx:if="{{item1.type==2}}" style='background-color:#FF6600;padding:0 25rpx 0 20rpx;font-size:26rpx;vertical-align:middle;color:#FFF;border-radius:30rpx;margin-right:30rpx;'>熟客折扣</text>
+        <text wx:if="{{item1.type==3}}" style='background-color:#FF6600;padding:0 25rpx 0 20rpx;font-size:26rpx;vertical-align:middle;color:#FFF;border-radius:30rpx;margin-right:30rpx;'>单笔满减</text>
+        <text wx:if="{{item1.type==3}}" style='font-size:31rpx;vertical-align:middle;'>满{{item1.sale[0]}}减{{item1.sale[1]}}</text>
+         <text wx:if="{{item1.type!=3}}" style='font-size:31rpx;vertical-align:middle;'>{{item1.sales}}%</text>
+      </view>
+    </view>
+   <!-- 机构的优惠活动结束 -->
+    <!-- 成员技师 -->
+    <view class="cu-bar bg-white solid-bottom margin-top" style='margin-left:20rpx;margin-right:20rpx;margin-bottom:16rpx;'>
+      <view class="action" style='margin-left:10rpx;'>
+        <view style='font-size:36rpx;color:#133;'>成员技师：</view>
+      </view>
+      <view>
+      <!-- staffLists -->
+        <view bindtap="jumpStaffs">   
+          <view style='font-size:36rpx;color:#133;margin-right:40rpx;'>
+            <text class="cuIcon-emoji  text-black" style='margin-right:12rpx;'></text>{{staffCount}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="flex  p-xs mb-sm textFlexWrapOne">
+      <view class="flex-sub  textFlex" style="border:1rpx solid white;" wx:for="{{staffLists}}" wx:for-item="staffsObj" wx:key="">
+        <image src='{{staffsObj.Avatar}}' style='width:160rpx;height:160rpx;border-radius:50%;'></image>
+        <view>
+        {{staffsObj['NickName']}} 
+        <text wx:if="{{staffsObj['Certificated']==0}}"  class="cuIcon-roundcheckfill  text-block" style='color:gray;margin:0 10rpx;'></text>
+        <text class="cuIcon-roundcheckfill  text-orange" style="margin-left:2%;" wx:else></text>
+        </view>
+        <view>
+          <!-- 星星 -->
+          <!-- 小星星---{{staffsObj['stars']}} -->
+          <view class='star-wrap' wx:for="{{stars1}}" wx:key wx:for-index="index" wx:for-item="starsobj" style="display:inline-block;border:1rpx solid white;">
+            <view class='star-item'  wx:key="" wx:if="{{staffsObj['stars']<=index}}" style='background:url("http://ljp.jujiaoweb.com/static/images/index/star_black.png") no-repeat top;background-size:100%;'   data-index="{{index}}" catchtap='starClick'></view>
+            <view class='star-item'  wx:key="" wx:elif="{{staffsObj['stars']>index}}" style='background:url("http://ljp.jujiaoweb.com/static/images/index/star_light.png") no-repeat top;background-size:100%;'   data-index="{{index}}" catchtap='starClick'></view>        
+          </view>
+        </view>
+      </view> 
+    </view>
+    <!-- 成员技师结束 -->
+    <!-- 服务项目 -->
+    <view>
+      <view class="cu-bar bg-white solid-bottom margin-top" style='margin-left:20rpx;margin-right:20rpx;'>
+      <view style='font-size:36rpx;color:#133;margin-left:10rpx;'>服务项目：</view>
+    </view>
+    <view style="height:2%;border:1rpx solid rgb(227,227,227);background-color:rgb(227,227,227);opacity:0.5%;"></view>
+    <view style="margin-left:4%;">
+      <view style="margin-top:1%;" >
+      <!--  {{index==TabCur?'selectedItem':'selectItemOne'}} -->
+        <scroll-view scroll-x class="nav" scroll-with-animation scroll-left="{{scrollLeft}}">
+        
+           <view  class="{{currentSelectCat==item.Seq?'selectedItem':'selectItemOne'}}" wx:for="{{firmBasicInfo.MainCatAndName}}" wx:key="" bindtap="changeMainCat" data-id="{{index}}" data-seq="{{item.Seq}}" style="display:inline-block;margin-right:3%;width:18%;text-align:center;height:160%;line-height:160%;font-size:32rpx;">
+            <view style="display:inline-block;magin-bottom:-2%;">{{item.Name}}</view>
+          </view>
+        </scroll-view>
+      </view>
+    </view>
+    
+ <!-- 服务项目  firmService-->
+ <!--  -->
+ <!-- 服务项目信息 -->
+    <view style="margin-top:2%;">
+        <view >        
+            <view class="cu-list menu-avatar" wx:for="{{firmService}}" wx:key="" >
+              <view class="cu-item  itemOne" style="margin-top:-1%;">
+                <view data-serviceid="{{item['ServiceId']}}" bindtap="gotoServiceProDesc" class="flex-sub margin-xs secimg" style="margin-left:3%;">
+                  <image src="{{webRoot}}/static/images/index/test1.jpg"/>
+                </view>
+                <view class="content" data-serviceid="{{item['ServiceId']}}" bindtap="gotoServiceProDesc" style="margin-left:2%;">
+                  <view class="text-gray text-sm flex">
+                    <text class="text-black itemTitle text-xl">{{item['ServiceName']}}</text>
+                  </view>
+                  <view class="text-gray text-sm flex">
+                    <text class="text-black experice text-sm">{{item['ServiceSub']}}</text>
+                  </view>
+                  <view class="text-gray text-sm flex">
+                    <text class="text-black textBig text-xl text-bold">￥{{item['Price_Min']}}</text><text class="text-black textBigOne text-xl">元</text><text class="text-black minute text-lg">约{{item['Duration']}}分钟</text>
+                  </view>
+                </view>
+                <view class="action">
+                  <view bindtap="jumpChooseStaff" data-serviceid="{{item.ServiceId}}"><image src="http://ljp.jujiaoweb.com/static/images/index/add1.png" style="display:inline-block;width:50rpx;height:50rpx;"></image></view>
+                  <!-- <view class="text-black text-xl"><text class="cuIcon-delete"></text></view>   -->
+                </view>
+              </view>
+            </view>
+              <!-- 服务项目结束 -->
+           </view>
+           <view  bindtap="moreServer" wx:if="{{showMore}}" style="text-align:right;"> <view style="display:inline-block;height:45rpx;line-height:45rpx;" class="text-lg">更多</view><image src="http://ljp.jujiaoweb.com/static/images/index/back.png" style="display:inline-block;width:45rpx;height:45rpx;padding-top:20rpx;"></image></view>
+    </view>
+    <!-- 服务项目信息 -->
+    </view>
+    <!-- 服务项目结束 -->
+    <view style='font-size:36rpx;color:#133;height:60rpx;line-height:60rpx;margin-left:30rpx;' class="margin-top">机构简介：</view>
+    <view style='font-size:30rpx;margin-left:30rpx;margin-bottom:60rpx;'>{{firmBasicInfo.Discription}}</view>
+    <view style='font-size:36rpx;color:#133;height:60rpx;line-height:60rpx;margin-left:20rpx;' class="margin-top">场所</view>
+    <swiper class="screen-swiper " indicator-dots="true" autoplay="true">
+      <swiper-item wx:key>
+        <image src="http://ljp.jujiaoweb.com/static/images/index/qFour.png"></image>
+      </swiper-item>
+      <swiper-item wx:key>
+        <image src="http://ljp.jujiaoweb.com/static/images/index/qFour.png"></image>
+      </swiper-item>
+      <swiper-item wx:key>
+        <image src="http://ljp.jujiaoweb.com/static/images/index/qFour.png"></image>
+      </swiper-item>
+    </swiper>
+    <view style='font-size:36rpx;color:#133;height:60rpx;line-height:60rpx;margin-left:20rpx;margin-bottom:20rpx;' class="margin-top">仪器和服务过程</view>
+    <swiper class="screen-swiper " indicator-dots="true" autoplay="true">
+      <swiper-item wx:key>
+        <image src="http://ljp.jujiaoweb.com/static/images/index/qFour.png"></image>
+      </swiper-item>
+      <swiper-item wx:key>
+        <image src="http://ljp.jujiaoweb.com/static/images/index/qFour.png"></image>
+      </swiper-item>
+      <swiper-item wx:key>
+        <image src="http://ljp.jujiaoweb.com/static/images/index/qFour.png"></image>
+      </swiper-item>
+    </swiper>
+    </view>
+      <!-- // -->
+      <view wx:else>
+         <view style='font-size:36rpx;height:60rpx;line-height:60rpx;margin-left:20rpx;color:#000;'>该机构在非正常经营，可能原因如下：</view>
+    <view style='font-size:33rpx;height:60rpx;line-height:60rpx;margin-left:20rpx;'>1、暂停线上营业</view>
+    <view style='font-size:33rpx;height:60rpx;line-height:60rpx;margin-left:20rpx;'>2、自主或被强制退出平台</view>
+    <view style='height:30rpx;background-color:#FFF;'></view>
+      </view>
+  </view>
+ 
+</view>

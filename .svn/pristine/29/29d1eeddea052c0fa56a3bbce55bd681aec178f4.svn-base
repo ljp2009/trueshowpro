@@ -1,0 +1,195 @@
+// pages/index/firm/firmIndex/searchFirm/searchFirm.js
+const app = getApp()
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    staffLevel:1,
+    keyword:'',
+    applyStaff:[],
+    staffName:'',
+    staffAdress:'',
+    staffId:'',
+    manager:[]
+  },
+
+/**
+ * 查找事件
+ */
+  searchFirm: function() {
+    // 过滤用户输入的关键字
+    var keyword = this.data.keyword;
+    if(keyword != ''){
+      // 不能为空 ，
+      keyword = keyword.replace(/\s+/g, '');
+      // 过滤掉特殊符号
+      keyword = keyword.replace(/[^\u4e00-\u9fa5a-zA-Z0-9\w]/g, '')
+      // 点击查找，将关键字和接口对接
+      wx.navigateTo({
+        url: '/pages/index/firm/joinStaff/searchFirm/searchFirm?keyword='+keyword
+      })
+    }else{
+      wx.showToast({
+        title: '关键字不能为空',
+        icon: 'none',
+        duration: 1000
+      })
+    }
+    
+
+  },
+  /**
+   * 将表单数据绑定到data
+   */
+  dataInput: function(e) {
+    this.setData({
+      keyword: e.detail.value
+    })
+  },
+  /**
+   * 取消申请
+   */
+  cancelApply: function (e) {
+    var that = this;
+    // 传参数   uid   
+    var userArr = JSON.parse(wx.getStorageSync("user"));
+    var uid = userArr['userinfo']['uid'];
+    var firmId = 0;
+    wx.request({
+      url: app.globalData.webroot + '/index/user/applyForFirm',
+      method: 'POST',
+      //仅为示例，并非真实的接口地址
+      data: {
+        uid: uid,
+        firmId: firmId
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        console.log("已经取消")
+        // 修改缓冲中user 的staffLevel的值
+        var obj = JSON.parse(wx.getStorageSync("user"));
+        obj["userinfo"]["staffLevel"] = 0;
+        wx.setStorageSync("user", JSON.stringify(obj));
+        wx.redirectTo({
+          url: '/pages/index/firm/joinStaff/staffIndex/staffIndex',
+        })
+      }
+      })
+  },
+
+  /**
+   * refresh  刷新
+   */
+  refresh: function () {
+    console.log("刷新页面")
+    this.onLoad();
+      wx.showToast({
+        title: '刷新成功',
+        icon: 'success',
+        duration: 1000
+      })
+    
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    var that = this;
+    var userArr = JSON.parse(wx.getStorageSync("user"));
+    // var staffLevel = userArr['userinfo']['staffLevel'];
+    var staffLevel = 2;
+    console.log(staffLevel)
+    var uid = userArr['userinfo']['uid'];
+    if(staffLevel == 1 ){
+      // 如果staffLevel == 1 获取申请中的机构信息 
+      wx.request({
+        url: app.globalData.webroot + '/index/firm/getApplyFirm',
+        method: 'POST', 
+        data: {
+          uid: uid
+        },
+        header: {
+          'content-type': 'application/json' // 默认值
+        },
+        success(res) {
+          var data = res.data.msg;
+          var manager = data[0];
+          var id = manager.ID;
+          var name = manager.FirmName;
+          console.log(data)
+          that.setData({
+            staffName: name,
+            staffAdress: data.Province+data.City+data.District+data.Street+data.FirmAddr,
+            staffId: id,
+            manager: manager
+          })
+          // this.setData({
+          //   applyStaff: firmInfo 
+          // })
+        },
+      })
+    }else{
+      // 技师或者机构负责人   "pages/index/user/staff/index/index",
+      // 跳转到技师端我的页面
+      wx.navigateTo({
+        url: '/pages/index/user/staff/index/index?staffId=' + uid,
+      })
+    }
+    this.setData({
+      staffLevel: staffLevel
+    })
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+    
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  }
+})

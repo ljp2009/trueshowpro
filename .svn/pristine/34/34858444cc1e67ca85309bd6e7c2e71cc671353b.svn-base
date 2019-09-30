@@ -1,0 +1,91 @@
+<cu-custom bgColor="bg-gray" isBack="{{true}}"><view slot="backText">返回</view><view slot="content">约单</view>
+</cu-custom>
+<!-- 没有约单的情况 -->
+<!-- <view >
+没有约单
+</view> -->
+<!-- 没有约单的情况 -->
+<!-- 有约单的情况  要有wx:for="{{imgs}}" wx:for-item="obj" -->
+<swiper class="swiper"   bindchange="moveSwiper"> 
+        <view wx:for="{{imgs}}"   wx:for-item="staffAndFirmobj"   >
+          <swiper-item  >
+            <!-- 滑块内布局 -->  
+            <view class="haveReservation" >
+              <!-- 最上部分布局 -->
+              
+              <scroll-view class=" nav text-center topContain container" >
+              <view class="bg-gray scrolltxt">
+                 <view class="marquee_box">
+                <view class="marquee_text" style="transform: translateX(-{{marqueeDistance}}px)">
+                  <view class="cu-item " >{{staffAndFirmobj.firmInfo.FirmName}}</view>
+                  <view class="cu-item " >机构     
+                   <text class="cuIcon-roundcheckfill  text-orange" style="margin-left:2%;" wx:if="{{staffAndFirmobj.firmInfo.Certificated==1}}"></text>
+          <text wx:elif="{{staffAndFirmobj.firmInfo.Certificated==0}}"  class="cuIcon-roundcheckfill  text-block" style='color:gray;margin:0 10rpx;'></text>
+                  </view>
+                  <view class="cu-item" ><text class="cuIcon-locationfill" style="margin-right:8rpx;"></text>{{staffAndFirmobj.firmInfo.dis}}KM</view>
+                  <view class="cu-item" ><text class="cuIcon-emoji" style="margin-right:8rpx;" ></text>{{staffAndFirmobj.firmInfo.Staffs}}</view>
+                  <view class="cu-item" >{{staffAndFirmobj.firmInfo.FirmAddr}}</view>
+                  <!-- <view class="cu-item" >小岗路100号43</view>
+                  <view class="cu-item" > </view>
+                  <view class="cu-item" >小岗路100号43</view> -->
+                </view>
+                </view>
+              </view> 
+               </scroll-view>   
+              
+                  <!-- 上第二部分布局 青花瓷美甲店部分 -->
+                  <view class="padding">   
+                    <view class="flex  p-xs mb-sm">
+                      <view class="flex-sub padding-sm  radius" style="">
+                        <view class="cu-avatar xl round margin-left leftStyle" style="background-image:url('{{staffAndFirmobj.avatar}}');"></view>
+                      </view> 
+                      <view class="flex-twice   staffinfocontain" style="margin-left:-4%;">
+                        <text class="staffinfo text-xl">{{staffAndFirmobj.firmInfo.FirmName}}</text>
+                        <text class="staffinfo text-sm">{{staffAndFirmobj.firmInfo.FirmAddr}}</text>
+                        <text class="staffinfo text-sm">{{staffAndFirmobj.item[0]['nickName']}}</text>
+                        <!-- <text class="staffinfo text-df">小星星{{staffAndFirmobj.stars}}
+                          
+                        </text> -->
+                        <view>
+                        <view  class='star-item' wx:for="{{staffAndFirmobj.allStar}}" wx:for-index="index" wx:for-item="starsobj" wx:key="" style='background:url("{{starsobj.flag==1?starsobj.lightImg:starsobj.blackImg}}") no-repeat top;background-size:100%;width:25rpx;height:25rpx;' data-index="{{index}}" catchtap='starClick'></view>
+                        </view>
+                      </view> 
+                    </view>
+              <!--上第二部分布局 青花瓷美甲店部分 结束  -->
+                    
+                </view>
+      <!-- 流程布局 -->
+       <view class="bg-white padding margin-top-xs padd" style="margin-top:-2%;">
+          <view class="cu-steps">
+            <view class="cu-item {{index>basics?'':'text-orange'}}" wx:for="{{basicsList}}" wx:key style=" font-size:20rpx">
+              <text class="cuIcon-{{index>basics?'round':item.icon}} text-lg"></text> {{item.name}}
+            </view>
+          </view>
+        </view>    
+      <!-- 流程布局 -->
+          <!-- <view wx:if="{{basics==0}}">0000000000000000</view>
+           <view wx:elif="{{basics==1}}">1111111111</view> -->
+              <!-- 导入的结束 -->
+              <block wx:if="{{TabCur==0}}">
+                <include src="../modules/statusZero/statusZero.wxml"/>
+              </block>  
+              <!-- 导入底部 -->
+              <block style="positon:absolute;bottom:0rpx;z-index:999" >
+                <view style="margin-left:45%;">
+                  <include src="../../../../common/footer/footer.wxml"/>
+                </view>
+                
+              </block>
+              <!-- 导入底部结束 -->
+             
+            </view>
+            <!-- 滑块内布局结束 -->
+          </swiper-item>
+        </view> 
+</swiper>
+
+		  
+  
+<!-- 有约单的情况 -->
+ 
+

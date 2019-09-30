@@ -1,0 +1,187 @@
+<!--pages/index/poker/pokerDetail/pokerDetail.wxml-->
+<!-- <cu-custom bgColor="bg-gradual-white" style="color:white;" bindtap="jumpPokerIndex"><view slot="back" ></view><view slot="content"></view></cu-custom> -->
+<!-- <cu-custom bgColor="bg-gradual-white" style="color:black;"><view slot="back" ></view><view slot="content"></view></cu-custom> -->
+<view style="position:fixed;top:60rpx;z-index:999" bindtap="jumpPokerIndex"> <image src="http://ljp.jujiaoweb.com/static/images/index/back.png" style="width:30rpx;height:30rpx;"></image> </view>
+<view style="position:absolute;top:0rpx;z-index:998;height:100%;width:100%;">
+
+<view style='position:absolute;top:40rpx;z-index:999;left:10rpx;' bindtap='backhome'>
+  <image src='http://ljp.jujiaoweb.com/images/index/icon16.png' style='width:30rpx;height:30rpx;'></image>
+</view>
+
+<!-- <cu-custom bgColor="bg-gradual-pink" isBack="{{true}}">
+  <view slot="backText">返回</view>
+</cu-custom> -->
+
+<swiper class="screen-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500" class="swiperContainer">
+  <swiper-item wx:for="{{swiperList}}" wx:key>
+  
+    <block wx:if="{{item.type==0}}">
+      <image  style="width:100%;height:51%" src="{{webRoot}}/static/images/index/{{item.imgname}}" mode="aspectFill" ></image>   
+   </block>
+
+   <block wx:else>
+      <image  style="width:100%;height:100%" src="{{webRoot}}/static/images/index/{{item.imgname}}" mode="aspectFill" ></image>
+   </block>
+
+   <image  style="width:100%;height:51%;margin-top:-1%;" src="{{webRoot}}/static/images/index/{{aaa}}" mode="aspectFill" ></image>
+      
+  
+  </swiper-item>
+</swiper>
+<view>
+<!--  服务项目名称-->  
+  <view class="project">服务项目名称</view>    
+     <view class="flex">
+    <view class="flex-sub  padding-sm margin-xs radius item">{{serverData.serviceName}}</view>
+    </view>
+    <view class="flex itemOne">
+      <view class="flex-sub  padding-sm margin-xs radius">
+        <view>{{serverData.serviceDiscription}}</view>
+      </view>
+      <view class="flex-sub  padding-sm margin-xs radius">
+        <view>时常:{{serverData.serviceTime}}分钟</view>
+      </view>
+    </view>
+
+<!-- 技师和服务机构 -->
+  <view class="project">技师和服务机构</view>  
+</view>
+<!-- 图片文字布局 -->
+<view class="start_k ">
+    <view >
+     <image class="img_big" src='{{webRoot}}/static/images/index/{{staffData.staffAvatar}}'></image>            
+    </view>
+   <view class=" padding-lg margin-xs radius ">
+      <view style="width:600rpx;">
+        <view style="display:inline-block;margin-right:2%;" class="staffName">{{staffData.staffName}}</view>   
+        <view style="display:inline-block;" wx:if="{{staffData.staffCert==1}}"><view style="display:inline-block;"  class="cuIcon-roundcheckfill xs " style='color:#ff6600;margin-right:10rpx;display:inline-block;'></view></view>
+        <view style="display:inline-block;" wx:elif="{{staffData.staffCert==0}}"><view  style="display:inline-block;"  class="cuIcon-roundcheckfill xs;" style='color:gray;margin-right:10rpx;display:inline-block;'></view></view>  
+        <text bindtap="follower" data-iffollower="{{ifFollower}}"  wx:if="{{ifFollower==1}}" class="ifAttention">已关注</text>
+        <text bindtap="follower" data-iffollower="{{ifFollower}}" class="unAttention" wx:elif="{{ifFollower==0}}">关注</text>
+        
+        <view style="display:inline-block;margin-left:2%;">
+          <view class='star-item' wx:for="{{staffData.stars}}" wx:for-index="index" wx:for-item="starsobj" wx:key="" style='background:url("{{starsobj.flag==1?starsobj.lightImg:starsobj.blackImg}}") no-repeat top;background-size:100%;' data-index="{{index}}" catchtap='starClick'></view>
+        </view>
+      </view>
+      <view>
+      </view>
+      <view class="estimate">
+        顾客评价：{{customData['customDiscription']}}
+      </view>
+      <view class="staffOrder">
+      <text class="styleLittle">接单：{{staffData.experience}}</text>    
+       <text class="styleLittle">赞：{{staffData.like}}</text>    
+      <text class="styleLittle">爽约:{{staffData.pigeonStaff}}</text></view>
+      <view class="goodAt ">     
+        擅长：<text wx:for="{{staffData.skills}}" decode="{{true}}">{{item}}&ensp;</text>
+        <!-- <text wx:for="{{staffData.skills}}" wx:elif="{{index!=staffData.skillsCount-1}}">{{item}},</text> -->
+      </view>
+    </view>
+</view>
+<!-- 机构 -->
+<!-- firmData -->
+<!--  : otherstaffAndFirmIdList['firmName'],  //机构名字
+          :res.data.msg['Province']+res.data.msg['City']+res.data.msg['District']+res.data.msg['FirmAddr'],
+          : otherstaffAndFirmIdList['firmCert'],   //机构类型
+          : otherstaffAndFirmIdList['ids'],      //距离
+          : otherstaffAndFirmIdList['staffs']  //成员数 -->
+<view class="firm" style="background-color:rgb(222,216,216)"></view>  
+<view class="start_k ">
+    <view >
+     <image class="img_big" src='{{webRoot}}/static/images/index/icon11.png'></image>             
+   </view>
+   <view class=" padding-lg margin-xs radius ">
+      <view class="staffName">{{firmData.firmName}}</view>
+      <view class="address">地址:{{firmData.firmAddr}}</view>
+      <view class="firmOne">    
+       <text wx:if="{{firmData.firmType==0}}">个体</text>
+      <text wx:elif="{{firmData.firmType==1}}">企业</text>
+      <text wx:elif="{{firmData.firmType==2}}">工作室</text>
+      <text wx:else>连锁</text> 
+       <view style="display:inline-block;margin-left:3%;">
+       <text wx:if="{{firmData.firmCert==1}}"><text  class="cuIcon-roundcheckfill lg " style='color:#ff6600;margin-right:20rpx;'></text></text>
+       <text wx:elif="{{firmData.firmCert==0}}"><text  class="cuIcon-roundcheckfill lg " style='color:gray;margin-right:20rpx;'></text></text>
+       </view>
+        <text class="cuIcon-locationfill kmIcom"></text>
+       <text class="km">{{firmData.dis}}KM</text>   
+       <text class="cuIcon-emoji kmIcom"></text>
+       <text style="margin-right:2%;">{{firmData.staffs}}</text>
+        <view class="text-sm" wx:for="{{firmData.proTitle}}"   style="display:inline-block; background-color: rgb(255,102,0);  width: 130rpx;text-align: center; border-radius:30rpx;padding-left:2%;">
+            <text wx:if="{{item==0}}" decode="{{true}}">折扣&ensp;</text>
+            <text wx:elif="{{item==1}}" decode="{{true}}">单笔满减&ensp;</text>
+            <text wx:elif="{{item==2}}" decode="{{true}}">熟客优惠&ensp;</text>
+            <text wx:elif="{{item==4}}" decode="{{true}}">首单折扣&ensp;</text>
+        </view>
+
+
+        <!-- <text style="display:inline-block;" class="sale" wx:for="{{firmData.proTitle}}" >
+          <text  decode="{{true}}">{{item}}&ensp;</text>
+        </text> -->
+       
+      </view>
+    </view>
+    <!-- <view class="saleLittle">
+     <text>1111{{firmData.proTitle}}</text>
+    </view> -->
+</view>  
+<!-- 顾客 -->
+<view class="project">顾客:</view>  
+<view class="start_k ">
+    <view >
+    <!-- {{customData.customAvatat}} -->
+     <image class="img_big" src='{{customData.customAvatat}}'></image>              </view>
+   <view class=" padding-lg margin-xs radius">
+      <view >{{customData.customNickName}}(匿名)</view>
+      <view class="words">评:{{customData.customDiscription}}</view>
+      
+    </view>
+</view>
+<!-- 弹幕 -->
+<view style="margin-top:-5%;margin-left:27%;">            
+    <view  style="display:inline-block;margin-bottom:1%;">
+      弹幕：
+    </view>    
+    <view wx:for="{{arr}}" wx:key="id">
+        <text class="itemText text-sm">{{item.nickname}}--{{item.text}}</text> 
+    </view> 
+  </view>
+  
+  
+
+<!-- 弹幕结束 -->
+<view class="firm"></view>   
+ <view class="cu-list menu-avatar" >
+  <!-- 消息item -->
+  <!-- <view class="cu-item" wx:for="{{arr}}">
+      <view class="cu-avatar round lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
+      <view class="content">
+        <view class="text-grey">{{userInfo.nickName}}</view>
+        <view class="text-gray text-sm flex">
+          <text class="text-cut">
+							<text class=" text-red  margin-right-xs"></text> {{item}}
+          </text>
+        </view>
+      </view>
+      
+    </view> -->
+
+ </view>
+
+
+
+<view >
+
+</view>
+<!-- 弹幕发送 -->
+<view class="firm"></view>   
+<view class="textBottom">
+  <view class="cu-bar input">
+    <view class="action">
+      <text class="cuIcon-roundaddfill text-grey"></text>
+    </view>
+    <input placeholder='我也说一句' class="solid-bottom" maxlength="300" cursor-spacing="10" bindblur="bind_shoot"  type="text" value="{{bind_value}}"></input>
+    
+    <button style='background: #ff6600;' class="cu-btn bg-green shadow-blur" catchtap="bindbt">发送</button>
+  </view>
+</view>
+</view>

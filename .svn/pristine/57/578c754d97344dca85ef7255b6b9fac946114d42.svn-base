@@ -1,0 +1,72 @@
+<!--pages/index/firm/firmIndex/searchFirm/searchFirm.wxml-->
+<view class='wrap hidOne' style='font-size:35rpx;'>
+  <cu-custom bgColor="bg-gray" isBack="{{true}}" style="color:#000;">
+    <view slot="backText" style='font-size:36rpx;color:#000;'>返回</view>
+    <view slot="content" style='font-size:39rpx;margin-left:-50rpx;color:#000;'>机构查找</view>
+  </cu-custom>
+  <view wx:if="{{firmLength > 0}}">
+  <view class='main'>{{firmLength}}个关键字匹配结果</view>
+  <view class="padding-lr bg-white">
+  <!-- 搜索结果  start -->
+  <!-- 先判断数组是否为空 -->
+  
+  <view wx:for="{{firmList}}">
+   <!-- bg-white paddingWrap -->
+  <view class=" padding {{num == item.ID ? 'bg-white paddingWrap':''}}" bindtap='changeFirm' data-index='{{item.ID}}'>
+      <view class='mainHead'>
+        <text class='txt'>{{item.FirmName}}</text>
+        <text class="cuIcon-roundcheckfill lg text-orange"></text>
+      </view>
+      <view class='address'>
+        <text>地 址：{{item.City}}</text>
+        <text class="cuIcon-right lg text-black btn"></text>
+      </view>
+      <view>负责人：{{item.RealName}} {{item.Mobile}}</view>
+    </view>
+    <view wx:if='{{index < firmLength-1}}'>
+    <view  style='border-bottom:1rpx solid #999;'></view>
+    </view>
+    
+  </view>
+  
+  </view>
+  <view class='footer bg-white'>
+      <button class="black bg-orange margin-tb-sm lg btnTwo  {{shadow?'shadow':''}}" style='height:88rpx;line-height:88rpx;' bindtap='applyFor'>申请加入</button>
+  </view>
+  </view>
+  <view wx:if="{{firmLength == 0}}">
+  <view class='wrap hidTwo' style='font-size:35rpx;'>
+      <view class='main'>0个关键字匹配结果</view>
+  <view style='font-size:35rpx;text-align:center;margin:100rpx 0 50rpx 0;'>未找到指定机构，你可以：</view>
+  <navigator url='/pages/index/firm/joinStaff/addFirm/addFirm' style='width:40%;margin:auto;'>
+    <button class="black bg-orange margin-tb-sm lg   {{shadow?'shadow':''}}" style='width:100%;height:88rpx;line-height:88rpx;'>新 建</button>
+  </navigator>
+  </view>
+  </view>
+  <!-- <view class="padding bg-white paddingWrap">
+    <view class='mainHead'>
+      <text class='txt'>欢欢健身俱乐</text>
+      <text class="cuIcon-roundcheckfill lg text-orange"></text>
+    </view>
+    <view class='wrapAddress'>
+      <text>地 址：北京市XXX路XXX号100号</text>
+      <text class="cuIcon-right lg text-black wrapBtn"></text>
+    </view>
+    <view>负责人：任盈盈 1380***4343</view>
+  </view> -->
+  <!-- 搜索结果   end -->
+  
+</view>
+
+
+<!-- <view class='wrap hidTwo' style='font-size:35rpx;'> -->
+  <!-- <cu-custom bgColor="bg-gray" isBack="{{true}}" style="color:#000;">
+    <view slot="backText" style='font-size:36rpx;color:#000;'>返回</view>
+    <view slot="content" style='font-size:39rpx;margin-left:-50rpx;color:#000;'>机构查找</view>
+  </cu-custom> -->
+  <!-- <view class='main'>0个关键字匹配结果</view>
+  <view style='font-size:35rpx;text-align:center;margin:100rpx 0 50rpx 0;'>未找到指定机构，你可以：</view>
+  <navigator url='/pages/index/firm/joinStaff/addFirm/addFirm' style='width:40%;margin:auto;'>
+    <button class="black bg-orange margin-tb-sm lg   {{shadow?'shadow':''}}" style='width:100%;height:88rpx;line-height:88rpx;'>新 建</button>
+  </navigator> -->
+<!-- </view> -->

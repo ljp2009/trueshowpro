@@ -1,0 +1,107 @@
+/* pages/index/user/staff/certificate/certStatus/certStatus.wxss */
+.clear{
+  clear: both;
+}
+.wrap{
+  width: 100%;
+  height: 100%;
+  background-color: white;
+}
+.head .cu-bar{
+  margin-top: 1%;
+  min-height:  180rpx;  
+}
+.box{
+  height: 60rpx;
+  line-height: 60rpx;
+  padding-left: 35rpx;
+  background-color: rgb(228, 224, 224);
+}
+.head .cu-bar text{
+    font-size: 40rpx;
+    margin-right: 40%;
+} 
+.cu-bar {
+    min-height:  20rpx;
+}
+.wrap .flow{
+  margin-left: 4%;
+  margin-top: 2%;
+  font-weight:bold;
+  font-size: 30rpx;
+}
+.wrap .name{
+  font-size: 30rpx;
+  font-weight:bold;
+  margin-left: 4%;
+}
+.wrap .name input{
+  padding-left: 2%;
+  font-size: 28rpx;
+}
+.wrap .edu{
+  width: 39%;
+  float: right;
+  font-size: 30rpx
+}
+.wrap input{
+  border: 1rpx solid gainsboro;
+  width: 95%;
+  margin-top: 1%;
+  }
+.wrap .number{
+  font-size: 30rpx;
+  font-weight:bold;
+  margin-left: 4%;
+  margin-top: 4%;
+}
+.wrap .add{
+  font-size: 30rpx;
+  font-weight:bold;
+  margin-left: 4%;
+  margin-top: 4%;
+}
+.wrap .sex{
+  width: 20%;
+  float: left;
+  margin-left: 4%;
+  font-size: 30rpx;
+}
+.wrap .radio{
+  width: 40%;
+  float: right;
+  font-size: 30rpx;
+}
+.wrap .number text{
+  display: block;
+}
+.wrap .flex{
+  margin-top: 4%;
+  margin-left: 4%;
+  font-weight:bold;
+  font-size: 30rpx;
+}
+.wrap .flex text{
+  margin-left: 4%;
+  font-size: 30rpx;
+}
+.wrap .edu1{
+  width: 100%;
+  display: block;
+  margin-top: 4%;
+  margin-left: 4%;
+  font-size: 30rpx;
+  font-weight:bold;
+}
+.wrap .edu1 .fit{
+  width: 100%;
+  color: gainsboro;
+  display: block;
+  font-size: 30rpx;
+   margin-top: 2%;
+}
+.wrap button{
+  width: 40%;
+   margin-top: 4%;
+  background-color: orange
+}

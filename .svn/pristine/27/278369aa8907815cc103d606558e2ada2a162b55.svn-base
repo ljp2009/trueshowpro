@@ -1,0 +1,140 @@
+// pages/index/reservation/staff/modules/statusOne/statusOne.js
+const app = getApp();
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    showModal: false,
+    webRoot: app.globalData.webroot,
+    webRoot1: app.globalData.webroot1,
+    currentReservationInfo:{},//存储当前约单的数据
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    console.log(options.data)
+    var that=this;
+    var data = JSON.parse(options.data)
+    // var data={
+    //   Avatar: "https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJobUb46dQXYHxHyic3CBmpuIP1nkNHahQT6Tx5n8zoEc88BVC9nzJcOEzgbTCGyV0Ec3m7aLFgfKw/132",
+    //   CustomerId: 115,
+    //   EndTime: "14:00",
+    //   NickName: "你若安好那还得了",
+    //   Poortime: 60,
+    //   ReservationId: 20,
+    //   StartTime: "13:00",
+    //   Status: 1,
+    //   logActTime: "2019-09-20 19:16",
+    //   logActions: "顾客修改约单",
+    //   service_resn:[
+    //     {CUSTPoker: 1, Duration: 20,Name: "美睫/眉",
+    //     Price_Max: "100.00",Price_Min: "30.00",
+    //     ServiceName: "项目名称65",StaffPoker: 1},
+    //     {
+    //       CUSTPoker: 0,Duration: 0,Name: "保健",
+    //       Price_Max: "100.00",Price_Min: "50.00",
+    //       ServiceName: "项目名称",StaffPoker: 1}
+    //   ],
+    // }
+   //
+    that.setData({
+      currentReservationInfo: data
+    })
+     //服务器端获取当前顾客是否为老顾客
+    var customerId = that.data.currentReservationInfo["CustomerId"];//顾客id
+    wx.request({
+      //url: app.globalData.webroot + '/index/reservation/getCurrentCustomerTypeAndAllcost',
+      url: app.globalData.webroot1 + '/index/reservation/getCurrentCustomerTypeAndAllcost',
+      method: "post",
+      data: {
+        customerId: customerId
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded' //post请求
+      },
+      success(res) {
+        //console.log(res.data.msg);
+      }
+    })
+
+    console.log(that.data.currentReservationInfo)
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  },
+  //弹窗
+  showDialogBtn: function () {
+    this.setData({
+      showModal: true
+    })
+  },
+  //弹出框蒙层截断touchmove事件
+  preventTouchMove: function () {
+  },
+  // 隐藏模态对话框
+  hideModal: function () {
+    this.setData({
+      showModal: false
+    })
+  },
+  // 对话框取消按钮点击事件
+  onCancel: function () {
+    this.hideModal()
+  },
+  //对话框确认按钮点击事件
+  onConfirm: function () {
+    this.hideModal();
+  }
+})
+
+

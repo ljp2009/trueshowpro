@@ -1,0 +1,355 @@
+// pages/index/firm/firmIndex/firmDesc/firmDesc.js
+var app =getApp()
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    FirmId:'',
+    FirmInfo:{
+      
+    },
+    pic:{
+      'A0':'',
+      'A1': '',
+      'A2': '',
+      'B0': '',
+      'B1': '',
+      'B2': '',
+      'C0': '',
+      'C1': '',
+      'C2': '',
+    },
+    testPic:[],
+    webRoot:app.globalData.webroot,
+    descLength:0,
+    logs:[]
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    var userArr = wx.getStorageSync("user");
+    var uid = JSON.parse(userArr)["userinfo"]["uid"];
+    var FirmId = options.FirmId;
+    // var FirmId = 73;
+    var tmp = {
+      'Discription': ''
+    }
+    var that =this;
+    this.setData({
+      FirmId: FirmId,
+      firmInfo: tmp
+    })
+    // 加载数据
+    wx.request({
+      url: app.globalData.webroot +  '/index/firm/getDescInFirm',
+      method: 'POST',
+      data: {
+        FirmId: FirmId,
+        uid: uid
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        var resData = res.data;
+        var _firmInfo = {};
+        _firmInfo['Discription'] = resData.msg['Discription'];
+        var descLength = _firmInfo['Discription'].length;
+        var pic = JSON.parse(resData.msg['pic']);
+        console.log(res)
+        var _logs = resData.msg['log'];
+        console.log(_logs)
+        for(let key in pic){
+          var picItem = pic[key];
+          if(picItem != ''){
+            pic[key] = app.globalData.webroot+'/static/images/firm/' + pic[key];
+          }
+        }
+        that.setData({
+          firmInfo:_firmInfo,
+          pic: pic,
+          descLength: descLength,
+          logs: _logs
+        })
+        console.log(that.data.pic)
+      }
+      
+    })
+    
+  },
+  /**
+   * 保存按钮事件
+   */
+  sendData: function() {
+    var firmId = this.data.FirmId;
+    var that =this;
+   
+    // console.log(this.data.firmInfo['Discription'])
+    if(this.data.firmInfo['Discription'] == undefined ){
+      wx.showModal({
+        title: '提示',
+        content: '机构简介不能为空',
+        showCancel:false,
+      })
+      return false;
+    }
+    var userArr = wx.getStorageSync("user");
+    var uid = JSON.parse(userArr)["userinfo"]["uid"];
+    var nickName = JSON.parse(userArr)["userinfo"]["nickName"];
+
+    // 将机构简介完成修改
+    wx.request({
+      url: app.globalData.webroot +  '/index/firm/firmDesText',
+      method: 'POST',
+      //仅为示例，并非真实的接口地址
+      data: {
+        firmId: firmId,
+        des: that.data.firmInfo['Discription'],
+        userid: uid,
+        nickName:nickName
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        var code = res.data.code;
+        if(code == 1){
+          // 文字上传成功，开始上传图片
+          var picTmp = that.data.pic;
+          var keys = ['A0', 'A1', 'A2', 'B0', 'B1', 'B2', 'C0', 'C1', 'C2'];  
+          for (var i = 0; i < keys.length; i++) {
+            var isLast;// 判断是否是最后一条数据
+            if (i == keys.length-1){
+              isLast = 1;
+            }else{
+              isLast = 0;
+            }
+            // 图片坐标
+            var key = keys[i];
+            console.log(picTmp[key])
+            if (picTmp[key] != undefined && picTmp[key] != ''){
+              console.log('不是空的')
+              var isNull = 1;
+              // 判断是否是原来存在的图片
+              var str = 'static';
+              var isFile = picTmp[key].indexOf(str);
+              if(isFile != -1){
+                // 原来存在的图片
+                console.log(key+'字符串'+picTmp[key]+isNull);
+                wx.request({
+                  url: app.globalData.webroot + '/index/firm/firmDesImg',
+                  method: 'POST',
+                  //仅为示例，并非真实的接口地址
+                  data: {
+                    key: key,
+                    firmId: firmId,
+                    isLast: isLast,
+                    isNull: isNull,
+                    imgStr:picTmp[key]
+                  },
+                  header: {
+                    'content-type': 'application/json' // 默认值
+                  },
+                  success(res) {
+                    // pages / index / firm / firmIndex / firmIndex / firmIndex
+                  }
+                })
+              }else{
+                console.log(key + '资源' + picTmp[key] + isNull)
+              wx.uploadFile({
+                url: app.globalData.webroot + '/index/firm/firmDesImg', 
+                filePath: picTmp[key],// 上传的文件资源的路径
+                name: 'descImg',
+                // HTTP请求中其他额外的form data
+                formData: {
+                  key: key,
+                  isLast:isLast,
+                  isNull:isNull,
+                  firmId: firmId
+                },
+                success(res) {
+
+                }
+              })
+              }
+              
+            }else{
+              var isNull = 0;
+              console.log(key + '空' + isNull);
+              wx.request({
+                url: app.globalData.webroot +  '/index/firm/firmDesImg',
+                method: 'POST',
+                //仅为示例，并非真实的接口地址
+                data: {
+                  key: key,
+                  firmId: firmId,
+                  isLast: isLast,
+                  isNull: isNull
+                },
+                header: {
+                  'content-type': 'application/json' // 默认值
+                },
+                success(res) {
+                  // pages / index / firm / firmIndex / firmIndex / firmIndex
+                  
+                }
+              })
+            }
+            if(isLast == 1){
+              wx.redirectTo({
+                    url: '/pages/index/firm/firmIndex/firmIndex/firmIndex?staffId=' + firmId,
+                  })
+            }
+            // if (isLast == 1) {
+            //   // 最后一条写入日志  重定向
+            //   var userInfo = JSON.parse(wx.getStorageSync('user'))['userinfo'];
+            //   var uid = userInfo['uid'];
+            //   var nickName = userInfo['nickName'];
+            //   var relateId = that.data.FirmId;
+
+            //   wx.request({
+            //     url: app.globalData.webroot + '/index/firm/addLog',
+            //     method: 'POST',
+            //     //UserId NickName Actions ActionCode=1 RelateId Actime
+            //     data: {
+            //       uid: uid,
+            //       nickName: nickName,
+            //       relateId: relateId
+            //     },
+            //     header: {
+            //       'content-type': 'application/json' // 默认值
+            //     },
+            //     success(res) {
+            //       // wx.redirectTo({
+            //       //   url: '/pages/index/firm/firmIndex/firmIndex/firmIndex?staffId=' + firmId,
+            //       // })
+            //     }
+            //   })
+
+            // }
+          }
+          
+        }else{
+          console.log('简介上传失败')
+        }
+      }
+      
+    })
+    
+  },
+  /**
+   * 添加图片
+   */
+  // 上传图片
+  chooseImg: function (e) {
+    var that = this;
+    var imgtype = e.currentTarget.dataset.imgtype;
+    var testPic = this.data.testPic;
+    wx.chooseImage({
+
+      // count: 1, // 默认9
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: function (res) {
+        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+        var tempFilePaths = res.tempFilePaths;
+        console.log(tempFilePaths)
+        testPic = testPic.concat(tempFilePaths);
+        that.setData({
+          testPic:testPic
+        })
+        var index = e.currentTarget.dataset.index;//当前选择的图片索引值
+        var coordinate = imgtype+index;
+        var tmpPic = that.data.pic;
+        tmpPic[coordinate] = tempFilePaths[0]
+        // console.log('选中图片坐标'+coordinate)
+        that.setData({
+          pic: tmpPic
+        })
+        
+      }
+    });
+    console.log(this.data.pic)
+  },
+  // 删除图片
+  deleteImg: function (e) {
+    var imgtype = e.currentTarget.dataset.imgtype;// A
+    var index = e.currentTarget.dataset.index;// 0
+    var tmp = this.data.pic;
+    var key = imgtype+index;
+    console.log(key)
+    console.log(tmp)
+    tmp[key] = "";
+    this.setData({
+      pic: tmp
+    })
+    console.log(this.data.pic)
+
+  },
+  /**
+   * textareaAInput 将用户输入数据绑定到this.data中
+   */
+  textareaAInput: function(e){
+    var val = e.detail.value;
+    var length = val.length;
+    var tmp = {
+      'Discription':val
+    }
+    this.setData({
+      firmInfo:tmp,
+      descLength:length
+    })
+  },
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  }
+})

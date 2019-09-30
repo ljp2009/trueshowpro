@@ -1,0 +1,210 @@
+<!--pages/index/reservation/staff/modules/jordanModalTwo/jordanModalTwo.wxml-->
+<cu-custom bgColor="bg-gray" isBack="{{true}}" style="color:#000;">
+  <view slot="backText" style='font-size:36rpx;color:#000;'>返回</view>
+  <view slot="content" style='font-size:39rpx;margin-left:-50rpx;color:#000;'>接单时间</view>
+</cu-custom>
+
+
+<view class='hidOne'>
+  <view style='background-color:#FFF;min-height:30%;width:100%;position:relative;'>
+  <!-- 两个是否休息/接单按钮+时间展示 开始 -->
+    <radio-group bindchange="radioChange" style="width:100%;font-size:35rpx;margin:30rpx 0 ;">
+      <label style='display:inline-block;text-align:right;padding-right:30rpx;width:50%;'>
+        <radio class="orange danxuan" value="0" checked="{{radioVal==0?true:false}}" style='transform:scale(0.6);height:50rpx;line-height:50rpx;'></radio>
+        <text style='margin-left:24rpx'> 全天休息</text>
+      </label>
+      <label style='display:inline-block;text-align:left;padding-left:30rpx;width:50%;'>
+        <radio class="orange danxuan" value="1" checked="{{radioVal==1?true:false}}" style='transform:scale(0.6);height:50rpx;line-height:50rpx;'></radio>
+        <text style='margin-left:33rpx'>全天接单</text>
+      </label>
+    </radio-group>
+    <view class='flex' style='font-size:32rpx;width:93%;margin:auto;'>
+      <view class='flex-sub'>{{workStartTime}}</view>
+      <view class='flex-sub' style='text-align:center;font-size:35rpx;'>{{month}}月{{day}}日</view>
+      <view class='flex-sub' style='text-align:right;'>{{workEndTime}}</view>
+    </view>
+  <!-- 两个是否休息/接单按钮+时间展示 结束 -->
+    <!-- 点击全天休息按钮 需要切换的的布局 开始 -->
+    <view wx:if="{{radioVal==0}}">
+    <!-- 时间安排块开始 -->
+    <view class='flex' style='width:95%;border:1rpx solid #BBB;margin:auto;height:45rpx;background-color:#BBB;'>
+      <view class='flex-twice'></view>
+      <view class='flex-twice'></view>
+      <view class='flex-twice'></view>
+      <view class='flex-twice'></view>
+      <view class='flex-sub'></view>
+      <view class='flex-treble'></view>
+      <view class='flex-twice'></view>
+    </view>
+ <!-- 时间安排块结束 -->
+    <view style='height:50rpx;'></view>
+
+    <view style='color:#BBB;font-size:35rpx;margin-left:25rpx;'>添加休息时间段：</view>
+    <view style='height:20rpx;'></view>
+    <view class='flex' style='color:#BBB;margin-left:25rpx;'>
+      <view class='flex-sub'>
+        <view style='text-align:left;font-size:35rpx;height:60rpx;line-height:60rpx;'>开始休息:</view>
+      </view>
+      <view class='flex-sub'>
+        <input style='text-align:center;border:1rpx solid #BBB;text-align:center;width:120rpx;height:60rpx;line-height:60rpx;margin:auto;font-size:35rpx;' disabled value='{{workStartTime}}'></input>
+      </view>
+      <view class='flex-sub'>
+        <view style='text-align:left;font-size:35rpx;height:60rpx;line-height:60rpx;'>结束休息:</view>
+      </view>
+      <view class='flex-sub' style=''>
+        <input style='text-align:center;border:1rpx solid #BBB;text-align:center;width:120rpx;height:60rpx;line-height:60rpx;margin:auto;font-size:35rpx;' disabled value='{{workEndTime}}'></input>
+      </view>
+      <view class='flex-sub' style='text-align:center;'>
+        <image src='{{webRoot}}/static/images/index/add.png ' style='height:60rpx;width:60rpx;border-radius:50%;background-color:#BBB;'></image>
+      </view>
+    </view>
+     </view>
+     <!-- 点击全天休息按钮 需要切换的的布局 结束 -->
+     <!-- 点击全天接单按钮 需要切换的的布局 开始 -->
+     <view wx:elif="{{radioVal==1}}">
+     <!-- 时间安排块开始 -->
+    <view class='flex' style='width:95%;border:1rpx solid #BBB;margin:auto;height:45rpx;background-color:#BBB;'>
+      <view class='flex-twice'></view>
+      <view class='flex-twice'></view>
+      <view class='flex-twice'></view>
+      <view class='flex-twice'></view>
+      <view class='flex-sub'></view>
+      <view class='flex-treble'></view>
+      <view class='flex-twice'></view>
+    </view>
+ <!-- 时间安排块结束 -->
+    <view style='height:50rpx;'></view>
+    
+        <view style='font-size:35rpx;margin-left:25rpx;'>添加休息时间段：</view>
+    <view style='height:20rpx;'></view>
+    <view class='flex' style='margin-left:25rpx;'>
+      <view class='flex-sub'>
+        <view style='text-align:left;font-size:35rpx;height:60rpx;line-height:60rpx;'>开始休息:</view>
+      </view>
+      <view class='flex-sub'>
+        <input bindinput="startRestTimeChange" style='text-align:center;border:1rpx solid #BBB;text-align:center;width:120rpx;height:60rpx;line-height:60rpx;margin:auto;font-size:35rpx;' value="{{startRestTime}}" placeholder="09:00"></input>
+      </view>
+      <view class='flex-sub'>
+        <view style='text-align:left;font-size:35rpx;height:60rpx;line-height:60rpx;'>结束休息:</view>
+      </view>
+      <view class='flex-sub' style=''>
+        <input bindinput="endRestTimeChange" style='text-align:center;border:1rpx solid #BBB;text-align:center;width:120rpx;height:60rpx;line-height:60rpx;margin:auto;font-size:35rpx;'  value="{{endRestTime}}" placeholder="20:00"></input>
+      </view>
+      <view class='flex-sub' style='text-align:center;'>
+        <image src='{{webRoot}}/static/images/index/add.png ' style='height:60rpx;width:60rpx;border-radius:50%;background-color:#F60;'></image>
+      </view>
+    </view>
+    <view style='height:30rpx;'></view>
+    <view class='flex' style='margin-left:25rpx;'>
+      <view class='flex-treble'>
+        <view style='text-align:left;font-size:35rpx;height:60rpx;line-height:60rpx;'>9:00-9:40</view>
+      </view>
+      <view class='flex-sub'></view>
+      <view class='flex-sub' style='text-align:center;'>
+        <image src='{{webRoot}}/static/images/index/subtraction.png ' style='height:50rpx;width:50rpx;border-radius:50%;background-color:#F60;'></image>
+      </view>
+    </view>
+    <view style='height:20rpx;'></view>
+    <view class='flex' style='margin-left:25rpx;'>
+      <view class='flex-treble'>
+        <view style='text-align:left;font-size:35rpx;height:60rpx;line-height:60rpx;'>9:00-9:40</view>
+      </view>
+      <view class='flex-sub'></view>
+      <view class='flex-sub' style='text-align:center;'>
+        <image src='{{webRoot}}/static/images/index/subtraction.png ' style='height:50rpx;width:50rpx;border-radius:50%;background-color:#F60;'></image>
+      </view>
+    </view>
+     </view>
+     <!-- 点击全天接单按钮 需要切换的的布局 结束 -->
+    <view style='height:160rpx;'></view>
+    <!-- 确定/取消按钮布局 开始 -->
+    <view class="padding bg-white solid-bottom footer">
+        <button bindtap="cancelBtn" class='radiu bg-white btnOne'>取消</button>
+        <button bindtap="confirmBtn" class='radiu bg-orange btnTwo'>确定</button>
+    </view>
+   <!-- 确定/取消按钮布局 结束 -->
+  </view>
+</view>
+
+
+
+
+<!-- <view class='hidTwo'>
+  <view style='background-color:#FFF;min-height:30%;width:100%;position:relative;'>
+    <radio-group bindchange="SetBorderSize" style="width:100%;font-size:35rpx;margin:30rpx 0 ;">
+      <label style='display:inline-block;text-align:right;padding-right:30rpx;width:50%;'>
+        <radio class="orange danxuan" value="" style='transform:scale(0.6);height:50rpx;line-height:50rpx;'></radio>
+        <text style='margin-left:24rpx'> 全天休息</text>
+      </label>
+      <label style='display:inline-block;text-align:left;padding-left:30rpx;width:50%;'>
+        <radio class="orange danxuan" value="" checked style='transform:scale(0.6);height:50rpx;line-height:50rpx;'></radio>
+        <text style='margin-left:33rpx'>全天接单</text>
+      </label>
+    </radio-group>
+    <view class='flex' style='font-size:32rpx;width:93%;margin:auto;'>
+      <view class='flex-sub'>9:00</view>
+      <view class='flex-sub' style='text-align:center;font-size:35rpx;'>8月8日</view>
+      <view class='flex-sub' style='text-align:right;'>21:00</view>
+    </view>
+    <view class='flex' style='width:95%;border:1rpx solid #BBB;margin:auto;height:45rpx;'>
+      <view class='flex-twice' style='background-color:#BBB;'></view>
+      <view class='flex-twice'></view>
+      <view class='flex-twice'></view>
+      <view class='flex-twice'></view>
+      <view class='flex-sub'></view>
+      <view class='flex-twice'></view>
+      <view class='flex-treble' style='background-color:#BBB;'></view>
+    </view>
+    <view style='height:50rpx;'></view>
+
+    <view style='font-size:35rpx;margin-left:25rpx;'>添加休息时间段：</view>
+    <view style='height:20rpx;'></view>
+    <view class='flex' style='margin-left:25rpx;'>
+      <view class='flex-sub'>
+        <view style='text-align:left;font-size:35rpx;height:60rpx;line-height:60rpx;'>上班时间:</view>
+      </view>
+      <view class='flex-sub'>
+        <input style='text-align:center;border:1rpx solid #BBB;text-align:center;width:120rpx;height:60rpx;line-height:60rpx;margin:auto;font-size:35rpx;' placeholder='9:00'></input>
+      </view>
+      <view class='flex-sub'>
+        <view style='text-align:left;font-size:35rpx;height:60rpx;line-height:60rpx;'>下班时间:</view>
+      </view>
+      <view class='flex-sub' style=''>
+        <input style='text-align:center;border:1rpx solid #BBB;text-align:center;width:120rpx;height:60rpx;line-height:60rpx;margin:auto;font-size:35rpx;' placeholder='20:00'></input>
+      </view>
+      <view class='flex-sub' style='text-align:center;'>
+        <image src='{{webRoot}}/static/images/index/add.png ' style='height:60rpx;width:60rpx;border-radius:50%;background-color:#F60;'></image>
+      </view>
+    </view>
+    <view style='height:30rpx;'></view>
+    <view class='flex' style='margin-left:25rpx;'>
+      <view class='flex-treble'>
+        <view style='text-align:left;font-size:35rpx;height:60rpx;line-height:60rpx;'>9:00-9:40</view>
+      </view>
+      <view class='flex-sub'></view>
+      <view class='flex-sub' style='text-align:center;'>
+        <image src='{{webRoot}}/static/images/index/subtraction.png ' style='height:50rpx;width:50rpx;border-radius:50%;background-color:#F60;'></image>
+      </view>
+    </view>
+    <view style='height:20rpx;'></view>
+    <view class='flex' style='margin-left:25rpx;'>
+      <view class='flex-treble'>
+        <view style='text-align:left;font-size:35rpx;height:60rpx;line-height:60rpx;'>9:00-9:40</view>
+      </view>
+      <view class='flex-sub'></view>
+      <view class='flex-sub' style='text-align:center;'>
+        <image src='{{webRoot}}/static/images/index/subtraction.png ' style='height:50rpx;width:50rpx;border-radius:50%;background-color:#F60;'></image>
+      </view>
+    </view>
+    <view style='height:160rpx;'></view>
+
+     <view class="padding bg-white solid-bottom footer">
+      <navigator style='display:inline-block;' url='/pages/index/reservation/staff/modules/jordan/jordan'>
+        <button class='radiu bg-white btnOne'>取消</button>
+      </navigator>
+      <navigator style='display:inline-block;' url='/pages/index/reservation/staff/modules/jordan/jordan'>
+        <button class='radiu bg-orange btnTwo'>确定</button>
+      </navigator>
+    </view> 
+  </view>
+</view> -->

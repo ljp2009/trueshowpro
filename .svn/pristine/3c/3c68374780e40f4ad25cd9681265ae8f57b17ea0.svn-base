@@ -1,0 +1,86 @@
+<!--pages/index/user/customer/pokerByStaff/pokerByStaff.wxml-->
+<!-- <cu-custom bgColor="bg-gradual-white" isBack="{{true}}"><view slot="back" ></view><view slot="content"b>我的晒单页
+</view></cu-custom> -->
+<swiper indicator-active-color='#fff'  indicator-dots="true"  bindchange="swiperChange">
+        <block wx:for="{{imgs}}" wx:for-item="eachList" wx:for-index="index" wx:key="swiperItem" wx:for-item="item" >
+          <swiper-item class="swiper-items"  >
+            <!-- 布局 -->
+            <view class="cu-bar bg-white solid-bottom" >
+            <view class="action" style="margin-top:10%;">
+              <text class="icon1">{{pokerCount}}</text>个服务项目技师已晒单---{{eachList.pokerId}}
+            </view>
+          </view>
+          <view >{{item.ServiceName}}</view>
+          <view class="cu-bar bg-white solid-bottom">   
+           
+          </view>
+              <view class="bg-white padding">
+                  <view class="grid col-3 grid-square" >
+                    {{}}<view class="bg-img" wx:for="{{item.StaffPic}}"  wx:key wx:for-index="imgIndex" wx:for-item="img1"  style="background-image:url('{{webRoot}}/static/images/index/{{img1}}'); " >
+                    </view>     
+                  </view>    
+                </view>
+          <view class="cu-bar border-bottom bg-white">
+            <view class="action">
+            照片是否属实?
+            </view>
+            <view class="action">
+              <radio-group bindchange="SetBorderSize">
+                <label class="margin-left-sm">
+                  <radio class="orange  " value="" checked  ></radio>
+                  <text> 是</text>
+                </label>
+                <label class="margin-left-xm ture-no">
+                  <radio class="orange  " value=""></radio>
+                  <text> 否</text>
+                </label>
+              </radio-group>
+            </view>
+          </view>
+          <view class="cu-bar border-bottom bg-white">
+            <view class="action">
+              匿名
+            </view>
+            <view class="action">
+              <radio-group bindchange="SetBorderSize">
+                <label class="margin-left-sm">
+                  <radio class="orange  " value="" checked  ></radio>
+                  <text> 是</text>
+                </label>
+                <label class="margin-left-xm ture-no">
+                  <radio class="orange  " value=""></radio>
+                  <text> 否</text>
+                </label>
+              </radio-group>
+            </view>
+          </view>
+          <view class="cu-bar border-bottom bg-white">
+            <view class="action">
+              有图片含清晰正面人脸，是否删除？
+            </view>
+            <view class="action">
+              <radio-group bindchange="SetBorderSize">
+                <label class="margin-left-sm">
+                  <radio class="orange  " value="" checked  ></radio>
+                  <text> 是</text>
+                </label>
+                <label class="margin-left-xm ture-no">
+                  <radio class="orange  " value=""></radio>
+                  <text> 否</text>
+                </label>
+              </radio-group>
+            </view>
+          </view>
+          <view class="padding">
+            <button class="btn" >完    成</button>
+
+          </view>
+            <!-- 布局结束 -->
+            
+          </swiper-item>
+        </block>
+</swiper>
+
+
+
+

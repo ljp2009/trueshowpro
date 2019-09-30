@@ -1,0 +1,225 @@
+// pages/index/firm/firmIndex/addFirm/addFirm.js
+import WxValidate from '../../../../../utils/WxValidata.js'
+const app = getApp()
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    form: {
+      fullName: '',
+      province: '北京',
+      abbreviation: '简称1',
+      city: '北京',
+      area: '通州',
+      street: '三河市',
+      doorNumber: '44'
+    }
+  },
+
+  /**
+   * 表单提交
+   */
+  addFirm: function (e) {
+    var that = this;
+    var fullName = e.detail.value.fullName;
+    var abbreviation = e.detail.value.abbreviation;
+    var province = e.detail.value.province;
+    var city = e.detail.value.city;
+    var area = e.detail.value.area;
+    var street = e.detail.value.street;
+    var doorNumber = e.detail.value.doorNumber;
+    var firmAddr = street + doorNumber;
+
+    // console.log('form发生了submit事件，携带的数据为：', e.detail.value)
+    const params = e.detail.value
+    //校验表单
+    if (!this.WxValidate.checkForm(params)) {
+      const error = this.WxValidate.errorList[0]
+      this.showModal(error)
+      return false;
+    }
+    var userArr = wx.getStorageSync("user");
+    var uid = JSON.parse(userArr)["userinfo"]["uid"];
+    var lat = JSON.parse(userArr)['noLogin']['lat'];
+    var lng = JSON.parse(userArr)['noLogin']['lng'];
+
+    wx.request({
+      //  提交的数据中需要包含机构信息，用户id UserId，经度  Lng   维度 Lat;
+      // 空的ID 
+      url: app.globalData.webroot  +  '/index/firm/saveFirm',
+      method: 'POST',
+      data: {
+        UserId: uid,
+        ID: '',
+        Lng: lng,
+        Lat: lat,
+        FirmName: fullName,
+        FirmTitle: abbreviation,
+        Province: province,
+        City: city,
+        District: area,
+        FirmAddr: firmAddr,
+        Street: street
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        var level = res.data.msg; // 新建机构id
+        if(res.data.code == 1) {
+          wx.showModal({
+            content: '创建机构申请成功',
+            showCancel: false,
+            success(res) {
+              if (res.confirm) {
+                wx.redirectTo({
+                  url: '/pages/index/firm/firmIndex/firmIndex/firmIndex?staffId='+level
+                })
+              }
+            }
+          })
+          // 转到机构首页
+
+        }
+      }
+    })
+    
+  },
+
+  /**
+   * 报错
+   */
+  showModal(error) {
+    wx.showModal({
+      content: error.msg,
+      showCancel: false
+    })
+  },
+  
+
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    this.initValidata()
+  },
+  /**
+   * 验证函数
+   */
+  initValidata: function () {
+    const rules = {
+      fullName: {
+        required: true,
+        maxlength:30
+      },
+      abbreviation: {
+        maxlength:20
+      },
+      province: {
+        required: true,
+        maxlength: 20
+      },
+      city: {
+        required: true,
+        maxlength: 12
+      },
+      area: {
+        required: true,
+        maxlength:12
+      },
+      street: {
+        required: true,
+        maxlength:50
+      },
+      doorNumber: {
+        required: true,
+        maxlength: 50
+      }
+
+
+    }
+    const message = {
+      fullName: {
+        required: '请填写正确的机构名称',
+        maxlength: '请填写正确的机构名称'
+      },
+      abbreviation: {
+        maxlength: '简称长度不能超过20字符'
+      },
+      province: {
+        required: '请填写正确的省份',
+        maxlength: '请填写正确的省份'
+      },
+      city: {
+        required: '请填写正确的城市名称',
+        maxlength: '城市名称长度不能超过12字符'
+      },
+      area: {
+        required: '请填写正确的区',
+        maxlength: '区名称长度不能超过12字符'
+      },
+      street: {
+        required: '请填写街道',
+        maxlength: '街道名称长度不能超过50字符'
+      },
+      doorNumber: {
+        required: '请填写道路和门牌号',
+        maxlength: '道路和门牌号长度不能超过50字符'
+      }
+    }
+    this.WxValidate = new WxValidate(rules, message);
+  },
+
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  }
+})

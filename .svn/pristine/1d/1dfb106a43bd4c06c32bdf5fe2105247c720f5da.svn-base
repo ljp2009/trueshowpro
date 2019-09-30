@@ -1,0 +1,131 @@
+<!--pages/index/reservation/staff/modules/jordan/jordan.wxml-->
+<cu-custom bgColor="bg-gray" isBack="{{true}}" style="color:#000;">
+  <view slot="backText" style='font-size:36rpx;color:#000;'>返回</view>
+  <view slot="content" style='font-size:39rpx;margin-left:-50rpx;color:#000;'>技约单首页</view>
+</cu-custom>
+<!-- go扫一扫预约凭证 图片布局开始 -->
+<view  style="border:1rpx solid blue;margin-left:4%;display:inline-block;">
+<image bindtap="gotoScanCode"  src="{{webRoot}}/static/images/index/icon1.png " style="background-color:#333;width:50rpx;height:50rpx;vertical-align:top;" />
+</view>
+<!-- go扫一扫预约凭证布局end -->
+<view style="border:1rpx solid blue;display:inline-block;margin-left:70%;">
+<!-- go设置上下班时间的图片布局开始 -->
+<image bindtap="gotoJordanModalOne" src="{{webRoot}}/static/images/index/icon4.png " style="background-color:#333;width:50rpx;height:50rpx;vertical-align:top;border-radius:10rpx;margin-left:5rpx;" />
+<!-- go设置上下班时间的图片布局结束 -->
+ <image src="{{webRoot}}/static/images/index/icon3.png " style="background-color:#333;width:50rpx;height:50rpx;vertical-align:top;border-radius:10rpx;margin-left:5rpx;margin-right:5rpx;" />
+</view>
+<!-- 上半部分布局开始 -->
+ <scroll-view scroll-y style="height:80%;" bindscrolltoupper="upper"  >
+<view >
+    <view style='height:30rpx;'></view>
+
+    <view   wx:for="{{reservationInfo}}" wx:for-index="index" wx:for-item="item"  wx:key="">
+        <!-- 每一个日期对应的约单信息开始 -->
+        <view >
+          <view class='flex' style='font-size:32rpx;width:93%;margin:auto;'>
+          <view class='flex-sub'>{{item.startTime}}</view>
+          <view wx:if="{{item.ifshowchinaDay==0}}"  class='flex-sub' style='text-align:center;font-size:35rpx;'>今天({{item.reservationlistLen}})</view>
+          <view wx:elif="{{item.ifshowchinaDay==1}}" class='flex-sub' style='text-align:center;font-size:35rpx;'>明天({{item.reservationlistLen}})</view>
+          <view wx:elif="{{item.ifshowchinaDay==2}}" class='flex-sub' style='text-align:center;font-size:35rpx;'>后天({{item.reservationlistLen}})</view>
+          <view wx:else class='flex-sub' style='text-align:center;font-size:35rpx;'>{{item.month}}月{{item.day}}日({{item.reservationlistLen}})</view>
+          <view  class='flex-sub' style='text-align:right;'>{{item.endTime}}</view>
+        </view>
+        <!-- 这是技师时间安排的时间块 开始 组件-->
+        <!-- <navigator url='/pages/index/reservation/staff/modules/jordanModalTwo/jordanModalTwo'> -->
+          <!-- <view bindtap="gotoSetOrderTime" data-date="{{item.date}}" data-month="{{item.month}}" data-day="{{item.day}}" class='flex' style='width:93%;border:1rpx solid #BBB;margin:auto;height:45rpx;background-color:#FFF;'>
+            <view class='flex-treble'></view>
+            <view class='flex-treble' style='background-color:#9F0;height:45rpx;margin-top:-3rpx;'></view>
+            <view class='flex-twice'></view>
+            <view class='flex-sub' style='background-color:#9F0;height:45rpx;margin-top:-3rpx;'></view>
+            <view class='flex-treble'></view>
+            <view class='flex-twice'></view>
+          </view> -->
+
+         <view>
+       
+          <timearea bindtap="gotoSetOrderTime" data-date="{{item.date}}" data-month="{{item.month}}"   class="timearea" data-day="{{item.day}}"  style='width:93%;border:1rpx solid #BBB;margin:auto;height:45rpx;'></timearea>
+           </view>
+        <!-- </navigator> -->
+        <!-- 这是技师时间安排的时间块 结束 组件---->
+         <!-- 11111111111 -->
+         <!-- /pages/index/reservation/staff/modules/statusOne/statusOne -->
+         <view bindtap="gotoReservationDesc" wx:if="{{reservationInfo[index]['ifList']==1}}">
+              <view  wx:for="{{reservationInfo[index]['reservationlist']}}" wx:for-index="index1" wx:for-item="item1"  wx:key=""  class=" bg-white " style='font-size:31rpx;color:#333;width:93%;border:1rpx solid #FFF;margin:auto;'>
+            <view class="flex solid-bottom padding align-start">
+              <view style='margin:20rpx -15rpx;'>
+                <view style='display:inline-block;max-width:18%;width:800rpx;text-align:center;margin-top:-30rpx;vertical-align:top;'>
+                  <image src='{{item1.Avatar}}' style='width:150rpx;height:150rpx;border-radius:50%;border:6rpx solid #BBB;'></image>
+                </view>
+                <view style='margin-top:-30rpx;display:inline-block;max-width:58%;width:900rpx;font-size:31rpx;position:relative;'>
+                  <view style='width:86%;display:inline-block;'>
+                    <view style='color:#133;font-family:"微软雅黑"'>{{item1.NickName}}
+                      <!-- <text style='margin-left:20rpx;'>138-0000-0000</text> -->
+                    </view>
+                    <view style='color:#133;font-family:"微软雅黑"'>{{item1.StartTime}}-{{item1.EndTime}}
+                      <text style='margin-left:20rpx;'>(约{{item1.Poortime}}分钟)</text>
+                    </view>
+                    <view style="height:10rpx;"></view>
+                    <!-- 几条项目大类名和项目名称及秀按钮布局开始 -->
+                    <view wx:for="{{reservationInfo[index]['reservationlist'][index1]['service_resn']}}" wx:for-index="index2" wx:for-item="item2"  wx:key="" class='infoCenter' style="font-size:29rpx;">
+                      <text class="cu-tag round bg-orange sm" style='width:100rpx;;height:30rpx;line-height:36rpx;font-size:29rpx;'>{{item2.Name}}</text>
+                      <text class='textmiddle'>{{item2.ServiceName}}</text>
+                     
+                      
+                      <view  style="border:1rpx  solid red;display:inline-block;">
+                       <button wx:if='{{item2.CUSTPoker==1 && item2.StaffPoker==1}}'  class="cu-btn round sm bg-grey" style='font-size:31rpx;width:30rpx;height:40rpx;background-color:grey'>秀</button>
+                      <button wx:else  class="cu-btn round sm bg-orange" style='font-size:31rpx;width:30rpx;height:40rpx;'>秀</button>
+                      </view>
+                    </view>
+        <!-- 几条项目大类名和项目名称布局结束 --> 
+                  </view>
+                  <view style='display:inline-block;width:23%;position:absolute;right:0;top:10%;'>
+                    <!-- <button class="cu-btn round sm bg-orange" style='font-size:31rpx;width:30rpx;height:40rpx;'>秀</button> -->
+                    <text class="cuIcon-right lg" style='color:#444;font-size:45rpx;line-height:60rpx;position:absolute;right:0;'></text>
+                  </view>
+                </view>
+                <view style='height:12rpx;'></view>
+                <view  wx:if='{{item1.Status==7}}' style='width:74%;color:#133;font-family:"微软雅黑";text-align:center;'>状态：
+                  <text>已完成</text>
+                </view>
+                  <view  wx:elif='{{item1.Status==1}}' style='width:74%;color:#133;font-family:"微软雅黑";text-align:center;'>状态：
+                  <text>等待顾客到店</text>
+                </view>
+                  <view  wx:elif='{{item1.Status==4}}' style='width:74%;color:#133;font-family:"微软雅黑";text-align:center;'>状态：
+                  <text>等待你发起支付</text>
+                </view>
+                
+                <view  wx:if='{{item1.logActions}}' style='color:#133;font-family:"微软雅黑";margin-left:43rpx;'>备注：
+                  <text>{{item1.logActTime}} {{item1.logActions}}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+         </view>
+          <!-- 1111111111 -->
+       
+        
+        <view style='height:25rpx;'></view>
+        </view>
+        <!-- 每一个日期对应的约单信息结束 -->
+    </view>
+
+</view>
+  </scroll-view>
+<!-- 上半部分布局结束 -->
+<view style='height:16rpx;'></view>
+<view>
+  <view class='flex' style='font-size:45rpx;color:#000;'>
+  <view class='flex-treble'></view>
+  <view class='flex-twice' style='text-align:center;'>机构</view>
+  <view style='display:inline-block;width:30rpx;text-align:center;font-size:50rpx;height:50rpx;line-height:50rpx;'>|</view>
+  <view class='flex-twice' style='text-align:center;background-color:#FF6600;color:#FFF;border-radius:10rpx;position:relative;'>约单
+    <view style='width:32rpx;height:32rpx;line-height:32rpx;font-size:32rpx;border-radius:50%;background-color:#F00;position:absolute;right:-6rpx;top:-6rpx;'>2</view>
+  </view>
+  <view style='display:inline-block;width:30rpx;text-align:center;font-size:50rpx;height:50rpx;line-height:50rpx;'>|</view>
+  <view class='flex-twice' style='text-align:center;'>问答</view>
+  <view style='display:inline-block;width:30rpx;font-size:50rpx;height:50rpx;line-height:50rpx;text-align:center;'>|</view>
+  <view class='flex-twice' style='text-align:center;'>我的</view>
+</view>
+<view style='height:30rpx;'></view>
+</view>
+

@@ -1,0 +1,182 @@
+<!--pages/index/qa/qaDetail/qaDetail.wxml-->
+<!-- 头部 -->
+<cu-custom bgColor="bg-white " isBack="{{true}}">
+	<view slot="backText"></view>
+</cu-custom>
+<!-- 文章收起来的时候 -->
+<view class="bg-fill margin-bottom-sm" >
+<view class="cu-card article" style="border:1rpx solid blue;" >
+  <view class="cu-item">
+   <view style="border:1rpx solid green;">
+         <view class="flex-treble " style="display:inline-block;width:80%">    
+    <view class="text padding-top padding-left">{{qusDetail['Title']}}</view>
+    <view class="text padding-bottom padding-left changeSize" style="margin-top:2%;">
+      <text class="padding-right">{{qusDetail['ReplyCount']}} 回答 {{qusDetail['Favorited']}} 收藏   {{qusDetail['charTime']['day']}}{{qusDetail['charTime']['hour']}}{{qusDetail['charTime']['min']}}前</text>
+      <!-- 未点亮之前的♥   -->
+      <text class="cuIcon-likefill lg text-gray"></text>
+      <!-- 点亮之后的♥ -->
+      <!-- <text class="cuIcon- likefill lg text-red"></text> -->
+    </view>
+     </view>
+     <view style="display:inline-block;text-align:right;width:18%;position:absolute;margin-top:5%;">
+      <button class="cu-btn icon bg-orange  " style="margin-bottom:100rpx;">
+        <text class="text-white ">回答</text>
+      </button>    
+      </view>
+   </view>
+   <!-- 上部分 -->
+    <view class="content" >  
+      <view class="desc" class="business-text {{ isExpanding ? 'block' : 'none' }} content-text">
+<!-- 如果存在照片 -->
+<view class="img" wx:if="{{qusDetail['Pic'] != null}}"  wx:for="{{qusDetail['Pic']}}" style="display:inline-block;">
+       
+       
+        <!-- <view wx:for="{{qusDetail['Pic']}}"> -->
+         <view class='add-img' >
+            <image src="{{item['img']}}" style="height:100%;width:1005；">这是图片一</image>
+          </view>
+        <!-- </view> -->
+          <!-- <view class='add-img'>
+            <image>这是图片一</image>
+          </view>
+              <view class='add-img'>
+              <image>这是图片二</image>
+          </view>
+              <view class='add-img'>
+              <image>这是图片三</image>
+          </view> -->
+      
+</view>
+
+<!-- 照片 -->
+<view class="content-text" wx:if="{{qusDetail['Contents'] != null}}"> {{qusDetail['Contents']}}</view>
+          </view>
+       <!-- <view  class="business-text {{ isExpanding ? 'block' : 'none' }} content-text"> 问题描述，虽然我现在疯狂沉迷医美面膜无法自拔，只 想把医美用个遍，哈哈，说试一下的心理，每一次去商只想把医美用个遍，哈哈，说试一下然我现在疯狂沉迷医美面膜无法自拔， 只想把医美用个遍，哈哈，说试一下</view>
+      </view> -->
+    </view> 
+    <!-- 上部分结束 -->
+<view style="display:inline-block;margin-left:65%;border:1rpx solid blue;">    
+  <view class="business-btn" bindtap="handleExpandingChange">{{isExpanding ? "收起" : "展开"}}<text  class="horn {{ isExpanding ? 'block' : 'none' }}"></text>
+  </view>
+</view>  
+<!--  wx:if="{{qusDetail['Qid']}}" -->
+<view style="float:left;margin-top:-6%;">
+  <text class="cuIcon-edit lg text-black"></text>
+  <text>修改</text>
+</view>
+  
+  </view>
+</view>
+</view>
+
+<!-- 这是文章展开的时候 -->
+<!-- <view class="bg-fill margin-bottom-sm">
+<view class="cu-card article">
+  <view class="cu-item ">
+    <view class="flex-treble ">
+           
+    <view class="text padding-top  left-justifying">有哪些让你相见恨晚的美容妙招？</view>
+    <view class="text padding-bottom  changeSize left-justifying" >0 回答 0 收藏   6小时前</view>
+     </view>
+     <button class="cu-btn icon bg-orange margin posiAb"role="button"aria-disabled="false">
+        <text class="text-white ">回答</text>
+      </button>
+    <view class="content">  
+        <view class="desc">
+        <view class="img">
+            <view class='add-img'>
+            <image>这是图片一</image>
+        </view>
+            <view class='add-img'>
+            <image>这是图片二</image>
+        </view>
+            <view class='add-img'>
+            <image>这是图片三</image>
+        </view>
+        </view>
+        <view class="content-text"> 问题描述，虽然我现在疯狂沉迷医美面膜无法自拔，只 想把医美用个遍，哈哈，说试一下只 想把医美用个遍，哈哈，说试一下的心理，每一次去商只想把医美用个遍，哈哈，说试一下然我现在疯狂沉迷医美面膜无法自拔， 只想把医美用个遍，哈哈，说试一下下</view>
+          </view>
+        </view>
+
+        <view class="flex">
+            <view class="flex-sub  left-justifying">
+            <text class="cuIcon-edit lg text-black"></text>
+            <text>修改</text>
+            </view>
+            <view class="flex-sub text-right  right-justifying">
+            <text>收起</text>
+            <text class="cuIcon-triangleupfill lg text-black margin-right-lg"></text>
+            </view>
+          </view>
+      </view>
+  </view>
+</view> -->
+<!-- 滑块 -->
+<swiper style="background-color:white;width:100%;height: 80%;">
+    <block wx:for="{{imgs}}" wx:for-index="index" wx:key="swiperItem" wx:for-item="item" >
+      <swiper-item class="swiper-items"  >
+      <!-- wx:if="{{index<2}}" -->
+       <view >
+          <!-- 匿名  -->
+        <view class="bg-fill ">
+        <view class="flex">  
+        <view class="flex-sub  padding-top-sm margin-top-xs radius"></view>
+          <view class="flex-sub  padding-top-sm margin-top-xs radius text-center">
+            <text class="text-center">(0/6)</text>
+          </view>
+          <view class="flex-sub  padding-top-sm margin-top-xs radius text-right margin-right">
+            <text class="cuIcon-appreciatefill lg text-grey "> </text>
+            <text>1k</text>
+          </view>
+        </view>
+        <!-- 顾客回答 -->
+        <view class="cu-card article">
+          <view class="cu-item ">
+            <view class="flex-treble ">
+            <view class="text  left-justifying bold">匿名</view>
+            <view class="text changeSize left-justifying bold" >身份：来自金星的人</view>
+            </view>
+            <view class="content">  
+                <view class="desc">
+                <view class="img">
+                    <view class='add-img'>
+                    <image>这是图片一</image>
+                </view>
+                    <view class='add-img'>
+                    <image>这是图片二</image>
+                </view>
+                    <view class='add-img'>
+                    <image>这是图片三</image>
+                </view>
+                </view>
+                <view class="content-text">虽然我现在疯狂沉迷医美面膜无法自拔，只 想把医美用个遍，哈哈，说试一下只 想把医美用个遍，哈哈，说试一下的心理，每一次去商只想把医美用个遍，哈哈，说试一下然我现在疯狂沉迷医美面膜无法自拔， 只想把医美用个只 想把医美用个遍，哈哈，说试一下只 想把医美用个遍，哈哈，说试一下的心理，每一次去商只想把医美用个遍，哈哈，说试一下然我现在疯狂沉迷医美面膜无法自拔， 只想把医美用个遍，哈哈，说试一下下只 想把医美用个遍，哈哈，说试一下只 想把医美用个遍，哈哈，说试一下的心理，每一次去商只想把医美用个遍，哈哈，说试一下然我现在疯狂沉迷医美面膜无法自拔， 只想把医美用个遍，哈哈，说试一下下遍，哈哈，说试一下下</view>
+                  </view>
+                </view>
+              </view>
+          </view>
+        <!-- 顾客回答结束 -->
+        </view>
+<!-- 匿名结束 -->
+       </view >
+       
+      </swiper-item>
+    </block>
+</swiper> 
+<!-- 滑块结束 -->
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+

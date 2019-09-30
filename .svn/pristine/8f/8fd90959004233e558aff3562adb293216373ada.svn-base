@@ -1,0 +1,19 @@
+<view>
+
+
+<view class="flex solid-bottom  justify-between" style='margin-top:50rpx;margin-left:5%;margin-right:5%'>
+      <view wx:if="{{ifShowworkTxt}}" style="display: inline-block;width:30%">{{timedata.workarea.x1}}</view>
+      <view   style="display: inline-block;width:55%">
+        <text wx:if="{{ifshowenable}}">
+        点击拖动选择时段
+        </text>
+      </view>
+      <view  wx:if="{{ifShowworkTxt}}" style="display: inline-block;width:10%">{{timedata.workarea.x2}}</view>
+</view>
+  <canvas  style="width:{{timedata.sideswidth*100+'%'}}; height: 100px;margin:auto" canvas-id="timeCanvas" bindtouchmove="move" bindtouchstart="start" bindtouchend="end"></canvas>
+
+  <view wx:if="{{ifshowenable}}" class="flex   justify-between" style='margin-left:5%;margin-right:5%'>
+      <view class="">选取的时间区间为：{{timedata.enabledarea.x1}}-{{timedata.enabledarea.x2}}</view>
+</view>
+
+</view>

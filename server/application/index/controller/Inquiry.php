@@ -1,13 +1,14 @@
 <?php
 namespace app\index\controller;
+use think\Controller;
 use think\Db;
 use think\Request;
 //服务项目问询类
-class Inquiry
+class Inquiry  extends Controller
 {
     /**
      *获取服务项目的问询
-     * 请求参数：ServiceId 服务项目ID
+     * 请求参数：ServiceId 服务项目ID 机构id firmId
      * 返回参数：InquiryId	int
             Type	int	类型。0：问，1：答
             UserId	int	用户ID
@@ -19,15 +20,22 @@ class Inquiry
     {
         $request=Request::instance();
         $data=$request->param();
-        if (!isset($data["ServiceId"])){
-            echo returnData(0,"ServiceId参数不能为空");
+        if (!isset($data["serviceId"]) || !isset($data["firmId"])){
+            echo returnData(0,"参数不能为空");
             exit;
         }
-        $ServiceId=$data["ServiceId"];//服务项目ID
+        $ServiceId=$data["serviceId"];//服务项目ID
+        $firmId=$data["firmId"];//机构id
         //通过ServiceId参数 查询inquiry表
-        $res=Db::table("inquiry")->where("ServiceId",$ServiceId)->find();
+        $res=Db::table("inquiry")
+            ->alias("i")
+            ->join("user u","u.UserId=i.UserId")
+            ->where(["i.ServiceId"=>$ServiceId,"i.FirmId"=>$firmId])
+            ->field(["i.*","u.Avatar"])
+            ->select();
 //        print_r($res);
 //        exit;
+
         if (!$res){
             echo returnData(0,"出错了");
             exit;
@@ -55,16 +63,35 @@ class Inquiry
     {
         $request=Request::instance();
         $data=$request->param();
-        if (!isset($data["data"])){
-            echo returnData(0,"data参数不能为空");
-            exit;
-        }
-        $dataArr=json_decode($data["data"],true);//除了CreateTime的其他字段和字段值
-        $Type=$dataArr["Type"];
-        $dataArr["CreateTime"]=date("Y-m-d H:i:s");
-        if ($Type==0){
+        //  firmId: that.data.firmId,
+        //        uid: uid,
+        //        nickName: userNickName,
+        //        serviceId: serviceId,
+        //        contents: that.data.consultInputValue, //内文
+        //        type: 0,//0：问，1：答 （顾客问，技师答）
+        //        reply: 0 //0：未回复，1：已回复
+        $firmId=$data["firmId"];
+        $uid=$data["uid"];
+        $nickName=$data["nickName"];
+        $serviceId=$data["serviceId"];//服务项目ID
+        $contents=$data["contents"]; //内文
+        $type=$data["type"];//0：问，1：答 （顾客问，技师答）
+        $reply=$data["reply"];//0：未回复，1：已回复
+
+      $dataArr=[
+          "ServiceId"=>$serviceId,
+          "FirmId"=>$firmId,
+          "UserId"=>$uid,
+          "NickName"=>$nickName,
+          "Type"=>$type,
+          "Contents"=>$contents,
+          "Reply"=>$reply,
+          "CreateTime"=>date("Y-m-d H:i:s")
+      ];
+
+        if ($type==0){
           //问
-            $res=Db::table("inquiry")->insert($dataArr);
+            $res=Db::table("inquiry")->insertGetId($dataArr);
             if (!$res){
                 echo returnData(0,"出错了");
                 exit;
@@ -73,6 +100,9 @@ class Inquiry
             exit;
         }else{
             //答 写入回答 同时还要把对应问的那条记录 更新 Reply为1
+            //askId 答了那个问题的id
+            $inquiryId=$data["inquiryId"];
+            $dataArr["askId"]=$inquiryId;
             // 启动事务
             Db::startTrans();
             try{
@@ -81,12 +111,12 @@ class Inquiry
                 $res1=Db::table("inquiry")->where("Id",$InquiryId)->update(["Reply"=>1]);
                 // 提交事务
                 Db::commit();
-                echo returnData(1,"成功");
+                echo returnData(1,"发送成功");
                 exit;
             } catch (\Exception $e) {
                 echo returnData(0,"出错了");
                 // 回滚事务
-                Db::rollback();
+                //Db::rollback();
                 exit;
             }
         }

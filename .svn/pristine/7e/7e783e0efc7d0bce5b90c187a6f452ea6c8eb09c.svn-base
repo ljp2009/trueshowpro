@@ -1,0 +1,90 @@
+<!--pages/index/user/staff/index/index.wxml-->
+<cu-custom bgColor="bg-gray" isBack="{{true}}" style="color:#000;">
+  <view slot="backText" style='font-size:36rpx;color:#000;'>返回</view>
+  <view slot="content" style='font-size:39rpx;margin-left:-50rpx;color:#000;'>我的</view>
+</cu-custom>
+<navigator url='/pages/index/user/staff/staffCard/staffCard'>
+  <view style='margin-top:20rpx;background-color:#FFF;padding-top:10rpx;'>
+    <view style='display:inline-block;max-width:30%;width:800rpx;text-align:center;position:relative;z-index:999;'>
+      <image src='http://ljp.jujiaoweb.com/static/images/index/qThree.png' style='width:190rpx;height:190rpx;background-color:#FFF;border-radius:50%;border:2rpx solid #EEE;'></image>
+      <image src='http://ljp.jujiaoweb.com/static/images/index/icon5.png' style='width:32rpx;height:32rpx;background-color:#666;position:absolute;bottom:10rpx;right:10rpx;'></image>
+    </view>
+    <view style='height:155rpx;display:inline-block;vertical-align:top;margin-top:10rpx;max-width:70%;width:900rpx;'>
+      <view class="cu-bar " style='margin:-26rpx 0 -10rpx -26rpx;border-radius:60rpx 0 0 60rpx;'>
+        <view class="action">
+          <view style='font-size:45rpx;color:#133;font-family:"微软雅黑";'>胡敏
+            <text class="cuIcon-roundcheckfill lg text-orange"></text>
+          </view>
+        </view>
+        <view style='margin-right:20rpx;'>
+          <view style='font-size:35rpx;height:55rpx;line-height:55rpx;display:inline-block;vertical-align:middle;color:#100;'>星级评价：</view>
+          <text class="cuIcon-favorfill lg text-orange" style='width:45rpx;height:55rpx;line-height:55rpx;font-size:36rpx;vertical-align:middle;'></text>
+          <text class="cuIcon-favorfill lg text-orange" style='width:45rpx;height:55rpx;line-height:55rpx;font-size:36rpx;vertical-align:middle;'></text>
+          <text class="cuIcon-favorfill lg text-orange" style='width:45rpx;height:55rpx;line-height:55rpx;font-size:36rpx;vertical-align:middle;'></text>
+          <text class="cuIcon-favorfill lg text-orange" style='width:45rpx;height:55rpx;line-height:55rpx;font-size:36rpx;vertical-align:middle;'></text>
+          <text class="cuIcon-favorfill lg text-gray" style='width:45rpx;height:55rpx;line-height:55rpx;font-size:36rpx;vertical-align:middle;'></text>
+        </view>
+      </view>
+      <view class='flex' style='font-size:30rpx;color:#133;font-family:"微软雅黑";margin:-10rpx 25rpx 10rpx 3rpx;position:relative;z-index:999;'>
+        <view class="flex-sub">经验:
+          <text style='color:#000;'>435</text>
+        </view>
+        <view style='text-align:center; width:40%;'>作品赞：
+          <text style='color:#000;'>4.2k</text>
+        </view>
+        <view class="flex-sub" style='text-align:right;'>获关注：
+          <text style='color:#000;'>4</text>
+        </view>
+      </view>
+      <view>
+        <view style="font-size:35rpx;color:#000;display:inline-block;position:relative;z-index:999;">擅长：美甲，化妆</view>
+        <view style='display:inline-block;font-size:32rpx;position:relative;z-index:999;left:50rpx;'>日记
+          <text>6</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</navigator>
+
+
+<!-- 目录部分 -->
+<view>
+  <view class="cu-list menu padding-top-sm" role="" aria-label="">
+    <navigator url='/pages/index/user/staff/diary/diaryIndex/diaryIndex' class="cu-item arrow" role="" aria-label="">
+      <view class="content" role="" aria-label="">
+        <text class="text-black" style='font-size:35rpx;'>我的日记</text>
+      </view>
+    </navigator>
+    <navigator url='/pages/index/user/staff/userInfo/userInfo' class="cu-item arrow" role="" aria-label="">
+      <view class="content" role="" aria-label="">
+        <text class="text-black" style='font-size:35rpx;'>个人资料</text>
+      </view>
+      <view style='font-size:33rpx;'>未认证</view>
+    </navigator>
+    <navigator url='/pages/index/user/staff/serviceList/serviceList?firmId={{firmId}}' class="cu-item arrow" role="" aria-label="">
+      <view class="content" role="" aria-label="">
+        <text class="text-black" style='font-size:35rpx;'>我的服务项目</text>
+      </view>
+    </navigator>
+    <navigator class="cu-item arrow" url='/pages/index/user/staff/code/code'>
+      <view class="content" role="" aria-label="">
+        <text class="text-black" style='font-size:35rpx;'>二维码名片</text>
+      </view>
+    </navigator>
+    <navigator url='/pages/index/user/staff/pokerByStaff/pokerByStaff' class="cu-item arrow" role="" aria-label="">
+      <view class="content" role="" aria-label="">
+        <text class="text-black" style='font-size:35rpx;'>晒单作品</text>
+      </view>
+    </navigator>
+    <navigator url='/pages/index/user/staff/professionalPic/professionalPic' class="cu-item arrow" role="" aria-label="">
+      <view class="content" role="" aria-label="">
+        <text class="text-black" style='font-size:35rpx;'>形象照片</text>
+      </view>
+    </navigator>
+    <navigator url='/pages/index/user/staff/statisticsStaff/statisticsStaff' class="cu-item arrow" role="" aria-label="">
+      <view class="content" role="" aria-label="">
+        <text class="text-black" style='font-size:35rpx;'>一周人气统计</text>
+      </view>
+    </navigator>
+  </view>
+</view>

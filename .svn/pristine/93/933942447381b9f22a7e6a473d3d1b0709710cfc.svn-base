@@ -1,0 +1,71 @@
+<!-- 头部 -->
+<view class="bg-white padding flex head" style="height:80px;margin-top:2%;">
+    <view class=" flex-treble">
+       <view class="search">          
+        <view class="df search_arr">            
+
+          <icon class="searchcion" size='20' type='search'></icon>         
+          <input class=""  placeholder="请点击搜索" value="" bindinput="getSearchText"/>     
+      </view>        
+    </view>   
+    </view>
+    <view class="flex-sub addQ text-center">
+        <text bindtap="toAddQa" class="cuIcon-roundaddfill text-orange"></text>
+    </view>
+</view>
+<!-- 头部结束 -->
+<!-- 导航 -->
+<view  class="bg-lightgrey nav" scroll-with-animation scroll-left="{{scrollLeft}}" style="height:5%;text-align:center;" >
+  <view class="cu-item {{index==tabCur?'current ':''}}" wx:for="{{navArr}}" wx:key bindtap="tabSelect" data-id="{{index}}" style="height:60rpx;line-height:60rpx;">
+    {{item['value']}}
+  </view>
+</view>
+<!-- 导航结束 -->
+<scroll-view scroll-y="true" class="container bg-lightgrey" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower" >
+<!-- 下面的内容部分 -->
+<view  wx:if="{{tabCur==0}}" >
+<!-- <navigateTo url="/pages/index/qa/qaDetail/qaDetail?itemData=1111" open-type="switchTab" hover-class="navigator-hover"> -->
+
+<view class="cu-card article bg-lightgrey" style="margin-top:3%;" >
+ 
+       <view class="bg-white"   style="margin-top:2%;" wx:for="{{feed}}"  >
+      
+  <view class="cu-item shadow" style="margin-left:5%;border:1rpx solid red;" data-index="{{index}}" bindtap="jumpDetail">
+  <view class="title">
+    <view class="text-cut">{{item['Qid']}}----{{item['Title']}}</view>
+    </view>
+    <view class="content">  
+      <view class="desc">
+      <view class="text">{{item['ReplyCount']}} 回答 {{item['Favorited']}} 收藏   {{item['charTime']['day']}}{{item['charTime']['hour']}}{{item['charTime']['min']}}前</view>
+      <!-- 没有内容 -->      
+      </view>    
+    </view>
+     <view class="start_k ">
+     <view class="  radius" style="width:80%;"> 
+      <view  wx:if="{{item['Contents'] != null}}">{{item['Contents']}}</view>   
+      <view wx:else></view>
+    </view>
+    <view style="width:19%;text-align:right;">
+     <image class="img_big" wx:if="{{item['Pic'][0]['img']}}!=null" src="{{item['Pic'][0]['img']}}"></image>                      
+     </view>
+    </view>
+  </view>
+ 
+</view>
+</view> 
+ <!-- </navigateTo> -->
+</view> 
+<view wx:elif="{{tabCur==1}}">收藏</view>
+<view wx:elif="{{tabCur==2}}">我的问</view>
+<view wx:elif="{{tabCur==3}}">我的答</view>
+<!-- 下面内容结束 -->
+<!-- 如果是收藏 -->
+<!-- <view wx:elif="{{tabCur==1}}">
+是搜藏布局
+</view> -->
+<!-- 收藏结束 -->
+    
+</scroll-view>
+<!-- <scroll-view wx:else>
+222222222222222222222
+</scroll-view> -->

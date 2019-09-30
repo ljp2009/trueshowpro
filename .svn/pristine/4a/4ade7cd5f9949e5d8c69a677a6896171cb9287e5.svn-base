@@ -1,0 +1,130 @@
+/* pages/index/qa/qaDetail/qaDetail.wxss */
+.cu-item{
+  position: relative;
+  background-color: #fff;
+}
+.left-justifying{
+  margin-left:30rpx; 
+}
+.right-justifying{
+  margin-right:30rpx; 
+}
+.bg-fill{
+   position: relative;
+    background-color: #fff;
+}
+
+.posiAb{
+    position: absolute;
+    right: 5%;
+    top:2%;
+  
+    }
+
+.changeSize{
+
+  font-size: 25rpx;
+}
+
+.add-img{
+border: 1rpx solid gray;
+width:180rpx;
+height:180rpx;
+position: relative;
+display: inline-block;
+margin-left: 25rpx;
+}
+.img{
+  margin: 20rpx 0;
+}
+
+.img  image{
+  height: 80rpx;
+}
+
+.toShowtwoLine{
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  align-content: center;
+
+}
+
+
+.content-text{
+
+  font-size: 27rpx;
+}
+/* 收起  展开 */
+/* pages/zhihu/zhihu.wxss */
+.business-text{
+  margin: 0 auto;
+  width: 100%;
+  font-size: 28rpx;
+  color: #3F4552;
+  font-family: 'PingFangSC-Regular';
+  overflow: hidden;
+  text-align: justify;
+}
+/* 
+  1.默认设置高度 隐藏其它
+  2.设置两行末尾显示...
+*/
+.business-text.none {
+  height: 150rpx;
+  /* -webkit-line-clamp: 2;
+  text-overflow: ellipsis;
+  display: -webkit-box; 
+  -webkit-box-orient: vertical; */
+   /* 从上向下垂直排列子元素 */
+ }
+ /* 
+  显示方式以下三种block都可以实现 
+ */
+.business-text.block {
+  display: block; 
+  /* -webkit-line-clamp: 0; */
+  /* overflow: visible; */
+ }
+.business-btn{
+  
+  /* margin: 28rpx auto 16rpx; */
+  width: 300rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+
+  /* border-radius: 28rpx; */
+  font-size: 26rpx;
+  font-family: 'PingFangSC-Regular';
+ 
+  position: relative;
+  padding: 0 55rpx 0 48rpx;
+}
+.business-btn .horn{
+  width:0; 
+  height:0; 
+  position: absolute;
+  top: 50%;
+  left: 66%;
+  transform: translateY(-50%);
+}
+.business-btn .horn.none{
+  border-left: 8rpx solid transparent;
+  border-right: 8rpx solid transparent;
+  border-top: 12rpx solid #b9c0d0;
+}
+.business-btn .horn.block{
+  border-left: 8rpx solid transparent;
+  border-right: 8rpx solid transparent;
+  border-bottom: 12rpx solid #b9c0d0;
+}
+
+
+
+
+
+

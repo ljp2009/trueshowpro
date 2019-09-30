@@ -1,0 +1,141 @@
+<!--pages/index/firm/firmIndex/firmDesc/firmDesc.wxml-->
+<cu-custom bgColor="bg-gray" isBack="{{true}}" style="color:#000;">
+  <view slot="backText" style='font-size:36rpx;color:#000;'>返回</view>
+  <view slot="content" style='font-size:39rpx;margin-left:-50rpx;color:#000;'>机构简介</view>
+</cu-custom>
+<view>
+  <text class="padding-left" style='font-size:36rpx;'>机构简介： </text>
+  <view class="cu-form-grou bg-white " role="" aria-label="" style='margin:10rpx 20rpx;'>
+    <textarea bindinput="textareaAInput" placeholder='服务介绍：' maxlength="500" name='Discription'  data-item="Discription" value='{{firmInfo.Discription}}' style='font-size:35rpx;padding-left:10rpx;padding-top:8rpx;color:#363636;' >
+    </textarea>
+  </view>
+  <view style="margin-right:30rpx;text-align:right;font-size:36rpx;">({{descLength}}/500)</view>
+  <view style='height:20rpx;'></view>
+</view>
+
+
+<view>
+  <view style='height:10rpx;'></view>
+  <text class="padding-left" style='font-size:36rpx;'>配图说明： </text>
+  <view>
+    <text class="text-sm margin-left padding-left" style='font-size:30rpx;'>建议：店铺建筑、招牌外观、有代表性室内场景图片</text>
+    <view style='height:6rpx;'></view>
+     <!-- 图片1 start -->
+  <view class="" role="" aria-label="">
+    <view class="" role="" aria-label="">
+      <view bindtap="chooseImg" class="add-img" role="" aria-label="" data-imgtype="A" data-index="0" style='background-color:white;'> 
+        <image wx:if="{{pic['A0']}}" src="{{pic['A0']}}">
+        <icon catchtap="deleteImg" class="delete-btn" data-index='0' data-imgtype="A" type='cancel' role='img'></icon>
+
+        </image>
+        <text wx:if="{{pic['A0']}}" class=" xl" style='color:#F37B1D'></text>
+        <text   wx:else class="cuIcon-roundaddfill xl" style='color:#F37B1D'></text>
+      </view>
+      <!-- 图片1 end -->
+<!-- 图片2 start -->
+       <view bindtap="chooseImg" class="add-img" role="" aria-label="" data-imgtype="A" data-index="1" style='background-color:white;'> 
+        <image wx:if="{{pic['A1']}}" src="{{pic['A1']}}">
+        <icon catchtap="deleteImg" class="delete-btn" data-index='1' data-imgtype="A" type='cancel' role='img'></icon>
+        </image>
+        <text wx:if="{{pic['A1']}}" class=" xl" style='color:#F37B1D'></text>
+        <text   wx:else class="cuIcon-roundaddfill xl" style='color:#F37B1D'></text>
+      </view>
+      <!-- 图片2 end -->
+      <!-- 图片3 start -->
+      <view bindtap="chooseImg" class="add-img" role="" aria-label="" data-imgtype="A" data-index="2" style='background-color:white;'> 
+        <image wx:if="{{pic['A2']}}" src="{{pic['A2']}}">
+        
+        <icon catchtap="deleteImg" class="delete-btn" data-index='2' data-imgtype="A" type='cancel' role='img'></icon></image>
+        <text wx:if="{{pic['A2']}}" class=" xl" style='color:#F37B1D'></text>
+        <text   wx:else class="cuIcon-roundaddfill xl" style='color:#F37B1D'></text>
+      </view>
+      <!-- 图片3 end -->
+
+    </view>
+  </view>
+  <!-- 第一组图片  end -->
+
+
+  </view>
+  <view>
+    <text class="text-sm margin-left padding-left" style='font-size:30rpx;'>建议：设备、仪器、有代表性的主打服务项目图片 </text>
+    <view style='height:6rpx;'></view>
+     <!-- 图片1 start -->
+  <view class="" role="" aria-label="">
+    <view class="" role="" aria-label="">
+      <view bindtap="chooseImg" class="add-img" role="" aria-label="" data-imgtype="B" data-index="0" style='background-color:white;'> 
+        <image wx:if="{{pic['B0']}}" src="{{pic['B0']}}">
+        
+        <icon catchtap="deleteImg" class="delete-btn" data-index='0' data-imgtype="B" type='cancel' role='img'></icon></image>
+        <text wx:if="{{pic['B0']}}" class=" xl" style='color:#F37B1D'></text>
+        <text   wx:else class="cuIcon-roundaddfill xl" style='color:#F37B1D'></text>
+      </view>
+      <!-- 图片1 end -->
+<!-- 图片2 start -->
+       <view bindtap="chooseImg" class="add-img" role="" aria-label="" data-imgtype="B" data-index="1" style='background-color:white;'> 
+        <image wx:if="{{pic['B1']}}" src="{{pic['B1']}}">
+        <icon catchtap="deleteImg" class="delete-btn" data-index='1' data-imgtype="B" type='cancel' role='img'></icon>
+        </image>
+        <text wx:if="{{pic['B1']}}" class=" xl" style='color:#F37B1D'></text>
+        <text   wx:else class="cuIcon-roundaddfill xl" style='color:#F37B1D'></text>
+      </view>
+      <!-- 图片2 end -->
+      <!-- 图片3 start -->
+      <view bindtap="chooseImg" class="add-img" role="" aria-label="" data-imgtype="B" data-index="2" style='background-color:white;'> 
+        <image wx:if="{{pic['B2']}}" src="{{pic['B2']}}">
+        <icon catchtap="deleteImg" class="delete-btn" data-index='2' data-imgtype="B" type='cancel' role='img'></icon>
+        </image>
+        <text wx:if="{{pic['B2']}}" class=" xl" style='color:#F37B1D'></text>
+        <text   wx:else class="cuIcon-roundaddfill xl" style='color:#F37B1D'></text>
+      </view>
+      <!-- 图片3 end -->
+
+    </view>
+  </view>
+  <!-- 第一组图片  end -->
+    </view>
+    <text class="text-sm margin-left padding-left" style='font-size:30rpx;'>建议：人员、团队、工作状态、代表精神面貌的照片 </text>
+   <view style='height:6rpx;'></view>
+     <!-- 图片1 start -->
+  <view class="" role="" aria-label="">
+    <view class="" role="" aria-label="">
+      <view bindtap="chooseImg" class="add-img" role="" aria-label="" data-imgtype="C" data-index="0" style='background-color:white;'> 
+        <image wx:if="{{pic['C0']}}" src="{{pic['C0']}}"><icon catchtap="deleteImg" class="delete-btn" data-index='0' data-imgtype="C" type='cancel' role='img'></icon></image>
+        <text wx:if="{{pic['C0']}}" class=" xl" style='color:#F37B1D'></text>
+        <text   wx:else class="cuIcon-roundaddfill xl" style='color:#F37B1D'></text>
+      </view>
+      <!-- 图片1 end -->
+<!-- 图片2 start -->
+       <view bindtap="chooseImg" class="add-img" role="" aria-label="" data-imgtype="C" data-index="1" style='background-color:white;'> 
+        <image wx:if="{{pic['C1']}}" src="{{pic['C1']}}"><icon catchtap="deleteImg" class="delete-btn" data-index='1' data-imgtype="C" type='cancel' role='img'></icon></image>
+        <text wx:if="{{pic['C1']}}" class=" xl" style='color:#F37B1D'></text>
+        <text   wx:else class="cuIcon-roundaddfill xl" style='color:#F37B1D'></text>
+      </view>
+      <!-- 图片2 end -->
+      <!-- 图片3 start -->
+      <view bindtap="chooseImg" class="add-img" role="" aria-label="" data-imgtype="C" data-index="2" style='background-color:white;'> 
+        <image wx:if="{{pic['C2']}}" src="{{pic['C2']}}"><icon catchtap="deleteImg" class="delete-btn" data-index='2' data-imgtype="C" type='cancel' role='img'></icon></image>
+        <text wx:if="{{pic['C2']}}" class=" xl" style='color:#F37B1D'></text>
+        <text   wx:else class="cuIcon-roundaddfill xl" style='color:#F37B1D'></text>
+      </view>
+      <!-- 图片3 end -->
+
+    </view>
+  </view>
+  <!-- 第一组图片  end -->
+</view>
+<view class="margin" style='font-size:35rpx;'>
+  <text>修改记录：</text>
+  <view wx:if="{{logs.length > 0}}">
+  <view wx:for="{{logs}}" >
+    <text class="text-sm" style='font-size:35rpx;'>{{index +1}}、{{item.ActTime}}</text>
+    <text style='display:inline-block;' decode="{{true}}">&ensp;&ensp;&ensp;{{item.NickName}}</text>
+  </view>
+  </view>
+  <view wx:else>
+   没有修改记录
+  </view>
+</view>
+<view class="text-center">
+  <button class="cu-btn bg-orange margin-tb-sm lg" role="button" aria-label="" aria-disabled="false" style='font-size:39rpx;' bindtap='sendData'>保存</button>
+</view>

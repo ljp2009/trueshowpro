@@ -1,0 +1,107 @@
+ <cu-custom bgColor="bg-gradual-white" isBack="{{true}}"><view slot="back" ></view><view slot="content">我的</view>
+ </cu-custom>
+<view class="div-common">
+ <view class="common-icon2">
+<view class="common-icon3" style="margin-left:-4%;" >
+  <view style="height:40rpx;width:135rpx;text-align:center; border: 1rpx solid grey;border-radius: 45rpx;display:inline-block; " bindtap='judgeIsStaff'>成为技师</view>
+  <image src="http://ljp.jujiaoweb.com/static/images/index/change2.jpg" style="width:40rpx;height:40rpx;margin-left:10rpx;margin-bottom:-8rpx;"></image>
+</view>
+    <view class="flex flex-wrap" >
+      <view bindtap="gotoBulletBtn" class="basis-sm  margin-xs padding-sm radius" style=" text-align: center;">弹幕   {{countMyBullet}}</view>
+      <view class="basis-df common-icon">
+        <view class="cu-avatar lg round " style="background-image:url({{userAvatar}});">
+        </view>
+      <image src="http://ljp.jujiaoweb.com/static/images/index/edit.png"  data-type="0" bindtap="eidtUserInfo"></image>
+        </view> 
+        <view  class="common-icon1"
+        style="margin:auto;">{{userNickName}}<image src="http://ljp.jujiaoweb.com/static/images/index/edit.png" data-type="1" bindtap="eidtUserInfo"></image></view>
+    </view>
+  </view>
+
+
+
+	<view class="cu-form-group " bindtap="jumpStaffPoker">
+			<view class="title">技师晒单</view>
+      	<text class="sum" >{{staffPokerCount}}</text>
+		  	<text class="cuIcon-right "></text>
+		</view>
+    <view class="cu-form-group " bindtap="jumpBeauteList">
+			<view class="title">美丽档案</view>
+      	<text class="sum" >{{beautifulProfileLen}}</text>
+			<text class="cuIcon-right text-black"></text>
+		</view>
+   
+<!-- 美丽档案开始 -->
+    <view class="box" wx:for="{{beauteList}}" wx:for-item="itemArr">
+          <view  wx:for="{{itemArr}}" wx:for-item="obj">
+            <view class="paice" >
+            <image src="{{webRoot}}/static/images/index/{{obj.StaffPic.main}}" data-pokerid="{{obj.PokerId}}" data-favordate="{{obj.CreatTime}}" data-staffid="{{obj.StaffId}}"  bindtap="jumpFavoriteDetail"></image>
+            <view class="icon-sum  ">
+             <view style="display:inline-block;width:33%">
+             <image style="display:inline-block" src="http://ljp.jujiaoweb.com/static/images/index/bullet1.png"></image>  <text class="text-sm" style="margin-left:-4%;">{{obj.Bullets}}</text>
+             </view>
+             <view style="display:inline-block;width:33%">
+             <image src="http://ljp.jujiaoweb.com/static/images/index/heart1.png"></image><text class="text-sm">{{obj.Favor}}</text>
+             </view>
+             <view style="display:inline-block;width:33%">
+            <image src="http://ljp.jujiaoweb.com/static/images/index/pic1.png"></image> <text class="text-sm">9</text>
+            </view>
+          </view>
+            </view>
+        </view>
+    </view>  
+<!-- 美丽档案结束 -->
+<view class="cu-form-group " bindtap="jumpGetFollow">
+  <view class="title">关注的技师</view>
+    <text class="sum" >{{allFollowCount}}</text>
+  <text class="cuIcon-right text-black"></text>
+</view>
+<!-- 关注的技师 -->
+<view >
+<view class="  p-xs mb-sm textFlexWrapOne" style="text-align:left;margin-left:1%;">
+      <view class="flex-sub  textFlex " style="margin-left:2%;display:inline-block;width:22%;margin-top:1%;" wx:for="{{staffLists}}" wx:for-item="staffsObj">
+        <image src='{{staffsObj.Avatar}}' style='border:1rpx solid lightgrey;width:160rpx;height:160rpx;border-radius:50%;'></image>
+        <view class="text-df">
+        {{staffsObj['NickName']}} 
+         <text class="cuIcon-roundcheckfill  text-orange" style="margin-left:2%;" wx:if="{{staffsObj.Certificated==1}}"></text>
+          <text wx:elif="{{staffsObj.Certificated==0}}"  class="cuIcon-roundcheckfill  text-block" style='color:gray;margin:0 10rpx;'></text>
+        </view>
+        <view>
+          <!-- 星星 -->
+          <view class='star-wrap' wx:for="{{stars1}}" wx:for-index="index" wx:for-item="starsobj" style="display:inline-block;">
+            <view class='star-item'  wx:key="" wx:if="{{staffsObj['stars']<=index}}" style='background:url("http://ljp.jujiaoweb.com/static/images/index/star_black.png") no-repeat top;background-size:100%;'   data-index="{{index}}" catchtap='starClick'></view>
+            <view class='star-item'  wx:key="" wx:elif="{{staffsObj['stars']>index}}" style='background:url("http://ljp.jujiaoweb.com/static/images/index/star_light.png") no-repeat top;background-size:100%;'   data-index="{{index}}" catchtap='starClick'></view>        
+          </view>
+        </view>
+      </view>     
+    </view>
+</view>
+<!-- 关注的技师结束 -->
+<!-- 今日动态数-->
+ <view class="cu-form-group text-button-count" style="padding-bottom:3%;">
+      <view class="text-button " style="color:white;"><button style="color:white;">今日新动态数：{{todayDiaryCounts}}</button></view>
+	</view>
+
+    <view class="cu-form-group " bindtap="jumpSave">
+			<view class="title">收藏：</view>
+      	<text class="sum" >{{favorsCount}}</text>
+			<text class="cuIcon-right text-black"></text>
+		</view>
+    <!-- 收藏 -->
+   <view class="box" wx:for="{{saveLists}}">
+          <view >
+            <view class="paice" >
+            <image data-pokerid="{{item.PokerId}}" data-favordate="{{item.accessTime}}" data-staffid="{{item.StaffId}}"  bindtap="jumpFavoriteDetail" src="{{webRoot}}/static/images/index/{{item.StaffPic.main}}"></image>
+            <view class="icon-sum  ">
+                  <image src="http://ljp.jujiaoweb.com/static/images/index/bullet1.png"></image>  <text>{{item.Bullets}}</text>
+                  <image src="http://ljp.jujiaoweb.com/static/images/index/heart1.png" style="margin-left: 42%;"></image><text>{{item.Favor}}</text>                
+                </view>
+            </view>
+        </view>
+    </view>
+    <!-- 收藏结束 -->
+    
+ 
+
+
+</view>

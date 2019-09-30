@@ -1,0 +1,182 @@
+// pages/index/firm/firmAd/template/templateList/nonetemplateList.js
+const app = getApp();
+Page({
+/////////////////////该页面 布局部分的图片地址修改为webroot
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    webRoot: app.globalData.webroot,
+    webRoot1: app.globalData.webroot1,
+    adTemplateData:[],
+    firmId:0 //记录当前页面属于的机构id
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    var that = this;
+    //点击进入这个页面 得到当前机构的id
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // var firmId = options["fid"];//机构id
+    var firmId=1;
+    that.setData({
+      firmId: firmId
+    })
+
+    //请求后端 机构广告模板
+    wx.request({
+      url: app.globalData.webroot + '/index/ad/getADTemplateinFirm',
+      method: "post",
+      data: {
+        firmId: firmId 
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded' //post请求
+      },
+      success(res) {
+        //console.log(res.data.msg);
+        var data = res.data.msg;
+        for (var i = 0; i < data.length;i++){
+          //data[i]['MainPic'] = JSON.parse(data[i]['MainPic']);
+          console.log(data[i]['Title']);
+          if (data[i]['MainPic']!=""){
+              data[i]['MainPic'] = JSON.parse(data[i]['MainPic']);
+          } 
+        }
+       
+        that.setData({
+          adTemplateData: data
+        });
+        console.log(that.data.adTemplateData);
+      }
+
+    })
+  },
+  //点击每一个模板图片 进入模板详情
+  gotoTemplateDec:function(e){
+    var that = this;
+    var firmId = that.data.firmId;//当前机构id
+    var templateId = e.currentTarget.dataset.tid;//当前模板id
+    console.log(templateId + "---" + firmId);
+    //跳转到编辑页面
+    wx.navigateTo({
+      url: '/pages/index/firm/firmAd/template/manageTemplate/manageTemplate?tid=' + templateId + "&fid=" + firmId
+    })
+
+    //url='/pages/index/firm/firmAd/template/manageTemplate/manageTemplate'
+  },
+  //左上角 的加号 跳转到添加广告模板页面 带上机构id
+  gotoAddAdTemplate:function(){
+    var that=this;
+    var firmId=that.data.firmId;
+    wx.navigateTo({
+      url: '/pages/index/firm/firmAd/template/manageTemplate/manageTemplate?fid=' + firmId
+    })
+  },
+  //////点击每一个模板的删除事件
+  delADTemplate:function(e){
+    var that=this;
+    var templateId=e.currentTarget.dataset.tid;//模板id
+    wx.showModal({
+      title: '提示',
+      content: '确定要删除广告模板？',
+      success(res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          //把模板id发送给后端
+          wx.request({
+            //url: app.globalData.webroot + '/index/ad/delADTemplate',
+            url: app.globalData.webroot1 + '/index/ad/delADTemplate',
+            method: "post",
+            data: {
+              templateId: templateId
+            },
+            header: {
+              'content-type': 'application/x-www-form-urlencoded' //post请求
+            },
+            success(res) {
+              console.log(res.data.msg);
+                  //删除成功
+              if (res.data.code==1){
+                wx.showToast({
+                  title: res.data.msg,
+                  icon: 'success',
+                  duration: 1000
+                })
+                that.onLoad();
+              }
+
+            }
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  },
+  //点击每一个广告模板的投放 事件
+  adServing:function(e){
+      //获取当前的模板id
+    var templateId = e.currentTarget.dataset.tid;
+    var firmId = e.currentTarget.dataset.fid;
+    var templateTitle = e.currentTarget.dataset.tetitle;//模板标题
+    var createDate = e.currentTarget.dataset.cdate;//模板创建日期
+    console.log("--模板id=" + templateId + "----机构id" + firmId + "---模板标题=" + templateTitle + "--创建日期=" + createDate);
+    //url='/pages/index/firm/firmAd/adPay/adPay'
+    //跳转到购买页面  
+    //需要传的参数有  广告模板标题  模板id  机构id
+    wx.navigateTo({
+      url: '/pages/index/firm/firmAd/adPay/adPay?fid=' + firmId + "&tid=" + templateId + "&tetitle=" + templateTitle + "&cdate=" + createDate
+    })
+  },
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  }
+})

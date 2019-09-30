@@ -1,0 +1,129 @@
+<!--pages/index/firm/firmIndex/firmIndex/firmIndex.wxml-->
+<cu-custom bgColor="bg-gray" isBack="{{true}}" style="color:#000;">
+  <view slot="backText" style='font-size:36rpx;color:#000;'>返回</view>
+  <view slot="content" style='font-size:39rpx;margin-left:-50rpx;color:#000;'>机构</view>
+</cu-custom>
+<view style='background-color:#FFE375;padding:10rpx 2rpx;'>提示：未认证实体店在被举报或涉及商标、品牌纠纷时，自动关店 </view>
+<!-- 目录部分 -->
+<view class="cu-list menu padding-top-sm" role="" aria-label="">
+  <view class="cu-item arrow" role="" aria-label="" style='padding:20rpx 0 20rpx 20rpx;'>
+   <!-- url='/pages/index/firm/firmIndex/firmInfo/firmInfo' -->
+    <view bindtap='firmDetail' class="content" role="" aria-label="">
+      <text class="text-black" style='font-size:39rpx;'>{{firmInfo.FirmName}}</text>
+      
+       <text wx:if="{{firmInfo.Certificated == 1}}" class="title bg-green round margin-left" style='font-size:36rpx;' catchtap="certificate">已认证</text>
+     <text wx:else class="title bg-orange round margin-left" style='font-size:36rpx;' catchtap="certificate">未认证</text>
+     
+      <view>
+        <text class="text-sm" style='font-size:33rpx;'>地   址：{{firmInfo.Province}}{{firmInfo.City}}{{firmInfo.District}}{{firmInfo.FirmAddr}} </text>
+      </view>
+      <view>
+        <text class="text-sm" style='font-size:33rpx;'>负责人：{{firmInfo.RealName}} {{firmInfo.Mobile}}
+ </text>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 目录部分 -->
+<view class="margin-top padding-left">
+  <text style='font-size:33rpx;'>维    护： </text>
+</view>
+<view class="cu-list menu padding-top-sm" role="" aria-label="">
+  <navigator url='/pages/index/firm/firmIndex/firmDesc/firmDesc?FirmId={{staffId}}' class="cu-item arrow" role="" aria-label="">
+    <view class="content" role="" aria-label="" style='font-size:36rpx;'>
+      <text class="text-black">机构简介</text>
+    </view>
+  </navigator>
+  <navigator url='/pages/index/firm/service/serviceList/serviceList?staffId={{staffId}}' class="cu-item arrow" role="" aria-label="">
+    <view class="content" role="" aria-label="" style='font-size:36rpx;'>
+      <text class="text-black">服务项目</text>
+      <text style="position:absolute;right:70rpx;">{{firmInfo.serviceCount}}</text>
+    </view>
+  </navigator>
+  <navigator url='/pages/index/firm/firmIndex/inquiry/inquiry' class="cu-item arrow" role="" aria-label="">
+    <view class="content" role="" aria-label="" style='font-size:36rpx;'>
+      <text class="text-black">顾客咨询</text>
+      <text style="position:absolute;right:70rpx;">15</text>
+    </view>
+  </navigator>
+</view>
+<!-- 目录部分 -->
+<view class="margin-top padding-left">
+  <text style='font-size:33rpx;'>管    理： </text>
+</view>
+<view class="cu-list menu padding-top-sm" role="" aria-label="">
+  <view class="cu-bar bg-white" role="" aria-label="">
+    <view class="action" role="" aria-label="" style='font-size:36rpx;color:#333;'>营业/暂停营业</view>
+    <view class="action" role="" aria-label="">
+      <text class="text-grey text-sm padding-right" style='font-size:30rpx;'>营业中/暂停营业/被禁用</text>
+      <switch bindchange="SetShadow" class="sm" checked=""></switch>
+    </view>
+  </view>
+  <navigator url='/pages/index/firm/firmIndex/transAdmin/transAdmin' class="cu-item arrow" role="" aria-label="">
+    <view class="action" role="" aria-label="" style='font-size:36rpx;'>管理权</view>
+    <view class="action" role="" aria-label="">
+      <text class="text-grey text-sm" style='font-size:36rpx;'>获取</text>
+    </view>
+  </navigator>
+  <navigator url='/pages/index/firm/firmIndex/staffList/staffList' class="cu-item arrow" role="" aria-label="">
+    <view class="action" role="" aria-label="" style='font-size:36rpx;'>成员</view>
+    <view class="action" role="" aria-label="">
+      <text class="text-grey text-sm" style='font-size:36rpx;'>{{firmInfo.staffs}}（{{firmInfo.staffApplying}}等待加入）</text>
+    </view>
+  </navigator>
+  <navigator url="/pages/index/firm/promote/addPromote/addPromote" class="cu-item arrow" role="" aria-label="">
+    <view class="action" role="" aria-label="" style='font-size:36rpx;'>活动发布</view>
+    <view class="action" role="" aria-label="">
+    </view>
+  </navigator>
+  <navigator url='/pages/index/firm/firmAd/template/nonetemplateList/nonetemplateList' class="cu-item arrow" role="" aria-label="">
+    <view class="action" role="" aria-label="" style='font-size:36rpx;'>广告发布</view>
+    <view class="action" role="" aria-label="">
+      <text class="text-grey">0</text>
+    </view>
+  </navigator>
+  <navigator url="/pages/index/firm/finance/financeIndex/financeIndex" class="cu-item arrow" role="" aria-label="">
+    <view class="action" role="" aria-label="" style='font-size:36rpx;'>业务收入</view>
+    <view class="action" role="" aria-label="">
+    </view>
+  </navigator>
+  <navigator url='/pages/index/firm/firmIndex/tester/tester' class="cu-item arrow" role="" aria-label="">
+    <view class="action" role="" aria-label="" style='font-size:36rpx;'>内测资格（截止12月1日）</view>
+    <view class="action" role="" aria-label="">
+      <text class="text-grey text-sm" style='font-size:30rpx;'>已获取/未获取</text>
+    </view>
+  </navigator>
+  <view class="cu-item arrow" role="" aria-label="">
+    <view class="action" role="" aria-label="" style="color:#E00;font-size:36rpx;">修改用户信息</view>
+  </view>
+  <view class="cu-item arrow" role="" aria-label="">
+    <view class="action" role="" aria-label="" style="color:#E00;font-size:36rpx;">退出本机构</view>
+  </view>
+</view>
+
+<view class="margin">
+  <text style='font-size:33rpx;'>平台客服：</text>
+  <view class="flex solid-bottom padding justify-center" role="" aria-label="">
+    <view class="padding-sm margin-xs radius" role="" aria-label="">
+      <view style='font-size:33rpx;'>客服微信号:</view>
+      <view style='font-size:33rpx;'>Benzhenxiu</view>
+    </view>
+    <view class="padding-sm margin-xs radius" role="" aria-label="">
+      <view style='font-size:33rpx;'>客服微信群 :</view>
+      <view style='font-size:33rpx;'>BenZenxiuG</view>
+    </view>
+  </view>
+</view>
+<view class='flex' style='font-size:45rpx;color:#000;'>
+  <view class='flex-treble'></view>
+  <view class='flex-twice' style='text-align:center;'>机构</view>
+  <view style='display:inline-block;width:30rpx;text-align:center;font-size:50rpx;height:50rpx;line-height:50rpx;'>|</view>
+  <view class='flex-twice' style='text-align:center;background-color:#FF6600;color:#FFF;border-radius:10rpx;position:relative;'>约单
+    <view style='width:32rpx;height:32rpx;line-height:32rpx;font-size:32rpx;border-radius:50%;background-color:#F00;position:absolute;right:-6rpx;top:-6rpx;'>2</view>
+  </view>
+  <view style='display:inline-block;width:30rpx;text-align:center;font-size:50rpx;height:50rpx;line-height:50rpx;'>|</view>
+  <view class='flex-twice' style='text-align:center;'>问答</view>
+  <view style='display:inline-block;width:30rpx;font-size:50rpx;height:50rpx;line-height:50rpx;text-align:center;'>|</view>
+  <view class='flex-twice' style='text-align:center;'>我的</view>
+</view>
+<view style='height:30rpx;'></view>

@@ -1,0 +1,95 @@
+<!-- 头部 -->
+<cu-custom bgColor="bg-gray" isBack="{{true}}" style="color:#000;">
+  <view slot="backText" style='font-size:36rpx;color:#000;'>返回</view>
+  <view slot="content" style='font-size:39rpx;margin-left:-50rpx;color:#000;'>服务项目</view>
+</cu-custom>
+<view class='hidOne'>
+  <!-- 分类 -->
+  <view class="grid col-1 margin-bottom bg-white" role="" aria-label="">
+    <view class="padding" role="" aria-label="" style='padding-bottom:0;'>
+      <view class='grid col-2' style='font-size:35rpx;'>
+        <view class='text-left'>服务项目:</view>
+        <view class='text-right'>下架
+          <text style='color:#F00;'>(6)</text>
+        </view>
+      </view>
+    </view>
+    <view class="padding" role="" aria-label="" style='padding-top:0;padding-bottom:0;'>
+      <view class='grid col-2' style='font-size:35rpx;'>
+        <view class='text-left'>分类：</view>
+      </view>
+    </view>
+
+    <scroll-view scroll-x class="bg-white nav" scroll-with-animation scroll-left="{{scrollLeft}}">
+    <block  wx:for="{{classifyList}}">
+      <view class="cu-item {{item.isChoose == true?'choose':'nochoose'}}" wx:key data-seq="{{item.Seq}}" bindtap="changeCat">
+        <button class="cu-btn round sm bg-white  margin-xs catBtn" role="button" aria-disabled="false" style='font-size:35rpx;' >
+          {{item.Name}}
+        </button>
+      </view>
+      </block>
+    </scroll-view>
+
+    <view class="padding" role="" aria-label="" style='padding-top:0;'>
+      <navigator bindtap='changeAddServiceHidOne'  url='/pages/index/firm/service/addService/addService?staffId={{staffId}}'>
+        <button class='grid col-2' style='font-size:35rpx;height:69rpx;padding-top:7rpx;'>
+          <view class='text-left' style='height:57rpx;line-height:57rpx;'>添加服务项目:</view>
+          <view class='text-right'>
+            <image src='http://ljp.jujiaoweb.com/static/images/index/add1.png' style="background-color:#FF6600;border-radius:50%;width:50rpx;;height:50rpx;"></image>
+          </view>
+        </button>
+      </navigator>
+    </view>
+  </view>
+  <!-- 项目列表 -->
+  <view class="bg-white solid-bottom margin-top padding" style='font-size:35rpx;'>
+    <view class="grid col-2">
+      <view class='text-left'>总计:(24)</view>
+      <view class='text-right'>左侧操作</view>
+    </view>
+  </view>
+  <!-- 滑动操作 -->
+  <navigator bindtap='changeAddServiceHidTwo' url='/pages/index/firm/service/addService/addService'>
+    <view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove" wx:for="{{items}}" wx:key="">
+      <view class='touch-content cu-list menu-avatar' data-index="{{index}}">
+        <view class="cu-item ">
+          <view class="cu-avatar radius lg" style="background-image:url(http://ljp.jujiaoweb.com/static/images/index/icon17.jpg);"></view>
+          <view class="content">
+            <view class="text-black">
+              <text class="text-cut" style='font-size:35rpx;'>{{item.title1}}</text>
+              <text class="text-cut" style='font-size:35rpx;'>{{item.title2}}</text>
+            </view>
+            <view class="text-gray text-sm flex">
+              <text class="text-price text-red" style='font-size:35rpx;'>{{item.price}}元</text>
+              <text class="text-cut text-black margin-left-sm" style='font-size:35rpx;'>约{{item.time}}分钟</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <!-- 条件渲染，如果模拟商品数据的state值=0，说明该商品已下架，渲染出来需要上架;反之下架    -->
+      <view class="del" catchtap="del" data-index="{{index}}" wx:if="{{item.state==0}}">上架</view>
+      <view class="del" catchtap="del" data-index="{{index}}" wx:if="{{item.state==1}}">下架</view>
+    </view>
+  </navigator>
+  <!-- 按需加载 -->
+  <view style='height:100rpx;'></view>
+  <view class='text-center' style='font-size:35rpx;'>下拉加载
+    <text style='display:inline-block;width:30rpx;texe-align:center;'>↓</text>
+  </view>
+</view>
+<view style='height:100rpx;'></view>
+<view class='hidTwo'>
+  <view style='font-size:38rpx;text-align:center;'>你的店还没有服务项目</view>
+  <view style='height:5rpx;'></view>
+  <view class="padding" role="" aria-label="" style='padding-top:0;'>
+    <navigator bindtap='changeAddServiceHidOne' url='/pages/index/firm/service/addService/addService'>
+      <button class='grid col-2' style='font-size:35rpx;height:69rpx;padding-top:7rpx;'>
+        <view class='text-left' style='height:57rpx;line-height:57rpx;'>添加服务项目:</view>
+        <view class='text-right'>
+          <image src='/assets/images/index/add.png' style="background-color:#FF6600;border-radius:50%;width:50rpx;;height:50rpx;"></image>
+        </view>
+      </button>
+    </navigator>
+  </view>
+</view>
+<view style='height:300rpx;'></view>

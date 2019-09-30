@@ -1,0 +1,31 @@
+<!--pages/index/user/staff/professionalPic/professionalPic.wxml-->
+<cu-custom bgColor="bg-gray" isBack="{{true}}" style="color:#000;">
+  <view slot="backText" style='font-size:36rpx;color:#000;'>返回</view>
+  <view slot="content" style='font-size:39rpx;margin-left:-50rpx;color:#000;'>形象照片</view>
+</cu-custom>
+<!-- <view class="cu-form-group textareatext bg-white margin-top margin-left margin-right radius"> -->
+		<textarea maxlength="" disabled="{{modalName!=null}}" bindinput="textareaAInput"></textarea>
+<!-- </view> -->
+<text class=' text-gray text-bold advice' style='font-size:20rpx;font-weight:normal;color:#666;'>建议使用正式职业照，着制服或工作服的半身照，体现良好的职业素养</text>
+<view class="action margin">
+  <text class="text-black upload" style='font-size:36rpx;'>上传图片：</text>
+</view>
+<view class="cu-form-group">
+  <view class="grid col-4 grid-square flex-sub">
+    <view class="bg-img" bindtap="ViewImage">
+      <view class="cu-avatar radius" style="background-image:url(http://ljp.jujiaoweb.com/static/images/index/img.jpg);" role="" aria-label=""></view>
+      <view class="cu-tag bg-red" catchtap="DelImg">
+        <text class="cuIcon-close"></text>
+      </view>
+    </view>
+    <view class="solids">
+      <text class="cuIcon-cameraadd"></text>
+    </view>
+    <view class="solids">
+      <text class="cuIcon-cameraadd"></text>
+    </view>
+    <view class="solids">
+      <text class="cuIcon-cameraadd"></text>
+    </view>
+  </view>
+</view>

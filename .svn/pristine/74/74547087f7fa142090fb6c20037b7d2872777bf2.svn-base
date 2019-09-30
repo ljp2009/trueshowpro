@@ -1,0 +1,34 @@
+<view>
+  <!-- 进度条 -->
+
+    <view>
+      <view style="text-align:center;">预约成功,请按约定时间前往门店</view>
+      <view style="height:100rpx;border:1rpx solid red;">
+      {{test1}}----{{firmId}}
+      </view>
+    </view>
+    <view style="text-align:center;">  
+      <button style="margin:0 3%; " class="cu-btn round bg-white {{shadow?'':''}}">红色</button>
+      <button style="margin:0 3%;" class="cu-btn round bg-white {{shadow?'':''}}">红色</button>
+      <button style="margin:0 3%;" class="cu-btn round bg-red {{shadow?'':''}}">红色</button>      
+    </view>
+  <!-- 进度条 -->
+  <!-- 地图 -->
+  <view style="height:100rpx;border:1rpx solid red;">
+      <map id="myMap"
+    markers="{{markers}}"
+    style="width:100%;height:300px;"
+    longitude="{{poi.longitude}}"
+    latitude="{{poi.latitude}}" scale='16' show-location>
+      </map>
+      <!--form表单-->
+      <form bindsubmit="formSubmit">
+          <!--地址输入框,例：39.984060,116.307520-->
+          <!-- <input style="border:1px solid #000;" name="reverseGeo"></input> -->
+          <!--提交表单按钮-->
+          <!-- <button form-type="submit">逆地址解析</button> -->
+      </form>
+      <!-- <view>当前位置为：{{markers[0].title}}</view> -->
+  </view>
+  <!-- 地图结束 -->
+</view>

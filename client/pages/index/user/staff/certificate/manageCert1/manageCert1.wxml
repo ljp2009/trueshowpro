@@ -1,0 +1,127 @@
+  <cu-custom bgColor="bg-gradual-white" isBack="{{true}}"><view slot="backText"></view><view slot="content">机构认证</view></cu-custom>
+ <view class="count"> 
+<view class="cu-bar margin-top bg-white">
+<view class="action">
+    审核流程：
+  </view>
+</view>
+<view class="cu-list grid col-3">
+  <view class="cu-item" wx:for="{{icon}}" wx:key wx:if="{{item.isShow}}">
+    <text class="cuIcon-texi lg text-gray"></text>
+    <text>{{item.name}}</text>
+  </view>
+</view>
+<!-- 审核流程：
+ -->
+   <view class="bg-white padding margin-top-xs padd">
+  <view class="cu-steps">
+    <view class="cu-item {{index>basics?'':'text-orange'}}" wx:for="{{basicsList}}" wx:key style=" font-size:20rpx">
+      <text class="cuIcon-{{index>basics?'round':item.icon}}"></text> {{item.name}}
+    </view>
+  </view>
+</view>
+<view class="cu-bar margin-top bg-white">
+<view class="action">
+   <text>真实姓名</text>    
+  </view> 
+需与营业执照（法人）一致
+  
+</view>
+<view class="section">
+  <input  placeholder="与营业执照一致/个体户填写经营者姓名" />
+</view>
+
+
+<view class="cu-bar margin-top bg-white">
+<view class="action">
+    身份证号：
+
+  </view>
+</view>
+<view class="section">
+  <input  placeholder="" />
+</view>
+
+<view class="cu-bar margin-top bg-white">
+<view class="action">
+    住址：
+  </view>
+  
+</view>
+<view class="section">
+  <input  placeholder="" />
+</view>
+
+<view class="cu-bar margin-top bg-white">
+<view class="action">
+    手机号：
+  </view>
+</view>
+<view class="section">
+  <input  placeholder="" />
+</view>
+<view class="cu-bar margin-top bg-white">
+  <view class="action">
+    性 别：
+  </view>
+  <view class="action">
+    <radio-group bindchange="SetBorderSize">
+      <label class="margin-left-sm">
+        <radio class="orange sm " value="" checked></radio>
+        <text> 男</text>
+      </label>
+      <label class="margin-left-sm">
+        <radio class="orange sm " value="s" ></radio>
+        <text> 女</text>
+      </label>
+    </radio-group>
+  </view>
+</view>
+<view class="cu-bar margin-top bg-white">
+<view class="action" >
+   上传身份证照片：
+  </view>
+</view>
+<view class="cu-form-group" style="margin-top:30rpx" >
+		<view class="grid col-2 grid-square flex-sub">
+			<view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
+				<image src='{{imgList[index]}}' mode='aspectFill'></image>
+				<view class="cu- bg-red" catchtap="DelImg" data-index="{{index}}">
+					<text class="cuIcon-close"></text>
+				</view>
+			</view>
+			<view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<4}}">
+					<text class="cuIcon-roundaddfill" style="font-size:30rpx;color:orange">
+        </text>
+			</view>
+		</view>
+    <view class="grid col-2 grid-square flex-sub">
+			<view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
+				<image src='{{imgList[index]}}' mode='aspectFill'></image>
+				<view class="cu- bg-red" catchtap="DelImg" data-index="{{index}}">
+					<text class="cuIcon-close"></text>
+				</view>
+			</view>
+			<view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<4}}">
+					<text class="cuIcon-roundaddfill" style="font-size:30rpx;color:orange">
+        </text>
+       
+			</view>
+      
+		</view>
+    
+	</view>
+  <view class="cu-bar  ">
+<view class="action" >
+   身份证正面
+  </view>
+  <view style=" margin-right: 35%;" >
+   身份证背面
+  </view>
+</view>
+ 
+<view class="cu-bar margin-top btn-group">
+    <button class="cu-btn bg-orange shadow-blur" >下一步</button>   
+  </view>
+
+  </view>

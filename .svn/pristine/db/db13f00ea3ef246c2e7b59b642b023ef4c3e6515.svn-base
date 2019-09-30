@@ -1,0 +1,193 @@
+<!--pages/index/firm/firmAd/template/manageTemplate/manageTemplate.wxml-->
+<cu-custom bgColor="bg-gray" isBack="{{true}}" style="color:#000;">
+  <view slot="backText" style='font-size:36rpx;color:#000;'>返回</view>
+  <view slot="content" style='font-size:39rpx;margin-left:-50rpx;color:#000;'>广告卡制作</view>
+</cu-custom>
+<view class="margin padding">
+  <text style='font-size:35rpx;'>广告卡标题</text>
+  <view class="cu-form-group " style="margin-top:10rpx;" role="" aria-label="">
+    <input name="userName" placeholder="广告卡标题" 
+    bindinput="titleInput" value="{{valueArr.title}}"/>
+  </view>
+</view>
+<view class="margin padding">
+  <text style='font-size:35rpx;'>广告卡封面</text>
+  <view class="flex p-xs margin-bottom-sm mb-sm text-xl padding margin">
+    <view class=" padding-sm ">
+      <text class="text-left"></text>
+    </view>
+    <view class=" flex-sub border">
+      <view class="padding-left">
+        <text class="text-sub" style='font-size:37rpx;'>店铺/机构名称</text>
+      </view>
+      <view class="padding-left">
+        <text class="text-sm" style='font-size:32rpx;'>机构<text class="cuIcon-roundcheckfill lg text-orange padding-left"></text>
+        <text class="text-white padding-left padding-right margin-left bg-orange full" style='font-size:30rpx;'>满减</text>
+        </text>
+      </view>
+      <view class="padding-left">
+        <text class="text-sm" style='font-size:32rpx;'><text class="cuIcon-location lg text-black">8.5KM</text>
+        <text class="cuIcon-emoji lg text-black padding-left">4</text></text>
+      </view>
+      
+      <view class="box" bindtap="chooseImg" data-imgtype="coverpic" >
+        <image  src="{{coverpic[0]['img']}}" class="poster"></image>
+        <view class="content">
+          <text class="cuIcon-roundaddfill xl text-orange"></text>
+        </view>
+      </view>
+
+    </view>
+    <view class=" padding-sm radius">
+      <text class="text-right"></text>
+      <text class="text-right"></text>
+    </view>
+  </view>
+</view>
+<view class="margin">
+  <view>
+    <text style='font-size:35rpx;'>链接图文</text>
+  </view>
+  <view>
+    <text style='font-size:32rpx;'>点击封面后将展示此图文</text>
+  </view>
+  <view>
+    <text style='font-size:32rpx;'>注意:请按顺序添加图片,避免出现错误!!</text>
+  </view>
+   
+  
+  <!-- 第一组布局 -->
+  <view class="text-center margin">
+    <text style='font-size:35rpx;'>第一组</text>
+  </view>
+  <view class="cu-form-group" role="" aria-label="">
+    <view class="grid col-4 grid-square flex-sub margin" role="" aria-label="">
+   <view wx:for="{{group}}" wx:for-index="index" wx:for-item="iteme" data-index="{{index}}"  bindtap="chooseImg" wx:key="" class="solids" role="" aria-label=""  data-imgtype="firgrouppic"  >
+        <image  wx:if="{{subPic1[index]['img']}}" src="{{subPic1[index]['img']}}" style='width:140rpx;height:150rpx;'></image>
+        <text  wx:if="{{subPic1[index]['img']}}"   class=" xl" style='color:#F37B1D'></text>
+        <text wx:else class="cuIcon-roundaddfill xl" style='color:#F37B1D'></text>
+       <icon   wx:if="{{subPic1[index]['img']}}"  data-index="{{index}}"  type='cancel' class="delete-btn"  catchtap="deleteImg" data-imgtype="firgrouppic"></icon>
+        <icon wx:else></icon>
+      </view>
+
+      <!-- <view bindtap="chooseImg" class="solids" role="" aria-label="" data-imgtype="firgrouppic" data-index="0"> 
+        <image wx:if="{{subPic1[0]['img']}}" src="{{subPic1[0]['img']}}" style='width:130rpx;height:130rpx;'></image>
+        <text wx:if="{{subPic1[0]['img']}}" class=" xl" style='color:#F37B1D'></text>
+        <text  wx:else class="cuIcon-roundaddfill xl" style='color:#F37B1D'></text>
+      </view>
+       <view bindtap="chooseImg" class="solids" role="" aria-label=""  data-imgtype="firgrouppic" data-index="1">
+        <image wx:if="{{subPic1[1]['img']}}" src="{{subPic1[1]['img']}}" style='width:130rpx;height:130rpx;'></image>
+        <text wx:if="{{subPic1[1]['img']}}" class=" xl" style='color:#F37B1D'></text>
+        <text  wx:else class="cuIcon-roundaddfill xl" style='color:#F37B1D'></text>
+      </view>
+       <view bindtap="chooseImg" class="solids" role="" aria-label=""  data-imgtype="firgrouppic" data-index="2">
+        <image wx:if="{{subPic1[2]['img']}}" src="{{subPic1[2]['img']}}" style='width:130rpx;height:130rpx;'></image>
+        <text wx:if="{{subPic1[2]['img']}}" class=" xl" style='color:#F37B1D'></text>
+        <text  wx:else class="cuIcon-roundaddfill xl" style='color:#F37B1D'></text>
+      </view> -->
+    </view>
+  </view>
+
+<!-- 广告文本布局 -->
+  <view class="cu-form-group margin-top " role="" aria-label="">
+    <textarea bindinput="firTextareaInput" maxlength="-1" placeholder="广告文本" style='font-size:32rpx;'   value="{{valueArr.firvalue}}" ></textarea>
+  </view>
+
+  <!-- 第二组布局 -->
+<view wx:if="{{addnum>=2}}">
+<view class="text-center margin">
+    <text style='font-size:35rpx;'>第二组</text>
+  </view>
+  <view class="cu-form-group" role="" aria-label="">
+    <view class="grid col-4 grid-square flex-sub margin" role="" aria-label="">
+      <view wx:for="{{group}}" wx:for-index="index" wx:for-item="iteme" data-index="{{index}}"  bindtap="chooseImg" wx:key="" class="solids" role="" aria-label=""  data-imgtype="secgrouppic"  >
+          <image  wx:if="{{subPic2[index]['img']}}" src="{{subPic2[index]['img']}}" style='width:140rpx;height:150rpx;'></image>
+          <text  wx:if="{{subPic2[index]['img']}}"   class=" xl" style='color:#F37B1D'></text>
+          <text wx:else class="cuIcon-roundaddfill xl" style='color:#F37B1D'></text>
+        <icon   wx:if="{{subPic2[index]['img']}}"  data-index="{{index}}"  type='cancel' class="delete-btn"  catchtap="deleteImg" data-imgtype="secgrouppic"></icon>
+          <icon wx:else></icon>
+        </view>
+            <!-- <view bindtap="chooseImg" class="solids" role="" aria-label="" data-imgtype="secgrouppic" data-index="0">  
+        <image wx:if="{{subPic2[0]['img']}}" src="{{subPic2[0]['img']}}" style='width:130rpx;height:130rpx;'></image>
+        <text wx:if="{{subPic2[0]['img']}}" class=" xl" style='color:#F37B1D'></text>
+        <text  wx:else class="cuIcon-roundaddfill xl" style='color:#F37B1D'></text>
+      </view>
+       <view bindtap="chooseImg" class="solids" role="" aria-label=""  data-imgtype="secgrouppic" data-index="1">
+        <image wx:if="{{subPic2[1]['img']}}" src="{{subPic2[1]['img']}}" style='width:130rpx;height:130rpx;'></image>
+        <text wx:if="{{subPic2[1]['img']}}" class=" xl" style='color:#F37B1D'></text>
+        <text  wx:else class="cuIcon-roundaddfill xl" style='color:#F37B1D'></text>
+      </view>
+       <view bindtap="chooseImg" class="solids" role="" aria-label=""  data-imgtype="secgrouppic" data-index="2">
+        <image wx:if="{{subPic2[2]['img']}}" src="{{subPic2[2]['img']}}" style='width:130rpx;height:130rpx;'></image>
+        <text wx:if="{{subPic2[2]['img']}}" class=" xl" style='color:#F37B1D'></text>
+        <text  wx:else class="cuIcon-roundaddfill xl" style='color:#F37B1D'></text>
+      </view> -->
+    </view>
+  </view>
+<!-- 广告文本布局 -->
+  <view class="cu-form-group margin-top " role="" aria-label="">
+    <textarea bindinput="secTextareaInput" maxlength="-1" placeholder="广告文本" style='font-size:32rpx;'    value="{{valueArr.secvalue}}"   ></textarea>
+  </view>
+</view>
+  <!-- 第三组布局 -->
+<view wx:if="{{addnum>=3}}">
+<view class="text-center margin">
+    <text style='font-size:35rpx;'>第三组</text>
+  </view>
+  <view class="cu-form-group" role="" aria-label="">
+    <view class="grid col-4 grid-square flex-sub margin" role="" aria-label="">
+       <view wx:for="{{group}}" wx:for-index="index" wx:for-item="iteme" data-index="{{index}}"  bindtap="chooseImg" wx:key="" class="solids" role="" aria-label=""  data-imgtype="thirdgrouppic"  >
+            <image  wx:if="{{subPic3[index]['img']}}" src="{{subPic3[index]['img']}}" style='width:140rpx;height:150rpx;'></image>
+            <text  wx:if="{{subPic3[index]['img']}}"   class=" xl" style='color:#F37B1D'></text>
+            <text wx:else class="cuIcon-roundaddfill xl" style='color:#F37B1D'></text>
+          <icon   wx:if="{{subPic3[index]['img']}}"  data-index="{{index}}"  type='cancel' class="delete-btn"  catchtap="deleteImg" data-imgtype="thirdgrouppic"></icon>
+            <icon wx:else></icon>
+          </view>
+         <!-- <view bindtap="chooseImg" class="solids" role="" aria-label="" data-imgtype="thirdgrouppic" data-index="0">  
+        <image wx:if="{{subPic3[0]['img']}}" src="{{subPic3[0]['img']}}" style='width:130rpx;height:130rpx;'></image>
+        <text wx:if="{{subPic3[0]['img']}}" class=" xl" style='color:#F37B1D'></text>
+        <text  wx:else class="cuIcon-roundaddfill xl" style='color:#F37B1D'></text>
+      </view>
+       <view bindtap="chooseImg" class="solids" role="" aria-label=""  data-imgtype="thirdgrouppic" data-index="1">
+        <image wx:if="{{subPic3[1]['img']}}" src="{{subPic3[1]['img']}}" style='width:130rpx;height:130rpx;'></image>
+        <text wx:if="{{subPic3[1]['img']}}" class=" xl" style='color:#F37B1D'></text>
+        <text  wx:else class="cuIcon-roundaddfill xl" style='color:#F37B1D'></text>
+      </view>
+       <view bindtap="chooseImg" class="solids" role="" aria-label=""  data-imgtype="thirdgrouppic" data-index="2">
+        <image wx:if="{{subPic3[2]['img']}}" src="{{subPic3[2]['img']}}" style='width:130rpx;height:130rpx;'></image>
+        <text wx:if="{{subPic3[2]['img']}}" class=" xl" style='color:#F37B1D'></text>
+        <text  wx:else class="cuIcon-roundaddfill xl" style='color:#F37B1D'></text>
+      </view> -->
+    </view>
+  </view>
+<!-- 广告文本布局 -->
+  <view class="cu-form-group margin-top " role="" aria-label="">
+    <textarea bindinput="thirdTextareaInput" maxlength="-1" placeholder="广告文本" style='font-size:32rpx;'   value="{{valueArr.thirdvalue}}" ></textarea>
+  </view>
+</view>
+
+</view>
+<view class="flex justify-center" role="" aria-label="">
+  <view bindtap="addgroup" class="bg-white padding-sm margin-xs solid radius" role="" aria-label="" style='font-size:35rpx;'>
+    <text class="cuIcon-roundaddfill xl text-orange" style='font-size:39rpx;'></text>
+    <text class="padding-left">添加一组</text>
+  </view>
+</view>
+<view class="flex justify-center" role="" aria-label="">
+  <view class=" radius" role="" aria-label="" style='font-size:35rpx;'>
+    <text>最多三组</text>
+  </view>
+</view>
+<view style='height:88rpx;'></view>
+<view>
+  <view class="flex justify-center  padding" role="" aria-label="" style='background-color:#FFF;'>
+    <button class="cu-btn block line-black lg margin padding radius" role="button" aria-label="" aria-disabled="false">
+    <view bindtap="saveAdtemplate"><text class="space text-black" style='font-size:45rpx;'>预览</text></view>
+    </button>
+    <button class="cu-btn block bg-orange lg margin padding" role="button" aria-label="" aria-disabled="false">
+      <view style='display:inline-block;'  bindtap="saveAdtemplate">
+        <text class="space" style='font-size:45rpx;'>保存</text>
+      </view>
+    </button>
+  </view>
+</view>

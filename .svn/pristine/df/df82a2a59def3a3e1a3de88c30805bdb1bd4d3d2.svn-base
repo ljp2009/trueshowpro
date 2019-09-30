@@ -1,0 +1,123 @@
+// pages/index/user/customer/index/index.js
+const app = getApp()
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  },
+  /**
+   * 判断当前用户是否拥有技师身份
+   */
+  judgeIsStaff: function () {
+    console.log(app.globalData.webroot)
+    var userArr = wx.getStorageSync("user");
+    var page = JSON.parse(wx.getStorageSync("user"))["userinfo"]["entry"];
+    var staffLevel = JSON.parse(wx.getStorageSync("user"))["userinfo"]["staffLevel"]; // 隶属状态  0 不是技师 1-等待加入，2-正事成员，3-负责人
+    var staffLevel = 0;
+    if(staffLevel == 0){
+      wx.navigateTo({
+        url: '/pages/index/firm/joinStaff/staffIndex/staffIndex',
+      })
+    }
+    // if(page == 0){
+      // 当前是用户界面，可以成为技师
+      // var uid = JSON.parse(userArr)["userinfo"]["uid"];
+      // console.log(app.globalData.webroot + '/index/user/judgeIsStaff');
+      // 判断用户身份
+      // wx.request({
+      //   url: app.globalData.webroot  +  '/index/user/judgeIsStaff',
+      //   method: 'POST',
+      //   //仅为示例，并非真实的接口地址
+      //   data: {
+      //     uid: uid
+      //   },
+      //   header: {
+      //     'content-type': 'application/json' // 默认值
+      //   },
+      //   success(res) {
+      //     var level = res.data.msg;
+      //     console.log(level);
+      //     if (level == 0) {
+      //       // 不是技师，成为技师，进入机构搜索页面
+      //       wx.navigateTo({
+      //         url: '',
+      //       })
+      //     } else if (level == 1) {
+      //       // 申请成为技师等待加入中
+
+      //     } else if (level == 2) {
+      //       // 技师身份，进入技师首页
+
+      //     } else {
+      //       // 负责人
+      //     }
+      //   },
+      //   fail(res) {
+      //     console.log("fail")
+      //   }
+      // })
+    // }else{
+    //   return false;
+    // }
+    
+  }
+})

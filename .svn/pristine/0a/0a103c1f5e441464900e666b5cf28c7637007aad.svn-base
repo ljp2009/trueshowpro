@@ -1,0 +1,151 @@
+<cu-custom bgColor="bg-gradual-white" isBack="{{true}}"><view slot="back" ></view><view slot="content"b>我的</view></cu-custom>
+
+<view class="div-common">
+
+ <view class="common-icon2">
+<view class="common-icon3" style="border:1rpx solid blue;">
+  <text style=" border: 1rpx solid grey;border-radius: 45rpx;padding:2rpx 10rpx " bindtap='judgeIsStaff'>成为技师</text>
+ <!-- <button style=" border: 1rpx solid grey;border-radius: 45rpx;display:inline-block;padding:2rpx 10rpx" bindtap='judgePage'>成为技师</button>  -->
+<image src="{{webRoot}}/static/images/index/change1.png" style="width:40rpx;height:40rpx;margin-left:10rpx;"></image></view>
+    <view class="flex flex-wrap" >
+      <view bindtap="gotoBulletBtn" class="basis-sm  margin-xs padding-sm radius" style=" text-align: center;">弹幕{{countMyBullet}}</view>
+      <view class="basis-df common-icon">
+        <view class="cu-avatar lg round " style="background-image:url({{userAvatar}});">
+        </view>
+      <image src="{{webRoot}}/static/images/index/edit.png"></image>
+        </view> 
+        <view  class="common-icon1"
+        style="margin:auto;">{{userNickName}}<image src="{{webRoot}}/static/images/index/edit.png"></image></view>
+    </view>
+  </view>
+
+
+
+	<view class="cu-form-group box1">
+			<view class="title">技师晒单</view>
+      	<text class="sum" >111</text>
+		  	<text class="cuIcon-right "></text>
+		</view>
+
+
+    <view class="cu-form-group box1">
+			<view class="title">美丽档案</view>
+      	<text class="sum" >{{beautifulProfileLen}}</text>
+			<text class="cuIcon-right text-black"></text>
+		</view>
+    <view class="box">
+
+<view class="paice"  wx:for="{{beautifulProfile}}" wx:for-index="index" wx:for-item="item"  wx:key="">
+ <image src="{{webRoot}}/static/images/index/catebg.png"></image>
+ <view class="icon-sum  ">
+      <image src="{{webRoot}}/static/images/index/bullet.png"></image>  <text>{{item.Bullets}}</text>
+       <image src="{{webRoot}}/static/images/index/heart.png"></image><text>{{item.Favor}}</text>
+      <image src="{{webRoot}}/static/images/index/icon2.png"></image> <text>+10</text>
+    </view>
+</view>
+
+</view>
+
+    <view class="cu-form-group box1">
+			<view class="title">关注的技师</view>
+      	<text class="sum" >111</text>
+			<text class="cuIcon-right text-black"></text>
+		</view>
+    <!-- 圆图 -->
+<view class="box1">
+<view class="paice1" >
+ <image src="{{webRoot}}/static/images/index/catebg.png"></image>
+ <view class="text-round">15</view>
+ <view class="text-text"> 迪丽热巴<text class="cuIcon-check " style="color: white;"></text> </view>
+ <view class="icon-sum1  ">
+      <text class="cuIcon-favorfill " style="color: orange;"></text> 
+      <text class="cuIcon-favorfill " style="color: orange;"></text>
+      <text class="cuIcon-favorfill " style="color: orange;"></text>
+      <text class="cuIcon-favorfill " style="color: orange;"></text>
+      <text class="cuIcon-favorfill "></text>
+    </view>
+</view>
+<view class="paice1" >
+ <image src="{{webRoot}}/static/images/index/catebg.png"></image>
+ <view class="text-round">15</view>
+ <view class="text-text"> 迪丽热巴<text class="cuIcon-check " style="color: white;"></text> </view>
+ <view class="icon-sum1  ">
+      <text class="cuIcon-favorfill " style="color: orange;"></text> 
+      <text class="cuIcon-favorfill " style="color: orange;"></text>
+      <text class="cuIcon-favorfill " style="color: orange;"></text>
+      <text class="cuIcon-favorfill " style="color: orange;"></text>
+      <text class="cuIcon-favorfill "></text>
+    </view>
+</view>
+<view class="paice1" >
+ <image src="{{webRoot}}/static/images/index/catebg.png"></image>
+ <view class="text-round">15</view>
+ <view class="text-text"> 迪丽热巴<text class="cuIcon-check " style="color: white;"></text> </view>
+ <view class="icon-sum1  ">
+      <text class="cuIcon-favorfill " style="color: orange;"></text> 
+      <text class="cuIcon-favorfill " style="color: orange;"></text>
+      <text class="cuIcon-favorfill " style="color: orange;"></text>
+      <text class="cuIcon-favorfill " style="color: orange;"></text>
+      <text class="cuIcon-favorfill "></text>
+    </view>
+</view>
+<view class="paice1" >
+ <image src="{{webRoot}}/static/images/index/catebg.png"></image>
+ <view class="text-round">15</view>
+ <view class="text-text"> 迪丽热巴<text class="cuIcon-check " style="color: white;"></text> </view>
+  <view class="icon-sum1  ">
+     <text class="cuIcon-favorfill " style="color: orange;"></text> 
+        <text class="cuIcon-favorfill" style="color: orange;"></text>
+        <text class="cuIcon-favorfill " style="color: orange;"></text>
+        <text class="cuIcon-favorfill " style="color: orange;"></text>
+        <text class="cuIcon-favorfill "></text>
+      </view>
+</view>
+</view>
+<!-- Ta们的动态
+ -->
+ <view class="cu-form-group text-button-count">
+      <view class="text-button"><button>Ta们的动态</button></view>
+	</view>
+
+    <view class="cu-form-group box1">
+			<view class="title">收藏：</view>
+      	<text class="sum" >111</text>
+			<text class="cuIcon-right text-black"></text>
+		</view>
+
+ 
+
+<view class="box">
+<view class="paice" >
+ <image src="{{webRoot}}/static/images/index/catebg.png"></image>
+ <view class="icon-sum  ">
+       <image src="{{webRoot}}/static/images/index/bullet.png"></image>  <text>10</text>
+       <image src="{{webRoot}}/static/images/index/heart.png" style="margin-left: 42%;"></image><text>10</text>
+      
+    </view>
+</view>
+<view class="paice" >
+ <image src="{{webRoot}}/static/images/index/catebg.png"></image>
+ <view class="icon-sum  ">
+       <image src="{{webRoot}}/static/images/index/bullet.png"></image>  <text>10</text>
+       <image src="{{webRoot}}/static/images/index/heart.png" style="margin-left: 42%;"></image><text>10</text>
+    
+    </view>
+</view>
+<view class="paice" >
+ <image src="{{webRoot}}/static/images/index/catebg.png"></image>
+ <view class="icon-sum  ">
+       <image src="{{webRoot}}/static/images/index/bullet.png"></image>  <text>10</text>
+       <image src="{{webRoot}}/static/images/index/heart.png" style="margin-left: 42%;"></image><text>10</text>
+    </view>
+</view>
+<view class="paice" >
+ <image src="{{webRoot}}/static/images/index/catebg.png"></image>
+ <view class="icon-sum  ">
+       <image src="{{webRoot}}/static/images/index/bullet.png"></image>  <text>10</text>
+       <image src="{{webRoot}}/static/images/index/heart.png" style="margin-left: 42%;"></image><text>10</text>
+    </view>
+</view>
+</view>
+</view>

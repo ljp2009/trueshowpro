@@ -1,0 +1,38 @@
+/* pages/index/user/staff/professionalPic/professionalPic.wxss */
+.top{
+  font-size: 30rpx;
+  margin-left: 60rpx;
+}
+/* 头部返回 */
+.back{
+  background: url(http://ljp.jujiaoweb.com/images/index/icon16.png) no-repeat;
+  width: 35rpx;
+  height: 35rpx;
+}
+textarea{
+  background-color: #fff;
+  border: 2px solid #ccc;
+  width:95%;
+  margin: 15px auto;
+  padding:10px;
+  border-radius: 20px;
+}
+/* 照片的位置 */
+.textareatext{
+  border-radius: 20rpx;
+  border: 5rpx solid gainsboro;
+  height: 400rpx;
+}
+.cu-avatar{
+  width: 200rpx;
+  height: 150rpx;
+}
+/* 建议 */
+.advice{
+  font-size: 20rpx;
+  margin-left: 50rpx;
+}
+/* 上传图片 */
+.upload{
+  font-size: 25rpx;
+}

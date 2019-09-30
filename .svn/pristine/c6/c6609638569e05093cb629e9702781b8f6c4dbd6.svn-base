@@ -1,0 +1,120 @@
+<view class='hidFive'>
+  <view class="bg-white bg text-center">
+    <text style='font-size:37rpx;color:#444;'>已成功收到款项：</text>
+    <text style='color:red;margin-left:20rpx;font-size:38rpx'>￥{{reservationDataFromStatusFive.PriceFinal}}</text>
+    <view style='font-weight:bold;font-size:42rpx;color:#111;margin-top:20rpx;padding-bottom:15rpx;'>请尽快晒单 </view>
+  </view>
+  <view style='height:30rpx;'></view>
+  <view style='height:50rpx;line-hright:50rpx;font-size:35rpx;margin-left:25rpx;'>晒单服务项目</view>
+
+  <!-- 每一个服务项目开始 reservationDataFromStatusFive -->
+  <view wx:for="{{reservationDataFromStatusFive['service_resn']}}" wx:for-index="index" wx:for-item="item"  wx:key="" class="bg-white" style='padding-top:15rpx;'>
+    <view>
+    <view style="float:left">
+       <text style="font-size:37rpx;color:#444;margin-left:25rpx;width:50rpx;height:60rpx;line-height:70rpx;">{{item.ServiceName}}</text>
+    </view>
+
+      <!-- 三种情况 -->
+
+      <!--1. 技师顾客都晒单了变成灰色不可修改  -->
+     <view wx:if="{{item.StaffPoker==1 && item.CUSTPoker==1}}" style='display:inline-block;vertical-align:top;margin-right:15rpx;float:right' >
+        <button class="cu-btn round sm bg-grey" style='margin-left:15rpx;font-size:35rpx;width:60rpx;height:60rpx;'>秀</button>
+       </view>
+       <!-- 技师顾客都晒单了变成灰色不可修改 -->
+
+      <!--2. 技师晒单 顾客还未晒单 可修改 -->
+      <view wx:elif="{{item.StaffPoker==1 && item.CUSTPoker==0}}" style='display:inline-block;vertical-align:top;margin-right:15rpx;float:right' >
+        <button class="cu-btn round sm bg-orange" style='margin-left:15rpx;font-size:35rpx;width:60rpx;height:60rpx;'>秀</button>
+       </view>
+       <!-- 技师晒单 顾客还未晒单 可修改 -->
+
+      <!--3 技师还未晒单 显示晒单按钮 -->
+ <view   wx:elif="{{item.StaffPoker==0 }}" style='display:inline-block;vertical-align:top;margin-right:10rpx;float:right' >
+        <button bindtap="staffPokerBtn" data-resnid="{{item.RESNId}}"  class="cu-btn round sm bg-orange" style='margin-left:60rpx;font-size:35rpx;width:140rpx;text-align:center;letter-spacing:10rpx;height:60rpx;'>晒单</button>
+      </view> 
+      <!-- 技师还未晒单 显示晒单按钮 -->
+
+    </view>
+    <!-- 清除浮动 -->
+    <view style="clear:both"></view>
+    <view style='height:20rpx;'></view>
+    <view style="font-size:35rpx;margin-left:25rpx;">
+      <view style="float:left"> 顾客评价：</view>
+      <view style="float:right;margin-right:40rpx;">
+          <!-- 评分星级开始 -->
+          <!-- 有 -->
+          <view wx:if="{{item.Poker.Star}}">
+             <view  style="display:inline-block;" wx:for="{{starCountArr}}" wx:for-index="index1" wx:for-item="item1"  wx:key=""  >
+              <text  class="{{item.Poker.Star>=item1?'cuIcon-favorfill lg text-orange':'cuIcon-favorfill lg text-grey'}}">
+              </text>
+            </view>
+          </view>
+       
+        <!-- 没有 -->
+        <view wx:else style="display:inline-block;"  >
+          <text >未评</text>
+        </view>
+      
+     <!-- 评分结束 -->
+      </view>
+     
+    </view>
+    <view style="clear:both"></view>
+    <view style='height:10rpx;'></view>
+    <view class="flex" style="font-size:35rpx;margin-left:25rpx;">
+      <view  class="flex-sub ">顾客评语：</view>
+      <!-- 评语开始 -->
+      <!-- 有 -->
+      <view wx:if="{{item.Poker.Comment}}" class="flex-twice" style='margin-left:-110rpx'>{{item.Poker.Comment}}</view>
+      <!-- 没有 -->
+       <view wx:else style="display:inline-block;margin-right:40rpx"  >
+          <text >未评</text>
+        </view>
+      <!-- 评语结束-->
+    </view>
+    <view style='height:20rpx;'></view>
+    <view class="flex" style="font-size:35rpx;margin-left:25rpx;">
+      <view class="flex-sub ">顾客晒图：</view>
+      <!-- 晒图开始 -->
+      <!-- 有 -->
+      <view  wx:if="{{item.Poker.CustomerPic}}"  class="flex-twice" style='margin-left:-140rpx;'>
+        <view wx:if="{{item.Poker.CustomerPic.csec}}" class="solids">
+          <image wx:if="{{item.Poker.CustomerPic.cfirst}}"  src="{{webRoot}}/static/images/index/{{item.Poker.CustomerPic.cfirst}}" style='width:100rpx;height:100rpx;'></image>
+        </view>
+        <view wx:if="{{item.Poker.CustomerPic.csec}}" class="solids" role="" aria-label="">
+          <image   src="{{webRoot}}/static/images/index/{{item.Poker.CustomerPic.csec}}" style='width:100rpx;height:100rpx;'></image>
+        </view>
+        <view wx:if="{{item.Poker.CustomerPic.cthird}}" class="solids" role="" aria-label="">
+          <image   src="{{webRoot}}/static/images/index/{{item.Poker.CustomerPic.cthird}}" style='width:100rpx;height:100rpx;'></image>
+        </view>      
+      </view>
+      <!-- 没有 -->
+       <view wx:else style="display:inline-block;margin-right:60rpx"  >
+          <text >无</text>
+        </view>
+<!-- 晒图结束 -->
+    </view>
+  </view>
+  <!-- 每一个服务项目 结束 -->
+
+
+
+  <!-- <view class="bg-white" style='margin-top:20rpx;padding-top:15rpx'>
+    <view>
+      <text style="font-size:37rpx;color:#444;margin-left:25rpx;width:50rpx;height:60rpx;line-height:70rpx;">春日乔恩小可爱同款荷包蛋美甲</text>
+       <view  style='display:inline-block;vertical-align:top;' >
+        <button class="cu-btn round sm bg-orange" style='margin-left:60rpx;font-size:35rpx;width:140rpx;text-align:center;letter-spacing:10rpx;height:60rpx;'>晒单</button>
+      </view>
+
+    </view>
+    <view class=" text-sub margin flex-sub" style='font-size:35rpx;'>顾客评价：
+      <text style='margin-left:420rpx'>未评</text>
+    </view>
+    <view class=" text-sub margin flex-sub" style='font-size:35rpx;'>顾客评语：
+      <text style='margin-left:420rpx'>未评</text>
+    </view>
+    <view class=" text-sub margin flex-sub" style='padding-bottom:50rpx;font-size:35rpx;'>顾客晒图：
+      <text style='margin-left:420rpx'>无</text>
+    </view>
+  </view> -->
+</view>

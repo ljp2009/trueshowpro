@@ -1,12 +1,17 @@
 Page({
+  data:{
+    radius:30,
+
+  },
   onReady: function () {
     // 页面渲染完成
     //使用wx.createContext获取绘图上下文context
-    var context = wx.createContext();
+    // var context = wx.createContext();
+    var context = wx.createCanvasContext('mypie', this)
     // 画饼图
     //    数据源
-    var array = [330, 30];
-    var colors = ["#ffffff", "#ff0000"];
+    var array = [360, 10];
+    var colors = ["#ffffff", "#FF6600"];
     var total = 0;
     //    计算总量
     for (var index = 0; index < array.length; index++) {
@@ -15,7 +20,7 @@ Page({
     //    定义圆心坐标
     var point = { x: 100, y: 100 };
     //    定义半径大小
-    var radius = 60;
+    var radius = this.data.radius;
     /*    循环遍历所有的pie */
     for (var i = 0; i < array.length; i++) {
       context.beginPath();
@@ -38,6 +43,10 @@ Page({
       context.setFillStyle(colors[i]);
       //      5.填充动作
       context.fill();
+
+      context.setStrokeStyle("#FF6600")
+      context.stroke()
+
       context.closePath();
     }
     //调用wx.drawCanvas，通过canvasId指定在哪张画布上绘制，通过actions指定绘制行为

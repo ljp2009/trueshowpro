@@ -1,0 +1,325 @@
+// pages/index/firm/firmIndex/firmDesc/firmDesc.js
+var app =getApp()
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    FirmId:'',
+    FirmInfo:{
+      
+    },
+    // 初始化图片
+    pic:{
+      'A0':'',
+      'A1': '',
+      'A2': '',
+      'B0': '',
+      'B1': '',
+      'B2': '',
+      'C0': '',
+      'C1': '',
+      'C2': '',
+    },
+    
+    originalPicStr: "",// 记录数据库中得到的图片字符串，页面加载的时候获取数据，在提交和返回的时候解析得到图片名字
+    addPicArr:[],// 用户在这个页面添加的所有的图片名字   日期/名字.类型
+    // 用来记录存储到数据库的图片名字
+    savePicArr: {
+      'A0': '',
+      'A1': '',
+      'A2': '',
+      'B0': '',
+      'B1': '',
+      'B2': '',
+      'C0': '',
+      'C1': '',
+      'C2': '',
+    }, 
+    webRoot:app.globalData.webroot,
+    descLength:0,
+    logs:[],
+
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    var userArr = wx.getStorageSync("user");
+    var uid = JSON.parse(userArr)["userinfo"]["uid"];
+    var FirmId = options.FirmId;
+    var tmp = {
+      'Discription': ''
+    }
+    var that =this;
+    this.setData({
+      FirmId: FirmId,
+      firmInfo: tmp
+    })
+    // 加载数据
+    wx.request({
+      url: app.globalData.webroot +  '/index/firm/getDescInFirm',
+      method: 'POST',
+      data: {
+        FirmId: FirmId,
+        uid: uid
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        var resData = res.data.msg;
+        console.log(resData)
+        var _firmInfo = {};
+        _firmInfo['Discription'] = resData['Discription'];  // 简介
+        var descLength = _firmInfo['Discription'].length; //简介的字符串长度
+        
+        console.log(resData)
+        var pic = resData['pic'] == "" ? {'A0': '', 'A1': '','A2': '','B0': '', 'B1': '','B2': '','C0': '','C1': '','C2': '',}:JSON.parse(resData['pic']);//
+        console.log(pic)
+        // 初始化存储图片的数组
+        var _logs = resData['log'];
+        if(pic != null){
+          for (let key in pic) {
+            var picItem = pic[key];
+            if (picItem != '') {
+              pic[key] = app.globalData.webroot + '/static/images/service/' + pic[key];
+            }
+          }
+        }else{
+          pic = that.data.pic;
+        }
+        that.setData({
+          firmInfo:_firmInfo,
+          pic: pic,
+          descLength: descLength,
+          logs: _logs,
+          savePicArr: JSON.parse(resData['pic']),
+          originalPicStr: resData['pic']
+          
+        })
+      }
+      
+    })
+    
+  },
+  /**
+   * 保存按钮事件
+   */
+  sendData: function() {
+    var firmId = this.data.FirmId;
+    var that =this;
+   
+    if(this.data.firmInfo['Discription'] == undefined ){
+      wx.showModal({
+        title: '提示',
+        content: '机构简介不能为空',
+        showCancel:false,
+      })
+      return false;
+    }
+    // 得到所有的删除的图片
+    var userArr = wx.getStorageSync("user");  
+    var uid = JSON.parse(userArr)["userinfo"]["uid"]; // 用户id
+    var nickName = JSON.parse(userArr)["userinfo"]["nickName"]; // 昵称
+    var addPicArr = this.data.addPicArr; // 用户添加的所有图片
+    var pic = this.data.pic;
+    var savePicArr = this.data.savePicArr;// 最终存储到数据库的图片
+    var originalPicStr = this.data.originalPicStr; // 初始化数据库中的图片json字符串
+    // originalPicStr = '{"A1":"","A2":"","A0":"20190913\/1568359860387311.png","B0":"20190913\/1568359754565307.jpg","C2":"20190913\/1568359753386640.jpg","B1":"20190913\/1568359768551082.jpg","C0":"20190913\/1568359754262030.jpg","B2":"20190913\/1568359754436685.jpg","C1":"20190913\/1568359754445538.jpg"}';
+    if(originalPicStr != ""){
+      var originalPicObj = JSON.parse(originalPicStr);
+      for (var key in originalPicObj) {
+        if (originalPicObj[key] != "") {
+          addPicArr.push(originalPicObj[key]);
+        }
+      }
+    }else{
+      var originalPicObj = {}
+    }
+    
+    // 将机构简介完成修改    
+    wx.request({
+      url: app.globalData.webroot +  '/index/firm/firmDesText',
+      method: 'POST',
+      //仅为示例，并非真实的接口地址
+      data: {
+        firmId: firmId,
+        des: that.data.firmInfo['Discription'],
+        userid: uid,
+        nickName:nickName,
+        addPicArr:addPicArr,
+        savePicArr: savePicArr,
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        var code = res.data.code;
+        var staffId = that.data.FirmId;
+        if(code == 1){
+          // console.log("跳转页面")
+          wx.navigateTo({
+            url: '/pages/index/firm/firmIndex/firmIndex/firmIndex?firmId=' + staffId,
+          })
+        }else{
+          wx.showModal({
+            title: '提示',
+            content: '信息更新失败',
+            showCancel: false,
+          })
+        }
+        
+      }
+      
+    })
+    
+  },
+  /**
+   * 添加图片
+   */
+  // 上传图片
+  chooseImg: function (e) {
+    var that = this;
+    var imgtype = e.currentTarget.dataset.imgtype; // A,B,C
+    var testPic = this.data.testPic;
+    var tmpPic = that.data.pic;  // 页面中渲染的数据
+    var index = e.currentTarget.dataset.index;//当前选择的图片索引值 0,1,2
+    var coordinate = imgtype + index; // 坐标 A0,A1，A2 ...
+    var addPicArr = this.data.addPicArr; // 用户上传的图片数组
+    wx.chooseImage({
+      count: 1, // 默认9
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: function (res) {
+        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+        var tempFilePaths = res.tempFilePaths;
+        // var index = e.currentTarget.dataset.index;//当前选择的图片索引值
+        // var imgtype = e.currentTarget.dataset.imgtype; // A,B,C
+        // var coordinate = imgtype + index; // 坐标
+        var tmpPic = that.data.pic;  //
+        console.log(tmpPic)
+        tmpPic[coordinate] = tempFilePaths[0];
+        // console.log('选中图片坐标'+coordinate)
+        that.setData({
+          pic: tmpPic
+        })
+        //  直接上传图片，并返回图片名字
+        wx.uploadFile({
+          url: app.globalData.webroot + '/index/firm/handImg',
+          filePath: tempFilePaths[0],// 上传的文件资源的路径
+          name: 'descImg',
+          // HTTP请求中其他额外的form data
+          formData: {
+            
+          },
+          success: function (res2) {
+            
+            var resObj = JSON.parse(res2.data);
+            // var index = e.currentTarget.dataset.index;//当前选择的图片索引值
+            // var imgtype = e.currentTarget.dataset.imgtype; // A,B,C
+            // var coordinate = imgtype + index; // 坐标
+            console.log(coordinate)
+            if(resObj.code == 1){
+              var picName = resObj.msg;
+              var addPicArr = that.data.addPicArr; // 用户上传的图片数组
+              var savePicArr = that.data.savePicArr; // 临时存储数据
+              console.log(addPicArr)
+              console.log(savePicArr)
+              addPicArr.push(picName);
+              savePicArr[coordinate] = picName;
+              that.setData({
+                addPicArr: addPicArr,
+                savePicArr: savePicArr
+              })
+            }else{
+              // 上传失败
+              console.log("图片上传失败，后台处理出现未知错误");
+            }
+          }
+        })
+      }
+    });
+  },
+  // 删除图片
+  deleteImg: function (e) {
+    var imgtype = e.currentTarget.dataset.imgtype;// A
+    var index = e.currentTarget.dataset.index;// 0
+    var tmp = this.data.pic; // 图片对象
+    var key = imgtype+index;
+    // 修改渲染数组的数据    // 修改数据库中存储的数组
+    var pic = this.data.pic;
+    var savePicArr = this.data.savePicArr;
+    pic[key] = "";
+    savePicArr[key] = "";
+    this.setData({
+      pic: tmp,
+      savePicArr: savePicArr
+    })
+    console.log(savePicArr)
+  },
+  /**
+   * textareaAInput 将用户输入数据绑定到this.data中
+   */
+  textareaAInput: function(e){
+    var val = e.detail.value;
+    var length = val.length;
+    var tmp = {
+      'Discription':val
+    }
+    this.setData({
+      firmInfo:tmp,
+      descLength:length
+    })
+  },
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  }
+})

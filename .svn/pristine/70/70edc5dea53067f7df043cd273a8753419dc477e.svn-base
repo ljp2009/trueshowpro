@@ -1,0 +1,297 @@
+// pages/index/reservation/staff/modules/poker/poker.js
+const app = getApp();
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    webRoot: app.globalData.webroot,
+    webRoot1: app.globalData.webroot1,
+    showModal: false,
+    imgsArr:[
+      { img: "", type: "main" },//主图
+      { img: "", type: "vicefir" },//副图1
+      { img: "", type: "vicesec" },//副图2
+      { img: "", type: "cplast" },//对比图1
+      { img: "", type: "cpnext" },//对比图2
+      { img: "", type: "advicefir" },//建议图1
+      { img: "", type: "advicesec" }//建议图2
+    ],//
+    imgs: { ////存储各个位置的图片
+      "main": "", 
+      "vicefir": "",
+      "vicesec": "",
+      "cplast": "",
+      "cpnext": "", 
+      "advicefir": "", 
+      "advicesec": ""
+      },
+   
+    reservationId:0, //当前约单id
+    resnId:0, //对应的约单服务id
+    serverImg:{
+      "main": "",
+      "vicefir": "",
+      "vicesec": "",
+      "cplast": "",
+      "cpnext": "",
+      "advicefir": "",
+      "advicesec": ""
+    }
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    var that=this;
+   //console.log(options);//{reservationId: "20", resnId: "13"}
+    // var reservationId = options.reservationId;//当前的约单id
+    // var resnId = options.resnId;//当前的约单对应的约单服务id
+    ///////////////////需要修改
+    var reservationId = 20;//当前的约单id
+    var resnId = 13;//当前的约单对应的约单服务id
+    that.setData({
+      reservationId: reservationId,
+      resnId: resnId
+    })
+  },
+  // 上传图片
+  chooseImg: function (e) {
+    var that = this;
+    var imgs = that.data.imgs;
+    var imgsArr = that.data.imgsArr;
+    var type = e.currentTarget.dataset.type;
+    console.log(type)
+  
+    wx.chooseImage({
+      count: 1, // 默认9
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: function (res) {
+        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+        var tempFilePaths = res.tempFilePaths;
+       //{"main":"test.jpg","vicefir":"test.jpg","vicesec":"test2.jpg","cplast":"test2.jpg","cpnext":"hand.png","advicefir":"test.jpg","advicesec":"test2.jpg"}
+        console.log(tempFilePaths);
+        imgs[type] = tempFilePaths[0];
+        for (var i = 0; i < imgsArr.length;i++){
+          if (imgsArr[i]["type"] == type){
+            imgsArr[i]["img"] = tempFilePaths[0];
+          }
+       }
+        that.setData({
+          imgsArr: imgsArr,
+          imgs: imgs
+        })
+
+        console.log(that.data.imgs)
+
+
+
+        // for (var i = 0; i < tempFilePaths.length; i++) {
+        //   if (imgs.length >= 9) {
+        //     that.setData({
+        //       imgs: imgs
+        //     });
+        //     return false;
+        //   } else {
+        //     imgs.push(tempFilePaths[i]);
+        //   }
+        // }
+        // console.log(imgs);
+        // that.setData({
+        //   imgs: imgs
+        // });
+        // 上传到服务器
+        // wx.uploadFile({
+        //   url: app.globalData.webroot + '/index/firm/testUpload', //仅为示例，非真实的接口地址
+        //   filePath: tempFilePaths[0],// 上传的文件资源的路径
+        //   name: 'firmImage',
+        //   // HTTP请求中其他额外的form data
+        //   formData: {
+        //     'uid': 666
+        //   },
+        //   success(res) {
+        //     const data = res.data
+        //     console.log(data)
+        //     //do something
+        //   }
+        // })
+      }
+    });
+  },
+  //调用上传图片到服务器的接口 可多张图片
+  uploadFile: function (picArr,) {
+    var that=this;
+    var imgs = that.data.imgs;
+    var reservationId = that.data.reservationId;//约单id
+    var resnId = that.data.resnId;//约单服务id
+    var isFile = 0;  // 记录是不是文件
+    var isLast = 0; // 是否是最后一张
+    var uid = JSON.parse(wx.getStorageSync("user"))["userinfo"]["uid"]; //当前的uid
+   
+    for (var j = 0; j < picArr.length; j++) {
+      if(j == picArr.length-1) {
+        // 最后一张
+        isLast = 1;
+        console.log("---")
+      }else{
+        isLast = 0;
+      }
+      var type = picArr[j]["type"];
+      if (picArr[j]["img"].indexOf("http://tmp") != -1) {
+        // 文件   上传
+        isFile = 1;
+        wx.uploadFile({
+          url: app.globalData.webroot1 + '/index/poker/newStaffPokerPic', //仅为示例，非真实的接口地址
+          filePath: picArr[j]["img"],// 上传的文件资源的路径
+          name: 'img',
+          // HTTP请求中其他额外的form data
+          formData: {
+            imgurl: picArr[j]["img"],
+            type: picArr[j]["type"],
+            reservationId: reservationId,
+            resnId: resnId,
+            isFile: isFile,
+            isLast: isLast,
+          },
+          success:function(res) {
+           
+            var s = JSON.parse(res.data);
+            // var data = s.msg;
+            console.log(s);
+            var img = s.msg.img;
+            var type = s.msg.type;
+            var others = s.others;
+            var list = that.data.imgsArr;
+            for(var m =0;m<list.length;m++){
+              if(list[m].type == type){
+                list[m].img = img;
+                break;
+              }
+            }
+            that.setData({
+              imgsArr:list
+            })
+            console.log(isLast)
+            if (others == 1){
+              that.lastImg(list)
+            }
+            console.log(that.data.imgsArr)
+
+          }
+        })
+      }else{
+        // 不是文件
+      }
+    }
+
+  },
+  //点击保存的点击事件
+  saveStaffPokerBtn:function(){
+    console.log("---保存按钮点击")
+    //得到图片数组
+    var that=this;
+    var imgsArr=that.data.imgsArr;
+    console.log(imgsArr);
+
+    //调用上传图片的接口
+    that.uploadFile(imgsArr);
+  },
+  /**
+   * 最后一张图片处理方法
+   */
+  lastImg: function(imgs){
+    var that = this;
+    var data = JSON.stringify(imgs);
+    console.log(data);
+    wx.request({
+          //url: app.globalData.webroot + '/index/reservation/unReadReservation',
+      url: app.globalData.webroot1 + '/index/poker/updateImg',
+          method: "post",
+          data: {
+            reservationId: that.data.reservationId,
+            resnId: that.data.resnId,
+            imgs: data
+          },
+          header: {
+            'content-type': 'application/x-www-form-urlencoded' //post请求
+          },
+          success(res) {
+            console.log(res)
+          }
+        })
+  },
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  },
+  //弹窗
+  showDialogBtn: function () {
+    this.setData({
+      showModal: true
+    })
+  },
+  //弹出框蒙层截断touchmove事件
+  preventTouchMove: function () {
+  },
+  // 隐藏模态对话框
+  hideModal: function () {
+    this.setData({
+      showModal: false
+    })
+  },
+  // 对话框取消按钮点击事件
+  onCancel: function () {
+    this.hideModal()
+  },
+  //对话框确认按钮点击事件
+  onConfirm: function () {
+    this.hideModal();
+  }
+})

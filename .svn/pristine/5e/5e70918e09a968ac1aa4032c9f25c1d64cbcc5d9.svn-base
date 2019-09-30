@@ -1,0 +1,96 @@
+/* pages/index/user/staff/diaryIndex/diaryIndex.wxss */
+.top{
+  font-size: 30rpx;
+  margin-left: 120rpx;
+}
+/* 添加日记 */
+.add{
+  font-size: 40rpx;
+}
+/* 头部返回 */
+.back{
+  background: url(http://ljp.jujiaoweb.com/images/index/icon16.png) no-repeat;
+  width: 35rpx;
+  height: 35rpx;
+}
+/* 轮播图片 */
+.imgs{
+  margin-left: 55rpx;
+  margin-top: 20rpx;
+}
+/* 技师基本信息 */
+.message{
+  background-color: white
+}
+.head-picture{
+  /* border: 1px solid black */
+  display: inline-block
+}
+.name{
+  display: inline-block
+}
+.name-size{
+  font-size: 45rpx
+}
+.info{
+  display: inline-block
+}
+.experience,.thumbs-up,.receive{
+  display: inline-block
+}
+.edit{
+  margin-top: 90rpx;
+  margin-left: 90rpx;
+  font-size: 30rpx;
+}
+.box{
+  margin-top: 0rpx;
+}
+.btnContain{
+  text-align: right;
+  padding-right: 15px;
+  position: fixed;
+  right: 10px;
+  z-index: 99;
+  color:white;
+}
+.btnContain .btn1,.btnContain .btn2{
+  display: inline-block;
+  border: 1px solid #777;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.btnContain .btn1{
+  margin-right: 10px;
+}
+.btnContain .btn1 image,.btnContain .btn2 image{
+  width:20px;
+  height: 20px;
+  margin-right: 5px;
+  vertical-align: bottom;
+
+}
+.dirayText{
+  font-size:35rpx;
+  width: 100px;
+
+overflow:hidden;
+
+text-overflow:ellipsis;
+
+display:-webkit-box;
+
+-webkit-box-orient:vertical;
+
+-webkit-line-clamp:1;
+}
+.red{
+  color:red;
+}
+.hide{
+  display:none;
+}
+.firstCard{
+  margin-top:20px;
+}

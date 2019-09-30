@@ -1,0 +1,22 @@
+<cu-custom bgColor="bg-gradual-white" isBack="{{true}}"><view slot="back" ></view><view slot="content"b>技师</view></cu-custom>
+<view >
+<view class="  p-xs mb-sm textFlexWrapOne" style="text-align:left;margin-left:1%;">
+      <view class="flex-sub  textFlex " style="margin-left:2%;display:inline-block;width:22%;margin-top:1%;" wx:for="{{staffLists}}" wx:for-item="staffsObj">
+        <image src='{{staffsObj.Avatar}}' style='width:160rpx;height:160rpx;border-radius:50%;'></image>
+        <view class="text-df">
+        {{staffsObj['NickName']}} 
+         <text class="cuIcon-roundcheckfill  text-orange" style="margin-left:2%;" wx:if="{{staffsObj.Certificated==1}}"></text>
+          <text wx:elif="{{staffsObj.Certificated==0}}"  class="cuIcon-roundcheckfill  text-block" style='color:gray;margin:0 10rpx;'></text>
+        </view>
+        <view>
+          <!-- 星星 -->
+          <view class='star-wrap' wx:for="{{stars1}}" wx:for-index="index" wx:for-item="starsobj" style="display:inline-block;">
+            <view class='star-item'  wx:key="" wx:if="{{staffsObj['stars']<=index}}" style='background:url("http://ljp.jujiaoweb.com/static/images/index/star_black.png") no-repeat top;background-size:100%;'   data-index="{{index}}" catchtap='starClick'></view>
+            <view class='star-item'  wx:key="" wx:elif="{{staffsObj['stars']>index}}" style='background:url("http://ljp.jujiaoweb.com/static/images/index/star_light.png") no-repeat top;background-size:100%;'   data-index="{{index}}" catchtap='starClick'></view>        
+          </view>
+        </view>
+      </view>     
+    </view>
+</view>
+
+

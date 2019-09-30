@@ -1,0 +1,29 @@
+<!--pages/index/firm/firmIndex/addFirm/addFirm.wxml-->
+<cu-custom bgColor="bg-gray" isBack="{{true}}" style="color:#000;">
+  <view slot="backText" style='font-size:36rpx;color:#000;'>返回</view>
+  <view slot="content" style='font-size:39rpx;margin-left:-50rpx;color:#000;'>新建机构</view>
+</cu-custom>
+<view style='font-size:35rpx;'>
+<form bindsubmit='addFirm'>
+<view class='main'>全 称：(*)</view>
+  <input class='bg-white' style='width:88%' name="fullName" value='{{form.fullName}}' placeholder='全称' ></input>
+  <view class='main'>简 称：</view>
+  <input class='bg-white' style='width:88%' name='abbreviation' value='{{form.abbreviation}}' placeholder='简 称' ></input>
+  <view class='main'>区 域：(*)</view>
+  <view class='address'>
+    <input class='bg-white' style='width:23%' value='{{form.province}}' placeholder='省/自治区' name="province"></input>
+    <input class='bg-white' style='width:23%' placeholder='市' name='city'  value='{{form.city}}'></input>
+    <input class='bg-white' style='width:23%' placeholder='区' name='area' value='{{form.area}}'></input>
+    <input class='bg-white' style='width:23%' placeholder='街道' name='street' value='{{form.street}}'></input>
+  </view>
+  <view class='clear'></view>
+  <view class='main way'>道路和门牌号：(*)</view>
+  <input class='bg-white' style='width:87%' name='doorNumber'  value='{{form.doorNumber}}'placeholder='道路和门牌号'></input>
+  <view class='label'>
+    <text style='float:left;font-size:35rpx;'>地理位置标注：</text>
+    <text style='float:right;font-size:35rpx;'>标注/已标注</text>
+  </view>
+  <button form-type='submit' class="black bg-orange margin-tb-sm lg btn  {{shadow?'shadow':''}}" >完 成</button>
+</form>
+  
+</view>

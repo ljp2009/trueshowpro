@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "timearea": "/component/timearea/test1"
+    "timearea": "../../../component/timearea/test1"
+    
   }
 }

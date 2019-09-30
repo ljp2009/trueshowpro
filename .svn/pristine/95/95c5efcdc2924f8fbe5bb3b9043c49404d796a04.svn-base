@@ -1,0 +1,93 @@
+<cu-custom bgColor="bg-gray" isBack="{{true}}" style="color:#000;">
+  <view slot="backText" style='font-size:36rpx;color:#000;'>返回</view>
+  <view slot="content" style='font-size:39rpx;margin-left:-50rpx;color:#000;'>晒单</view>
+</cu-custom>
+<view class="flex" style='font-size:35rpx;'>
+  <view class='flex-sub' style="margin-left:30rpx;">上传照片</view>
+  <navigator url='/pages/index/reservation/staff/modules/pokerModal/pokerModal'>
+    <view class='flex-sub' style="margin-right:30rpx;text-align:right;">
+      <text class="cuIcon-questionfill  text-yellow" style="margin-right:5rpx;font-size:37rpx;"></text>注意事项</view>
+  </navigator>
+</view>
+  
+<view style='margin-left:30rpx;margin-top:15rpx;font-size:33rpx;'>
+  <text class="cuIcon-title text-black"></text>请避免清晰正面人像图片</view>
+<view style='margin-left:30rpx;margin-top:10rpx;font-size:33rpx;'>
+  <text class="cuIcon-title text-black"></text>含虚假图片可能会被顾客禁用此晒单，无法恢复。</view>
+
+<view class="margin" style='font-size:34rpx;'>
+  <view class="text-center">
+    <view class='add-img' bindtap="chooseImg" data-type="main" style="background-image:url({{imgs.main}});background-size:100% 100%">
+      <view style='margin-top:50rpx'>主图片（必须）</view>
+      <view style='margin-top:30rpx'>凸显整体效果，</view>
+      <view>通过此图完整表现</view>
+      <view class='cuIcon-roundaddfill text-orange icon-position'></view>
+      <view class="clickupload" style='font-size:30rpx;color:black'>点击上传</view>
+       <text wx:if="{{imgs.main}}" data-type="main" catchtap="deleteImg" class='cuIcon-roundclosefill text-orange icon-position delete-btn' ></text>
+    </view>
+    <view class='add-img rightimage' bindtap="chooseImg" data-type="vicefir"  style="background-image:url({{imgs.vicefir}}); background-size:100% 100%;">
+    
+      <view style='margin-top:50rpx'>副图</view>
+      <view style='margin-top:30rpx'>（可选）</view>
+      <view>特写，细节</view>
+      <text class='cuIcon-roundaddfill text-orange icon-position'></text>
+      <view class="clickupload" style='font-size:30rpx;color:black'>点击上传</view>
+   <text wx:if="{{imgs.vicefir}}" data-type="vicefir" catchtap="deleteImg" class='cuIcon-roundclosefill text-orange icon-position delete-btn' ></text>
+    </view>
+  </view>
+  <view class="text-center middleleft" style='margin-top:30rpx;border:'>
+    <view class='add-img' bindtap="chooseImg" data-type="vicesec"  style="background-image:url({{imgs.vicesec}});background-size:100% 100%">
+      <view style='margin-top:50rpx'>副图</view>
+      <view style='margin-top:30rpx'>特写，细节</view>
+      <view>（可选）</view>
+      <text class='cuIcon-roundaddfill text-orange icon-position'></text>
+      <view class="clickupload" style='font-size:30rpx;color:black'>点击上传</view>
+      <text wx:if="{{imgs.vicesec}}" data-type="vicesec" catchtap="deleteImg" class='cuIcon-roundclosefill text-orange icon-position delete-btn' ></text>
+    </view>
+    <view class='add-img rightimage middleright' style=''>
+       <view bindtap="chooseImg" data-type="cplast" style="position:relative;width:280rpx;height:250rpx;border-bottom:1px solid grey;background-image:url({{imgs.cplast}});background-size:100% 100%">
+          <view style='padding-top:20rpx'>效果对比图</view>
+          <view style='margin-top:7rpx'>（服务前）</view>
+          <text class='cuIcon-roundaddfill text-orange icon-position1'></text>
+          <view class="clickupload1" style='font-size:30rpx;color:black;padding-bottom:30rpx;width:280rpx'>点击上传</view>
+           <text wx:if="{{imgs.cplast}}" data-type="cplast" catchtap="deleteImg" class='cuIcon-roundclosefill text-orange icon-position delete-btn' ></text>
+       </view>
+      <view  bindtap="chooseImg" data-type="cpnext"  style="position:relative;width:280rpx;height:250rpx;background-image:url({{imgs.cpnext}});background-size:100% 100%">
+            <view >效果对比图</view>
+            <view style='margin-top:7rpx'>（服务后）</view>
+            <text class='cuIcon-roundaddfill text-orange icon-position2'></text>
+            <view class="clickupload2" style='font-size:30rpx;color:black;'>点击上传</view>
+            <text wx:if="{{imgs.cpnext}}" data-type="cpnext" catchtap="deleteImg" class='cuIcon-roundclosefill text-orange icon-position delete-btn' ></text>
+       </view>
+     
+    </view>
+
+  </view>
+  <view class="text-center" style='margin-top:30rpx'>
+    <view class='add-img' bindtap="chooseImg" data-type="advicefir"  style="background-image:url({{imgs.advicefir}});background-size:100% 100%">
+      <view style='margin-top:50rpx'>建议图片</view>
+      <view style='margin-top:30rpx'>体现服务过程</view>
+      <view>（可选）</view>
+      <text class='cuIcon-roundaddfill text-orange icon-position'></text>
+      <view class="clickupload" style='font-size:30rpx;color:black'>点击上传</view>
+      <text wx:if="{{imgs.advicefir}}" data-type="advicefir" catchtap="deleteImg" class='cuIcon-roundclosefill text-orange icon-position delete-btn' ></text>
+    </view>
+    <view class='add-img rightimage'  bindtap="chooseImg" data-type="advicesec"  style="background-image:url({{imgs.advicesec}});background-size:100% 100%">
+      <view style='margin-top:50rpx'>建议图片</view>
+      <view style='margin-top:30rpx'>提现服务环境等</view>
+      <view>（可选）</view>
+      <text class='cuIcon-roundaddfill text-orange icon-position'></text>
+      <view class="clickupload" style='font-size:30rpx;color:black'>点击上传</view>
+      <text wx:if="{{imgs.advicesec}}" data-type="advicesec" catchtap="deleteImg" class='cuIcon-roundclosefill text-orange icon-position delete-btn' ></text>
+    </view>
+  </view>
+</view>
+
+
+
+<view class="margin" style="margin-left:30%;font-size:32rpx;">
+  <view>保存后，晒单即可在“秀”</view>
+</view>
+<view class="text-center bg-white">
+  <button bindtap="saveStaffPokerBtn" class="cu-btn bg-orange margin-tb-sm lg" role="button" aria-label="" aria-disabled="false">保存</button>
+</view>

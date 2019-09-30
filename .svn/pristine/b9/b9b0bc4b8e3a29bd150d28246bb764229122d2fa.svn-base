@@ -1,0 +1,481 @@
+// pages/index/user/staff/staffCard/staffCard.js
+const app = getApp();
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    webRoot: app.globalData.webroot,
+    webRoot1: app.globalData.webroot1,
+    // 锚点
+    StatusBar: app.globalData.StatusBar,
+    CustomBar: app.globalData.CustomBar,
+    Custom: app.globalData.Custom,
+    //
+    TabCur: 0,
+    MainCur: 0,
+    VerticalNavTop: 0,
+    list: ['个人信息', '服务项目', '作品', '评价'],
+    //
+    load: true,
+    // 锚点结束
+    navList: ['个人信息', '服务项目', '作品', '评价'],
+    // 导航隐藏
+    navHid: true,
+    // 服务项目的滑块
+    TabCur: 0,
+    scrollLeft: 0,
+    webRoot: app.globalData.webroot,
+    // 中医滑块的
+    imgs: [],
+    //滑块的
+    imgUrls: [
+      'https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg',
+      'https://ossweb-img.qq.com/images/lol/web201310/skin/big39000.jpg',
+      'https://images.unsplash.com/photo-1551446591-142875a901a1?w=640'
+    ],
+
+   
+  
+    //模态框
+    firmBasicInfo:[], //机构的基本信息
+    firmPromoteInfo:[], //机构的优惠活动
+    staffLists:[],
+     currentSelectCat:"", //记录当前选中的服务项目分类顺序 ""--全部选中
+    firmService:[],//机构的服务项目
+    firmServiceCount:0,   //机构服务项目的个数
+    firmId:1,//当前机构id
+    swiperIndex:0,//滑动时服务项目的当前位置
+    // 星星
+    stars1: [{
+      lightImg: 'http://ljp.jujiaoweb.com/static/images/index/star_light.png',
+      blackImg: 'http://ljp.jujiaoweb.com/static/images/index/star_black.png',
+      flag: 0,
+      message: '非常不满意，各方面都很差'
+    }, {
+      lightImg: 'http://ljp.jujiaoweb.com/static/images/index/star_light.png',
+      blackImg: 'http://ljp.jujiaoweb.com/static/images/index/star_black.png',
+      flag: 0,
+      message: '不满意，比较差'
+    }, {
+      lightImg: 'http://ljp.jujiaoweb.com/static/images/index/star_light.png',
+      blackImg: 'http://ljp.jujiaoweb.com/static/images/index/star_black.png',
+      flag: 0,
+      message: '一般，还要改善'
+    }, {
+      lightImg: 'http://ljp.jujiaoweb.com/static/images/index/star_light.png',
+      blackImg: 'http://ljp.jujiaoweb.com/static/images/index/star_black.png',
+      flag: 0,
+      message: '一般，还要改善'
+    }, {
+      lightImg: 'http://ljp.jujiaoweb.com/static/images/index/star_light.png',
+      blackImg: 'http://ljp.jujiaoweb.com/static/images/index/star_black.png',
+      flag: 0,
+      message: '一般，还要改善'
+    }],
+    showMore:true,  //更多按钮布局是否显示
+    currentService:[], //记录当前的所有服务项目
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    var that=this;
+    console.log(wx.getStorageSync("user"))
+    console.log(JSON.parse(wx.getStorageSync("user")))
+    var user = JSON.parse(wx.getStorageSync("user"));
+    var noLoginObj = user["noLogin"];
+    //得到用户的经纬度
+    var lat = noLoginObj["lat"];  //纬度
+    var lng = noLoginObj["lng"];  //纬度
+    ////////////////机构id是通过传参过来
+    var firmId=that.data.firmId;//机构id ///////////////需要修改
+
+    ///获取机构基本信息
+    wx.request({
+      //url: app.globalData.webroot + '/index/firm/getFirmById',
+      url: app.globalData.webroot1 + '/index/firm/getFirmById',
+      method: "post",
+      data: {
+        lat: lat,
+        lng: lng,
+        firmId: firmId
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded' //post请求
+      },
+      success(res) {
+        //console.log(res.data.msg);
+        var data = res.data.msg;
+        that.setData({
+          firmBasicInfo: data
+        })
+        console.log(that.data.currentSelectCat);
+        console.log(that.data.firmBasicInfo);
+        var currentSelectCat = that.data.currentSelectCat;
+       // return;
+       //获取机构所有的服务项目
+       that.getFirmService();
+      }
+    })
+
+//获取机构的优惠活动
+    wx.request({
+      //url: app.globalData.webroot + '/index/firm/getFirmById',
+      url: app.globalData.webroot1 + '/index/promote/getPromoteByFirm',
+      method: "post",
+      data: {
+        allRecod:0,
+        firmId: firmId
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded' //post请求
+      },
+      success(res) {
+        //console.log(res.data.msg);
+        
+        if (res.data.code!=0){
+          var data = res.data.msg;
+          that.setData({
+            firmPromoteInfo: data
+          })
+          console.log(that.data.firmPromoteInfo);
+        }
+      }
+    })
+
+
+    // 锚点
+    // let list = [{}];
+    // for (let i = 0; i < 26; i++) {
+    //   list[i] = {};
+    //   list[i].name = String.fromCharCode(65 + i);
+    //   list[i].id = i;
+    // }
+    // var list1=['个人信息','服务项目','作品','评价'];
+    // this.setData({
+
+    //   listCur: list[0]
+    // })
+    // console.log("!!!!!!!")
+    // console.log(this.data.list);
+    // 锚点结束
+    //时间js
+    // 关于日期的js
+    
+   
+    // 得到成员技师  请求后端
+    wx.request({
+      url: app.globalData.webroot1 + '/index/user/getStaffByFirmId',
+      method: "post",
+      data: {
+        //FirmId  Min   Max
+        FirmId: 1,  //*********************要改 */
+        Min: 0,
+        Max: 3
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded' //post请求
+      },
+      success(res) {
+        var staffLists = res.data.msg;
+        console.log(staffLists);
+        //
+        that.setData({
+          staffCount: staffLists[0]['count']
+        })
+
+        for (var i = 0; i < staffLists.length; i++) {
+          console.log(i);
+          var satisfection = staffLists[i]['Satisfection'] / 10;//评分
+          var num = Math.round(satisfection);//四舍五入分
+          console.log(satisfection + "========");
+          console.log(num + "-----")
+
+
+          staffLists[i]['stars'] = num;
+        }
+        console.log("整理得---");
+        console.log(staffLists);
+        that.setData({
+          staffLists: staffLists
+        })
+      }
+    })
+    
+  },
+  //滑块滑动
+  moveServerProSwiper:function(e){
+    console.log("---")
+    console.log(e)
+  
+    console.log(e.detail.current)
+    var that=this;
+    that.setData({
+      swiperIndex: e.detail.current,
+     
+    })
+    console.log("----当前滑快的位置=" + that.data.swiperIndex)
+  },
+  //
+  jumpStaffs:function(){
+    ///pages/index/firm/firmCard/firmStaff/firmStaff
+    wx.navigateTo({
+      url: '/pages/index/firm/firmCard/firmStaff/firmStaff',
+    })
+  },
+  // 锚点js
+  getStatus(e) {
+    this.setData({ status: e.currentTarget.dataset.index })
+  },
+  // 页面滑动 导航栏出现
+  onPageScroll(e) {
+    if (e) {
+      this.setData({
+        navHid: false
+      })
+    }
+    console.log(e)
+  },
+  // 服务项目的滑块
+  changeMainCat(e) {
+    var that=this;
+    var seq = e.currentTarget.dataset.seq;
+    this.setData({
+      TabCur: e.currentTarget.dataset.id,
+      scrollLeft: (e.currentTarget.dataset.id - 1) * 60,
+      currentSelectCat: seq,
+      swiperIndex:0
+    })
+    
+    console.log(this.data.TabCur);    
+    console.log(seq);
+     
+        
+    //通过当前的大分类顺序获取对应的服务项目
+    that.getFirmService();
+    
+  },
+  // 模态框
+  showModal(e) {
+    this.setData({
+      modalName: e.currentTarget.dataset.target
+    })
+    console.log(this.data.modalName);
+
+  },
+  // 模态框消失
+  hideModal(e) {
+    this.setData({
+      modalName: null
+    })
+  },
+  // 点击作品展示箭头事件
+  showWorks: function () {
+    console.log("点击了作品展示更多");
+    wx.navigateTo({
+      url: '../staffWorkShow/staffWorkShow'
+    })
+  },
+  // 时间
+  // 选择日期点击事件
+  chooseDate: function (e) {
+    console.log("选择的日期是" + e.currentTarget.dataset.item);
+    console.log("点击选择的index是" + e.currentTarget.dataset.index);
+  },
+  // 点击约
+  reservationFun: function () {
+    console.log("点击了约--");
+  },
+  // 跳到约单页面  
+  intoReservation: function () {
+    console.log("点击了转到约单按钮");
+    wx.navigateTo({
+      url: '../../../reservation/customer/reservationIndex/reservationIndex'
+    })
+  },
+   /////封装一个获取服务项目的方法 ---
+   getFirmService:function(){
+     var that=this;
+     ////获取当前机构的所有服务项目
+     wx.request({
+       //url: app.globalData.webroot + '/index/firm/getFirmById',
+       url: app.globalData.webroot1 + '/index/service/getFirmServiceByCat',
+       method: "post",
+       data: {
+         cid: that.data.currentSelectCat,
+         firmId: that.data.firmId,
+         pullOff: -1 //全部  0--上架 1--下架
+       },
+       header: {
+         'content-type': 'application/x-www-form-urlencoded' //post请求
+       },
+       success(res) {
+         //console.log(res.data.msg);
+         if (res.data.code==0){
+            return;
+        }
+         var data = res.data.msg;
+        that.setData({
+          currentService: data
+        })
+         //如果当前的服务项目小于3条的话就显示前三条
+         //显示 更多按钮 
+         //点击更多按钮的时候直接显示出来全部项目
+         if (data.length<=3){
+           console.log("---小于")
+           that.setData({
+             showMore:false,
+             firmService: data
+           })
+         }else{
+           console.log("---大于")
+           var arr=[];
+           for (var i = 0; i < data.length;i++){
+             if (i < 3 && data[i]){
+               arr.push(data[i]);
+            }
+           }
+           //数据大于三条 显示三条 
+           that.setData({
+             showMore: true,
+             firmService: arr
+           })
+         }
+        //  that.setData({
+        //    firmService: data,
+        //    imgs: data,
+        //    firmServiceCount: data.length,
+        //  })
+         //
+         
+         var firmService = that.data.firmService;
+         console.log(that.data.firmService);
+       }
+     })
+   },
+   //更多按钮的点击事件
+  moreServer:function(){
+    var that=this;
+    var currentService = that.data.currentService;
+    that.setData({
+      showMore:false,
+      firmService: currentService
+    })
+    //修改 firmService
+    console.log("----------")
+  },
+  // 点击加号 跳转到 选择技师页面
+  jumpChooseStaff:function(e){
+    var serviceid = e.currentTarget.dataset.serviceid;
+      wx.navigateTo({
+        url: '/pages/index/firm/firmCard/choiceStaff/choiceStaff?serviceId=' + serviceid,
+      })
+  },
+  // 锚点js
+  tabSelect(e) {
+    this.setData({
+      TabCur: e.currentTarget.dataset.id,
+      MainCur: e.currentTarget.dataset.id,
+      VerticalNavTop: (e.currentTarget.dataset.id - 1) * 50
+    })
+  },
+  VerticalMain(e) {
+    let that = this;
+    let list = this.data.list;
+    let tabHeight = 0;
+    if (this.data.load) {
+      for (let i = 0; i < list.length; i++) {
+        let view = wx.createSelectorQuery().select("#main-" + list[i].id);
+        view.fields({
+          size: true
+        }, data => {
+          list[i].top = tabHeight;
+          tabHeight = tabHeight + data.height;
+          list[i].bottom = tabHeight;
+        }).exec();
+        console.log(list[i].top);
+      }
+      that.setData({
+        load: false,
+        list: list
+      })
+    }
+    let scrollTop = e.detail.scrollTop + 20;
+    for (let i = 0; i < list.length; i++) {
+      if (scrollTop > list[i].top && scrollTop < list[i].bottom) {
+        that.setData({
+          VerticalNavTop: (list[i].id - 1) * 50,
+          TabCur: list[i].id
+        })
+        return false
+      }
+    }
+  },
+  ///点击服务项目进入服务项目详情页
+  gotoServiceProDesc:function(e){
+    var that=this;
+   //获取到服务项目id
+    var serviceId = e.currentTarget.dataset.serviceid;
+    var firmId = that.data.firmId;
+    var firmPromoteInfo = that.data.firmPromoteInfo;//机构的活动
+    var firmBasicInfo = that.data.firmBasicInfo; //机构基本信息
+    
+    console.log("-服务项目id=" + serviceId + "----机构id=" + firmId)
+    console.log(firmPromoteInfo)
+    wx.setStorageSync("firmPromoteInfo", JSON.stringify(firmPromoteInfo))
+    wx.setStorageSync("firmBasicInfo", JSON.stringify(firmBasicInfo))
+    wx.navigateTo({
+      url: '/pages/index/firm/firmCard/serveItem/serveItem?firmId=' + firmId + '&serviceId=' + serviceId,
+    })
+  },
+  /**
+    * 生命周期函数--监听页面初次渲染完成
+    */
+  onReady: function () {
+    wx.hideLoading()
+  },
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  }
+})

@@ -1,0 +1,8 @@
+<view class='hidFour'>
+  <view class='bg-white'>
+    <view class='text-center' style="padding-top:35rpx;font-size:35rpx;">正在等待顾客支付</view>
+    <view class='text-center' style='color:red;font-size:45rpx;'>￥300.00</view>
+    <view style='height:45rpx;'></view>
+    <view style='padding-bottom:45rpx;font-size:30rpx;margin:0 25rpx;'>（如客户页面未及时响应，可能需要提醒顾客刷新约单）</view>
+  </view>
+</view>

@@ -1,0 +1,583 @@
+/* pages/index/reservation/staff/reservationIndex/reservationIndex.wxss */
+/* pages/index/reservation/staff/reservationIndex/reservationIndex/reservationIndex.wxss */
+/* pages/index/reservation/customer/reservationIndex/reservationIndex.wxss */
+/* 流程布局 */
+/* pages/index/firm/certificate/manageCert/manageCert.wxss */
+
+.head .cu-bar{
+   min-height:  200rpx;  
+}
+.head .cu-bar text{
+    font-size: 40rpx;
+    margin-right: 40%;
+    
+} 
+ raido .orange{
+   width: 13rpx;
+   height: 13rpx;
+ }
+.cu-bar {
+    min-height:  20rpx;
+}
+.count{
+ padding-bottom: 50rpx;
+  background-color: white;
+
+}
+.section input{
+  border: 1rpx rgb(116, 112, 112) solid;
+  background-color: white;
+  margin: 30rpx
+  
+}
+.cu-box .a{
+  border: 1rpx rgb(116, 112, 112) solid;
+  display: inline-block;
+  width: 30%;
+  color: rgb(116, 112, 112);
+  margin-left: 10rpx;
+  
+}
+
+.solids{
+  width: 100%;
+height: 100%;
+display: flex;
+justify-content: center;  
+
+}
+.icon-position{
+position: absolute;
+top: 40%;
+left: 40%;
+}
+.add-img{
+border: 1rpx solid gray;
+width:180rpx;
+height: 180rpx;
+position: relative;
+display: inline-block;
+margin-left: 45rpx;
+}
+/* 流程布局结束 */
+page{
+  /* padding-top: 450rpx; */
+  background-color: #FFFFFF;
+  /* background-color:red; */
+  padding-bottom: 20rpx;
+}
+/* 地图 */
+.view{
+  display: flex;
+  flex-direction: column;
+}
+/* 地图 */
+.active{
+  border: 1rpx solid red;
+}
+.allStemp{
+  /* border: 1rpx solid red; */  
+  margin-top: -5%;
+}
+/* 服务清单 */
+.itemTitle{
+  /* font-weight: bold; */
+}
+/* .listServiceTitle{
+  font-weight: bold;
+}  */
+.textBig{  
+  /* border: 1rpx solid red; */
+  color: rgb(255,102,0);
+  margin-right: 3%;
+}
+.experice{
+ 
+}
+.textBigOne{
+
+ margin-right: 12%;
+}
+
+  
+.itemOne{
+  /* margin-top: -10%; */
+  /* border: 1rpx solid blue; */
+}
+.service{
+  /* border: 1rpx solid red; */
+  margin-top: -5%;
+}
+.empty{
+  margin-top: -10%;
+  border: 1rpx solid red;
+}
+.staffinfocontain{
+  /* border: 1rpx solid blue; */
+  margin-left: 4%
+}
+
+.leftStyle{
+  /* border: 1rpx solid red; */
+  margin-left: -6%;
+  margin-right: 10%;
+}
+.setps{
+  /* border: 1rpx solid blue; */
+ 
+}
+
+/* 顶部 */
+.topContain{
+  background-color: white; 
+   /* margin-top: -62%; */
+}
+/* 图片样式 */
+.staffinfo{
+  display: block;
+  text-align: left
+}
+.navitem{
+  
+  padding: 10rpx
+}
+
+/* .navRight{
+  border:  1rpx solid blue;
+  margin-left: 30%;
+ 
+} */
+    
+.secimg image{
+  width: 120rpx;
+  height: 120rpx
+}
+.serintro text{
+  display: block
+}
+.serintro{
+  border: 1rpx solid blue;
+  margin-right: 10%;
+}
+.servicelist{
+ 
+  padding-left: 10%;
+  width: 120rpx;
+}
+.addser{
+  padding-right: 0
+}
+.datelist view{
+  border: 1rpx solid red;
+  padding: 0;
+  margin: 0
+}
+.shoplist,.startTime{
+  /* border: 1rpx solid blue; */
+  margin-top: 3%;
+}
+.shoplist right{
+  margin-left: 30rpx;
+  /* border: 1rpx solid black; */
+}
+.roundOne{
+  border: 1rpx solid red;
+  border-radius: 50%;
+  width: 50rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  margin-right: -20rpx;
+  text-align: center;
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+  /* display: inline-block; */
+} 
+.arriveTime,.sale{
+  /* border: 1rpx solid black; */
+  margin-right: 7%;
+}
+.start_k{
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+/* 时间滑块 */
+.timeBlock{
+  text-align: center;
+}
+/* 优惠 */
+.saleOff{
+  width: 70%;
+  border: 1rpx solid red;
+}
+.saleOffOne{
+   width: 70%;
+   text-align: right;
+  /* border: 1rpx solid red; */
+}
+.selectChange{
+  /* border: 1rpx solid red; */
+}
+.title{
+  margin-left: -5%;
+   /* border: 1rpx solid blue; */
+}
+.selectOne{
+   /* border: 1rpx solid blue; */
+}
+/* 优惠预告 */
+.saleOffOne{
+  width: 70%;
+  /* border: 1rpx solid red; */
+}
+.rightSale{
+  border: 1rpx solid red;
+   margin-right: 20%;
+   display: inline-block;
+}
+.saleOff{
+  text-align: center;
+  margin-bottom: 3%;
+ 
+  border: 1rpx solid rebeccapurple;
+}
+.saleX{
+  border: 1rpx solid red;
+  display: inline-block;
+  width: 30rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  background-color: gray;
+}
+.saleX1{
+  border: 1rpx solid red;
+  display: inline-block;
+  width: 30rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  background-color: rgb(255,102,0);
+}
+.saleEach{
+  display: inline-block;
+  /* border: 1rpx solid red; */
+  margin: 0 6%;
+  text-align: center;
+  width: 40%; 
+  color: white;
+  background-color: gray;
+  border-radius: 25rpx;
+}
+.saleEach1{
+  display: inline-block;
+  /* border: 1rpx solid red; */
+  margin: 0 6%;
+  text-align: center;
+  width: 40%; 
+  color: white;
+  background-color: rgb(255,102,0);
+  border-radius: 25rpx;
+}
+
+.moneyThree{
+  padding-left: 30%;
+  /* border: 1rpx solid blue; */
+}
+/* 底部 */
+.bottom {
+   border: 3rpx solid black;
+  margin-top: 3%;
+  /* border: 2rpx solid black; */
+}
+.moneyStart{
+  /* border: 1rpx solid red; */
+  display: inline-block;
+  color: rgb(255,102,0);
+}
+
+.del{
+  color: rgb(255,102,0);
+  padding-top: 3%;
+  background-color: rgb(230,230,230);
+  /* border: 1rpx solid red; */
+  text-align: center;
+  width: 15%;
+}
+.wantMoney{
+  width: 50%;
+ padding-top: 3%;
+  /* border: 1rpx solid blue; */
+  text-align: center;
+}
+.order{
+width: 35%;
+  color: white;
+  /* border: 1rpx solid rebeccapurple; */
+  text-align: center;
+  margin-left: 2%;
+  background-color: rgb(255,102,0)
+}
+/* ONE */
+/* 预约 */
+
+.bord{
+  width: 100rpx;     
+  height: 100rpx;   
+  border: 1rpx solid red;
+  background-color:red;   
+  border-radius: 50%;    
+   -moz-border-radius: 50%;      
+   -webkit-border-radius: 50%;
+}
+/* 单选按钮 */
+radio {
+  /* border: 1rpx solid red; */
+  transform:scale(0.7);
+}
+.add_city{
+  background-color: black;
+}
+.add_citying{
+   background-color: blue;
+}
+/* 拒付 */
+ .ifAttention{
+  color: white;
+  margin-top: 30rpx;
+  display: inline-block;
+  width: 120rpx;
+  text-align: center;
+  border: 1rpx solid red;
+  background-color: rgb(255,102,0);
+  border-radius:30rpx;
+}
+ .start_k{
+   display: flex;
+  align-items: center;
+  justify-content: left;  
+}
+/* radio */
+.searchbox {
+   width: 100%;
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   background-color: #f6f6f6;
+}
+
+.searchbox_in {
+   height: 35px;
+   width: 720rpx;
+   margin: 8px 10px;
+   background-color: white;
+   border-radius: 8px;
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   align-items: center;
+}
+
+.search_img {
+   width: 12px;
+   height: 13px;
+}
+
+.search_txt {
+   margin-left: 6px;
+   font-size: 13px;
+   color: #999;
+}
+
+.classesbox {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+}
+
+.classes_item {
+   padding: 3px auto 3px auto;
+   border: #e6e6e6 1px solid;
+   margin: 5px;
+   border-radius: 4px;
+   font-size: 14px;
+   width: 100%;
+}
+
+.rg_view {
+   padding: 6px;
+   background-color: #fff;
+}
+
+/* 注意点：使用columns时，每一行中的组件本身的高度不能高于组件所在行的行高，
+否则会发现组件的好似被切割成2块或多块了  */
+.rg {
+   width: 100%;
+   height: 100%;
+   columns: 4;
+   column-gap: 20rpx;
+   letter-spacing: 5px;
+   line-height: 28px;
+}
+
+/* 
+   注意点：columns分列后，最好使用margin-bottom控制行间距，
+   margin-top会导致第一项与后面的项不一致，很丑
+  */
+.class_r_g {
+   text-align: center;
+   width: 100%;
+   margin-bottom: 5px;
+}
+
+/* radio文本的点击效果  */
+.checkedt {
+   color: #40E0D0;
+   border: #40E0D0 1px solid;
+   border-radius: 4px;
+   font-size: 14px;
+   padding: 3px 18px;
+}
+
+/* 
+   radio文本的默认效果  
+   注意点：组件本身的高度不能高于组件所在行的行高，否则会发现组件的好似被切割成2块或多块了
+*/
+.normalt {
+   color: #666666;
+   border: #e6e6e6 1px solid;
+   border-radius: 4px;
+   font-size: 14px;
+   padding: 3px 18px;
+}
+/* 服务清单滑块 */
+.serviceSwiper{
+  /* border: 1rpx solid red; */
+ height: 300rpx;
+}
+/* 滑块 */
+.swiper {
+      /* position: absolute; */
+      height: 150%;
+      width: 100%;
+    }
+/* 底部导航 */
+.circl{
+  width:150rpx;
+  height:150rpx;
+  border: 1rpx solid red;
+  background-color:red;   
+  /* border-radius: 50%;    
+   -moz-border-radius: 50%;      
+   -webkit-border-radius: 50%; */
+}
+/* 圆样式 */
+@import "../../../../common/footer/footer.wxss";
+/* .btn{
+  /* border: 1rpx solid blue; */
+  /* display: inline-block; */
+  /* margin-left: 15rem; */
+  /* border-radius: 30rem;
+  height: 2rem;
+  width: 2rem;
+  background-color: gray;
+  text-align: center; */
+  /* top: 50rpx; */
+/* } */
+/* .btn-yulan{ */
+  /* border: 1rpx solid black; */
+  /* display: inline-block;
+  height: 2rem;
+  width:2rem;
+  padding-top: 0.35rem; 
+  color: white; */
+  /* position: absolute; */
+/* } */ 
+.numInfo{
+  border: 1rpx solid red;
+  position: absolute;
+}
+/* 满意度 星星*/
+.star-image {
+  position: absolute;
+  top: 50rpx;
+  width: 150rpx;
+  height: 150rpx;
+  src: "../../images/normal.png";
+}
+
+.item {
+  position: absolute;
+  top: 50rpx;
+  width: 75rpx;
+  height: 150rpx;
+}
+/*  */
+.image{
+  height: 37rpx;
+  width: 37rpx;
+  display: inline-block;
+  margin-right: 10rpx;
+}
+/* 按钮 */
+.goodbutton {
+  width: 30%;
+  height: 70rpx;
+  line-height: 70rpx;
+  background-color: rgb(252, 126, 67);
+  color: white;
+  border-radius: 98rpx;
+  background: bg_red;
+}
+ 
+/* 按下变颜色 */
+.hover {
+  background:  rgb(236, 179, 156);
+}
+
+
+/* 测试 */
+ .btnOne{
+      width: 150rpx;
+      height: 70rpx;
+      font-size: 24rpx;
+      padding: 0;
+      border: 1px solid #dcdcdc;
+      background: #fff;
+
+      border-radius: 4px;
+      margin: 15rpx 10rpx;
+      text-align: center;
+  }
+  .btn-selected{
+      border: 1px solid #06a380;
+      background-color: #06a380;
+  }
+/* 加号   */
+.add {
+  border: 1px solid;
+  width: 50rpx;
+  height: 50rpx;
+  color: #ccc;
+  transition: color .25s;
+  position: relative;
+}
+.add::before{
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 50rpx;
+     
+  border-top: 10px solid;
+}
+
+
+  
+
+
+

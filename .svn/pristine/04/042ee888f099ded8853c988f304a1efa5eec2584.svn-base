@@ -1,0 +1,42 @@
+/* pages/index/user/customer/pokerByStaff/pokerByStaff.wxss */
+/* 字 */
+swiper{
+  height: 100%;
+}
+.div-size{
+  background-color: white;
+  font-size: 35rpx;
+  padding-left: 4.4%;
+  font-weight: bold;
+}
+.icon1{
+  color: white;
+  text-align: center;
+  width:40rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+border: 1rpx solid orange;
+background-color: orange;
+border-radius: 40rpx;
+}
+.btn{
+  margin: 30rpx auto 0rpx;
+  width: 30%;
+  background-color: orange;
+  height: 60rpx;
+  text-align: center;
+  line-height: 60rpx;
+  border-radius:10rpx; 
+
+}
+
+/* 框 */
+.border-bottom{
+
+  border-bottom: 1rpx solid grey;
+  margin: auto;
+  
+}
+.ture-no{
+  padding-left: 20rpx
+}

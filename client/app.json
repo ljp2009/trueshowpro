@@ -1,20 +1,49 @@
 {
   "pages": [
     "pages/index/index/index/index",
-    "pages/index/setup/setup",
-    
-    "pages/index/poker/pokerIndex/pokerIndex",
     "pages/index/reservation/customer/reservationIndex/reservationIndex",
+    
+      
+    "pages/index/reservation/staff/modules/jordan/jordan",
+    "pages/index/firm/firmAd/template/nonetemplateList/nonetemplateList",
+    
+   
+    
+   
+    
+    
+    "pages/index/firm/firmAd/adPay/adPay",
+    "pages/index/firm/firmCard/firmMessage/firmMessage",
+    
+    
+    
+   
+    "pages/test/testchart/testchart",
+    
+    
+    
+    
+    
+    "pages/index/reservation/staff/reservationIndex/reservationIndex",
+    "pages/admin/statisticsDays/statisticsDays",
+    "pages/index/firm/certificate/manageCert/manageCert",
+    "pages/admin/index/index",
+   
+    "pages/index/user/staff/staffCard/staffCard",
+    "pages/index/firm/firmIndex/firmIndex/firmIndex",
+    "pages/index/firm/joinStaff/addFirm/addFirm",
+    "pages/index/firm/joinStaff/staffIndex/staffIndex",
+    "pages/index/firm/joinStaff/join/join",
+    "pages/index/setup/setup",
+    "pages/index/poker/pokerIndex/pokerIndex",
+  
     "pages/index/user/staff/staffWorkShowDetail/staffWorkShowDetail",
     "pages/index/firm/firmIndex/firmInfo/firmInfo",
-    "pages/index/user/staff/staffCard/staffCard",
     "pages/index/user/staff/staffWorkShow/staffWorkShow",
-    
     "pages/index/reservation/customer/modules/statusOne/statusOne",
     "pages/index/poker/pokerDetail/pokerDetail",
     "pages/index/poker/pokerFilter/pokerFilter",
     "pages/admin/user/login/login",
-    "pages/index/reservation/staff/reservationIndex/reservationIndex",
     "pages/index/reservation/customer/modules/statusZero/statusZero",
     "pages/index/reservation/customer/modules/serviceList/serviceList",
     "pages/index/reservation/staff/modules/scanCode/scanCode",
@@ -22,8 +51,6 @@
     "pages/index/reservation/staff/modules/serviceTime/serviceTime",
     "pages/index/firm/addFirm/searchFirm",
     "pages/index/firm/firmIndex/searchFirm/searchFirm",
-    "pages/index/firm/firmIndex/addFirm/addFirm",
-    "pages/index/firm/firmIndex/firmIndex/firmIndex",
     "pages/index/firm/firmIndex/firmDesc/firmDesc",
     "pages/index/firm/firmIndex/staffList/staffList",
     "pages/index/firm/firmIndex/transAdmin/transAdmin",
@@ -56,11 +83,8 @@
     "pages/index/user/staff/userInfo/userInfo",
     "pages/index/user/staff/diaryIndex/diaryIndex",
     "pages/index/user/staff/diary/addDiary/addDiary",
-    "pages/index/user/staff/certificate/certStatus/certStatus",
     "pages/index/qa/qaIndex/qaIndex",
     "pages/index/qa/qaDetail/qaDetail",
-    "pages/index/qa/addQa/addQa",
-    "pages/admin/index/index",
     "pages/admin/statistics/statistics",
     "pages/admin/certificate/certificate",
     "pages/admin/searchFirm/searchFirm",
@@ -72,7 +96,7 @@
     "pages/common/footer/footer",
     "pages/index/reservation/customer/modules/statusSix/statusSix",
     "pages/index/reservation/customer/modules/statusSeven/statusSeven"
-   
+    
   ],
   "window": {
     "navigationBarBackgroundColor": "#39b54a",

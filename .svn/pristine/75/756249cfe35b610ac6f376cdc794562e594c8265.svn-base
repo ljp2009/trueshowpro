@@ -1,0 +1,63 @@
+<!--pages/index/qa/addQa/addQa.wxml-->
+  <!-- 头部 -->
+<cu-custom bgColor="bg-white" isBack="{{true}}">
+	<view slot="backText" class="text-black"></view>
+  <view slot="content"  class="text-black">发表</view>
+</cu-custom>
+<view class="margin-sm redius text-area solid">
+  <input placeholder="标题" value="{{title}}" bindinput="titleChange" disabled="true"/>
+</view>
+<!-- <view class="margin-sm redius text-area solid">
+  <input placeholder="简述" value=""/>
+</view> -->
+<!-- 多行文本框 -->
+<view class="margin-sm redius text-area solid">
+  <textarea bindinput="textareaAInput" maxlength="-1" value="{{content}}" placeholder="内文"></textarea>
+</view>
+
+<view class="margin-sm redius  text-right">
+  （0/500）
+</view>
+
+<view class="margin">上传图片</view>
+<view class="margin">注意:请按顺序添加图片,避免出现错误!!</view>
+
+<!-- 添加图片 -->
+<view class="cu-form-group" role="" aria-label="">
+    <view class="grid col-4 grid-square flex-sub margin" role="" aria-label="">
+      <view wx:for="{{array}}" wx:for-index="index" wx:for-item="iteme" data-index="{{index}}"  bindtap="chooseImg" wx:key="" class="solids" role="" aria-label=""   >
+        <image  wx:if="{{picArr[index]['img']}}" src="{{picArr[index]['img']}}" style='width:140rpx;height:150rpx;'></image>
+        <text  wx:if="{{picArr[index]['img']}}"   class=" xl" style='color:#F37B1D'></text>
+        <text wx:else class="cuIcon-roundaddfill xl" style='color:#F37B1D'></text>
+        <icon   wx:if="{{picArr[index]['img']}}"  data-index="{{index}}"  type='cancel' class="delete-btn"  catchtap="deleteImg"></icon>
+        <icon wx:else></icon>
+      </view>
+      
+    </view>
+
+  </view>
+
+ <view class="addBorder">
+  <text class="">匿名</text>
+    <radio-group class="block" role="radiogroup" aria-label="单选区" bindchange="radioChange">
+      <view class=" ">
+        <radio class="orange   paddingSize" checked="{{ifselected1}}" value="1" >是</radio>
+        <radio class="orange  paddingSize"  checked="{{ifselected2}}"  value="0">否</radio>
+      </view>
+    </radio-group>
+ </view>
+
+
+
+ 
+
+<button bindtap="confirm" class="cu-btn block  choose toButtom bg-orange" role="button" aria-disabled="false">
+<text class="text-white">确定</text>
+</button>
+
+
+
+
+
+
+

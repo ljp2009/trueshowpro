@@ -1,0 +1,242 @@
+// pages/index/firm/firmIndex/firmInfo/firmInfo.js
+import WxValidate from '../../../../../utils/WxValidata.js'
+var app = getApp()
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    firmId:'',
+    firmInfo:{}
+  },
+  /**
+   * 时时修改表单数据
+   */
+  modifyInfo: function(e){
+    console.log(e)
+  },
+  /**
+   * 更新机构信息
+   */
+  upFirm: function(e) {
+    // console.log(e.detail.value)
+    // console.log(this.data.firmInfo)
+    var formData = e.detail.value;
+    var that = this
+    console.log(formData)
+    //校验表单
+    if (!this.WxValidate.checkForm(formData)) {
+      const error = this.WxValidate.errorList[0]
+      this.showModal(error)
+      return false;
+    }
+    var tmpData = this.data.firmInfo;
+    tmpData['FirmName'] = formData['fullName'];
+    tmpData['FirmTitle'] = formData['abbreviation'];
+    tmpData['Province'] = formData['province'];
+    tmpData['City'] = formData['city'];
+    tmpData['District'] = formData['area'];
+    tmpData['Street'] = formData['street'];
+    tmpData['FirmAddr'] = formData['doorNumber'];
+    this.setData({
+      firmInfo:tmpData
+    })
+    wx.request({
+      //  提交的数据中需要包含机构信息，用户id UserId，
+      // 空的ID 
+      url: app.globalData.webroot + '/index/firm/supFirm',
+      method: 'POST',
+      data: {
+        type:'upFirm',
+        firmInfo:that.data.firmInfo,
+        firmId:that.data.firmId
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        var level = that.data.firmId; // 修改机构id
+        console.log(res)
+        if (res.data.code == 1) {
+          wx.showModal({
+            content: '机构信息修改成功',
+            showCancel: false,
+            success(res) {
+              console.log(res)
+              if (res.confirm) {
+                wx.redirectTo({
+                  url: '/pages/index/firm/firmIndex/firmIndex/firmIndex?staffId=' + level
+                })
+              }
+            }
+          })
+          // 转到机构首页
+
+        }else{
+          wx.showToast({
+            title: '请求参数错误',
+            icon: 'none',
+            duration: 1000
+          })
+        }
+      }
+    })
+
+    
+  },
+  /**
+ * 报错
+ */
+  showModal(error) {
+    wx.showModal({
+      content: error.msg,
+      showCancel: false
+    })
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    this.initValidata()
+    var firmId = options.firmId;
+    this.setData({
+      firmId: firmId
+    })
+    var that = this;
+    // 请求机构的相关信息
+    wx.request({
+      url: app.globalData.webroot + '/index/firm/firmIndex',
+      method: 'POST',
+      //仅为示例，并非真实的接口地址
+      data: {
+        firmId:firmId
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        var msg = res.data.msg;
+        that.setData({
+          firmInfo:msg
+        })
+        console.log(that.data.firmInfo)
+      }
+    })
+  },
+  /**
+     * 验证函数
+     */
+  initValidata: function () {
+    const rules = {
+      fullName: {
+        required: true,
+        maxlength: 30
+      },
+      abbreviation: {
+        maxlength: 20
+      },
+      province: {
+        required: true,
+        maxlength: 20
+      },
+      city: {
+        required: true,
+        maxlength: 12
+      },
+      area: {
+        required: true,
+        maxlength: 12
+      },
+      street: {
+        required: true,
+        maxlength: 50
+      },
+      doorNumber: {
+        required: true,
+        maxlength: 50
+      }
+
+
+    }
+    const message = {
+      fullName: {
+        required: '请填写正确的机构名称',
+        maxlength: '请填写正确的机构名称'
+      },
+      abbreviation: {
+        maxlength: '简称长度不能超过20字符'
+      },
+      province: {
+        required: '请填写正确的省份',
+        maxlength: '请填写正确的省份'
+      },
+      city: {
+        required: '请填写正确的城市名称',
+        maxlength: '城市名称长度不能超过12字符'
+      },
+      area: {
+        required: '请填写正确的区',
+        maxlength: '区名称长度不能超过12字符'
+      },
+      street: {
+        required: '请填写街道',
+        maxlength: '街道名称长度不能超过50字符'
+      },
+      doorNumber: {
+        required: '请填写道路和门牌号',
+        maxlength: '道路和门牌号长度不能超过50字符'
+      }
+    }
+    this.WxValidate = new WxValidate(rules, message);
+  },
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  }
+})

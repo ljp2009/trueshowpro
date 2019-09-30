@@ -1,0 +1,18 @@
+<!--pages/common/footer/footer.wxml-->
+<!-- <text>pages/common/footer/footer.wxml</text> -->
+<!-- 底部 -->
+
+              <view class=" navlist " >          
+<view >
+   <view class="{{index==3?'navlist3':'navlist1'}} " wx:for="{{objectArray}}" wx:key="key">
+    <view  class="{{num==index?'cur':''}} box"  bindtap="switchTab" data-index="{{index}}" data-id="{{item.id}}">
+     {{item.name}}
+    </view>
+    
+   </view>
+</view>
+              </view>
+
+           
+                   
+              <!-- 底部结束 -->

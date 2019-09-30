@@ -17,5 +17,6 @@ return [
         ':id'   => ['index/hello', ['method' => 'get'], ['id' => '\d+']],
         ':name' => ['index/hello', ['method' => 'post']],
     ],
-
+    'weixinpay'=>'index/ad/wxPay'
+//    'notify'=>'index/ad/wechatnotify'
 ];

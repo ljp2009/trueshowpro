@@ -1,0 +1,11 @@
+<!--pages/index/reservation/staff/modules/statusTen/statusTen.wxml-->
+  <view class='hidOne'>
+    <view class="bg-white">
+      <view class="solid-bottom padding align-start">
+        <view style="font-size:38rpx;text-align:center;color:#333;">顾客未到，约单超时取消</view>
+        <view style='margin-top:20rpx;font-size:29rpx;color:#333;'>
+          因顾客超时未到，技师取消约单，如需再次服务,须由顾客重新约单
+        </view>
+      </view>
+    </view>
+  </view>

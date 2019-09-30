@@ -1,0 +1,157 @@
+---------------------------------------------------------------
+[ 2019-09-22T13:16:06+08:00 ] 127.0.0.1 POST trueshow/index/ad/wxPay
+[运行时间：0.801627s] [吞吐率：1.25req/s] [内存消耗：1,314.03kb] [文件加载：43]
+[ info ] [ LANG ] D:\phpStudy1\PHPTutorial\WWW\trueshow\xiangmuserver\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'ad',
+    2 => 'wxPay',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'https://servicewechat.com/wxa5ec17098b9f6637/devtools/page-frame.html',
+  'accept' => '*/*',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_2 like Mac OS X) AppleWebKit/602.3.12 (KHTML, like Gecko) Mobile/14C92 Safari/601.1 wechatdevtools/1.02.1907300 MicroMessenger/6.7.3 Language/zh_CN webview/',
+  'sec-fetch-dest' => 'empty',
+  'sec-fetch-site' => 'cross-site',
+  'sec-fetch-user' => '?F',
+  'origin' => 'http://127.0.0.1:16453',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'content-length' => '109',
+  'connection' => 'close',
+  'host' => 'trueshow',
+)
+[ info ] [ PARAM ] array (
+  '/index/ad/wxPay' => '',
+  'firmId' => '1',
+  'TemplateId' => '98',
+  'PayStatus' => '0',
+  'ClickBuy' => '100',
+  'StartTime' => '2019-09-14 00:00',
+  'EndTime' => '2019-10-14 0:0:0',
+)
+[ info ] [ RUN ] app\index\controller\Ad->wxPay[ D:\phpStudy1\PHPTutorial\WWW\trueshow\xiangmuserver\application\index\controller\Ad.php ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-09-22T13:20:17+08:00 ] 127.0.0.1 POST trueshow/weixinpay/advid/4
+[运行时间：0.197322s] [吞吐率：5.07req/s] [内存消耗：1,195.63kb] [文件加载：46]
+[ info ] [ LANG ] D:\phpStudy1\PHPTutorial\WWW\trueshow\xiangmuserver\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'weixinpay',
+    1 => 'advid',
+    2 => '4',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'https://servicewechat.com/wxa5ec17098b9f6637/devtools/page-frame.html',
+  'accept' => '*/*',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_2 like Mac OS X) AppleWebKit/602.3.12 (KHTML, like Gecko) Mobile/14C92 Safari/601.1 wechatdevtools/1.02.1907300 MicroMessenger/6.7.3 Language/zh_CN webview/',
+  'sec-fetch-dest' => 'empty',
+  'sec-fetch-site' => 'cross-site',
+  'sec-fetch-user' => '?F',
+  'origin' => 'http://127.0.0.1:16453',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'content-length' => '109',
+  'connection' => 'close',
+  'host' => 'trueshow',
+)
+[ info ] [ PARAM ] array (
+  '/weixinpay/advid/4' => '',
+  'firmId' => '1',
+  'TemplateId' => '98',
+  'PayStatus' => '0',
+  'ClickBuy' => '100',
+  'StartTime' => '2019-09-14 00:00',
+  'EndTime' => '2019-10-14 0:0:0',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-09-22T13:24:26+08:00 ] 127.0.0.1 POST trueshow/weixinpay/advid/4
+[运行时间：0.035686s] [吞吐率：28.02req/s] [内存消耗：1,195.57kb] [文件加载：46]
+[ info ] [ LANG ] D:\phpStudy1\PHPTutorial\WWW\trueshow\xiangmuserver\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'weixinpay',
+    1 => 'advid',
+    2 => '4',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'https://servicewechat.com/wxa5ec17098b9f6637/devtools/page-frame.html',
+  'accept' => '*/*',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_2 like Mac OS X) AppleWebKit/602.3.12 (KHTML, like Gecko) Mobile/14C92 Safari/601.1 wechatdevtools/1.02.1907300 MicroMessenger/6.7.3 Language/zh_CN webview/',
+  'sec-fetch-dest' => 'empty',
+  'sec-fetch-site' => 'cross-site',
+  'sec-fetch-user' => '?F',
+  'origin' => 'http://127.0.0.1:16453',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'content-length' => '109',
+  'connection' => 'close',
+  'host' => 'trueshow',
+)
+[ info ] [ PARAM ] array (
+  '/weixinpay/advid/4' => '',
+  'firmId' => '1',
+  'TemplateId' => '98',
+  'PayStatus' => '0',
+  'ClickBuy' => '100',
+  'StartTime' => '2019-09-14 00:00',
+  'EndTime' => '2019-10-14 0:0:0',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-09-22T13:24:57+08:00 ] 127.0.0.1 POST trueshow/weixinpay/advid/4
+[运行时间：0.032862s] [吞吐率：30.43req/s] [内存消耗：1,195.63kb] [文件加载：46]
+[ info ] [ LANG ] D:\phpStudy1\PHPTutorial\WWW\trueshow\xiangmuserver\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'weixinpay',
+    1 => 'advid',
+    2 => '4',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'https://servicewechat.com/wxa5ec17098b9f6637/devtools/page-frame.html',
+  'accept' => '*/*',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_2 like Mac OS X) AppleWebKit/602.3.12 (KHTML, like Gecko) Mobile/14C92 Safari/601.1 wechatdevtools/1.02.1907300 MicroMessenger/6.7.3 Language/zh_CN webview/',
+  'sec-fetch-dest' => 'empty',
+  'sec-fetch-site' => 'cross-site',
+  'sec-fetch-user' => '?F',
+  'origin' => 'http://127.0.0.1:16453',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'content-length' => '109',
+  'connection' => 'close',
+  'host' => 'trueshow',
+)
+[ info ] [ PARAM ] array (
+  '/weixinpay/advid/4' => '',
+  'firmId' => '1',
+  'TemplateId' => '98',
+  'PayStatus' => '0',
+  'ClickBuy' => '100',
+  'StartTime' => '2019-09-14 00:00',
+  'EndTime' => '2019-10-14 0:0:0',
+)
+[ info ] [ LOG ] INIT File

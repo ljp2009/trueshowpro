@@ -1,0 +1,229 @@
+// pages/index/user/staff/serviceList/serviceList.js
+var app = getApp();
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    TabCur: 0,
+    scrollLeft: 0,
+    classifyList: [], //存放我的服务所有分类
+    firmId:0,  // 记录机构id
+    checkArr:[],//记录选中分类
+    services:[], // 所有的服务项目
+    rightServices:[],// 符合分类要求的服务项目  
+  },
+  /**
+   * 按钮点击切换事件
+   */
+  bindChange : function (e) {
+    console.log(e);
+    var userArr = wx.getStorageSync("user");
+    var staffId = JSON.parse(userArr)["userinfo"]["uid"];//技师id   
+    var firmId = this.data.firmId; // 机构id
+    var serviceId = e.currentTarget.dataset.id;   // 服务id
+    var value = e.detail.value;
+    var type;
+    if(value){
+      console.log('选择服务操作')
+      type = 1;
+    }else{
+      console.log('取消服务操作')
+      type = 0;
+    }
+    wx.request({
+      url: app.globalData.webroot + '/index/service/updServiceOfStaff',
+      method: "POST",
+      data: {
+        staffId: staffId,
+        firmId: firmId,
+        serviceId: serviceId,
+        type: type
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        console.log(res)
+      }
+    })
+  },
+  tabSelect(e) {
+    var seq = e.currentTarget.dataset.seq;
+    var cid = e.currentTarget.dataset.id;
+    
+    // 改变点击分类的checked 
+    var catList = this.data.classifyList;
+    for(var i=0; i<catList.length;i++){
+      if(catList[i]['Seq'] == seq){
+        var checked = catList[i]['checked'];
+        catList[i]['checked'] = checked == 'false' ? 'true' : 'false';
+
+        this.setData({
+          classifyList: catList
+        })
+        break;
+      }
+    }
+    // 将选中的分类放到一个数组中
+    var checkArr = this.ergodicCat(catList);
+    this.setData({
+      checkArr:checkArr
+    })
+    
+    var rightServices = this.ergodicServices(this.data.services);
+    this.setData({
+      rightServices: rightServices
+    })
+    console.log(this.data.checkArr)
+  },
+  /**
+   * 遍历分类数组，将选中的分类的放到一个数组中
+   */
+  ergodicCat: function (arr) {
+    var checkArr = [];
+    for(var i=0;i<arr.length;i++){
+      var item = arr[i];
+      var checked = item['checked'];   // false   选中状态    true    未选中状态
+      if(checked == 'false'){
+        var mainCat = item['Seq'];
+        checkArr.push(mainCat);
+      }
+    }
+    return checkArr;
+  },
+
+  /**
+   * 遍历服务项目分类，将项目中的分类拿出来，看是不是存在于选中分类checkArr中，存在的话，把这个项目放到rightServices中
+   */
+  ergodicServices : function (arr) {
+    var checkArr = this.data.checkArr;
+    var rightServices = [];
+    for(var i = 0; i < arr.length; i++) {
+      var item = arr[i];
+      var catMain = item['MainCat'];
+      for(var j=0;j<catMain.length;j++){
+        var catItem = catMain[j];
+        if (checkArr.indexOf(catItem) > -1){
+          rightServices.push(item);
+        }
+        break;
+      }
+    }
+    return rightServices;
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    var firmId = options.firmId;
+    var userArr = wx.getStorageSync("user");
+    var uid = JSON.parse(userArr)["userinfo"]["uid"];
+
+    var that = this;
+    this.setData({
+      firmId:firmId
+    })
+    // 获取所有的大分类
+    wx.request({
+      url: app.globalData.webroot + '/index/firm/getservice',
+      method: "POST",
+      data: {
+
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        console.log(res)
+        var catList = res.data.msg;
+        // 将选中的分类放到一个数组中
+        var checkArr = that.ergodicCat(catList);
+        console.log(checkArr);
+        that.setData({
+          classifyList:catList,
+          checkArr: checkArr
+        })
+      }
+    })
+    // 通过firmID，获取该机构的服务项目
+    wx.request({
+      url: app.globalData.webroot + '/index/firm/getServices',
+      method: "POST",
+      data: {
+        firmId:firmId,
+        uid:uid
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        console.log(res)
+        var s = res.data.msg[0].MainCat;
+        var sa = JSON.parse(s);
+        var arr = res.data.msg;
+        for(var i = 0 ; i < arr.length; i++){
+          var item = arr[i];
+          item.MainCat = JSON.parse(item.MainCat);
+        }
+        var rightServices = that.ergodicServices(arr);
+        that.setData({
+          services:arr,
+          rightServices: rightServices
+        })
+        console.log(that.data.rightServices+'-----')
+        console.log(arr)
+      }
+    })
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  }
+})

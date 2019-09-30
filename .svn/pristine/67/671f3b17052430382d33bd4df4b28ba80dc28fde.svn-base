@@ -1,0 +1,107 @@
+<!-- 头部 -->
+<cu-custom bgColor="bg-gray" isBack="{{true}}" style="color:#000;">
+  <view slot="backText" style='font-size:36rpx;color:#000;'>返回</view>
+  <view slot="content" style='font-size:39rpx;margin-left:-50rpx;color:#000;'>服务项目</view>
+</cu-custom>
+<view class='hidOne'>
+  <!-- 分类 -->
+  <view class="grid col-1 margin-bottom bg-white" role="" aria-label="">
+    <view class="padding" role="" aria-label="" style='padding-bottom:0;'>
+      <view class='grid col-2' style='font-size:35rpx;'>
+        <view class='text-left'>服务项目:</view>
+        <view class='text-right'>下架
+          <text style='color:#F00;'>({{pullOffCount}})</text>
+        </view>
+      </view>
+    </view>
+    <view class="padding" role="" aria-label="" style='padding-top:0;padding-bottom:0;'>
+      <view class='grid col-2' style='font-size:35rpx;'>
+        <view class='text-left'>分类：</view>
+      </view>
+    </view>
+
+    <scroll-view scroll-x class="bg-white nav" scroll-with-animation scroll-left="{{scrollLeft}}">
+    <block  wx:for="{{classifyList}}" wx:key>
+      <view class="cu-item {{item.isChoose == true?'choose':'nochoose'}}" wx:key data-seq="{{item.Seq}}" bindtap="changeCat">
+        <button class="cu-btn round sm bg-white  margin-xs catBtn" role="button" aria-disabled="false" style='font-size:35rpx;' >
+          {{item.Name}}
+        </button>
+      </view>
+      </block>
+    </scroll-view>
+
+    <view class="padding" role="" aria-label="" style='padding-top:0;'>
+      <navigator bindtap='changeAddServiceHidOne'  url='/pages/index/firm/service/addService/addService?staffId={{staffId}}'>
+        <button class='grid col-2' style='font-size:35rpx;height:69rpx;padding-top:7rpx;'>
+          <view class='text-left' style='height:57rpx;line-height:57rpx;'>添加服务项目:</view>
+          <view class='text-right'>
+            <image src='http://ljp.jujiaoweb.com/static/images/index/add1.png' style="background-color:#FF6600;border-radius:50%;width:50rpx;;height:50rpx;"></image>
+          </view>
+        </button>
+      </navigator>
+    </view>
+  </view>
+  <!-- 项目列表 -->
+  <block wx:if="{{serviceCount>0}}">
+  <view class="bg-white solid-bottom margin-top padding" style='font-size:35rpx;'>
+    <view class="grid col-2">
+      <view class='text-left'>总计:({{serviceCount}})</view>
+      <view class='text-right'>左划操作</view>
+    </view>
+  </view>
+  </block>
+  <block wx:else>
+  <view>这个机构暂时没有添加服务项目！</view>
+  </block>
+
+
+  <!-- 滑动操作 -->
+  <!-- <navigator bindtap='changeAddServiceHidTwo' url='/pages/index/firm/service/addService/addService'> -->
+  <view wx:for="{{services}}" style='position: relative;'wx:key   >
+
+      <view class=" {{item.isShow?'':'hide'}} list touch-content cu-list menu-avatar"  style='{{item.txtStyle}}'      data-seq="{{item.MainCat}}"  bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE" bindtap="detail" data-sid="{{item.ServiceId}}" data-index='{{index}}'>
+      <!-- <view class='list' style='{{item.txtStyle}}' bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE" data-index='{{index}}'> -->
+
+        <view class="cu-item ">
+          <view class="cu-avatar radius lg" style="width:150rpx;height:150rpx;background-image:url(http://ljp.jujiaoweb.com/static/images/index/icon17.jpg);"></view>
+          <view class="content" style="left:110px;width:300rpx">
+            <view class="text-black" style="display:inline-block">
+              <view class="text-cut" style='font-size:35rpx;'>{{item.ServiceName}}</view>
+              <view class="text-cut" style='font-size:30rpx;'>{{item.ServiceSub}}</view>
+            <!-- </view> -->
+            <!-- <view class="text-gray text-sm flex"> -->
+              <view class="text-price text-red" style='font-size:35rpx;font-weight:bold'>{{item.Price_Min}}元</view>
+              <view class="text-cut margin-left-sm" style='font-size:30rpx;position:absolute;left:60%;bottom:0'>约{{item.Duration}}分钟</view>
+            </view>
+          </view>
+        </view>
+      </view>
+       <view class="delete  {{item.isShow?'':'hide'}}" data-id="{{item.ServiceId}}" data-pull="{{item.PullOff}}" data-index='{{index}}' bindtap="delItem" >
+       <text class="pull" wx:if="{{item.PullOff}}">上架</text>
+        <text class="pull" wx:else>下架</text>
+       </view>
+    </view> 
+
+    <!-- --------------------------------------------------------- -->
+    <!-- <view wx:for="{{services}}" style='position: relative;'>
+  <view class='list' style='{{item.txtStyle}}' bindtouchstart="touchS" bindtouchmove="touchM" bindtouchend="touchE" data-index='{{index}}'>
+    
+    
+  </view>
+ <view class="delete" data-id="{{index}}" data-index='{{index}}' bindtap="delItem" >删除</view>
+</view> -->
+    <!-- --------------------------------------------------------- -->
+  <!-- </navigator> -->
+
+
+  <!-- 按需加载 -->
+  <view style='height:100rpx;'></view>
+  <block wx:if="{{lastId == -1}}">
+  <view class='text-center' style='font-size:35rpx;'>老弟，没有了</view>
+  </block>
+  <block wx:else>
+  <view class='text-center' style='font-size:35rpx;'>上拉加载</view>
+  </block>
+</view>
+<view style='height:100rpx;'></view>
+<view style='height:300rpx;'></view>

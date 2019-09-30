@@ -1,0 +1,47 @@
+/* pages/index/user/staff/certificate/film/film.wxss */
+.head .cu-bar{
+   min-height:  200rpx;
+  font-weight: bold;
+   
+}
+.box{
+  height: 60rpx;
+  line-height: 60rpx;
+  padding-left: 35rpx;
+  background-color: rgb(228, 224, 224);
+}
+.head .cu-bar text{
+    font-size: 40rpx;
+    margin-right: 40%;
+} 
+.cu-bar {
+    min-height:  20rpx;
+}
+.count{
+  height: 100%;
+  background-color: white;
+}
+.section input{
+  border: 1rpx black solid;
+  background-color: white;
+  margin: 30rpx
+}
+.padding{
+  border-bottom: 10rpx rgb(192, 185, 185) solid;
+}
+.film{
+  padding-top: 20%;
+  font-weight: bold;
+  text-align: center;
+  font-size: 35rpx;
+}
+.phone{
+  text-align: center;
+  font-weight: bold;
+  font-size: 35rpx;
+}
+button{
+  width: 40%;
+  margin-top: 45%;
+  background-color: orange
+}

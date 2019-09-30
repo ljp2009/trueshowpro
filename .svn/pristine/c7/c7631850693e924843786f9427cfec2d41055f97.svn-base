@@ -1,0 +1,64 @@
+<template name="statusTwo">
+   <view class='hidTwo' style="background-color:#FFF;">
+      <view class='page' style='font-size:35rpx;'>
+        <view class=' mb-sm text-ms' style='padding:30rpx 25rpx;'>
+          <view style='margin-top:10rpx;'>服务进行中，如已完成，请发起支付请求(买单)</view>
+          <view class='' style='margin-top:10rpx;'>约单价格:
+            <text style='margin-left:30rpx'>￥300.0</text>
+          </view>
+          <view style='margin-top:10rpx'>顾客结账金额:</view>
+        <textarea bindinput="settleAccountsChange" class="solid  text-right" style='margin-top:10rpx;padding:10rpx 15rpx 10rpx 0;height:60rpx;line-height:60rpx;font-weight:bold;color:#000;' placeholder='请输入结账金额' value="{{value}}" placeholder-style='color:#111;border:1rpx solid #999;'></textarea>
+        </view>
+        <!-- 本店优惠部分 -->
+        <view>
+          <text class="basis-xs  margin-xs padding-sm radius">本店优惠:</text>
+          <view class="basis-xl margin-xs padding-sm radius" style='margin-left:100rpx'>
+            <view>
+              <text class="cu-tag round bg-orange sm" style='width:160rpx;height:50rpx;line-height:50rpx;font-size:35rpx;'>单笔满减</text>
+              <text class='textmiddle' style='margin-left:30rpx'>满400减100</text>
+              <text style='float:right'>-100.00</text>
+            </view>
+            <view style='margin-top:30rpx'>
+              <text class="cu-tag round bg-orange sm" style='width:160rpx;height:50rpx;line-height:50rpx;font-size:35rpx;'>熟客折扣</text>
+              <text class='textmiddle' style='margin-left:30rpx'>*95%</text>
+              <text style='float:right'>-50.0</text>
+            </view>
+          </view>
+        </view>
+        <!-- 兑换优惠部分 -->
+        <view class="flex padding-sm">
+          <view style='width:160rpx;hieght:56rpx;line-height:56rpx;margin-right:150rpx;'>兑换优惠</view>
+          <radio-group bindchange="SetBorderSize">
+            <label style='margin-right:30rpx;'>
+              <radio class="orange danxuan" value="" style='transform:scale(0.6);height:50rpx;line-height:50rpx;'></radio>
+              <text style='margin-left:24rpx'> 已另协商</text>
+            </label>
+            <label>
+              <radio class="orange danxuan" value="" checked style='transform:scale(0.6);height:50rpx;line-height:50rpx;'></radio>
+              <text style='margin-left:33rpx'>兑现优惠</text>
+            </label>
+          </radio-group>
+        </view>
+        <view class="flex padding-sm">
+          <view class=" ">顾客支付：</view>
+          <view style='margin-left:350rpx;font-size:40rpx;color:red'>￥300.00</view>
+        </view>
+        <view style='margin:10rpx 0 0 20rpx'>价格说明:</view>
+        <textarea class=" solid" style='margin:10rpx auto auto auto;padding:20rpx 20rpx 10rpx 40rpx;color:grey;height:200rpx;color:#111;' placeholder='如约单价格与结账价格不一致，请简短说明原因，如顾客要求增加项目或使用不同材料、仪器等。' placeholder-style='color:#333;'></textarea>
+        <view style='margin:10rpx 0 0 20rpx'>实收金额:</view>
+        <view class='text-center'>
+          <view style='height:20rpx;'></view>
+          <view class="cu-item">
+            <navigator style='display:inline-block;' url='/pages/index/reservation/staff/modules/statusTwoModal/statusTwoModal'>
+              <text class="cuIcon-questionfill  text-yellow" style='font-size:30rpx' bindtap="showDialogBtn"></text>
+              <text style='color:#FFCC00'>平台佣金：</text>
+              <text>2%</text>
+            </navigator>
+            <text style='margin-left:50rpx'>实收:￥294.00</text>
+          </view>
+        </view>
+        <button class="cu-btn bg-orange margin" style='font-size:35rpx;width:34%;margin-left:33%;'>请顾客买单</button>
+      </view>
+      <!-- 模态框部分 -->
+    </view>
+</template>

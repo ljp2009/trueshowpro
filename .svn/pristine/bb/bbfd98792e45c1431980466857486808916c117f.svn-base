@@ -1,0 +1,64 @@
+<!--pages/index/user/staff/serviceList/serviceList.wxml-->
+<!-- 头部 -->
+<cu-custom bgColor="bg-gray" isBack="{{true}}" style="color:#000;">
+  <view slot="backText" style='font-size:36rpx;color:#000;'>返回</view>
+  <view slot="content" style='font-size:39rpx;margin-left:-50rpx;color:#000;'>服务列表</view>
+</cu-custom>
+<!-- 分类 -->
+<view class="grid col-1 margin-bottom bg-white" role="" aria-label="">
+  <view class="padding" role="" aria-label="" style="background-color:#ccc">
+    <view class='grid col-2' style='font-size:35rpx;'>
+      <view class='text-left'>我的服务项目</view>
+    </view>
+  </view>
+  <view class="padding" role="" aria-label="">
+    <view class='grid col-2' style='font-size:35rpx;'>
+      <view class='text-left'>分类:</view>
+    </view>
+  </view>
+  <scroll-view scroll-x class="bg-white nav" scroll-with-animation scroll-left="{{scrollLeft}}">
+    <view class="cu-item cats" wx:for="{{classifyList}}" wx:key bindtap="tabSelect" data-id="{{item.Cid}}" data-seq="{{item.Seq}}">
+      <button class="cu-btn round sm  margin-xs {{item.checked == 'false'?'bg-orange':''}}" role="button" aria-disabled="false" style='font-size:35rpx;'>
+        {{item.Name}}</button>
+    </view>
+  </scroll-view>
+</view>
+<!-- 项目列表 -->
+
+<block wx:if="{{services.length > 0}}">
+<view class="bg-white solid-bottom margin-top padding" >
+  <view  style='font-size:35rpx;'>
+    <view class='text-left'>点击选择你擅长的服务项目：</view>
+  </view>
+</view>
+<view class="cu-list menu-avatar "style='padding-right:20rpx;'>
+  <view wx:for="{{rightServices}}" wx:key  class="cu-item  "   data-index="{{item.ServiceId}}" style="{{item.PullOff == 1?'background-color:#eee;':''}}">
+    <view class="cu-avatar radius lg" style="background-image:url(http://ljp.jujiaoweb.com/static/images/index/icon17.jpg);"></view>
+    <view class="content">
+      <view class="text-black" style='font-size:35rpx;'>
+        <view class="text-cut">{{item.ServiceName}}</view>
+        <view class="text-cut">{{item.Discription}}{{item.PullOff}}</view>
+      </view>
+      <view class="text-gray text-sm flex" style='font-size:35rpx;'>
+        <text class="text-price text-red">{{item.Price_Min}}元</text>
+        <text class="text-cut text-black margin-left-sm">约{{item.Duration}}分钟</text>
+      </view>
+    </view>
+    <view class='action text-right'>
+    <block wx:if="{{item.PullOff == 1}}">
+     <switch class="green sm" disabled="true"  checked="{{item.checked == 'true'?true:false}}"   data-id="{{item.ServiceId}}"></switch>
+    </block>
+    <block wx:if="{{item.PullOff == 0}}">
+     <switch class="green sm" checked="{{item.checked == 'true'?true:false}}"  bindchange="bindChange"  data-id="{{item.ServiceId}}"></switch>
+    </block>
+     
+    </view>
+  </view>
+</view>
+</block>
+<block wx:else>
+  <view style="font-size:17px;background-color:white;padding:15px;text-align:center" >
+    <view>机构中未有服务项目</view>
+    <view>从“机构——>服务项目”添加后再选择</view>
+  </view>
+</block>

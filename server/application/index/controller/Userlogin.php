@@ -1,12 +1,13 @@
 <?php
 namespace app\index\controller;
 
+use think\Controller;
 use think\Db;
 use think\Request;
 use think\Config;
 use think\Cookie;
 //登录类
-class Userlogin
+class Userlogin extends Controller
 {
     /**
      *微信授权登录
@@ -31,18 +32,20 @@ class Userlogin
             exit;
         }
         $code=$data["code"];
-
         //得到code换取openid
         $url="https://api.weixin.qq.com/sns/jscode2session?appid=$appid&secret=$appsecret&js_code=$code&grant_type=authorization_code";
         $curldata=curl($url,"get","https");
         $data1=json_decode($curldata,true);
+//        print_r($data1);
+//        exit;
         $openid=$data1["openid"];//获取用户的openid
         $time=date("Y-m-d H:i:s");
-        //$openid="oHU2X5Fj1wl2QhifDe0WHNaTsxU4";
+        /////////////////////////////////////临时测试的一个openid  现在数据不是真实的
+//        $openid="o5_Op5ZK2xzkshU0cKR1nLKub8g0";
 
         $count=Db::table("user")->where("WachatOpenid","=",$openid)->count();
         if ($count>0){
-            //存在
+            //用户存在 证明登录过
             $res=Db::name('user')->where('WachatOpenid',$openid)->field(["UserId","LastLoginTime","Entry","StaffLevel","Reservation","km","MySubCat"])->find();
             if (!$res){
                 echo returnData(0,"出错了");
@@ -54,14 +57,15 @@ class Userlogin
             $delta=$currentTime-$lastTime;  //时间差》24小时
             $res["ifGuide"]=$delta>24*3600?true:false;       //是否显示引导页
 
+
+
             $updateData=[
                 "LastLoginTime"=>date("Y-m-d H:i:s",$currentTime)
             ];
             if($delta>48*3600){
-                //////////////////更新数据库中的距离和分类
+                //////////////////更新数据库中的距离和分类 大于48小时
                 $updateData["km"]=5;
                 $updateData["MySubCat"]="";
-
 
                 /////////////////往前端传递的数据
                 $res["km"]=5;
@@ -126,6 +130,60 @@ class Userlogin
             exit;
         }
         echo returnData(1,"更新成功");
+        exit;
+    }
+
+    //UpdateUserLastLoginTime
+    public function UpdateUserLastLoginTime(){
+
+        $request=Request::instance();
+        $data=$request->param();
+        $uid=$data["uid"];
+
+        //
+        $res=Db::table('user')->where('UserId', $uid)->update(['LastLoginTime' => date("Y-m-d H:i:s")]);
+        if (!$res){
+            echo returnData(0,"更新失败");
+            exit;
+        }
+        echo returnData(1,"更新成功");
+        exit;
+    }
+
+
+    /**
+     *判断技师是否在线 在线写入表 下线删除这条记录
+     * type：0--下线  1-在线
+     */
+    public function ifInsertStaffOnline(){
+        //  StaffId: uid,//
+        //                      type:1  // 1-上线 0-下线
+        $request=Request::instance();
+        $data=$request->param();
+        $StaffId=$data["StaffId"];//技师id
+        $type=$data["type"];//1-上线 0-下线
+        if ($type==1){
+            $data=["StaffId"=>$StaffId];
+
+            //判断是否存在这条记录
+            $count=Db::table("staff_online")->where("StaffId",$StaffId)->count();
+            if ($count==0){
+                //写入这条数据
+                $res=Db::table("staff_online")->insert($data);
+            }else{
+                $res=true;
+            }
+
+        }else{
+            //删除这条数据
+            $res=Db::table("staff_online")->where("StaffId",$StaffId)->delete();
+        }
+
+        if (!$res){
+            echo returnData(0,"操作失败");
+            exit;
+        }
+        echo returnData(1,"操作成功");
         exit;
     }
 

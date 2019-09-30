@@ -1,0 +1,49 @@
+<!--pages/index/user/staff/pokerByStaff/pokerByStaff.wxml-->
+<cu-custom bgColor="bg-gray" isBack="{{true}}" style="color:#000;">
+  <view slot="backText" style='font-size:36rpx;color:#000;'>返回</view>
+  <view slot="content" style='font-size:39rpx;color:#000;'>晒单/作品</view>
+</cu-custom>
+<block wx:if="{{isSuccess == false}}">
+  <view style="text-align:center;font-size:17px;padding:15px;">加载失败</view>
+</block>
+<block wx:else>
+<block wx:for="{{pokerList}}" wx:key>
+<text class="text-black contents">{{item[0].CreatTime}}</text>
+<block wx:for="{{item}}" wx:for-item="poker" wx:key>
+
+<navigator url='/pages/index/user/customer/staffWorkShowDetail/staffWorkShowDetail?pokerId={{item[0].ID}}&&staffId={{staffId}}&&favorDate={{item[0].CreatTime}}'>
+  <view class="bg-white margin">
+    <view class="flex  p-xs margin-bottom-sm mb-sm solid-bottom">
+      <view class="cu-avatar radius margin" style="background-image:url(http://ljp.jujiaoweb.com/static/images/index/poster.jpg);" role="" aria-label=""></view>
+      <view class="basis-lg  radius margin-bottom">
+        <view class="margin-top">
+          <text class="text-sm font" style='font-size:30rpx;'>{{poker.ID}}收藏/浏览次数:</text>
+          <text class="cuIcon-likefill font heart" style='font-size:30rpx;'>{{poker.Favor}}</text>
+          <text class="cuIcon-attentionfill font" style='font-size:30rpx;'>{{poker.Read}}</text>
+        </view>
+        <view class="margin-right" style='font-size:32rpx;'>
+          <text class="text-sm font" style='font-size:32rpx;'>顾客评价：</text>
+          
+          <text wx:for="{{poker.Star}}" wx:key class="cuIcon-favorfill lg text-orange"></text>
+          <text wx:for="{{5-poker.Star}}" wx:key class="cuIcon-favorfill lg text-gray"></text>
+        </view>
+        <view class="margin-right" style='font-size:32rpx;'>
+          <text class="text-sm font">{{poker.customerName}}:</text>
+        <!-- </view>
+        <view style='font-size:32rpx;'> -->
+          <block wx:if="{{poker.Comment == null}}">
+            <text class="text-sm font">(这个顾客很懒，什么也没有留下！)</text>
+          </block>
+          <block wx:else>
+          <text class="text-sm font">{{poker.Comment}}</text>
+          </block>
+        </view>
+      </view>
+    </view>
+  </view>
+</navigator>
+</block>
+</block>
+
+</block>
+<view wx:if="{{isMore == false}}" style="text-align:center;padding:15px;">没有了，兄dei!</view>

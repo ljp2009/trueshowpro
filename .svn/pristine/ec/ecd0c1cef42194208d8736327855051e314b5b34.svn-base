@@ -1,0 +1,38 @@
+<!--pages/index/user/staff/userInfo/userInfo.wxml-->
+<cu-custom bgColor="bg-white" isBack="{{true}}" style="color:#000;">
+  <view slot="backText" style='font-size:36rpx;color:#000;'>返回</view>
+  <view slot="content" style='font-size:39rpx;margin-left:-50rpx;color:#000;'>个人信息</view>
+</cu-custom>
+<block wx:if="{{info.Certificated == 0}}">
+<navigator url="">
+<view class="cu-bar">
+    <view class="action title-style-3" >
+      <text class="text-red text-bold margin-left noidenty" style='display:inline-block;width:120rpx;font-size:32rpx;'>未认证</text>
+      <text class="cuIcon-questionfill text-gray question" style='font-size:39rpx;margin-left:-35rpx;'></text>
+      <text class="text-black contents" style='display:inline-block;width:550rpx;margin-left:-1rpx;'>专业、信任、保障、让顾客放心、请进行认证</text>
+    </view>
+</view>
+</navigator>
+
+</block>
+<form bindsubmit="save">
+<view class="bg-white padding" style='font-size:35rpx;'>
+  <view class="title margin-left name text-black" style='font-size:35rpx;'>
+    昵 称：<input value="123123" maxlength="30" name="NickName" placeholder="昵称" value="{{info.NickName}}"></input>
+  </view>
+   
+  <view class="title margin-left name text-black">
+    真实姓名：<input maxlength="30" name="RealName" placeholder="真实姓名" value="{{info.RealName}}" ></input>
+  </view>
+  <view class="title margin-left name text-black">
+    个人简介：
+  </view>
+  <view class=" textareatext margin-left margin-right">
+		<textarea maxlength="-1" disabled="{{modalName!=null}}" name="staffDesc" bindinput="textareaAInput" placeholder="写写你的优势，擅长的项目、教育背景、培训经历和经验等等" style='color:#363636;padding-left:10rpx;padding-top:15rpx;font-size:28rpx;'></textarea>
+	</view>
+  <view class="action text-right margin" role="" aria-label="">{{descLen}}/500</view>
+</view>
+<view class="flex flex-direction rem" role="" aria-label="">
+  <button form-type='submit' class="cu-btn bg-orange margin-tb-sm lg button-hover"  role="button" aria-label="" aria-disabled="false">保存</button>
+</view>
+</form>

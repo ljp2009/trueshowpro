@@ -1,0 +1,9 @@
+/* pages/index/reservation/customer/modules/statusZero/statusZero.wxss */
+.selected{
+  background-color:rgb(255,102,0);
+  display:inline-block;
+}
+
+.noselected{
+  display:inline-block;
+}

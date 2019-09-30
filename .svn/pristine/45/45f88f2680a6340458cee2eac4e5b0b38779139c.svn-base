@@ -1,0 +1,161 @@
+<view class=' {{staffId == -1?"":"hide"}}' >
+  <cu-custom bgColor="bg-gray" isBack="{{true}}" style="color:#000;">
+    <view slot="backText" style='font-size:36rpx;color:#000;'>返回</view>
+    <view slot="content" style='font-size:39rpx;margin-left:-50rpx;color:#000;'>修改服务项目</view>
+  </cu-custom>
+</view>
+<view class=' {{serviceId == -1?"":"hide"}}'>
+  <cu-custom bgColor="bg-gray" isBack="{{true}}" style="color:#000;">
+    <view slot="backText" style='font-size:36rpx;color:#000;'>返回</view>
+    <view slot="content" style='font-size:39rpx;margin-left:-50rpx;color:#000;'>添加 服务项目</view>
+  </cu-custom>
+</view>
+<view style='height:35rpx;'></view>
+<form bindsubmit="formSubmit" method="post" enctype="multipart/form-data">
+<view class='bg-Gray' style='font-size:35rpx;'>
+  <!-- 添加项目的名称 -->
+  
+    <view class="grid col-1 text-center" role="" aria-label="">
+      <view class="padding-left text-left" role="" aria-label="">服务项目名称:</view>
+      <view class="padding-left padding-right margin-top" role="" aria-label="">
+        <input class='bg-white text-left' style='padding-left:10rpx;' name='serviceName' maxlength='30' value='{{form.serviceName}}'></input>
+      </view>
+    </view>
+    <view class="grid col-1 text-center margin-top" role="" aria-label="">
+      <view class="padding-left text-left" role="" aria-label="" >副标题:</view>
+      <view class="padding-left padding-right margin-top" role="" aria-label="">
+        <input class='bg-white text-left' style='padding-left:10rpx;' name='serviceTitle' maxlength='30' value='{{form.serviceTitle}}'></input>
+      </view>
+    </view>
+  
+  <!-- 分类 -->
+  <view class='classify'>
+    <view class='text-left padding-left margin-top'>分类:</view>
+
+    <view class='margin-top' wx:for="{{classifyList}}" wx:key style='margin-left:33rpx;'>
+      <text data-checked="{{item.checked}}" data-index="{{index}}" class="{{item.checked=='true'?'title':''}}" style="padding:6rpx 10rpx" bindtap='changeCat' data-cat='{{item.Seq}}' >{{item.Name}}</text>
+      
+      <text class="{{itemName.checked=='true'?'choose-content':''}}" wx:for="{{item.Pid}}" wx:for-item="itemName" wx:for-index="index1" wx:key bindtap='changeCat' data-checked="{{itemName.checked}}" data-index1="{{index1}}" data-index="{{index}}" data-cat="{{itemName.Seq}}" >{{itemName.Name}}</text>
+    </view>
+
+  </view>
+  <!-- 价格 -->
+  <view>
+    <view class='padding-left margin-top'>
+      <text style='height:50rpx;line-height:50rpx;vertical-align:top;'>价格区间:</text>
+      <text class='cuIcon-questionfill text-orange' bindtap='showDialogBtn' style='font-size:45rpx;height:50rpx;line-height:50rpx;position:relative;top:6rpx;left:15rpx;'></text>
+    </view>
+  </view>
+  <!-- 模态框 -->
+  <view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+  <view class="modal-dialog" wx:if="{{showModal}}">
+    <view class='cu-list menu bg-white'>
+      <view class="cu-item">
+        <view class="flex-sub radius text-center" role="" aria-label="">
+          <text class='cuIcon-questionfill text-orange margin-right'></text>说明
+        </view>
+      </view>
+      <view class="bg-white">
+        <view class="text-left margin">因使用材料、仪器不同的而产生的变动</view>
+        <view class="text-left margin">按服务时长计费的项目请单列</view>
+        <view class="text-left margin">实际成交价以顾客到店协商后确定</view>
+      </view>
+      <view class="cu-item">
+        <button class="cu-btn bg-orange ensure-btn" role="button" aria-disabled="false" bindtap="onConfirm" data-status="confirm">知道了</button>
+      </view>
+    </view>
+  </view>
+  <view class='grid col-4 text-left'>
+    <view class='price-content' style='padding-left:50rpx'>最低价:</view>
+    <view class='price-content flex flex-wrap'>
+      <view class='basis-lg'>
+        <input class='price-input' placeholder='0.00' style='padding-left:10rpx;' name="lowPrice" type='number' value="{{form.lowPrice}}"></input>
+      </view>
+      <view class='basis-xs'>元</view>
+    </view>
+    <view class='price-content' style='padding-left:30rpx'>最高价:</view>
+    <view class='price-content flex flex-wrap'>
+      <view class='basis-lg'>
+        <input class='price-input' placeholder='(选填)' style='padding-left:10rpx;' name='highPrice' type='number' value='{{form.highPrice}}'></input>
+      </view>
+      <view class='basis-xs'>元</view>
+    </view>
+  </view>
+  <view class='flex flex-wrap text-left' style='margin-top:-60rpx;'>
+    <view class='price-content basis-xs' style='padding-left:50rpx'>耗 时:</view>
+    <view class='price-content basis-lg grid col-3 text-left'>
+      <view style='display:inline-block;text-align:center;'>约</view>
+      <view>
+        <input class='price-input' placeholder='90分钟' style='padding-left:10rpx;' name='needTime' type='number' maxlength='4' value='{{form.needTime}}'></input>
+      </view>
+      <view>分钟</view>
+    </view>
+  </view>
+  <!-- 服务介绍: -->
+  <view>
+    <view class='padding'>服务介绍:</view>
+    <textarea class='area-size radius'  maxlength='500' placeholder="服务介绍:" style="padding-top:8rpx;padding-left:10rpx;" name='introduce' bindinput="textareaAInput" value='{{form.introduce}}'></textarea>
+    <view class='text-right margin-right'>({{descLength}}/500)</view>
+  </view>
+  <!-- 服务介绍的图片 -->
+  <view>
+    <view class='padding'>服务介绍:</view>
+    <view style='padding-left:30rpx'>
+    
+      <!-- <view class='add-img' bindtap='addServiceImage'>
+        <text class='cuIcon-roundaddfill text-orange icon-position' style='font-size:50rpx;'></text>
+      </view> -->
+ <view class='ui_uploader_cell'>
+    <!-- 根据已选择的图片临时路径数组展示图片-->
+    
+    <!-- 上传按钮+框 -->
+    <!-- <view class='ui_uploader' bindtap="chooseImg" wx:if="{{showUpload}}"></view> -->
+    
+</view>
+<!-- 添加图片start -->
+<view class="weui-uploader">
+  <view class="img-v weui-uploader__bd" >
+    <view class='pic' wx:for="{{imgs}}" wx:for-item="item" wx:key="*this" >
+        <image class='weui-uploader__img '
+                src="{{item}}"
+                data-index="{{index}}" mode="aspectFill" bindtap="previewImg">
+                  <icon type='cancel' class="delete-btn" data-index="{{index}}" catchtap="deleteImg"></icon>
+        </image>
+    </view>
+      <!-- 用来提示用户上传图片 -->
+      <view wx:if="{{isAddShow == true}}">
+      <view class="weui-uploader__input-box pic {{addImg==true?'showAddImg':'hideAddImg'}}" bindtap="chooseImg" > 
+      <text class='cuIcon-roundaddfill text-orange icon-position' style='font-size:50rpx;'></text>
+      </view>
+      </view>
+      
+  </view>
+  <view  style='padding-left:30rpx'>
+  <!-- <view class="ui_uploader add-img" bindtap="chooseImg">
+    <text class='cuIcon-roundaddfill text-orange icon-position' style='font-size:50rpx;'></text>
+  </view> -->
+  </view>
+  
+</view>
+
+<!-- 添加图片end -->
+     
+    </view>
+    <view style='height:10rpx;'></view>
+    <view style='padding-left:30rpx;clear:both;'>
+      <view>建议图片包含：</view>
+      <view>整体效果、局部特写、服务过程使用的材料和设备、服务环境、效果对比等。</view>
+    </view>
+    <view style='height:30rpx;'></view>
+    <view class='hidTwo' style='padding-left:30rpx;margin-bottom:10rpx;display:{{hidTwo}};'>
+      <view>修改记录</view>
+      <view>1、2019-08-08 12:00 COCO 修改</view>
+      <view>2、2019-08-08 12:00 COCO 创建</view>
+    </view>
+    <view class='bg-white text-center' style='height:136rpx;line-height:136rpx;'>
+      <button class="cu-btn bg-orange btn-size"  form-type='submit'>保存</button>
+    </view>
+    
+  </view>
+  
+</view></form>

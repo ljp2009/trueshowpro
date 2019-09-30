@@ -1,0 +1,13 @@
+
+
+  <view class='hidOne'>
+    <view class="bg-white">
+      <view class="solid-bottom padding align-start">
+        <view style="font-size:38rpx;text-align:center;color:#333;">顾客已预约，等待顾客到店</view>
+        <view style='margin-top:20rpx;font-size:29rpx;color:#333;'>
+          如需改签,请联系客户并说明原因,由客户更改服务时间
+        </view>
+      </view>
+    </view>
+  </view>
+

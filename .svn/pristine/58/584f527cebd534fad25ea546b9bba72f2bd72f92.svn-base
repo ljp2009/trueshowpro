@@ -1,0 +1,89 @@
+<!-- <cu-custom bgColor="bg-gradual-white" isBack="{{true}}">
+  <view slot="content"></view>
+</cu-custom> -->
+ <!-- 轮播图片autoplay='true' -->
+ <!-- <swiper bindchange="swiperChange"  indicator-active-color='#fff'  indicator-dots="true"   interval='5000' duration='500' circular='true'>
+        <block wx:for="{{imgs}}" wx:for-index="index" wx:key="swiperItem" wx:for-item="item" >
+          <swiper-item class="swiper-items"  >
+            <image class="swiper-image" src="{{item}}" style="width:100%;height:100%;"></image>
+           
+          </swiper-item>
+        </block>
+    </swiper>  autoplay="true" -->
+    <swiper class="screen-swiper {{DotStyle?'square-dot':'round-dot'}}" indicator-dots="true" circular="true" interval="5000" duration="500" class="swiperContainer" bindchange="swiperChange">
+  <swiper-item wx:for="{{imgs}}" wx:key >
+  
+    <block wx:if="{{item.type==0}}">
+      <image  style="width:100%;height:51%" src="{{webRoot}}/static/images/index/{{item.imgname}}" mode="aspectFill" ></image>   
+   </block>
+
+   <block wx:else>
+      <image  style="width:100%;height:100%" src="{{webRoot}}/static/images/index/{{item.imgname}}" mode="aspectFill" ></image>
+   </block>
+
+   <image  style="width:100%;height:51%;margin-top:-1%;" src="{{webRoot}}/static/images/index/{{aaa}}" mode="aspectFill" ></image>
+      
+  
+  </swiper-item>
+</swiper>
+ <!-- 轮播图片结束 -->
+<view >
+    <!-- 右侧 -->
+       <view style="display:inline-block;width:75%;position:absolute;top:6%;right:5%;">
+          <view class="cu-item"role=""aria-label="" style="text-align:center;margin-left:70%;">
+                          <view class="cu-avatar round md"  style="background-image:url('{{staffInfo.Avatar}}');"role=""aria-label=""></view>
+                          <view class="content flex-sub"role=""aria-label="">
+                            <view class="text-white text-md"role=""aria-label="">{{staffInfo.NickName}}
+                              <text wx:if="{{staffInfo.Certificated==1}}"><text  class="cuIcon-roundcheckfill lg " style='color:#ff6600;margin-right:20rpx;'></text></text>
+                      <text wx:elif="{{staffInfo.Certificated==0}}"><text  class="cuIcon-roundcheckfill lg " style='color:#fff;margin-right:20rpx;'></text></text>
+                            </view>
+                            <view class="text-white text-md"role=""aria-label="">{{item.Satisfection}}</view>
+
+                           <!-- xx -->
+                           <view class='star-wrap' wx:for="{{stars1}}" wx:for-index="index" wx:for-item="starsobj" style="display:inline-block;">
+                              <view class='star-item'  wx:key="" wx:if="{{staffInfo['stars']<=index}}" style='background:url("http://ljp.jujiaoweb.com/static/images/index/star_black.png") no-repeat top;background-size:100%;'   data-index="{{index}}" catchtap='starClick'></view>
+                              <view class='star-item'  wx:key="" wx:elif="{{staffInfo['stars']>index}}" style='background:url("http://ljp.jujiaoweb.com/static/images/index/star_light.png") no-repeat top;background-size:100%;'   data-index="{{index}}" catchtap='starClick'></view>        
+                           
+                        </view>
+                           <!-- xx -->
+                        </view>
+                        </view>
+
+
+                   
+                 
+       </view>
+    </view>
+    <!-- 弹幕 -->
+      <view class="doommview" style="position:absolute;top:40%;">
+          <block wx:for="{{doommData}}" wx:key="id">
+              <text wx:if="{{item.display}}" class="aon" style="animation: first {{item.time}}s linear forwards;top:{{item.top}}%;color:{{item.color}};">
+                  <text class="itemText">{{item.nickname}}：{{item.text}}</text> 
+              </text>
+          </block>
+      </view>
+    <!-- 弹幕结束 -->
+    <!-- 尾部 -->
+    <view style="position:absolute;top:80%;width:100%;">
+        <view class="text-xxl font-bold" style="text-align:center;color:blue;" >{{serviceName}}</view>
+        <!-- 头像组 -->
+        <view style="text-align:center;margin-top:2%;border:1rpx solid orange;" >
+          <view class="cu-avatar-group"  wx:for="{{imgs}}" style="border:1rpx solid green;">
+            <view class="cu-avatar  sm"  wx:key style="background-image:url('{{webRoot}}/static/images/index/{{item.imgname}}');margin-right:1%;border:1rpx solid red;" wx:if="{{swiperIndex==index}}" ></view>
+            <view class="cu-avatar  sm"  wx:key style="background-image:url('{{webRoot}}/static/images/index/{{item.imgname}}');margin-right:1%;" wx:else ></view>
+             <!-- <view class="cu-avatar  df"  wx:key style="background-image:url('{{webRoot}}/images/index/hand.png');margin-right:5%;"></view>
+              <view class="cu-avatar  df"  wx:key style="background-image:url('{{webRoot}}/images/index/test.jpg');margin-right:5%;"></view>
+               <view class="cu-avatar  df"  wx:key style="background-image:url('{{webRoot}}/images/index/test.jpg');margin-right:5%;"></view>
+                <view class="cu-avatar  df"  wx:key style="background-image:url('{{webRoot}}/images/index/test.jpg');margin-right:5%;"></view>
+                 <view class="cu-avatar  df"  wx:key style="background-image:url('{{webRoot}}/images/index/test.jpg');margin-right:5%;"></view>
+                  <view class="cu-avatar  df"  wx:key style="background-image:url('{{webRoot}}/images/index/test.jpg');margin-right:5%;"></view>
+             <view class="cu-avatar  df"  wx:key style="background-image:url('{{webRoot}}/images/index/test.jpg');margin-right:5%;"></view>
+              <view class="cu-avatar  df"  wx:key style="background-image:url('{{webRoot}}/images/index/test.jpg');margin-right:5%;"></view> -->
+          </view>
+    </view>
+    <!-- 头像组结束 -->
+    <view style="color:red;text-align:center;margin-top:2%;position:absolute;top:83%;width:100%;" class="text-lg">{{favorDate}}</view> 
+</view>
+<!-- 尾部结束 -->
+
+ 

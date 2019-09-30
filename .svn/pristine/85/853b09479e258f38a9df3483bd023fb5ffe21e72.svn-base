@@ -1,0 +1,187 @@
+<!--pages/index/qa/qaDetail/qaDetail.wxml-->
+<!-- 头部 -->
+<cu-custom bgColor="bg-white " isBack="{{true}}" >
+	<view slot="backText"></view>
+</cu-custom>
+<!-- 文章收起来的时候 -->
+<view class="bg-fill margin-bottom-sm" >
+<view class="cu-card article"  >
+  <view class="cu-item">
+   <view >
+         <view class="flex-treble " style="display:inline-block;width:80%">    
+    <view class="text padding-top padding-left">{{qusDetail['Title']}}</view>
+    <view class="text padding-bottom padding-left changeSize" style="margin-top:2%;">
+      <text class="padding-right">{{qusDetail['ReplyCount']}} 回答 {{qusDetail['Favorited']}} 收藏   {{qusDetail['charTime']['day']}}{{qusDetail['charTime']['hour']}}{{qusDetail['charTime']['min']}}前</text>
+      <!-- 未点亮之前的♥   -->
+      <text wx:if="{{qusDetail['ifFavor']==0}}" bindtap="favorBtn" data-iffavor="{{qusDetail['ifFavor']}}" class="cuIcon-likefill lg text-gray"></text>
+      <!-- 点亮之后的♥ -->
+      <text  wx:elif="{{qusDetail['ifFavor']==1}}" bindtap="favorBtn"  data-iffavor="{{qusDetail['ifFavor']}}" class="cuIcon-likefill lg text-red"></text>
+    </view>
+     </view>
+     <view style="display:inline-block;text-align:right;width:18%;position:absolute;margin-top:5%;">
+      <button class="cu-btn icon bg-orange  " style="margin-bottom:100rpx;" bindtap="answerBtn">
+        <text class="text-white ">回答</text>
+      </button>    
+      </view>
+   </view>
+   <!-- 上部分 -->
+    <view class="content" style="border:1rpx solid red;" >  
+      <view class="desc" class="business-text {{ isExpanding ? 'block' : 'none' }} content-text">
+<!-- 如果存在照片 -->
+<view class="img" wx:if="{{qusDetail['Pic'] != null}}"  wx:for="{{qusDetail['Pic']}}" style="display:inline-block;" wx:key="">
+        <!-- <view wx:for="{{qusDetail['Pic']}}"> -->
+         <view class='add-img' >
+            <image src="{{webRoot}}/static/images/uploads/{{item['img']}}" style="height:100%;width:1005；">这是图片一</image>
+          </view>   
+</view>
+
+<!-- 照片 -->
+<view class="content-text" wx:if="{{qusDetail['Contents'] != null}}" > {{qusDetail['Contents']}}</view>
+          </view>
+    </view>  
+    <!-- 上部分结束 -->
+<view style="display:inline-block;margin-left:65%;border:1rpx solid red;margin-top:3%;" wx:if="{{qusDetail['ifpic']==1  || qusDetail['con']==1}}">    
+  <view class="business-btn" bindtap="handleExpandingChange">{{isExpanding ? "收起" : "展开"}}<text  class="horn {{ isExpanding ? 'block' : 'none' }}"></text>
+  </view>
+ 
+</view>  
+<!--  wx:if="{{qusDetail['Qid']}}"  catchtap="modifyAskBtn" -->
+<view style="float:left;margin-top:-4%;"   wx:if="{{qusDetail['UserId']==uid}}" >
+<!-- <navigateTo url="/pages/index/qa/addA/addA?itemData=1111" open-type="switchTab" hover-class="navigator-hover"> -->
+<view style="border:1rpx solid red;"  catchtap="modifyAskBtn">
+  <text class="cuIcon-edit lg text-black"></text>
+  <text>修改</text>
+  </view>
+<!-- </navigateTo> -->
+
+</view>
+  
+  </view>
+</view>
+</view>
+
+
+
+   
+<!-- 当前没有回答得布局 -->
+<view wx:if="{{imgs==false}}">当前还没有回答哦</view>
+<!-- 有回答得布局 -->
+<!-- 滑块 -->
+<swiper wx:else style="background-color:white;width:100%;height: 80%;"  current="{{cur}}" bindchange="swiperChange">
+    <block wx:for="{{imgs}}" wx:for-index="index" wx:key="swiperItem" wx:for-item="item" >
+      <swiper-item class="swiper-items"  >
+      <!-- wx:if="{{index<2}}" -->
+       <view >
+          <!-- 匿名  -->
+        <view class="bg-fill ">
+        <view class="flex">  
+        <view class="flex-sub  padding-top-sm margin-top-xs radius"></view>
+          <view class="flex-sub  padding-top-sm margin-top-xs radius text-center" style="border:1rpx solid blue;" >
+            <text class="text-center">({{index+1}}/{{item['answerCount']}})</text>
+          </view>
+          <view class="flex-sub  padding-top-sm margin-top-xs radius text-right margin-right" style="border:1rpx solid red;" >
+          <text class="cuIcon-edit lg text-black margin-right" bindtap="modifyAnswerBtn" wx:if="{{item['UserId']==uid}}" data-aid="{{item['Aid']}}" data-qtitle="{{item['Title']}}" style="border:1rpx solid blue;"  > 修改</text>
+            <text class="cuIcon-appreciatefill lg text-grey" wx:if="{{item['ifLiked']==0}}" bindtap="likeBtn" data-ifliked="{{item['ifLiked']}}" data-aid="{{item['Aid']}}"> </text>
+            <text class="cuIcon-appreciatefill lg text-orange " wx:if="{{item['ifLiked']==1}}" bindtap="likeBtn" data-ifliked="{{item['ifLiked']}}" data-aid="{{item['Aid']}}"> </text>
+            <text wx:if="{{item['ifOverThousand']==1}}">{{item['nowLiked']}}k</text>
+            <text wx:elif="{{item['ifOverThousand']==0}}">{{item['nowLiked']}}</text>
+          </view>
+      
+        </view>
+        <!-- 顾客回答 -->
+        <view class="cu-card article" wx:if="{{item['StaffLevel']==0}}">
+        
+          <view class="cu-item ">
+            <view class="flex-treble ">
+            <view class="text  left-justifying bold">匿名</view>
+            <view class="text changeSize left-justifying bold" wx:if="{{item['Gender']==0}}">身份：来自火星的人</view>
+            <view class="text changeSize left-justifying bold" wx:if="{{item['Gender']==1}}">身份：来自金星的人</view>
+            </view>
+            <view class="content">  
+                <view class="desc">
+                <view class="img" wx:if="{{item['Pic'] != null}}">
+                    <view class='add-img' wx:for="{{item['Pic']}}">
+                    <image src="{{webRoot}}/static/images/uploads/{{item['img']}}" style="height:100%;width:100%；"></image>
+                </view>
+             
+                    <!-- <view class='add-img'>
+                    <image>这是图片二</image>
+                </view>
+                    <view class='add-img'>
+                    <image>这是图片三</image>
+                </view> -->
+                </view>
+                <view class="content-text">{{item['Contents']}}</view>
+                  </view>
+                </view>
+              </view>
+          </view>
+      <!-- !!!!!! -->
+         <view class="cu-card article" wx:elif="{{item['StaffLevel']==2}}"> 
+         <view class="cu-list menu-avatar">
+	    <view class="cu-item">
+        <view class="cu-avatar lg round " style="background-image:url('{{item.Avatar}}');"></view>
+          <view class="content">
+          <view class="flex-twice">
+            <view class="text-black text-lg flex-sub" >
+            <text wx:if="{{item.Anonym==0}}" class="text-lg">{{item['NickName']}}</text>
+            <text wx:if="{{item.Anonym==1}}" class="text-lg">匿名</text>
+            <view style="display:inline-block;margin-left:2%;">
+            <text bindtap="follower" data-iffollower="{{item.iffollower}}"  data-staffid="{{item.UserId}}" wx:if="{{item.iffollower==1}}" class="ifAttention text-df">已关注</text>
+            <text bindtap="follower" data-iffollower="{{item.iffollower}}" data-staffid="{{item.UserId}}"  class="unAttention text-df" wx:elif="{{item.iffollower==0}}">关注</text>
+            </view>
+            </view>
+          </view>
+          <view class='flex-twice text-sm'>
+            <view class="flex-sub experience">
+              <view class='margin-right'>身份：技师</view>
+            </view>
+          </view>
+        
+		</view>
+  
+    </view>      
+  <!-- 图片 -->
+  <view class="img" wx:if="{{item['Pic'] != null}}">
+      <view class='add-img' wx:for="{{item['Pic']}}"  wx:key="">
+      <image src="{{webRoot}}/static/images/uploads/{{item['img']}}" style="height:100%;width:100%；"></image>
+  </view>
+  </view>
+  <!-- 图片结束 -->
+<view class="content-text bg-white padding-left padding-right padding-bottom"> {{item.Contents}}</view>
+   </view>  
+         </view>
+        <!-- 技师回答 -->
+       
+      
+        <!-- 技师回答结束 -->
+        </view>
+<!-- 匿名结束 -->
+<!-- 技师 -->
+
+<!-- 技师结束 -->
+       </view >
+       <!-- 11 -->
+       
+       <!-- 嗯嗯 -->
+      </swiper-item>
+    </block>
+</swiper> 
+<!-- 滑块结束 -->
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+

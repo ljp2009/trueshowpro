@@ -1,0 +1,67 @@
+<!--pages/index/user/staff/certificate/certStatus/succeed/succeed.wxml-->
+<view class="count">
+ <view class='head'>
+ <view class="cu-bar margin-top bg-white">
+ <!-- 头部图片 -->
+  <view class="action">
+  <image src='http://ljp.jujiaoweb.com/images/index/icon16.png' style='width:60rpx;height:60rpx;'></image>
+   
+  </view>
+  <text>身份认证</text>
+  
+   </view>
+  
+      <view class="box">身份初审成功，请支付身份认证费用</view>
+    
+   
+
+
+</view>
+ 
+<view class="cu-bar margin-top bg-white">
+<view class="action">
+    审核流程：
+  </view>
+</view>
+<view class="cu-list grid col-3">
+  <view class="cu-item" wx:for="{{icon}}" wx:key wx:if="{{item.isShow}}">
+    <text class="cuIcon-texi lg text-gray"></text>
+    <text>{{item.name}}</text>
+  </view>
+</view>
+<!-- 审核流程：
+ -->
+ 
+ <view class="bg-white padding margin-top-xs padd">
+  <view class="cu-steps">
+    <view class="cu-item {{index>basics?'':'text-orange'}}" wx:for="{{basicsList}}" wx:key>
+      <text class="cuIcon-{{index>basics?'round':item.icon}}"></text> {{item.name}}
+    </view>
+  </view>
+</view>
+  <view class='underway'>已认证</view>
+  <view class='day'>有效期至：2020年09-09 00:00
+</view>
+  <view class='massage'>
+    <view>
+    真实姓名： 张颖 
+    </view>
+
+    <view>
+    性别： 
+    </view>
+
+    <view>
+    身份证号：4405446543*****3454 
+    </view>
+
+    <view>
+    住址：
+    </view>
+
+    <view>
+    人像核验：
+    </view>
+  </view>
+
+  </view>

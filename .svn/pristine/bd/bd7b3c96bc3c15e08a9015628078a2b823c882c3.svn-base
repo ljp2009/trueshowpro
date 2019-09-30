@@ -1,0 +1,475 @@
+// pages/index/user/customer/index/index.js
+const app = getApp()
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    webRoot: app.globalData.webroot,
+    webRoot1: app.globalData.webroot1,
+    userAvatar: "", //当前登录用户的头像
+    userNickName: "",//当前登录用户的昵称
+    userGender:"",//当前登录用户的性别
+    uid: 0,//当前登录用户的id
+    countMyBullet: 0,//当前登录用户发送的晒单弹幕数量
+    staffLevel:0,//当前用户的隶属状态
+    beautifulProfile:[], //美丽档案
+    beautifulProfileLen: 0 ,//美丽档案条数
+    beauteList:[],  //美丽档案 信息
+    staffLists:[],   //我关注的技师数组
+    allFollowCount:0,  //所有关注技师的个数
+    favorsCount:0,  //晒单收藏总数
+    saveLists:[],    //收藏信息
+    staffPokerCount:0,   //美丽档案个数
+    // 星星
+    stars1: [{
+      lightImg: 'http://ljp.jujiaoweb.com/static/images/index/star_light.png',
+      blackImg: 'http://ljp.jujiaoweb.com/static/images/index/star_black.png',
+      flag: 0,
+      message: '非常不满意，各方面都很差'
+    }, {
+      lightImg: 'http://ljp.jujiaoweb.com/static/images/index/star_light.png',
+      blackImg: 'http://ljp.jujiaoweb.com/static/images/index/star_black.png',
+      flag: 0,
+      message: '不满意，比较差'
+    }, {
+      lightImg: 'http://ljp.jujiaoweb.com/static/images/index/star_light.png',
+      blackImg: 'http://ljp.jujiaoweb.com/static/images/index/star_black.png',
+      flag: 0,
+      message: '一般，还要改善'
+    }, {
+      lightImg: 'http://ljp.jujiaoweb.com/static/images/index/star_light.png',
+      blackImg: 'http://ljp.jujiaoweb.com/static/images/index/star_black.png',
+      flag: 0,
+      message: '一般，还要改善'
+    }, {
+      lightImg: 'http://ljp.jujiaoweb.com/static/images/index/star_light.png',
+      blackImg: 'http://ljp.jujiaoweb.com/static/images/index/star_black.png',
+      flag: 0,
+      message: '一般，还要改善'
+    }],
+    todayDiaryCounts:0,   //今日新动态数
+    followStaffLists:[],  //关注的技师 staffId 集合
+   
+    
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+   
+
+
+    var that=this;
+    //读取当前登录用户的头像和昵称
+    var userAvatar = JSON.parse(wx.getStorageSync("user"))["userinfo"]["avatarUrl"];
+    var userNickName = JSON.parse(wx.getStorageSync("user"))["userinfo"]["nickName"];
+    var uid = JSON.parse(wx.getStorageSync("user"))["userinfo"]["uid"];
+    // var uid = 6;
+    var staffLevel = JSON.parse(wx.getStorageSync("user"))["userinfo"]["staffLevel"];
+    var userGender = JSON.parse(wx.getStorageSync("user"))["userinfo"]["gender"];
+    console.log(staffLevel+"----level")
+    console.log(userNickName + "---性别=" + userGender)
+    that.setData({
+      userAvatar: userAvatar,
+      userNickName: userNickName,
+      userGender: userGender,
+      uid: uid,
+      staffLevel: staffLevel
+    })
+    //技师晒单 得到总数量
+    
+    wx.request({
+      //url: app.globalData.webroot + '/index/service/staffHasPockedCount',
+      url: app.globalData.webroot1 + '/index/service/staffHasPockedCount',
+      method: "post",
+      data: {
+        customerId: uid,
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded' //post请求
+      },
+      success(res) {
+        console.log(res.data.msg); 
+        var staffPokerCount = res.data.msg;
+        that.setData({
+          staffPokerCount: staffPokerCount
+        })
+       
+      }
+    })
+   
+   //获取用户发送的晒单弹幕数量
+    wx.request({
+      //url: app.globalData.webroot + '/index/bullet/countMyBullet',
+      url: app.globalData.webroot1 + '/index/bullet/countMyBullet',
+      method: "post",
+      data: {
+        uid: uid
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded' //post请求
+      },
+      success(res) {
+       
+        console.log(res.data.msg);
+        that.setData({
+          countMyBullet: res.data.msg
+        })
+      }
+    })
+
+    /////获取我的晒单美丽档案个数 getPokerByUser
+    var staffLevel = that.data.staffLevel;
+    console.log("---隶属状态=" + staffLevel);
+    console.log(uid)
+    wx.request({
+      //url: app.globalData.webroot + '/index/poker/countPokerByUser',
+      url: app.globalData.webroot1 + '/index/poker/countPokerByUser',
+      method: "post",
+      data: {
+        customerId: uid
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded' //post请求
+      },
+      success(res) {
+        console.log(res.data.msg);
+        var data = res.data.msg;
+        that.setData({
+        
+          beautifulProfileLen: res.data.msg
+        })
+      }
+    })
+    //美丽档案 列表
+    wx.request({
+      //url: app.globalData.webroot + '/index/poker/getPokerByUser',
+      url: app.globalData.webroot1 + '/index/poker/getPokerByUser',
+      method: "post",
+      data: {
+        customerId: uid,
+        min:0,
+        max:2
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded' //post请求
+      },
+      success(res) {
+        console.log('美丽档案----'+res.data.msg);
+        console.log(JSON.stringify(res.data.msg))
+        var beauteList = res.data.msg;
+        that.setData({
+          beauteList: beauteList
+        })
+      }
+    })
+    // 我关注的技师列表
+    wx.request({
+      //url: app.globalData.webroot + '/index/user/getStaffsByFollow',
+      url: app.globalData.webroot1 + '/index/user/getStaffsByFollow',
+      method: "post",
+      data: {
+        customerId: uid,
+        min:0,
+        max:3
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded' //post请求
+      },
+      success(res) {
+        console.log(res.data.msg);
+        var staffLists = res.data.msg;
+        console.log(staffLists);
+        //
+        that.setData({
+          staffCount: staffLists[0]['count']
+        })
+
+        for (var i = 0; i < staffLists.length; i++) {
+          console.log(i);
+          var satisfection = staffLists[i]['Satisfection'] / 10;//评分
+          var num = Math.round(satisfection);//四舍五入分
+          console.log(satisfection + "========");
+          console.log(num + "-----")
+
+
+          staffLists[i]['stars'] = num;
+        }
+        console.log("整理得---");
+        console.log(staffLists);
+        that.setData({
+          staffLists: staffLists
+        })
+        console.log(that.data.staffLists)
+        
+      }
+    })
+    //今日新动态数
+    wx.request({
+      //url: app.globalData.webroot + '/index/diary/todayDiarys',
+      url: app.globalData.webroot1 + '/index/diary/todayDiarys',
+      method: "post",
+      data: {
+        customerId: uid,
+       
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded' //post请求
+      },
+      success(res) {
+        console.log(res.data.msg);
+        var todayDiaryCounts=res.data.others;
+        that.setData({
+          followStaffLists:res.data.msg,
+          todayDiaryCounts: todayDiaryCounts
+        })
+        console.log("今日更新动态数--" + todayDiaryCounts);
+        console.log(that.data.followStaffLists)
+      }
+    })
+    //关注的技师--总数
+    wx.request({
+      //url: app.globalData.webroot + '/index/user/countStaffByFollow',
+      url: app.globalData.webroot1 + '/index/user/countStaffByFollow',
+      method: "post",
+      data: {
+        customerId: uid,
+       
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded' //post请求
+      },
+      success(res) {
+        console.log(res.data.msg);
+        that.setData({
+          allFollowCount: res.data.msg
+        })
+       
+
+      }
+    })
+    //收藏--总数
+    wx.request({
+      //url: app.globalData.webroot + '/index/user/countPokerByFavor',
+      url: app.globalData.webroot1 + '/index/user/countPokerByFavor',
+      method: "post",
+      data: {
+        customerId: uid,
+       
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded' //post请求
+      },
+      success(res) {
+        console.log(res.data.msg);
+
+        that.setData({
+          favorsCount: res.data.msg
+        })
+
+
+      }
+    })
+    //获取 收藏 信息
+    wx.request({
+      //url: app.globalData.webroot + '/index/user/getPokerByFavor',
+      url: app.globalData.webroot1 + '/index/user/getPokerByFavor',
+      method: "post",
+      data: {
+        customerId: uid,
+        min:0,
+        max:2
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded' //post请求
+      },
+      success(res) {
+        console.log(res.data.msg);
+      
+        res.data.msg=res.data.msg[0];
+     
+        //json格式转
+        for (var i = 0; i < res.data.msg.length;i++){
+          res.data.msg[i]['StaffPic'] = JSON.parse(res.data.msg[i]['StaffPic'])
+        }
+        that.setData({
+          saveLists: res.data.msg
+        })
+        console.log(that.data.saveLists);
+
+
+      }
+    })
+  },
+  /**
+   * 跳转到关注的所有技师页面
+   */
+  jumpGetFollow:function(){
+    wx.navigateTo({
+      url: '/pages/index/user/customer/getFollow/getFollow',
+    })
+
+  },
+  /**
+   * 跳转到技师日记页面
+   */
+  jumpStaffDiary:function(){
+    
+    var uid = JSON.parse(wx.getStorageSync("user"))["userinfo"]["uid"];
+    wx.navigateTo({
+      url: '/pages/index/user/staff/diary/diaryIndex/diaryIndex?userId=' + uid +'&&staffId=-1',
+    })
+
+  },
+  /**
+   * 编辑用户信息
+   */
+  eidtUserInfo:function(e){
+    console.log(e.currentTarget.dataset.type)
+    var type=e.currentTarget.dataset.type;
+    wx.navigateTo({
+      url: '/pages/index/user/customer/userInfo/userInfo?type=' + type,
+    })
+  },
+  /**
+   * 跳到美丽档案详细页面
+   */
+  jumpFavoriteDetail: function (e) {
+    console.log("跳转到详细页面---")
+    console.log(e.currentTarget.dataset)
+    var pokerId = e.currentTarget.dataset.pokerid;  //pokerid
+    var staffId = e.currentTarget.dataset.staffid;  //staffid
+    var favorDate = e.currentTarget.dataset.favordate;
+    console.log(e.currentTarget.dataset);
+  
+    //传pokerId staffId
+    wx.navigateTo({
+      url: "/pages/index/user/customer/staffWorkShowDetail/staffWorkShowDetail?pokerId=" + pokerId + "&&staffId=" + staffId + "&&favorDate=" + favorDate
+    })
+  },
+  /**
+   * 跳转到技师晒单页面
+   */
+  jumpStaffPoker:function(){
+    wx.navigateTo({
+      url: "/pages/index/user/customer/pokerDetail/pokerDetail",
+    })
+  },
+//点击弹幕 按钮进入我的弹幕页面
+  gotoBulletBtn:function(){
+    wx.navigateTo({
+      url: '/pages/index/user/customer/bullet/bullet',
+    })
+
+  },
+  //点击美丽档案 进入我的美丽档案页面
+  jumpBeauteList:function(){
+    wx.navigateTo({
+      url: '/pages/index/user/customer/pokerByCustomer/pokerByCustomer',
+    })
+  },
+  // 收藏页面
+  jumpSave:function(){
+      var that=this;
+      wx.navigateTo({
+        url: '/pages/index/user/customer/pokerByFavorite/pokerByFavorite?favorsCount=' + that.data.favorsCount,
+      })
+  },
+  //pages/index/user/staff/staffWorkShow/staffWorkShow
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  },
+  /**
+   * 判断当前用户是否拥有技师身份
+   */
+  judgeIsStaff: function () {
+    console.log(app.globalData.webroot)
+    var userArr = wx.getStorageSync("user");
+    var page = JSON.parse(wx.getStorageSync("user"))["userinfo"]["entry"];
+    var uid = JSON.parse(wx.getStorageSync("user"))["userinfo"]["uid"]; // 隶属状态  0 不是技师 1-等待加入，2-正事成员，3-负责人
+    console.log(userArr)
+    wx.setStorageSync("entry", 1)
+    wx.request({
+      url: app.globalData.webroot1 + '/index/user/judgeIsStaff',
+      method:'POST',
+      data: {
+        uid: uid 
+        // uid: 2
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success (res) {
+          
+          var staffLevel = res.data.msg.StaffLevel;
+          var firmId = res.data.msg.FirmId;
+          console.log(res)
+        
+        if (staffLevel == 0 || staffLevel == 1) {
+          console.log(staffLevel + '---------------')
+          wx.navigateTo({
+            url: '/pages/index/firm/joinStaff/staffIndex/staffIndex?staffLevel='+staffLevel,
+          })
+        } else if (staffLevel == 2 || staffLevel == 3){
+          console.log(staffLevel + '---------------')
+          // 正式成员    跳转到技师首页
+          wx.navigateTo({
+            url: '/pages/index/user/staff/index/index?firmId='+firmId,
+          })
+
+        }
+      }
+    })
+
+
+    
+  }
+})

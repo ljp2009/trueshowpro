@@ -1,0 +1,51 @@
+/* pages/index/qa/addQa/addQa.wxss */
+page {
+  background: #fff;
+ }
+
+.text-area{
+  border: 1rpx solid #e0e0e0;
+  padding: 15rpx
+}
+
+.addBorder{
+  
+  margin-top: 20rpx;
+  border-top: 1rpx solid #e0e0e0;
+  border-bottom: 1rpx solid #e0e0e0;
+  position: relative;
+  display: flex;
+  padding: 0 30rpx;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.paddingSize{
+  padding:10rpx 30rpx;
+
+}
+
+.choose{
+      display: block;
+      text-align: center;
+      width: 30%;
+      margin:50rpx 35% 0 35%;
+}
+
+.toButtom{
+    position: fixed;
+    bottom:50rpx;
+}
+
+
+.delete-btn{
+  position: absolute;
+  bottom:4rpx;
+  right: 0;
+}
+
+.poster{
+  width:650rpx;
+  height:495rpx;
+}

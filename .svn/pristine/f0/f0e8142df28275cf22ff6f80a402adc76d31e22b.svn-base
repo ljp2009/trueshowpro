@@ -1,0 +1,572 @@
+// pages/index/firm/service/addService/addService.js
+import WxValidate from '../../../../../utils/WxValidata.js'
+const app = getApp()
+Page({
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    staffId: -1,
+    serviceId: -1,
+    hidOne: getApp().data.addServiceOne,
+    hidTwo: getApp().data.addServiceTwo,
+    showModal: false,
+    classifyList: [],
+    form: {
+      serviceName: '',
+      serviceTitle: '',
+      lowPrice: '',
+      highPrice: '',
+      needTime: '',
+      introduce: ''
+    },
+    uploaderList: [],
+    uploaderNum: 0,
+    showUpload: true,
+    imgs: [],
+    addImg: true,
+    catList: [],
+    catListBig: '',
+    catListSmall: '',
+    isAddShow: true,
+    descLength: 0
+
+
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function(options) {
+    var hidO = getApp().data.addServiceOne;
+    var hidT = getApp().data.addServiceTwo;
+    var serviceId = options.serviceId;  // 服务项目id
+    var staffId = options.staffId; // 技师id
+    var that = this;
+    if(serviceId != undefined){
+      // 添加服务项目
+      // 请求分类的数据
+      wx.request({
+        url: app.globalData.webroot + '/index/service/getServiceById',
+        method: 'POST',
+        data: {
+          serviceId:serviceId,
+          firmId:staffId
+        },
+        header: {
+          'content-type': 'application/json' // 默认值
+        },
+        success(res) {
+          console.log(res);
+          var _form = {};
+          var msg = res.data.msg;
+          _form.serviceName = msg.ServiceName;
+          _form.serviceTitle = msg.ServiceSub;
+          _form.lowPrice = msg.Price_Min;
+          _form.highPrice = msg.Price_Max;
+          _form.needTime = msg.Duration;
+          _form.introduce = msg.Discription;
+          var mainCat = msg.MainCat;
+          var smallCat = msg.SubCat;
+          that.setData({
+            form:_form,
+            catListBig:mainCat,
+            catListSmall:smallCat
+          })
+        }
+      })
+      this.setData({
+        serviceId: serviceId
+      })
+    }else{
+      // 修改服务项目,获取这条服务的详细信息
+      this.setData({
+        staffId: staffId
+      })
+    }
+    console.log(serviceId)
+    console.log(options.staffId)
+    
+    
+    // 请求分类的数据
+    wx.request({
+      url: app.globalData.webroot +  '/index/firm/getService',
+      method: 'POST',
+      data: {
+        
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        var data = res.data.msg;
+        that.setData({
+          classifyList:data
+        })
+      }
+    })
+// 执行检验函数
+    this.initValidata()
+  },
+
+  /**
+  * 验证函数
+  */
+  initValidata: function () {
+    // 
+    const rules = {
+      serviceName: {
+        required: true,
+        maxlength: 30
+      },
+      serviceTitle: {
+        required: true,
+        maxlength: 30
+      },
+      lowPrice: {
+        required: true,
+        number: true,
+        maxlength: 7
+      },
+      highPrice: {
+        number: true,
+        maxlength: 7
+      },
+      needTime: {
+        required: true,
+        number:true,
+        maxlength: 4
+      },
+      introduce: {
+        required: true,
+        maxlength: 500
+      }
+     
+
+
+    }
+    const message = {
+      serviceName: {
+        required: '服务项目名称不能为空',
+        maxlength: '服务项目名称最长30字符'
+      },
+      serviceTitle: {
+        required: '服务项目副标题不能为空',
+        maxlength: '服务项目副标题最长30字符'
+      },
+      lowPrice: {
+        required: '最低价不能为空',
+        number: '请输入正确的最低价',
+        maxlength: '最低价长度不能超过7位'
+      },
+      highPrice: {
+        number: '请输入正确的最高价',
+        maxlength: '最高价长度不能超过7位'
+      },
+      needTime: {
+        required: '耗时不能为空',
+        number: '请填写正确的耗时',
+        maxlength: '耗时最长4位字符'
+      },
+      introduce: {
+        required: '服务介绍不能为空',
+        maxlength: '服务介绍长度不能超过500'
+      }
+    }
+    this.WxValidate = new WxValidate(rules, message);
+  },
+  
+
+  // 上传图片
+  chooseImg: function (e) {
+    var that = this;
+    var imgs = this.data.imgs;
+    if (imgs.length >= 9) {
+      this.setData({
+        lenMore: 1
+      });
+      setTimeout(function () {
+        that.setData({
+          lenMore: 0
+        });
+      }, 2500);
+      return false;
+    }else{
+      that.setData({
+        addImg:true
+      })
+    }
+    wx.chooseImage({
+      // count: 1, // 默认9
+      // 可以指定是原图还是压缩图，默认二者都有
+      sizeType: ['original', 'compressed'], 
+      // 可以指定来源是相册还是相机，默认二者都有
+      sourceType: ['album', 'camera'], 
+      success: function (res) {
+        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+        var tempFilePaths = res.tempFilePaths;
+        var imgs = that.data.imgs;
+        // console.log(tempFilePaths + '----');
+        for (var i = 0; i < tempFilePaths.length; i++) {
+          if (imgs.length >= 9) {
+            that.setData({
+              imgs: imgs,
+              addImg: false
+            });
+            return false;
+          } else {
+            imgs.push(tempFilePaths[i]);
+          }
+        }
+        that.setData({
+          imgs: imgs
+        });
+        console.log(imgs.length)
+        if(imgs.length == 9){
+          that.setData({
+            isAddShow: false
+          })
+        }
+      }
+    });
+  },
+  // 删除图片
+  deleteImg: function (e) {
+    var imgs = this.data.imgs;
+    var index = e.currentTarget.dataset.index;
+    imgs.splice(index, 1);
+    this.setData({
+      imgs: imgs
+    });
+    if(imgs.length<9){
+      this.setData({
+        isAddShow:true
+      })
+    }
+  },
+  // 预览图片
+  previewImg: function (e) {
+    //获取当前图片的下标
+    var index = e.currentTarget.dataset.index;
+    //所有图片
+    var imgs = this.data.imgs;
+    wx.previewImage({
+      //当前显示图片
+      current: imgs[index],
+      //所有图片
+      urls: imgs
+    })
+  },
+ /**
+  * 分类的点击事件
+  */
+  changeCat: function(e){
+    var checked = e.currentTarget.dataset.checked;
+    var classify = this.data.classifyList;
+    var cat = e.currentTarget.dataset.cat;
+    var catListBig = this.data.catListBig;
+    var catListSmall = this.data.catListSmall;
+    var mainCat;
+    var smallCat;
+    if (cat.length == 1) {
+      // 取消大分类
+      mainCat = cat;
+    } else {
+      // 取消小分类
+      mainCat = cat.substring(0, 1);
+      smallCat = cat;
+    }
+    for (var i = 0; i < classify.length; i++) {
+      if(classify[i].Seq == mainCat){
+        classify[i].checked = 'true';
+      }else{
+        classify[i].checked = 'false';
+      }
+      
+      for (var j = 0; j < classify[i].Pid.length; j++) {
+        if (classify[i].Pid[j].Seq == smallCat){
+          classify[i].Pid[j].checked = 'true'
+        }else{
+          classify[i].Pid[j].checked = 'false'
+        }
+       
+      }
+    }
+    this.setData({
+      classifyList:classify,
+      catListBig:mainCat,
+      catListSmall:smallCat
+    })
+    
+    console.log(this.data.catListSmall+'------'+this.data.catListBig)
+  },
+  // 改变分类选中样式  大分类点击事件
+  ChangeCss: function(e) {
+    var mainCat = e.currentTarget.dataset.cat; // 点击的大分类
+    var check = e.currentTarget.dataset.checked;  // 当前点击的分类状态
+    var classify = this.data.classifyList;
+    // 修改样式
+    check= check=='false'?'true':'false';
+    // 重置所有按钮
+    for(var i =0;i<classify.length;i++){
+      var item = classify[i];
+      classify[i].checked = 'false';
+      for(var j=0;j<item.Pid.length;j++){
+        classify[i].Pid[j].checked = 'false'
+      }
+      if(item.Seq == mainCat){
+        classify[i].checked = check;
+      }
+    }
+    this.setData({
+      classifyList:classify,
+      catListBig: mainCat
+    })
+    console.log(this.data.catListBig)
+  },
+  // 小分类点击事件
+  ChangeContentCss: function(e) {
+    var cat = e.currentTarget.dataset.cat;  // 当前点击的小分类
+    var catP = cat.substr(0, 1); //当前点击的小分类属于的大分类
+    var catPos = this.data.catList.indexOf(catP); // 小分类的索引
+    var curMainCat = this.data.catListBig; //  已经选中的大分类
+    var classify = this.data.classifyList; //所有分类
+    var check = e.currentTarget.dataset.checked;  // 当前点击的分类状态
+    var item1 = this.data.catList;
+    
+    
+    if (catP == curMainCat){
+      // 点击了选中大分类下面的小分类
+      check = check == "false"?"true":false;
+      console.log(cat + "---" + catP + '----' + catPos)
+      for(var i=0;i<classify.length;i++){
+        var item = classify[i];
+        if (item.Seq == catP){
+          for(var j=0;j<item.Pid.length;j++){
+            if(item.Pid[j].Seq == cat){
+              console.log(item.Pid[j].Seq + '----' + cat)
+              classify[i].Pid[j].checked = check;
+            }
+          }
+        }
+      }
+    }else{
+      //  选择了其他大分类
+      for (var i = 0; i < classify.length; i++) {
+        var item = classify[i];
+        if(catP == item.Seq){
+          classify[i].checked = 'true';
+        }else{
+          classify[i].checked = 'false';
+        }
+        for(var j=0;j<item.Pid.length;j++){
+          if (classify[i].Pid[j].Seq == cat){
+            classify[i].Pid[j].checked = 'true';
+          }else{
+            classify[i].Pid[j].checked = 'false';
+          }
+          
+        }
+      }
+      
+    }
+    this.setData({
+      classifyList: classify
+    })
+  },
+
+
+  //弹窗
+  showDialogBtn: function() {
+    this.setData({
+      showModal: true
+    })
+  },
+  /**
+   * 表单提交
+   */
+  formSubmit: function(e) {
+    var that = this;
+    //校验表单
+    const params = e.detail.value
+    console.log(params)
+    // 验证字段
+    if (!this.WxValidate.checkForm(params)) {
+      const error = this.WxValidate.errorList[0]
+      this.showModal(error)
+      return false;
+    }
+    console.log(this.data.form)
+    // 判断分类是否选择
+    if (!this.data.catListBig  || !this.data.catListSmall){
+      wx.showModal({
+        content: '请选择正确的大分类和小分类',
+        showCancel: false
+      })
+      return false;
+    }
+    if(this.data.imgs.length == 0) {
+      wx.showModal({
+        content: '请添加图片',
+        showCancel: false
+      })
+      return false;
+    }
+    
+    // 上传数据
+    wx.request({
+      url: app.globalData.webroot + '/index/firm/addFirm',
+      method: 'POST',
+      data: {
+        info: params,
+        bigCat: this.data.catListBig,
+        smallCat: this.data.catListSmall,
+        staffId: 90,
+        serviceId:this.data.serviceId
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success(res) {
+        if(res.data.code != 1){
+          return false;
+        }
+        var serviceId = res.data.msg;
+        that.setData({
+          serviceId: serviceId
+        })
+        console.log("信息上传成功，处理图片");
+// 上传图片
+		for (var i = 0; i < that.data.imgs.length; i++) {
+		  var imgUrl = that.data.imgs[i];
+			wx.uploadFile({
+        url: app.globalData.webroot + '/index/firm/addFirmHandleImg', 
+			  filePath: imgUrl,// 上传的文件资源的路径
+			  name: 'serviceImage',
+			  // HTTP请求中其他额外的form data
+			  formData: {
+          serviceId: serviceId
+			  },
+			  success(res) {
+          console.log(res)
+          var code = JSON.parse(res.data).code;
+          
+          if(code == 1){
+            // 服务添加成功，图片上传成功
+            wx.redirectTo({
+              url: '/pages/index/firm/service/serviceList/serviceList',
+            })
+
+          }else{
+            // 服务添加成功，图片上传失败
+            console.log("图片传失败")
+          }
+				//do something
+			  }
+			})
+		}
+		
+      },
+      fail(res) {
+
+      }
+    })
+
+  },
+  /**
+   * 添加图片
+   */
+  addServiceImage: function() {
+    console.log('添加服务介绍图片')
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['original', 'compressed'],
+      sourceType: ['album', 'camera'],
+      success(res) {
+        // tempFilePath可以作为img标签的src属性显示图片
+        const tempFilePaths = res.tempFilePaths
+        console.log(tempFilePaths);
+      }
+    })
+  },
+  //弹出框蒙层截断touchmove事件
+  preventTouchMove: function() {},
+  // 隐藏模态对话框
+  hideModal: function() {
+    this.setData({
+      showModal: false
+    });
+  },
+  //对话框确认按钮点击事件
+  onConfirm: function() {
+    this.hideModal();
+  },
+  /**
+    * 报错
+    */
+  showModal(error) {
+    wx.showModal({
+      content: error.msg,
+      showCancel: false
+    })
+  },
+  /**
+    * textareaAInput 将用户输入数据绑定到this.data中
+    */
+  textareaAInput: function (e) {
+    var val = e.detail.value;
+    var length = val.length;
+    this.setData({
+      descLength: length
+    })
+  },
+
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function() {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function() {
+   
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function() {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function() {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function() {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function() {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function() {
+
+  }
+})
